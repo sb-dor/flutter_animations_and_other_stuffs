@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
+import 'package:flutter_animations_2/models/product.dart';
+
 class PageViewWithController extends StatefulWidget {
   const PageViewWithController({Key? key}) : super(key: key);
 
@@ -24,6 +26,12 @@ class _PageViewWithControllerState extends State<PageViewWithController> {
 
     controller =
         PageController(initialPage: 0, viewportFraction: 0.5, keepPage: true);
+
+    Product newP = Product(id: 1, price: 15, name: "Apple", pack_qty: 15);
+
+    newP.qty = 1.2;
+
+    debugPrint("get qty: ${newP.getFromDouble()}");
   }
 
   int initialPage = 0;
@@ -64,8 +72,7 @@ class _PageViewWithControllerState extends State<PageViewWithController> {
                 opacity: initialPage == index ? 1 : 0.4,
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width / 2,
-                  child: Image.asset(pictureAssets[index],
-                      fit: BoxFit.cover),
+                  child: Image.asset(pictureAssets[index], fit: BoxFit.cover),
                 ),
               ));
         });
