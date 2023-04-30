@@ -58,6 +58,7 @@ class _PageViewWithControllerState extends State<PageViewWithController> {
         animation: controller,
         builder: (context, child) {
           double value = 0;
+          double _scale = initialPage == index ? 1 : 0.8;
           if (controller.position.haveDimensions) {
             value = index - (controller.page ?? 0);
 
@@ -66,15 +67,19 @@ class _PageViewWithControllerState extends State<PageViewWithController> {
             value = (value * 0.040).clamp(-1, 1);
           }
           return Transform.rotate(
+              //for rotating transform.rotate
               angle: math.pi * value,
-              child: AnimatedOpacity(
-                duration: const Duration(milliseconds: 275),
-                opacity: initialPage == index ? 1 : 0.4,
-                child: SizedBox(
-                  width: MediaQuery.of(context).size.width / 2,
-                  child: Image.asset(pictureAssets[index], fit: BoxFit.cover),
-                ),
-              ));
+              child: TweenAnimationBuilder(
+                  tween: Tween<double>(begin: _scale, end: _scale),
+                  duration: const Duration(milliseconds: 75),
+                  child: AnimatedOpacity(
+                      duration: const Duration(milliseconds: 275),
+                      opacity: initialPage == index ? 1 : 0.4,
+                      child:
+                          Image.asset(pictureAssets[index], fit: BoxFit.cover)),
+                  builder: (BuildContext context, value, Widget? child) {
+                    return Transform.scale(scale: value, child: child);
+                  }));
         });
   }
 }
