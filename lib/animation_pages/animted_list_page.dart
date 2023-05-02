@@ -41,11 +41,12 @@ class _AnimatedListPageState extends State<AnimatedListPage> {
 
   Tween<Offset> offset = Tween<Offset>(begin: Offset(1, 0), end: Offset(0, 0));
 
-  void addItem() async{
+  void addItem() async {
     forAdd.add(names[0]);
     await Future.delayed(const Duration(milliseconds: 30));
     print(forAdd.length);
-    listKey.currentState?.insertItem(forAdd.length - 1);
+    listKey.currentState?.insertItem(
+        0); //if you want to add from bottom write "array.length - 1";
     setState(() {});
   }
 
@@ -68,8 +69,9 @@ class _AnimatedListPageState extends State<AnimatedListPage> {
                     child: SlideTransition(
                         position: anim.drive(Tween<Offset>(
                             begin: Offset(1, 0), end: Offset(0, 0))),
-                        child: Text(forAdd[index],
-                            style: TextStyle(color: Colors.black))),
+                        child: AnimatedSize(
+                            duration: const Duration(milliseconds: 10),
+                            child: Text(forAdd[index]))),
                   ),
                 ))
       ]),
