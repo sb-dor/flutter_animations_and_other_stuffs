@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/src/routes/default_transitions.dart';
 
 class AnimatedListPage extends StatefulWidget {
   const AnimatedListPage({Key? key}) : super(key: key);
@@ -33,43 +34,45 @@ class _AnimatedListPageState extends State<AnimatedListPage> {
   void addToList() async {
     for (var element in names) {
       forAdd.add(element);
-      await Future.delayed(const Duration(milliseconds: 475));
+      await Future.delayed(const Duration(milliseconds: 100));
       listKey.currentState?.insertItem(forAdd.length - 1);
     }
   }
 
-  void addSomething() {
-    setState(() {
-      forAdd.add("Flutter");
-      listKey.currentState?.insertItem(forAdd.length - 1);
-    });
+  Tween<Offset> offset = Tween<Offset>(begin: Offset(1, 0), end: Offset(0, 0));
+
+  void addItem() async{
+    forAdd.add(names[0]);
+    await Future.delayed(const Duration(milliseconds: 30));
+    print(forAdd.length);
+    listKey.currentState?.insertItem(forAdd.length - 1);
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        floatingActionButton: FloatingActionButton(
-            onPressed: () => addSomething(), child: const Icon(Icons.add)),
-        appBar: AppBar(
-            backgroundColor: Colors.greenAccent,
-            title: const Text('Animated List')),
-        body: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: AnimatedList(
-                key: listKey,
-                initialItemCount: forAdd.length,
-                itemBuilder: (context, index, animation) => SlideTransition(
-                    position: animation.drive(Tween<Offset>(
-                            begin: const Offset(1, 5), end: const Offset(0, 0))
-                        .chain(CurveTween(curve: Curves.elasticInOut))),
-                    child: Text(forAdd[index],
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                            shadows: [
-                              Shadow(
-                                  color: Colors.grey[300]!,
-                                  offset: const Offset(0, 5))
-                            ]))))));
+      appBar: AppBar(title: Text("Animated List")),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () => addItem(), child: Icon(Icons.add)),
+      body: ListView(physics: const AlwaysScrollableScrollPhysics(), children: [
+        AnimatedList(
+            key: listKey,
+            shrinkWrap: true,
+            initialItemCount: forAdd.length,
+            physics: const NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index, anim) => SizeTransition(
+                  sizeFactor: anim,
+                  child: FadeTransition(
+                    opacity: anim,
+                    child: SlideTransition(
+                        position: anim.drive(Tween<Offset>(
+                            begin: Offset(1, 0), end: Offset(0, 0))),
+                        child: Text(forAdd[index],
+                            style: TextStyle(color: Colors.black))),
+                  ),
+                ))
+      ]),
+    );
   }
 }
