@@ -42,7 +42,8 @@ class _AnimatedListPageState extends State<AnimatedListPage> {
     }
   }
 
-  Tween<Offset> offset = Tween<Offset>(begin: Offset(1, 0), end: Offset(0, 0));
+  Tween<Offset> offset =
+      Tween<Offset>(begin: const Offset(1, 0), end: const Offset(0, 0));
 
   void addItem() async {
     forAdd.add(names[0]);
@@ -56,36 +57,36 @@ class _AnimatedListPageState extends State<AnimatedListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Animated List")),
-      floatingActionButton: FloatingActionButton(
-          onPressed: () => addItem(), child: Icon(Icons.add)),
-      body: ListView(physics: const AlwaysScrollableScrollPhysics(), children: [
-        // AnimatedList(
-        //     key: listKey,
-        //     shrinkWrap: true,
-        //     initialItemCount: forAdd.length,
-        //     physics: const NeverScrollableScrollPhysics(),
-        //     itemBuilder: (context, index, anim) => SizeTransition(
-        //           sizeFactor: anim,
-        //           child: FadeTransition(
-        //             opacity: anim,
-        //             child: SlideTransition(
-        //                 position: anim.drive(Tween<Offset>(
-        //                     begin: Offset(1, 0), end: Offset(0, 0))),
-        //                 child: AnimatedSize(
-        //                     duration: const Duration(milliseconds: 10),
-        //                     child: Text(forAdd[index]))),
-        //           ),
-        //         )),
-        SizedBox(height: 50),
-        ScaleAnimation(
-          child: Text(
-            "Hello word",
-            style: TextStyle(
-            color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
-          ),
-        )
-      ]),
-    );
+        appBar: AppBar(title: const Text("Animated List")),
+        floatingActionButton: FloatingActionButton(
+            onPressed: () => addItem(), child: const Icon(Icons.add)),
+        body:
+            ListView(physics: const AlwaysScrollableScrollPhysics(), children: [
+          AnimatedList(
+              key: listKey,
+              shrinkWrap: true,
+              initialItemCount: forAdd.length,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index, anim) => SizeTransition(
+                    sizeFactor: anim,
+                    child: FadeTransition(
+                      opacity: anim,
+                      child: SlideTransition(
+                          position: anim.drive(Tween<Offset>(
+                              begin: const Offset(1, 0),
+                              end: const Offset(0, 0))),
+                          child: AnimatedSize(
+                              duration: const Duration(milliseconds: 10),
+                              child: Text(forAdd[index]))),
+                    ),
+                  )),
+          const SizedBox(height: 50),
+          const ScaleAnimation(
+              child: Text("Hello word",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold)))
+        ]));
   }
 }
