@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animations_2/animations/fade_animation.dart';
+import 'package:flutter_animations_2/animations/scale_animation.dart';
+import 'package:flutter_animations_2/animations/slide_animation.dart';
 import 'package:get/get_navigation/src/routes/default_transitions.dart';
 
 class AnimatedListPage extends StatefulWidget {
@@ -57,23 +60,31 @@ class _AnimatedListPageState extends State<AnimatedListPage> {
       floatingActionButton: FloatingActionButton(
           onPressed: () => addItem(), child: Icon(Icons.add)),
       body: ListView(physics: const AlwaysScrollableScrollPhysics(), children: [
-        AnimatedList(
-            key: listKey,
-            shrinkWrap: true,
-            initialItemCount: forAdd.length,
-            physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index, anim) => SizeTransition(
-                  sizeFactor: anim,
-                  child: FadeTransition(
-                    opacity: anim,
-                    child: SlideTransition(
-                        position: anim.drive(Tween<Offset>(
-                            begin: Offset(1, 0), end: Offset(0, 0))),
-                        child: AnimatedSize(
-                            duration: const Duration(milliseconds: 10),
-                            child: Text(forAdd[index]))),
-                  ),
-                ))
+        // AnimatedList(
+        //     key: listKey,
+        //     shrinkWrap: true,
+        //     initialItemCount: forAdd.length,
+        //     physics: const NeverScrollableScrollPhysics(),
+        //     itemBuilder: (context, index, anim) => SizeTransition(
+        //           sizeFactor: anim,
+        //           child: FadeTransition(
+        //             opacity: anim,
+        //             child: SlideTransition(
+        //                 position: anim.drive(Tween<Offset>(
+        //                     begin: Offset(1, 0), end: Offset(0, 0))),
+        //                 child: AnimatedSize(
+        //                     duration: const Duration(milliseconds: 10),
+        //                     child: Text(forAdd[index]))),
+        //           ),
+        //         )),
+        SizedBox(height: 50),
+        ScaleAnimation(
+          child: Text(
+            "Hello word",
+            style: TextStyle(
+            color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+        )
       ]),
     );
   }
