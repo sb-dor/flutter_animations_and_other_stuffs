@@ -64,31 +64,106 @@ class _AnimatedListPageState extends State<AnimatedListPage> {
             onPressed: () => addItem(), child: const Icon(Icons.add)),
         body:
             ListView(physics: const AlwaysScrollableScrollPhysics(), children: [
-          AnimatedList(
-              key: listKey,
+          // AnimatedList(
+          //     key: listKey,
+          //     shrinkWrap: true,
+          //     initialItemCount: forAdd.length,
+          //     physics: const NeverScrollableScrollPhysics(),
+          //     itemBuilder: (context, index, anim) => SizeTransition(
+          //           sizeFactor: anim,
+          //           child: FadeTransition(
+          //             opacity: anim,
+          //             child: SlideTransition(
+          //                 position: anim.drive(Tween<Offset>(
+          //                     begin: const Offset(1, 0),
+          //                     end: const Offset(0, 0))),
+          //                 child: AnimatedSize(
+          //                     duration: const Duration(milliseconds: 10),
+          //                     child: Text(forAdd[index]))),
+          //           ),
+          //         )),
+
+          ListView.separated(
+              separatorBuilder: (context, index) => SizedBox(
+                    height: 20,
+                  ),
               shrinkWrap: true,
-              initialItemCount: forAdd.length,
               physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (context, index, anim) => SizeTransition(
-                    sizeFactor: anim,
-                    child: FadeTransition(
-                      opacity: anim,
-                      child: SlideTransition(
-                          position: anim.drive(Tween<Offset>(
-                              begin: const Offset(1, 0),
-                              end: const Offset(0, 0))),
-                          child: AnimatedSize(
-                              duration: const Duration(milliseconds: 10),
-                              child: Text(forAdd[index]))),
-                    ),
+              itemCount: 10,
+              itemBuilder: (context, index) => SizedBox(
+                    width: 100,
+                    height: 100,
+                    child: Card(
+                        child: Row(children: [
+                      ScaleAnimation(
+                        begin: 0.3,
+                        end: 1,
+                        duration: Duration(milliseconds: 1000),
+                        intervalStart: getIntervalStartByIndex(index),
+                        child: SlideAnimation(
+                          begin: Offset(0,100),
+                          // end: Offset(0,100),
+                          duration: Duration(milliseconds: 1000),
+                          intervalStart: getIntervalStartByIndex(index + 1),
+                          child: Container(
+                            width: 100,
+                            height: 100,
+                            child: Image.asset('assets/nfts/${index + 1}.png'),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      Expanded(
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                            FadeAnimation(
+                              intervalStart: getIntervalStartByIndex(index),
+                              child: const Text("Gladias Baker",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16)),
+                            ),
+                            const SizedBox(height: 10),
+                            SlideAnimation(
+                              intervalStart: getIntervalStartByIndex(index),
+                              child: const Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Icon(Icons.star,
+                                        color: Colors.amber, size: 20),
+                                    Flexible(
+                                      child: Text("4.3 ",
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 16)),
+                                    ),
+                                    Text("Digital Art ",
+                                        style:
+                                            TextStyle(color: Colors.black45)),
+                                    Flexible(
+                                      child: Text("\$2.2",
+                                          style:
+                                              TextStyle(color: Colors.black45)),
+                                    ),
+                                  ]),
+                            )
+                          ]))
+                    ])),
                   )),
           const SizedBox(height: 50),
-          ScaleAnimation(
+          const ScaleAnimation(
               child: Text("Hello word",
                   style: TextStyle(
                       color: Colors.black,
                       fontSize: 20,
                       fontWeight: FontWeight.bold)))
         ]));
+  }
+
+  double getIntervalStartByIndex(int index) {
+    return double.parse('0.${index + 1}');
   }
 }

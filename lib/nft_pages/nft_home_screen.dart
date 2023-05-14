@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animations_2/animation_pages/animted_list_page.dart';
 import 'package:flutter_animations_2/animations/fade_animation.dart';
 import 'package:flutter_animations_2/nft_pages/widgets/image_list_view.dart';
 
@@ -77,17 +78,23 @@ class NftHomeScreen extends StatelessWidget {
                       const Spacer(),
                       FadeAnimation(
                           intervalStart: 0.4,
-                          child: Container(
-                              width: 140,
-                              height: 50,
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                  color: const Color(0xff3000ff)),
-                              child: const Text("Discover",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold))))
+                          child: InkWell(
+                            onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => AnimatedListPage())),
+                            child: Container(
+                                width: 140,
+                                height: 50,
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    color: const Color(0xff3000ff)),
+                                child: const Text("Discover",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold))),
+                          ))
                     ])))
       ]),
     );

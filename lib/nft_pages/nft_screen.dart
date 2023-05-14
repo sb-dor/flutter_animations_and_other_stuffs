@@ -34,6 +34,14 @@ class NftScreen extends StatelessWidget {
                           color: Colors.white, fontWeight: FontWeight.bold),
                     )),
                   )),
+                )),
+            Positioned(
+                top: 40,
+                // right: 0,
+                left: 10,
+                child: IconButton(
+                  onPressed: () => Navigator.pop(context),
+                  icon: Icon(Icons.arrow_back,color: Colors.white,),
                 ))
           ]),
           const SizedBox(height: 15),
@@ -88,7 +96,6 @@ class NftScreen extends StatelessWidget {
                                 color: Colors.white,
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold)),
-
                       ),
                     ),
                     SizedBox(height: 40)

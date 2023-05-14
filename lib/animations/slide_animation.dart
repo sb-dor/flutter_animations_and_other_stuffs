@@ -15,7 +15,7 @@ class SlideAnimation extends StatelessWidget {
   ///Animation delay
   ///
   ///[default is 0]
-  final double? intervalStart; //Задержка анимации
+   double? intervalStart; //Задержка анимации
 
   ///Animation delay
   ///
@@ -34,7 +34,7 @@ class SlideAnimation extends StatelessWidget {
   ///This widget will be animated
   final Widget? child;
 
-  const SlideAnimation(
+   SlideAnimation(
       {Key? key,
       required this.child,
       this.begin,
