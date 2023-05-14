@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_animations_2/animations/fade_animation.dart';
 import 'package:flutter_animations_2/animations/scale_animation.dart';
@@ -81,7 +83,7 @@ class _AnimatedListPageState extends State<AnimatedListPage> {
                     ),
                   )),
           const SizedBox(height: 50),
-          const ScaleAnimation(
+          ScaleAnimation(
               child: Text("Hello word",
                   style: TextStyle(
                       color: Colors.black,

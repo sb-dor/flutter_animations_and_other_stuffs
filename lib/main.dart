@@ -5,6 +5,7 @@ import 'package:flutter_animations_2/animation_pages/animted_title_page.dart';
 import 'package:flutter_animations_2/animation_pages/heart_animtaion_page.dart';
 import 'package:flutter_animations_2/animation_pages/page_view_with_controller.dart';
 import 'package:flutter_animations_2/internet_controller/cubit/internet_conn_checker_cubit.dart';
+import 'package:flutter_animations_2/nft_pages/nft_home_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
@@ -36,7 +37,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const AnimatedListPage(),
+        builder: (context, state) => const NftHomeScreen(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
