@@ -68,6 +68,7 @@ class _ImageListViewState extends State<ImageListView> {
       child: SizedBox(
           height: 130,
           child: ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
               controller: scrollController,
               itemCount: 10,
               scrollDirection: Axis.horizontal,

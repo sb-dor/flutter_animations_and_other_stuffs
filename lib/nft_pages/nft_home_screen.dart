@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animations_2/animation_pages/animated_list_with_animations_page.dart';
 import 'package:flutter_animations_2/animation_pages/animted_list_page.dart';
 import 'package:flutter_animations_2/animations/fade_animation.dart';
+import 'package:flutter_animations_2/animations/navigation/navigation.dart';
+import 'package:flutter_animations_2/animations/navigation/page_transition_animation.dart';
 import 'package:flutter_animations_2/nft_pages/widgets/image_list_view.dart';
 
 class NftHomeScreen extends StatelessWidget {
@@ -79,10 +82,10 @@ class NftHomeScreen extends StatelessWidget {
                       FadeAnimation(
                           intervalStart: 0.4,
                           child: InkWell(
-                            onTap: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => AnimatedListPage())),
+                            onTap: () => Navigation.push(context,
+                                customPageTransition: PageTransition(
+                                    child: AnimatedListWithAnimationPage(),
+                                    type: PageTransitionType.scaleUpWithFadeIn)),
                             child: Container(
                                 width: 140,
                                 height: 50,
