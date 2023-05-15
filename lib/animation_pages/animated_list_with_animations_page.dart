@@ -11,7 +11,7 @@ class AnimatedListWithAnimationPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: ListView.separated(
-          separatorBuilder: (context, index) => SizedBox(height: 20),
+          separatorBuilder: (context, index) => const SizedBox(height: 20),
           itemCount: 10,
           itemBuilder: (context, index) => SizedBox(
                 width: 100,
@@ -20,13 +20,13 @@ class AnimatedListWithAnimationPage extends StatelessWidget {
                     child: Row(children: [
                   ScaleAnimation(
                     begin: 0.3,
-                    end: 1,
-                    duration: Duration(milliseconds: 1000),
+                    end:1,
+                    duration: const Duration(milliseconds: 1000),
                     intervalStart: getIntervalStartByIndex(index),
                     child: SlideAnimation(
-                      begin: Offset(0, 100),
+                      begin: const Offset(0, 50),
                       // end: Offset(0,100),
-                      duration: Duration(milliseconds: 1000),
+                      duration: const Duration(milliseconds: 1000),
                       intervalStart: getIntervalStartByIndex(index + 1),
                       child: Container(
                         width: 100,
