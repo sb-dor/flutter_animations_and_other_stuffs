@@ -7,7 +7,7 @@ class InternetConnCubit extends Cubit<bool> {
 
 
   //use this in main
-  //check the main.dart
+  //check the main_food_app_screen.dart
   void listenInternetConn() {
     Connectivity connectivity = Connectivity();
 

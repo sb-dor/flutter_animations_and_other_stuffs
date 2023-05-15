@@ -36,6 +36,7 @@ dependencies:
   connectivity_plus: ^3.0.6
   flutter_bloc: ^8.1.2
   get: ^4.6.5
+  flutter_svg: ^2.0.5
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -68,6 +69,8 @@ flutter:
   assets:
     - assets/rives/
     - assets/images/
+    - assets/images/logo/
+    - assets/images/donut/
     - assets/nfts/
 
   # An image asset can refer to one or more resolution-specific "variants", see
