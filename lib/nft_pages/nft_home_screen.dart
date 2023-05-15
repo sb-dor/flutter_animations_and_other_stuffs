@@ -85,7 +85,7 @@ class NftHomeScreen extends StatelessWidget {
                             onTap: () => Navigation.push(context,
                                 customPageTransition: PageTransition(
                                     child: AnimatedListWithAnimationPage(),
-                                    type: PageTransitionType.fromRight)),
+                                    type: PageTransitionType.scaleDownWithFadeIn)),
                             child: Container(
                                 width: 140,
                                 height: 50,

@@ -13,22 +13,26 @@ class AnimatedListWithAnimationPage extends StatelessWidget {
       body: ListView.separated(
           separatorBuilder: (context, index) => const SizedBox(height: 20),
           itemCount: 10,
-          itemBuilder: (context, index) => SizedBox(
-                width: 100,
-                height: 100,
+          itemBuilder: (context, index) => SlideAnimation(
+            intervalStart: getIntervalStartByIndex(index),
+            duration: const Duration(milliseconds: 1500),
+                curve: Curves.bounceOut,
+                begin: Offset(150, 0),
                 child: Card(
+                  color: Colors.amber,
                     child: Row(children: [
                   ScaleAnimation(
-                    begin: 0.3,
-                    end:1,
-                    duration: const Duration(milliseconds: 1000),
-                    intervalStart: getIntervalStartByIndex(index),
+                    begin: 0.4,
+                    end: 1,
+                    curve: Curves.elasticInOut,
+                    duration: const Duration(milliseconds: 1500),
+                    intervalStart: getIntervalStartByIndex(index + 3),
                     child: SlideAnimation(
-                      begin: const Offset(0, 50),
+                      begin: const Offset(0, 150),
                       // end: Offset(0,100),
-                      duration: const Duration(milliseconds: 1000),
-                      intervalStart: getIntervalStartByIndex(index + 1),
-                      child: Container(
+                      duration: const Duration(milliseconds: 500),
+                      intervalStart: getIntervalStartByIndex(index + 5),
+                      child: SizedBox(
                         width: 100,
                         height: 100,
                         child: Image.asset('assets/nfts/${index + 1}.png'),
