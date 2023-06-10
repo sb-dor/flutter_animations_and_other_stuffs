@@ -3,6 +3,7 @@ import 'package:flutter_animations_2/animation_pages/animted_list_page.dart';
 import 'package:flutter_animations_2/animations/navigation/navigation.dart';
 import 'package:flutter_animations_2/animations/navigation/page_transition_animation.dart';
 import 'package:flutter_animations_2/animations/own_navigation_without_seeing_anything/navigation_class.dart';
+import 'package:flutter_animations_2/network/connections.dart';
 
 class NeumorphicContainer extends StatefulWidget {
   const NeumorphicContainer({super.key});
@@ -23,7 +24,11 @@ class NeumorphicContainerState extends State<NeumorphicContainer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(actions: [
+          TextButton(
+              onPressed: () async => await Connections.createImageInPhoneStorageWithHttp(),
+              child: Text("Dio request",style: TextStyle(color: Colors.amber)))
+        ]),
         body: SizedBox(
           width: double.maxFinite,
           child: ListView(
