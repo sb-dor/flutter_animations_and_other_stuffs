@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animations_2/animation_pages/neumorphic_container_page.dart';
+import 'package:flutter_animations_2/animation_pages/neumorphic_page_transitions_container_page.dart';
 import 'package:flutter_animations_2/animations/fade_animation.dart';
 import 'package:flutter_animations_2/animations/scale_animation.dart';
 import 'package:flutter_animations_2/animations/slide_animation.dart';
