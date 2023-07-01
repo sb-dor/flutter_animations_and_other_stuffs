@@ -9,6 +9,7 @@ import 'package:flutter_animations_2/internet_controller/cubit/internet_conn_che
 import 'package:flutter_animations_2/nft_pages/nft_home_screen.dart';
 import 'package:flutter_animations_2/pdf/data/pdf_generator.dart';
 import 'package:flutter_animations_2/pdf/pdf_page.dart';
+import 'package:flutter_animations_2/ping_pong/ping_pong_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
@@ -42,7 +43,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => GoogleSignInPage(),
+        builder: (context, state) => PingPongPage(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {

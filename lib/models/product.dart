@@ -10,12 +10,7 @@ class Product {
   double? pack_qty;
   String name;
 
-  Product(
-      {required this.id,
-      required this.price,
-      required this.name,
-      this.qty,
-      this.pack_qty});
+  Product({required this.id, required this.price, required this.name, this.qty, this.pack_qty});
 }
 
 extension NameOfExtension on List<Product> {
@@ -43,11 +38,28 @@ extension QtyToDoubleAndGet on Product {
     debugPrint("qty: $qty");
     int first_qty = (qty ?? 0.0).toInt();
     debugPrint("f qty: $first_qty");
-    double second_qty =
-        double.parse(((qty ?? 0.0) - first_qty).toStringAsFixed(2));
+    double second_qty = double.parse(((qty ?? 0.0) - first_qty).toStringAsFixed(2));
     debugPrint("s qty: $second_qty");
     qty_solved += first_qty * (pack_qty ?? 0);
     qty_solved += second_qty * (pack_qty ?? 0);
     return qty_solved;
+  }
+
+  double parsSelectedQtyToDouble() {
+    return double.parse(((qty ?? 0.0) / (pack_qty ?? 0.0)).toStringAsFixed(2));
+  }
+
+  int reParseSelectedQty() {
+    int qty = parsSelectedQtyToDouble().toInt();
+
+    double peace = parsSelectedQtyToDouble() - qty;
+
+    double peaceRes = peace * (pack_qty ?? 0.0);
+
+    if (peace >= 0.5) {
+      return (((pack_qty ?? 0.0) * qty) + peaceRes).ceil();
+    } else {
+      return (((pack_qty ?? 0.0) * qty) + peaceRes).floor();
+    }
   }
 }
