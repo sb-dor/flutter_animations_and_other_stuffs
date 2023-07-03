@@ -1,5 +1,4 @@
 class PaginateList {
-
   //temp function, not usable, just for testing.
   static int checkListLength(
       {required List<dynamic> wholeList, required List<dynamic> currentList, int perPage = 30}) {
