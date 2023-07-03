@@ -17,23 +17,25 @@ class PaginateList {
     return (currentList.length + perPage) > wholeList.length ? false : true;
   }
 
-  //
-  //paginate any list using this way calling this class
-  //--------------------------
-  // paginatingList.addAll(PaginateList.paginateList<OBJECT>(wholeList: wholeListThatYouHave, currentList: paginatingList)
-  //           .map((e) => OBJECT)
-  //           .toList());
-  //--------------------------
-  // Reparse "OBJECT" to "List<T>" - T class object
+  ///
+  ///paginate any list using this way calling this class
+  ///--------------------------
+  ///paginatingList.addAll(PaginateList.paginateList<OBJECT>(wholeList: wholeListThatYouHave, currentList: paginatingList)
+  ///           .map((e) => OBJECT)
+  ///           .toList());
+  ///--------------------------
+  /// Reparse "OBJECT" to "List<T>" - T class object
   static List<T> paginateList<T>(
       {required List<T> wholeList,
       required List<T> currentList,
       int perPage = 30,
       bool showingCircularProgress = true}) {
+    //if do not want to show any progress indicators in your screen -> set "showingCircularProgress" to "false"
     if (!showingCircularProgress) {
       bool hasMore = currentList.length >= wholeList.length ? false : true;
       if (!hasMore) return [];
     }
+    //check in which list index we are at
     int check = (currentList.length + perPage) > wholeList.length
         ? wholeList.length
         : (currentList.length + perPage);
