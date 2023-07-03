@@ -1,5 +1,4 @@
 class PaginateList {
-  // const PaginateList();
 
   //temp function, not usable, just for testing.
   static int checkListLength(
@@ -9,10 +8,11 @@ class PaginateList {
         : (currentList.length + perPage);
   }
 
-  //if you want to show any progress indicator, create bool variable.
-  //that bool variable that you created will equals this fun
-  //
-  static bool checkFalseOfList(
+  ///if you want to show any progress indicator, create bool variable.
+  ///that bool variable that you created will equals this fun
+  ///
+  ///checks is list has more or not
+  static bool checkHasMoreList(
       {required List<dynamic> wholeList, required List<dynamic> currentList, int perPage = 30}) {
     return (currentList.length + perPage) > wholeList.length ? false : true;
   }
