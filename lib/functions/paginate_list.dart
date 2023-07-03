@@ -30,6 +30,8 @@ class PaginateList {
       int perPage = 30,
       bool showingCircularProgress = true}) {
     //if do not want to show any progress indicators in your screen -> set "showingCircularProgress" to "false"
+    //you should not use any check variable, this function parameter "showingCircularProgress" will know automatically
+    //and it checks whether list still has items or not
     if (!showingCircularProgress) {
       bool hasMore = currentList.length >= wholeList.length ? false : true;
       if (!hasMore) return [];
