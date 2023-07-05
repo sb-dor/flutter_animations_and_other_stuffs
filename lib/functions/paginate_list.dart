@@ -19,8 +19,7 @@ class PaginateList {
   ///
   ///paginate any list using this way calling this class
   ///--------------------------
-  ///paginatingList.addAll(PaginateList.paginateList<OBJECT>(wholeList: wholeListThatYouHave, currentList: paginatingList)
-  ///           .map((e) => OBJECT);
+  ///paginatingList.addAll(PaginateList.paginateList<OBJECT>(wholeList: wholeListThatYouHave, currentList: paginatingList));
   ///--------------------------
   /// Reparse "OBJECT" to "List<T>" - T class object
   static List<T> paginateList<T>(
