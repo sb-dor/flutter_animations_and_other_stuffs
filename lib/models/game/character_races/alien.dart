@@ -4,6 +4,8 @@ import 'package:flutter_animations_2/models/game/character_helpers/vehicle.dart'
 import 'package:flutter_animations_2/models/game/character_helpers/weapon.dart';
 
 class Alien extends Race {
+  Alien({required super.vehicle, required super.weapon});
+
   @override
   void saySome() {
     debugPrint("I'm alien");
@@ -31,6 +33,4 @@ class Alien extends Race {
     // TODO: implement shoos
     throw UnimplementedError();
   }
-
-  Alien({Weapon? weapon, Vehicle? vehicle}) : super(weapon: weapon, vehicle: vehicle);
 }

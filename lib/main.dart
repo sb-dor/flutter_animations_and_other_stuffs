@@ -17,7 +17,9 @@ import 'package:get/get.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   //get material app just for showing get's snackBar
-  MainCharacter mainCharacter = MainCharacter("Human");
+  MainCharacter mainCharacter = MainCharacter("Alien");
+  mainCharacter.race?.saySome();
+  mainCharacter.race?.weapon.shoot();
   await PdfGenerator.init();
   runApp(GetMaterialApp(
       debugShowCheckedModeBanner: false,

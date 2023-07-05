@@ -12,9 +12,10 @@ abstract class Race implements Cloth {
   void food() {
     debugPrint("they both eat meat");
   }
-  Weapon? weapon;
 
-  Vehicle? vehicle;
+  Weapon weapon;
 
-  Race({this.vehicle, this.weapon});
+  Vehicle vehicle;
+
+  Race({required this.vehicle,required this.weapon});
 }
