@@ -25,6 +25,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'com.google.gms.google-services'
 
+
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
@@ -32,6 +33,7 @@ android {
     ndkVersion flutter.ndkVersion
     //
     compileOptions {
+        coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
@@ -75,5 +77,13 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:32.1.1"))
 
     implementation("com.google.firebase:firebase-analytics-ktx")
+
+    implementation 'com.google.firebase:firebase-messaging:23.1.2'
+    implementation 'com.pusher:push-notifications-android:1.9.0'
+
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.9'
+
+    implementation 'androidx.window:window:1.1.0'
+    implementation 'androidx.window:window-java:1.1.0'
 }
 
