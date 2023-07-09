@@ -1,4 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animations_2/animation_pages/animated_container_tween_anim_page.dart';
 import 'package:flutter_animations_2/animation_pages/animted_list_page.dart';
@@ -11,10 +13,7 @@ import 'package:flutter_animations_2/internet_controller/cubit/internet_conn_che
 import 'package:flutter_animations_2/local_notification/local_notification.dart';
 import 'package:flutter_animations_2/models/game/main_character.dart';
 import 'package:flutter_animations_2/multi_image_selector_page/multi_image_selector_page.dart';
-import 'package:flutter_animations_2/nft_pages/nft_home_screen.dart';
 import 'package:flutter_animations_2/pdf/data/pdf_generator.dart';
-import 'package:flutter_animations_2/pdf/pdf_page.dart';
-import 'package:flutter_animations_2/ping_pong/ping_pong_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
@@ -25,9 +24,20 @@ void main() async {
   await FirebasePushNot.initBackGroundNotification();
   await FirebasePushNot.initForeGroundNotification();
   await LocalNotification.initLocalNotification();
-  MainCharacter mainCharacter = MainCharacter("Alien");
-  mainCharacter.race?.saySome();
-  mainCharacter.race?.weapon.shoot();
+  // MainCharacter mainCharacter = MainCharacter("Alien");
+  // mainCharacter.race?.saySome();
+  // mainCharacter.race?.weapon.shoot();
+
+  //using firebase crashlytics for checking app bugs
+  FlutterError.onError = (errorDetails) {
+    FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+  };
+  // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
+  PlatformDispatcher.instance.onError = (error, stack) {
+    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+    return true;
+  };
+
   await PdfGenerator.init();
   runApp(GetMaterialApp(
       debugShowCheckedModeBanner: false,

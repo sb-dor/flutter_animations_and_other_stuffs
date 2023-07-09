@@ -20,6 +20,7 @@ class _MultiImageSelectorPageState extends State<MultiImageSelectorPage> {
         appBar: AppBar(
           title: const Text("Multi Image Picker"),
           actions: [
+            IconButton(onPressed: () => throw Exception(), icon: Icon(Icons.bug_report)),
             IconButton(
                 onPressed: () => MultiSelectorHelper.pickMultipleMediaFunc(),
                 icon: Icon(Icons.send))
