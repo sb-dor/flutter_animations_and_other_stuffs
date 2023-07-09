@@ -31,6 +31,6 @@ LocalNotification class
 do Android and Ios integration from docs
 on any app debug issues try to change:
 
--> coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.9'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.9'
 
 in android/app/build.gradle
