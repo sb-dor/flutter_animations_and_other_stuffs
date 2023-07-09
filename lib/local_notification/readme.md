@@ -26,7 +26,7 @@ LocalNotification class
     </intent-filter>
 
 ----
-do Android and Ios integration from docs
+do Android and Ios integration from docs,
 on any app debug issues try to change:
 
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.9'
