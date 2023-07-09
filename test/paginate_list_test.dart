@@ -1,5 +1,5 @@
 import 'package:flutter_animations_2/delivery_food_ui/main_food_app_screen.dart';
-import 'package:flutter_animations_2/functions/paginate_list.dart';
+import 'package:flutter_animations_2/paginate_list/paginate_list.dart';
 import 'package:flutter_animations_2/models/product.dart';
 import 'package:flutter_test/flutter_test.dart';
 
