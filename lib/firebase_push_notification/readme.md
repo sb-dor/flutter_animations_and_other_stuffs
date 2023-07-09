@@ -9,3 +9,15 @@ at first you need to add this packages in your pubspec.yaml file:
 some youtube url for more details:
 
 1. https://youtu.be/k0zGEbiDJcQ
+
+add this implementation in android\app\build.gradle:
+
+    dependencies {
+        implementation 'com.google.firebase:firebase-messaging:23.1.2'
+    }
+
+and check out that you added this classpath in android\build.gradle:
+    
+    dependencies {
+        classpath 'com.google.gms:google-services:4.3.15'
+    }
