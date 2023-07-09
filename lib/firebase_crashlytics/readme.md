@@ -22,3 +22,6 @@ after adding this packages add this code in your main.dart file
         return true;
     };
 
+
+> **_NOTE:_** remember do it all stuff after renaming package name, because the name of project will change 
+in build.gradle file and in info.plist file. 
