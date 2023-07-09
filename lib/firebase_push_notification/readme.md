@@ -21,3 +21,10 @@ and check out that you added this classpath in android\build.gradle:
     dependencies {
         classpath 'com.google.gms:google-services:4.3.15'
     }
+
+before running the app make sure that you added this firebase initializeApp in your main.dart file:
+
+    void main() async {
+        WidgetsFlutterBinding.ensureInitialized();
+        await Firebase.initializeApp();
+    }
