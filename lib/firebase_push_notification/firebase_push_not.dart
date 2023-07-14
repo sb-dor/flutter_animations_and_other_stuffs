@@ -1,11 +1,11 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_animations_2/local_notification/local_notification.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+// import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class FirebasePushNot {
   static final firebaseMessaging = FirebaseMessaging.instance;
-  static final localNotification = FlutterLocalNotificationsPlugin();
+  // static final localNotification = FlutterLocalNotificationsPlugin();
 
   static Future<void> backgroundMessageHandler(RemoteMessage? message) async {
     if (message == null) return;

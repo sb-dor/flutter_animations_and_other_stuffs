@@ -1,11 +1,10 @@
 import 'dart:io';
-import 'dart:typed_data';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
+import 'package:native_pdf_renderer/native_pdf_renderer.dart' as ren;
 
 class PdfGenerator {
   static late Font font;
@@ -16,13 +15,22 @@ class PdfGenerator {
     boldFont = Font.ttf((await rootBundle.load("assets/fonts/OpenSans-Bold.ttf")));
   }
 
-  static Future<File> generate() async {
+  static Future<File> generatePdf() async {
     final pdf = Document();
 
     try {
-      pdf.addPage(_createPage());
+      pdf.addPage(createPageInvoice());
     } catch (e) {}
     return await saveDocument(name: "my_invoice.pdf", pdf: pdf);
+  }
+
+  static Future<Uint8List> generatePdfImage() async {
+    final pdf = Document();
+
+    try {
+      pdf.addPage(createPageInvoice());
+    } catch (e) {}
+    return await convertToImage(name: "my_invoice.pdf", pdf: pdf) ?? Uint8List(1);
   }
 
   static Future<File> saveDocument({required String name, required Document pdf}) async {
@@ -32,7 +40,6 @@ class PdfGenerator {
     final file = File("${dir?.path}/$name");
 
     await file.writeAsBytes(bytes);
-
     return file;
   }
 
@@ -123,16 +130,27 @@ class PdfGenerator {
                 ])
               ])),
               SizedBox(height: 20),
-              Expanded(child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-                TableHelper.fromTextArray(
-                    border: TableBorder.all(color: PdfColors.grey),
-                    headers: ["QTY","Description","Unit Price","Amount"],
-                    data: [
-                      [ "1", "2", "3", ],
-                      ["desc_1", "desc_2", "desc_3",],
-                      [ "100", '25', "15"],
-                      ["100" , '50', '45', '195', '9.75']
-                    ],cellAlignments: {
+              Expanded(
+                  child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+                Table.fromTextArray(border: TableBorder.all(color: PdfColors.grey), headers: [
+                  "QTY",
+                  "Description",
+                  "Unit Price",
+                  "Amount"
+                ], data: [
+                  [
+                    "1",
+                    "2",
+                    "3",
+                  ],
+                  [
+                    "desc_1",
+                    "desc_2",
+                    "desc_3",
+                  ],
+                  ["100", '25', "15"],
+                  ["100", '50', '45', '195', '9.75']
+                ], cellAlignments: {
                   0: Alignment.bottomCenter
                 })
               ])),
@@ -149,5 +167,37 @@ class PdfGenerator {
                             Text("Payment is due within 15 days")
                           ])))
             ]));
+  }
+
+  static Page createPageInvoice() {
+    return Page(
+        pageFormat: const PdfPageFormat(5.8 * PdfPageFormat.cm, 20 * PdfPageFormat.cm),
+        textDirection: TextDirection.rtl,
+        theme: ThemeData.withFont(base: font, bold: boldFont),
+        build: (context) => Column(children: [Text("Привет всем")]));
+  }
+
+  static Future<Uint8List?> convertToImage({required String name, required Document pdf}) async {
+    Uint8List bytes = await pdf.save();
+
+    final dir = await getExternalStorageDirectory();
+    final file = File("${dir?.path}/$name");
+
+    await file.writeAsBytes(bytes);
+    ren.PdfDocument doc = await ren.PdfDocument.openFile(file.path);
+    ren.PdfPage page = await doc.getPage(1);
+
+    final ren.PdfPageImage? pageImg =
+        await page.render(width: 575, height: page.height + 200, backgroundColor: "#ffffff");
+
+    if (pageImg != null) {
+      String path = (await getApplicationDocumentsDirectory()).path;
+      File file = File(path + "MY_IMG.png");
+
+      await file.writeAsBytes(pageImg.bytes);
+      // OpenFile.open(file.path);
+      return pageImg.bytes;
+    }
+    return null;
   }
 }
