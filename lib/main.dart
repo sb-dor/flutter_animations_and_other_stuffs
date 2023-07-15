@@ -7,6 +7,7 @@ import 'package:flutter_animations_2/animation_pages/animted_list_page.dart';
 import 'package:flutter_animations_2/animation_pages/animted_title_page.dart';
 import 'package:flutter_animations_2/animation_pages/heart_animtaion_page.dart';
 import 'package:flutter_animations_2/animation_pages/page_view_with_controller.dart';
+import 'package:flutter_animations_2/esc_pos_printer/esc_pos_printer_ui_helper.dart';
 import 'package:flutter_animations_2/esc_pos_printer/esc_pos_printer_page.dart';
 import 'package:flutter_animations_2/firebase_push_notification/firebase_push_not.dart';
 import 'package:flutter_animations_2/google_documentation_sign_in/google_sign_in_page.dart';
@@ -26,6 +27,7 @@ void main() async {
   await FirebasePushNot.initBackGroundNotification();
   await FirebasePushNot.initForeGroundNotification();
   await LocalNotification.initLocalNotification();
+  await EscPosPrinterUIHelper.init();
   // MainCharacter mainCharacter = MainCharacter("Alien");
   // mainCharacter.race?.saySome();
   // mainCharacter.race?.weapon.shoot();
