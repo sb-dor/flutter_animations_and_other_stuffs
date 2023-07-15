@@ -26,7 +26,7 @@ class NeumorphicContainerState extends State<NeumorphicContainer> {
     return Scaffold(
         appBar: AppBar(actions: [
           TextButton(
-              onPressed: () async => await Connections.createImageInPhoneStorageWithHttp(),
+              onPressed: () async => await Connections.saveImageWithDio(),
               child: Text("Dio request",style: TextStyle(color: Colors.amber)))
         ]),
         body: SizedBox(

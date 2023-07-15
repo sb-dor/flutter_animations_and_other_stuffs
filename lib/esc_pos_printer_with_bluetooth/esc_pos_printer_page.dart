@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animations_2/esc_pos_printer/esc_pos_printer_ui_helper.dart';
-import 'package:flutter_animations_2/esc_pos_printer/printer_manager.dart';
+import 'package:flutter_animations_2/esc_pos_printer_with_bluetooth/esc_pos_printer_ui_helper.dart';
+import 'package:flutter_animations_2/esc_pos_printer_with_bluetooth/printer_manager.dart';
 import 'package:flutter_scan_bluetooth/flutter_scan_bluetooth.dart';
 
 class EscPosPrinterPage extends StatefulWidget {

@@ -32,10 +32,40 @@ class Connections {
     }
   }
 
+  static Future<void> saveImageWithDio() async {
+    try {
+      var imageUrl =
+          'https://dcblog.b-cdn.net/wp-content/uploads/2021/02/Full-form-of-URL-1-1024x824.jpg';
+      //getting image from url address in bytes List<int>
+      var dioRes = await Dio().get<List<int>>(imageUrl,
+          options: Options(responseType: ResponseType.bytes, headers: await headers()));
+
+      //it is download directory (in android)
+      var downloadDirectory = Directory('/storage/emulated/0/Download');
+
+      //creates path if this path is not exist
+      String createPath = downloadDirectory.path;
+      await Directory(createPath).create(recursive: true);
+
+      //create this image with any name in this path
+      var createImageInPath = '${downloadDirectory.path}/any_image_name.jpg';
+
+      File file = File(createImageInPath);
+
+      file.writeAsBytesSync(dioRes.data!);
+
+      print("file path ${file.path}");
+    } catch (e) {
+      debugPrint("error id :$e");
+    }
+  }
+
   static Future<void> createImageInAppStorageWithHttp() async {
     try {
       //getting image from url address
-      var res = await http.get(Uri.parse("$url/temp/image"),
+      var res = await http.get(
+          Uri.parse(
+              "https://dcblog.b-cdn.net/wp-content/uploads/2021/02/Full-form-of-URL-1-1024x824.jpg"),
           headers: await headers());
 
       //it is application only directory
@@ -46,8 +76,7 @@ class Connections {
       await Directory(createPathInDirectory).create(recursive: true);
 
       //create this image with any name in this path
-      var createImageNameInPath =
-          '${ourDirectory.path}/images/any_image_name.jpg';
+      var createImageNameInPath = '${ourDirectory.path}/images/any_image_name.jpg';
 
       File file = File(createImageNameInPath);
 
@@ -62,7 +91,9 @@ class Connections {
   static Future<void> createImageInPhoneStorageWithHttp() async {
     try {
       //getting image from url address
-      var res = await http.get(Uri.parse("$url/temp/image"),
+      var res = await http.get(
+          Uri.parse(
+              "https://dcblog.b-cdn.net/wp-content/uploads/2021/02/Full-form-of-URL-1-1024x824.jpg"),
           headers: await headers());
 
       //it is phone storage directory
@@ -85,8 +116,7 @@ class Connections {
   static Future<void> checkHttp() async {
     try {
       var res = await http.post(Uri.parse("$url/validation"),
-          body: jsonEncode({"email": "avaz@gmail.com", 'name': "avaz"}),
-          headers: await headers());
+          body: jsonEncode({"email": "avaz@gmail.com", 'name': "avaz"}), headers: await headers());
 
       debugPrint("message: ${res.body}");
       if (res.statusCode == 200) {}
