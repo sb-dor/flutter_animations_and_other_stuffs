@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_animations_2/esc_pos_printer/esc_pos_printer_ui_helper.dart';
+import 'package:flutter_animations_2/esc_pos_printer_with_bluetooth/esc_pos_printer_ui_helper.dart';
 import 'package:flutter_animations_2/multi_image_selector_page/helper/multi_selector_helper.dart';
 import 'package:image_picker/image_picker.dart';
 

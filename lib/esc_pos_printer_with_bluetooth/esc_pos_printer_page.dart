@@ -46,10 +46,10 @@ class _EscPosPrinterPageState extends State<EscPosPrinterPage> {
         body: Column(children: [
           TextButton(
               onPressed: () async {
-                if (selectedDevice == null) return;
+                // if (selectedDevice == null) return;
                 var image = await EscPosPrinterUIHelper.createPdf() ?? '';
-                if (image.isEmpty) return;
-                await PrinterManager.printImg(image);
+                // if (image.isEmpty) return;
+                // await PrinterManager.printImg(image);
               },
               child: const Text("Start print")),
           if (selectedDevice != null)

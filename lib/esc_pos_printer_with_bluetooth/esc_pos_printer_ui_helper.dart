@@ -1,11 +1,13 @@
 import 'dart:io';
 
 import 'package:flutter/services.dart';
+import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
 import 'package:native_pdf_renderer/native_pdf_renderer.dart' as ren;
 import 'package:flutter/material.dart' as matW;
+import 'package:url_launcher/url_launcher.dart';
 
 class EscPosPrinterUIHelper {
   static late Font font;
@@ -32,6 +34,9 @@ class EscPosPrinterUIHelper {
 
     Uint8List bytes = await pdf.save();
     await file.writeAsBytes(bytes);
+    // OpenFile.open(file.path);
+    final Uri uri = Uri.file(file.absolute.path);
+    await launchUrl(uri, mode: LaunchMode.externalApplication,);
     return convertToImage(file.path);
   }
 
@@ -56,7 +61,6 @@ class EscPosPrinterUIHelper {
   }
 
   //connecting to device function
-
 
   static Page _createPage() {
     return Page(
