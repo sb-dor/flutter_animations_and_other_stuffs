@@ -14,21 +14,21 @@ class _MethodChannelsPageState extends State<MethodChannelsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Method Channels")),
+      appBar: AppBar(title: const Text("Method Channels")),
       body: Column(children: [
-        SizedBox(height: 15),
+        const SizedBox(height: 15),
         Text("Buttery: $butteryLevel"),
         TextButton(
             onPressed: () async {
               butteryLevel = await BatteryChannel.getButtery();
               setState(() {});
             },
-            child: Text("Check Buttery")),
+            child: const Text("Check Buttery")),
         TextButton(
             onPressed: () async {
               BatteryChannel.callPopUpMethod();
             },
-            child: Text("Native Popup"))
+            child: const Text("Native Popup"))
       ]),
     );
   }
