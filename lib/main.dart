@@ -11,7 +11,7 @@ import 'package:flutter_animations_2/flutter_design_patters/prototype_design.dar
 import 'package:flutter_animations_2/flutter_design_patters/singleton_design.dart';
 import 'package:flutter_animations_2/internet_controller/cubit/internet_conn_checker_cubit.dart';
 import 'package:flutter_animations_2/local_notification/local_notification.dart';
-import 'package:flutter_animations_2/mothid%20channels/method_channels_page.dart';
+import 'package:flutter_animations_2/method_channels/method_channels_page.dart';
 import 'package:flutter_animations_2/pdf/data/pdf_generator.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
