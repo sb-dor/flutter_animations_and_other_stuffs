@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animations_2/mothid%20channels/android/battery_channel.dart';
+import 'package:flutter_animations_2/motho_20channels/android/battery_channel.dart';
 
 class MethodChannelsPage extends StatefulWidget {
   const MethodChannelsPage({Key? key}) : super(key: key);
