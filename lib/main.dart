@@ -7,8 +7,8 @@ import 'package:flutter_animations_2/esc_pos_printer_with_bluetooth/esc_pos_prin
 import 'package:flutter_animations_2/esc_pos_printer_with_bluetooth/esc_pos_printer_ui_helper.dart';
 import 'package:flutter_animations_2/firebase_push_notification/firebase_push_not.dart';
 import 'package:flutter_animations_2/flutter_design_patters/factory_design.dart';
-import 'package:flutter_animations_2/flutter_design_patters/prototype.dart';
-import 'package:flutter_animations_2/flutter_design_patters/singleton.dart';
+import 'package:flutter_animations_2/flutter_design_patters/prototype_design.dart';
+import 'package:flutter_animations_2/flutter_design_patters/singleton_design.dart';
 import 'package:flutter_animations_2/internet_controller/cubit/internet_conn_checker_cubit.dart';
 import 'package:flutter_animations_2/local_notification/local_notification.dart';
 import 'package:flutter_animations_2/mothid%20channels/method_channels_page.dart';
