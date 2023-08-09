@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animations_2/animation_pages/neumorphic_page_transitions_container_page.dart';
@@ -52,6 +53,9 @@ void main() async {
 
   await PdfGenerator.init();
   runApp(GetMaterialApp(
+      theme: FlexThemeData.light(scheme: FlexScheme.green),
+      darkTheme: FlexThemeData.dark(scheme: FlexScheme.green),
+      themeMode: ThemeMode.dark,
       debugShowCheckedModeBanner: false,
       home: MultiBlocProvider(
           providers: [BlocProvider(create: (_) => InternetConnCubit())], child: const MainApp())));

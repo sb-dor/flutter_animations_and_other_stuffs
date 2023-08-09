@@ -45,6 +45,7 @@ dependencies:
   faker: ^2.1.0 #fake something like: person, sentences, email
   jiffy: ^6.2.1 #for showing date how much time passed
   mailer: ^6.0.1 #sends message to emails
+  flex_color_scheme: ^7.2.0
 
 
   google_fonts: ^5.1.0
