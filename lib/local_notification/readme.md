@@ -26,9 +26,12 @@ LocalNotification class
     </intent-filter>
 
 ----
-do Android and Ios integration from docs,
-on any app debug issues try to change:
+do Android and Ios integration from docs, on any app debug issues try to change:
 
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
 
 in android/app/build.gradle
+
+__
+if you want to use awesome_notification plugin instead of local_notification do all stuff from
+documentation 

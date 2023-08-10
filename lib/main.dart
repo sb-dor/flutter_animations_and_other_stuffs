@@ -11,6 +11,7 @@ import 'package:flutter_animations_2/flutter_design_patters/factory_design.dart'
 import 'package:flutter_animations_2/flutter_design_patters/prototype_design.dart';
 import 'package:flutter_animations_2/flutter_design_patters/singleton_design.dart';
 import 'package:flutter_animations_2/internet_controller/cubit/internet_conn_checker_cubit.dart';
+import 'package:flutter_animations_2/local_notification/awesome_notification_helper.dart';
 import 'package:flutter_animations_2/local_notification/local_notification.dart';
 import 'package:flutter_animations_2/method_channels/method_channels_page.dart';
 import 'package:flutter_animations_2/pdf/data/pdf_generator.dart';
@@ -25,6 +26,7 @@ void main() async {
   await FirebasePushNot.initForeGroundNotification();
   await LocalNotification.initLocalNotification();
   await EscPosPrinterUIHelper.init();
+  await AwesomeNotificationsHelper.initAwesomeNotifications();
   // MainCharacter mainCharacter = MainCharacter("Alien");
   // mainCharacter.race?.saySome();
   // mainCharacter.race?.weapon.shoot();
@@ -75,6 +77,12 @@ class _MainAppState extends State<MainApp> {
     super.initState();
     //initiate the listener of internet conn here
     context.read<InternetConnCubit>().listenInternetConn();
+    showNo();
+  }
+
+  void showNo() async {
+    await AwesomeNotificationsHelper.showSimpleNotification(
+        title: 'Hello', body: "IT IS AWESOME NOTIFICATION");
   }
 
   @override

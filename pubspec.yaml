@@ -46,7 +46,7 @@ dependencies:
   jiffy: ^6.2.1 #for showing date how much time passed
   mailer: ^6.0.1 #sends message to emails
   flex_color_scheme: ^7.2.0
-
+  awesome_notifications: ^0.7.4+1
 
   google_fonts: ^5.1.0
   google_sign_in: ^6.1.4
