@@ -5,7 +5,7 @@ import 'package:mailer/smtp_server.dart';
 class SmsGmailMessageSender {
   static void sendEmail() async {
     String username = 'your@gmail.com';
-    String password = 'youPassword';
+    String password = 'youPassword'; // you have two-factor authentication enabled and created an App password.
 
     final smtpServer = gmail(username, password);
 
