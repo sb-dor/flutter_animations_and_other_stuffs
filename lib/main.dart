@@ -15,8 +15,11 @@ import 'package:flutter_animations_2/local_notification/awesome_notification_hel
 import 'package:flutter_animations_2/local_notification/local_notification.dart';
 import 'package:flutter_animations_2/method_channels/method_channels_page.dart';
 import 'package:flutter_animations_2/pdf/data/pdf_generator.dart';
+import 'package:flutter_animations_2/slivers/sliver_app_bar_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+
+import 'slivers/sliver_appbar_with_tabbar_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -57,7 +60,7 @@ void main() async {
   runApp(GetMaterialApp(
       theme: FlexThemeData.light(scheme: FlexScheme.green),
       darkTheme: FlexThemeData.dark(scheme: FlexScheme.green),
-      themeMode: ThemeMode.dark,
+      themeMode: ThemeMode.light,
       debugShowCheckedModeBanner: false,
       home: MultiBlocProvider(
           providers: [BlocProvider(create: (_) => InternetConnCubit())], child: const MainApp())));
@@ -88,7 +91,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => MethodChannelsPage(),
+        builder: (context, state) => SliverAppBarPage(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
