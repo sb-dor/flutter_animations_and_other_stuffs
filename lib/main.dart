@@ -4,12 +4,14 @@ import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animations_2/animation_pages/neumorphic_page_transitions_container_page.dart';
+import 'package:flutter_animations_2/app_life_circle/did_change_app_life_circle_page.dart';
 import 'package:flutter_animations_2/esc_pos_printer_with_bluetooth/esc_pos_printer_page.dart';
 import 'package:flutter_animations_2/esc_pos_printer_with_bluetooth/esc_pos_printer_ui_helper.dart';
 import 'package:flutter_animations_2/firebase_push_notification/firebase_push_not.dart';
 import 'package:flutter_animations_2/flutter_design_patters/factory_design.dart';
 import 'package:flutter_animations_2/flutter_design_patters/prototype_design.dart';
 import 'package:flutter_animations_2/flutter_design_patters/singleton_design.dart';
+import 'package:flutter_animations_2/global_context/global_context.helper.dart';
 import 'package:flutter_animations_2/internet_controller/cubit/internet_conn_checker_cubit.dart';
 import 'package:flutter_animations_2/local_notification/awesome_notification_helper.dart';
 import 'package:flutter_animations_2/local_notification/local_notification.dart';
@@ -30,6 +32,7 @@ void main() async {
   await LocalNotification.initLocalNotification();
   await EscPosPrinterUIHelper.init();
   await AwesomeNotificationsHelper.initAwesomeNotifications();
+  await GlobalContextHelper.initGlobalContext();
   // MainCharacter mainCharacter = MainCharacter("Alien");
   // mainCharacter.race?.saySome();
   // mainCharacter.race?.weapon.shoot();
@@ -58,6 +61,8 @@ void main() async {
 
   await PdfGenerator.init();
   runApp(GetMaterialApp(
+      //get global context here
+      navigatorKey: GlobalContextHelper.globalContext,
       theme: FlexThemeData.light(scheme: FlexScheme.green),
       darkTheme: FlexThemeData.dark(scheme: FlexScheme.green),
       themeMode: ThemeMode.light,
@@ -91,7 +96,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => SliverAppBarPage(),
+        builder: (context, state) => DidChangeAppLifeCirclePage(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
