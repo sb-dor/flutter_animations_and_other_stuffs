@@ -32,7 +32,6 @@ void main() async {
   await LocalNotification.initLocalNotification();
   await EscPosPrinterUIHelper.init();
   await AwesomeNotificationsHelper.initAwesomeNotifications();
-  await GlobalContextHelper.initGlobalContext();
   // MainCharacter mainCharacter = MainCharacter("Alien");
   // mainCharacter.race?.saySome();
   // mainCharacter.race?.weapon.shoot();
@@ -62,7 +61,7 @@ void main() async {
   await PdfGenerator.init();
   runApp(GetMaterialApp(
       //get global context here
-      navigatorKey: GlobalContextHelper.globalContext,
+      navigatorKey: GlobalContextHelper.globalNavigatorContext,
       theme: FlexThemeData.light(scheme: FlexScheme.green),
       darkTheme: FlexThemeData.dark(scheme: FlexScheme.green),
       themeMode: ThemeMode.light,
