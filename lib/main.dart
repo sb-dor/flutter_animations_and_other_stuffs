@@ -18,6 +18,8 @@ import 'package:flutter_animations_2/local_notification/local_notification.dart'
 import 'package:flutter_animations_2/method_channels/method_channels_page.dart';
 import 'package:flutter_animations_2/pdf/data/pdf_generator.dart';
 import 'package:flutter_animations_2/slivers/sliver_app_bar_page.dart';
+import 'package:flutter_animations_2/yandex_mapkit/yandex_map_screen.dart';
+import 'package:flutter_animations_2/yandex_mapkit/yandex_mapkit_cubit/main_map_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
@@ -67,7 +69,9 @@ void main() async {
       themeMode: ThemeMode.light,
       debugShowCheckedModeBanner: false,
       home: MultiBlocProvider(
-          providers: [BlocProvider(create: (_) => InternetConnCubit())], child: const MainApp())));
+          providers: [
+            BlocProvider(create: (_) => MainMapCubit()),
+            BlocProvider(create: (_) => InternetConnCubit())], child: const MainApp())));
 }
 
 class MainApp extends StatefulWidget {
@@ -84,6 +88,7 @@ class _MainAppState extends State<MainApp> {
     super.initState();
     //initiate the listener of internet conn here
     context.read<InternetConnCubit>().listenInternetConn();
+    context.read<MainMapCubit>().initMap();
     showNo();
   }
 
@@ -95,7 +100,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => DidChangeAppLifeCirclePage(),
+        builder: (context, state) => YandexMapScreen(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {

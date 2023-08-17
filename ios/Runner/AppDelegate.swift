@@ -1,5 +1,6 @@
 import UIKit
 import Flutter
+import YandexMapsMobile
 
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate {
@@ -7,6 +8,10 @@ import Flutter
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
+
+    YMKMapKit.setLocale("YOUR_LOCALE") // Your preferred language. Not required, defaults to system language
+    YMKMapKit.setApiKey("162cc3e0-4c39-40e6-9f36-6201a2ebec56") // Your generated API key
+
 
     FlutterLocalNotificationsPlugin.setPluginRegistrantCallback { (registry) in
         GeneratedPluginRegistrant.register(with: registry)

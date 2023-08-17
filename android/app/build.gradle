@@ -86,5 +86,8 @@ dependencies {
 
     implementation 'androidx.window:window:1.1.0'
     implementation 'androidx.window:window-java:1.1.0'
+
+
+    implementation 'com.yandex.android:maps.mobile:4.3.2-full'
 }
 

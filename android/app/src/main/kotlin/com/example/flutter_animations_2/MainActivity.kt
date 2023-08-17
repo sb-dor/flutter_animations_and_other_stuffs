@@ -1,7 +1,10 @@
 package com.example.flutter_animations_2
 
-import io.flutter.embedding.android.FlutterActivity
-import io.flutter.embedding.engine.FlutterEngine
+
+import io.flutter.embedding.android.FlutterActivity;
+import io.flutter.embedding.engine.FlutterEngine;
+import io.flutter.plugins.GeneratedPluginRegistrant;
+import com.yandex.mapkit.MapKitFactory;
 import io.flutter.plugin.common.MethodChannel
 import androidx.annotation.NonNull
 import android.content.Context
@@ -19,6 +22,10 @@ class MainActivity : FlutterActivity() {
     private val channel: String = "get/flutter/buttery";
 
     override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
+
+        MapKitFactory.setLocale("YOUR_LOCALE"); // Your preferred language. Not required, defaults to system language
+        MapKitFactory.setApiKey("162cc3e0-4c39-40e6-9f36-6201a2ebec56"); // Your generated API key
+
         super.configureFlutterEngine(flutterEngine)
         MethodChannel(
             flutterEngine.dartExecutor.binaryMessenger, channel

@@ -7,9 +7,15 @@ class AwesomeNotificationsHelper {
         null,
         [
           NotificationChannel(
-              channelKey: "alshema_local_notify_id", //here can be any id. Putting id do not forget to put this id everywhere in channels_key
+              channelKey: "alshema_local_notify_id",
+              //here can be any id. Putting id do not forget to put this id everywhere in channels_key
               channelName: "basic notifications",
-              channelDescription: "Notification channel for basic test")
+              channelDescription: "Notification channel for basic test",
+              importance: NotificationImportance.Max,
+              channelShowBadge: true,
+              onlyAlertOnce: true,
+              playSound: true,
+              criticalAlerts: true)
         ],
         debug: true);
 
