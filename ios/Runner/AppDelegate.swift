@@ -9,7 +9,7 @@ import YandexMapsMobile
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
 
-    YMKMapKit.setLocale("YOUR_LOCALE") // Your preferred language. Not required, defaults to system language
+    YMKMapKit.setLocale("ru_RU") // Your preferred language. Not required, defaults to system language
     YMKMapKit.setApiKey("162cc3e0-4c39-40e6-9f36-6201a2ebec56") // Your generated API key
 
 

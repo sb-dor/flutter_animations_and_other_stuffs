@@ -23,7 +23,7 @@ class MainActivity : FlutterActivity() {
 
     override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
 
-        MapKitFactory.setLocale("YOUR_LOCALE"); // Your preferred language. Not required, defaults to system language
+        MapKitFactory.setLocale("ru_RU"); // Your preferred language. Not required, defaults to system language
         MapKitFactory.setApiKey("162cc3e0-4c39-40e6-9f36-6201a2ebec56"); // Your generated API key
 
         super.configureFlutterEngine(flutterEngine)

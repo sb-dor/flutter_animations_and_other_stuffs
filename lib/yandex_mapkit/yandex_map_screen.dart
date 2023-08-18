@@ -15,9 +15,24 @@ class YandexMapScreen extends StatelessWidget {
     return BlocBuilder<MainMapCubit, MainMapStates>(builder: (context, mapState) {
       var currentState = mapState.mapStateModel;
       return Scaffold(
-          floatingActionButton: FloatingActionButton(
-              onPressed: () async => BottomModalSheetDynamicSize.bottomSheet(context: context),
-              child: const Icon(Icons.location_city)),
+          floatingActionButton: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+            Expanded(
+                child: Container(
+              height: 50,
+              color: Colors.grey.withOpacity(0.4),
+              child: TextField(
+                controller: currentState.searchByNameController,
+                onEditingComplete: () =>
+                    context.read<MainMapCubit>().searchByText(context: context),
+              ),
+            )),
+            FloatingActionButton(
+                onPressed: () async => BottomModalSheetDynamicSize.bottomSheet(context: context),
+                child: const Icon(Icons.location_city)),
+            FloatingActionButton(
+                onPressed: () async => context.read<MainMapCubit>().searchByPoint(context: context),
+                child: const Icon(Icons.search))
+          ]),
           body: SizedBox(
               width: MediaQuery.of(context).size.width,
               height: mapHeight,
@@ -31,7 +46,9 @@ class YandexMapScreen extends StatelessWidget {
                       vertical: VerticalAlignment.top, horizontal: HorizontalAlignment.left),
                   onCameraPositionChanged:
                       (CameraPosition cameraPosition, CameraUpdateReason _, bool __) async {
-                    context.read<MainMapCubit>().setAnotherPos(cameraPosition: cameraPosition);
+                    context
+                        .read<MainMapCubit>()
+                        .onCameraPositionChanged(cameraPosition: cameraPosition);
                   },
                   // onMapTap: (Point point) => context.read<MainMapCubit>().getPoint(point: point),
                   onObjectTap: (object) {

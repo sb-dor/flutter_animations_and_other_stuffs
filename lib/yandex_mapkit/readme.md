@@ -1,5 +1,6 @@
 for more information see:
-1.https://pub.dev/packages/yandex_mapkit
+
+1.https://pub.dev/packages/yandex_mapkit 
 2.https://github.com/Unact/yandex_mapkit
 
 
@@ -23,7 +24,7 @@ ios/Runner/AppDelegate.swift:
             _ application: UIApplication,
             didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
          ) -> Bool {
-            YMKMapKit.setLocale("YOUR_LOCALE") // Your preferred language. Not required, defaults to system language
+            YMKMapKit.setLocale("ru_RU") // Your preferred language. Not required, defaults to system language
             YMKMapKit.setApiKey("YOUR_API_KEY") // Your generated API key
             GeneratedPluginRegistrant.register(with: self)
             return super.application(application, didFinishLaunchingWithOptions: launchOptions)
@@ -60,7 +61,7 @@ android/app/src/main/.../MainActivity.java:
       public class MainActivity extends FlutterActivity {
          @Override
          public void configureFlutterEngine(@NonNull FlutterEngine flutterEngine) {
-            MapKitFactory.setLocale("YOUR_LOCALE"); // Your preferred language. Not required, defaults to system language
+            MapKitFactory.setLocale("ru_RU"); // Your preferred language. Not required, defaults to system language
             MapKitFactory.setApiKey("YOUR_API_KEY"); // Your generated API key
             super.configureFlutterEngine(flutterEngine);
          }
@@ -78,7 +79,7 @@ android/app/src/main/.../MainActivity.kt
       
       class MainActivity: FlutterActivity() {
          override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
-            MapKitFactory.setLocale("YOUR_LOCALE") // Your preferred language. Not required, defaults to system language
+            MapKitFactory.setLocale("ru_RU") // Your preferred language. Not required, defaults to system language
             MapKitFactory.setApiKey("YOUR_API_KEY") // Your generated API key
             super.configureFlutterEngine(flutterEngine)
          }
