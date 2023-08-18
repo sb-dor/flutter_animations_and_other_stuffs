@@ -1,7 +1,7 @@
 for more information see:
 
-1.https://pub.dev/packages/yandex_mapkit 
-2.https://github.com/Unact/yandex_mapkit
+1. https://pub.dev/packages/yandex_mapkit 
+2. https://github.com/Unact/yandex_mapkit
 
 
 Initializing for iOS
