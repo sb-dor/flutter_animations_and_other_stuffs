@@ -13,22 +13,22 @@ Initializing for iOS
 
 ios/Runner/AppDelegate.swift:
 
-   import UIKit
-   import Flutter
-   import YandexMapsMobile
+      import UIKit
+      import Flutter
+      import YandexMapsMobile
    
-   @UIApplicationMain
-   @objc class AppDelegate: FlutterAppDelegate {
-      override func application(
-         _ application: UIApplication,
-         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
-      ) -> Bool {
-         YMKMapKit.setLocale("YOUR_LOCALE") // Your preferred language. Not required, defaults to system language
-         YMKMapKit.setApiKey("YOUR_API_KEY") // Your generated API key
-         GeneratedPluginRegistrant.register(with: self)
-         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+      @UIApplicationMain
+      @objc class AppDelegate: FlutterAppDelegate {
+         override func application(
+            _ application: UIApplication,
+            didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+         ) -> Bool {
+            YMKMapKit.setLocale("YOUR_LOCALE") // Your preferred language. Not required, defaults to system language
+            YMKMapKit.setApiKey("YOUR_API_KEY") // Your generated API key
+            GeneratedPluginRegistrant.register(with: self)
+            return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+         }
       }
-   }
 
 Initializing for Android:  
 
@@ -44,42 +44,42 @@ Initializing for Android:
 
 android/app/build.gradle:
 
-   dependencies {
-      implementation 'com.yandex.android:maps.mobile:4.3.2-full'
-   }
+      dependencies {
+         implementation 'com.yandex.android:maps.mobile:4.3.2-full'
+      }
 
 For Java projects:
 android/app/src/main/.../MainActivity.java:
 
-   import androidx.annotation.NonNull;
-   import io.flutter.embedding.android.FlutterActivity;
-   import io.flutter.embedding.engine.FlutterEngine;
-   import io.flutter.plugins.GeneratedPluginRegistrant;
-   import com.yandex.mapkit.MapKitFactory;
+      import androidx.annotation.NonNull;
+      import io.flutter.embedding.android.FlutterActivity;
+      import io.flutter.embedding.engine.FlutterEngine;
+      import io.flutter.plugins.GeneratedPluginRegistrant;
+      import com.yandex.mapkit.MapKitFactory;
    
-   public class MainActivity extends FlutterActivity {
-      @Override
-      public void configureFlutterEngine(@NonNull FlutterEngine flutterEngine) {
-         MapKitFactory.setLocale("YOUR_LOCALE"); // Your preferred language. Not required, defaults to system language
-         MapKitFactory.setApiKey("YOUR_API_KEY"); // Your generated API key
-         super.configureFlutterEngine(flutterEngine);
+      public class MainActivity extends FlutterActivity {
+         @Override
+         public void configureFlutterEngine(@NonNull FlutterEngine flutterEngine) {
+            MapKitFactory.setLocale("YOUR_LOCALE"); // Your preferred language. Not required, defaults to system language
+            MapKitFactory.setApiKey("YOUR_API_KEY"); // Your generated API key
+            super.configureFlutterEngine(flutterEngine);
+         }
       }
-   }
 
 
 For Kotlin projects
 android/app/src/main/.../MainActivity.kt
 
-   import androidx.annotation.NonNull
-   import io.flutter.embedding.android.FlutterActivity
-   import io.flutter.embedding.engine.FlutterEngine
-   import io.flutter.plugins.GeneratedPluginRegistrant
-   import com.yandex.mapkit.MapKitFactory
-   
-   class MainActivity: FlutterActivity() {
-      override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
-         MapKitFactory.setLocale("YOUR_LOCALE") // Your preferred language. Not required, defaults to system language
-         MapKitFactory.setApiKey("YOUR_API_KEY") // Your generated API key
-         super.configureFlutterEngine(flutterEngine)
+      import androidx.annotation.NonNull
+      import io.flutter.embedding.android.FlutterActivity
+      import io.flutter.embedding.engine.FlutterEngine
+      import io.flutter.plugins.GeneratedPluginRegistrant
+      import com.yandex.mapkit.MapKitFactory
+      
+      class MainActivity: FlutterActivity() {
+         override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
+            MapKitFactory.setLocale("YOUR_LOCALE") // Your preferred language. Not required, defaults to system language
+            MapKitFactory.setApiKey("YOUR_API_KEY") // Your generated API key
+            super.configureFlutterEngine(flutterEngine)
+         }
       }
-   }
