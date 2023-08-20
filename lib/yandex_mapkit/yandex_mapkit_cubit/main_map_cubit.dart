@@ -234,6 +234,7 @@ class MainMapCubit extends Cubit<MainMapStates> {
     //this adds all possible routes to the point
     //hello
     //if you want to add only one route to reach the point do it without loop and get only first object of array
+    //new word
     result.routes!.asMap().forEach((i, route) {
       //for getting distance and time of route
       debugPrint("$i route distance: ${route.metadata.weight.distance.text}");
