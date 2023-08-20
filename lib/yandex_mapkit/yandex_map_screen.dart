@@ -15,24 +15,44 @@ class YandexMapScreen extends StatelessWidget {
     return BlocBuilder<MainMapCubit, MainMapStates>(builder: (context, mapState) {
       var currentState = mapState.mapStateModel;
       return Scaffold(
-          floatingActionButton: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-            Expanded(
-                child: Container(
-              height: 50,
-              color: Colors.grey.withOpacity(0.4),
-              child: TextField(
-                controller: currentState.searchByNameController,
-                onEditingComplete: () =>
-                    context.read<MainMapCubit>().searchByText(context: context),
-              ),
-            )),
-            FloatingActionButton(
-                onPressed: () async => BottomModalSheetDynamicSize.bottomSheet(context: context),
-                child: const Icon(Icons.location_city)),
-            FloatingActionButton(
-                onPressed: () async => context.read<MainMapCubit>().searchByPoint(context: context),
-                child: const Icon(Icons.search))
-          ]),
+          floatingActionButton: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              if (currentState.searchRes != null)
+                Align(
+                    alignment: Alignment.centerRight,
+                    child: Container(
+                        color: Colors.white,
+                        width: 150,
+                        height: 40,
+                        child: Center(child: Text("${currentState.searchRes}")))),
+              Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+                Expanded(
+                    child: Container(
+                  height: 50,
+                  color: Colors.grey.withOpacity(0.4),
+                  child: TextField(
+                    controller: currentState.searchByNameController,
+                    onEditingComplete: () =>
+                        context.read<MainMapCubit>().searchByText(context: context),
+                  ),
+                )),
+                FloatingActionButton(
+                    onPressed: () async => context.read<MainMapCubit>().makeRoutes(),
+                    child: const Icon(Icons.route)),
+                const SizedBox(width: 10),
+                FloatingActionButton(
+                    onPressed: () async =>
+                        BottomModalSheetDynamicSize.bottomSheet(context: context),
+                    child: const Icon(Icons.location_city)),
+                const SizedBox(width: 10),
+                FloatingActionButton(
+                    onPressed: () async =>
+                        context.read<MainMapCubit>().searchByPoint(context: context),
+                    child: const Icon(Icons.search))
+              ]),
+            ],
+          ),
           body: SizedBox(
               width: MediaQuery.of(context).size.width,
               height: mapHeight,

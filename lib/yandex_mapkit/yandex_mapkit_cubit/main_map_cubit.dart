@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animations_2/global_context/global_context.helper.dart';
 import 'package:flutter_animations_2/yandex_mapkit/yandex_mapkit_cubit/main_map_states.dart';
 import 'package:flutter_animations_2/yandex_mapkit/yandex_mapkit_cubit/state_model/map_state_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -196,33 +197,53 @@ class MainMapCubit extends Cubit<MainMapStates> {
     emit(InitialMapStates(currentState));
   }
 
-  //is not using
-  void requestRouts({required BuildContext context}) async {
+  //if you are searching driving routes to get information from one point to another use
+  //this function. It gives all information like distance, estimated time of arrival, for adding polyLines and other things
+  Future<DrivingResultWithSession?> requestRoutesBetweenPoints(
+      {required Point? point1, required Point? point2}) async {
+    if (point1 == null || point2 == null) return null;
     var currentState = state.mapStateModel;
-    currentState.drivingResultWithSession = YandexDriving.requestRoutes(points: [
+    var drivingSearchResults =
+        currentState.drivingResultWithSession = YandexDriving.requestRoutes(points: [
       RequestPoint(
           point: currentState.firstObject.point, requestPointType: RequestPointType.wayPoint),
       RequestPoint(
           point: currentState.secondObject.point, requestPointType: RequestPointType.wayPoint),
     ], drivingOptions: const DrivingOptions(initialAzimuth: 0, routesCount: 5, avoidTolls: true));
 
-    init(result: await currentState.drivingResultWithSession?.result, context: context);
+    return drivingSearchResults;
   }
 
-  //is not using
-  void init({required DrivingSessionResult? result, required BuildContext context}) async {
+  //for making routes to reaching the point
+  void makeRoutes() async {
     var currentState = state.mapStateModel;
+
+    var drivingRes = await requestRoutesBetweenPoints(
+        point1: currentState.firstObject.point, point2: currentState.secondObject.point);
+
+    var result = await drivingRes?.result;
+
     if (result?.error != null) {
-      print('Error: ${result?.error}');
+      debugPrint('Error: ${result?.error}');
       return;
     }
+
     currentState.results.add(result!);
 
+    currentState.searchRes = result.routes?[0].metadata.weight.distance.text;
+    //this adds all possible routes to the point
+    //if you want to add only one route to reach the point do it without loop and get only first object of array
     result.routes!.asMap().forEach((i, route) {
+      //for getting distance and time of route
+      debugPrint("$i route distance: ${route.metadata.weight.distance.text}");
+      debugPrint("$i estimated time of arrival: ${route.metadata.weight.time.text}");
+
       currentState.mapObjects.add(PolylineMapObject(
         mapId: MapObjectId('route_${i}_polyline'),
         polyline: Polyline(points: route.geometry),
-        strokeColor: Theme.of(context).colorScheme.secondary,
+        strokeColor: Theme.of(GlobalContextHelper.globalNavigatorContext.currentContext!)
+            .colorScheme
+            .secondary,
         strokeWidth: 3,
       ));
     });
