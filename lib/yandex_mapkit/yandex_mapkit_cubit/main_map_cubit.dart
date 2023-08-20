@@ -232,6 +232,7 @@ class MainMapCubit extends Cubit<MainMapStates> {
 
     currentState.searchRes = result.routes?[0].metadata.weight.distance.text;
     //this adds all possible routes to the point
+    //hello
     //if you want to add only one route to reach the point do it without loop and get only first object of array
     result.routes!.asMap().forEach((i, route) {
       //for getting distance and time of route
