@@ -31,4 +31,6 @@ class MapStateModel {
   late final List<MapObject> mapObjects;
 
   bool loadingMap = false;
+
+  String? searchRes;
 }
