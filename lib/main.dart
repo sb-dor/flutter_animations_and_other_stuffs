@@ -100,7 +100,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => YandexMapScreen(),
+        builder: (context, state) => SliverAppBarPage(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {

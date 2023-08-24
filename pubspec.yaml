@@ -68,6 +68,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   yandex_mapkit: ^3.3.3
+  sliver_tools: ^0.2.12
 
 dev_dependencies:
   flutter_test:
