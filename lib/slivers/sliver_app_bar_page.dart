@@ -19,8 +19,8 @@ class SliverAppBarPage extends StatelessWidget {
             pinned: true,
             expandedHeight: 70,
           ),
-          SliverSection(title: "Hello", items:  [
-            SliverPinnedHeader(
+          SliverSection(title: "Hello", items: [
+            const SliverPinnedHeader(
                 child: ColoredBox(
               color: Colors.redAccent,
               child: ListTile(
@@ -32,7 +32,7 @@ class SliverAppBarPage extends StatelessWidget {
               padding: const EdgeInsets.all(10),
               sliver: SliverList(
                 delegate: SliverChildBuilderDelegate(
-                      (context, index) => Column(
+                  (context, index) => Column(
                     children: [
                       _buildTile(),
                       const SizedBox(height: 10),
@@ -42,7 +42,7 @@ class SliverAppBarPage extends StatelessWidget {
                 ),
               ),
             ),
-            SliverPinnedHeader(
+            const SliverPinnedHeader(
                 child: ColoredBox(
               color: Colors.blueAccent,
               child: ListTile(
@@ -51,6 +51,36 @@ class SliverAppBarPage extends StatelessWidget {
               ),
             ))
           ]),
+          SliverPadding(
+            padding: const EdgeInsets.all(10),
+            sliver: SliverList(
+              delegate: SliverChildBuilderDelegate(
+                    (context, index) => Column(
+                  children: [
+                    _buildTile(),
+                    const SizedBox(height: 10),
+                  ],
+                ),
+                childCount: 50,
+              ),
+            ),
+          ),
+          const CurrySliverHeader(Colors.purple, "Title1"),
+          SliverPadding(
+            padding: const EdgeInsets.all(10),
+            sliver: SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) => Column(
+                  children: [
+                    _buildTile(),
+                    const SizedBox(height: 10),
+                  ],
+                ),
+                childCount: 50,
+              ),
+            ),
+          ),
+          const CurrySliverHeader(Colors.amber, "Title2"),
           SliverPadding(
             padding: const EdgeInsets.all(10),
             sliver: SliverList(
