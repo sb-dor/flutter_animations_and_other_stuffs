@@ -18,11 +18,13 @@ import 'package:flutter_animations_2/local_notification/local_notification.dart'
 import 'package:flutter_animations_2/method_channels/method_channels_page.dart';
 import 'package:flutter_animations_2/pdf/data/pdf_generator.dart';
 import 'package:flutter_animations_2/slivers/sliver_app_bar_page.dart';
+import 'package:flutter_animations_2/slivers/slivers_bloc/slivers_cubit/slivers_cubit.dart';
 import 'package:flutter_animations_2/yandex_mapkit/yandex_map_screen.dart';
 import 'package:flutter_animations_2/yandex_mapkit/yandex_mapkit_cubit/main_map_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
+import 'slivers/sliver_and_scroll_page.dart';
 import 'slivers/sliver_appbar_with_tabbar_page.dart';
 
 void main() async {
@@ -70,6 +72,7 @@ void main() async {
       debugShowCheckedModeBanner: false,
       home: MultiBlocProvider(
           providers: [
+            BlocProvider(create: (_) => SliverCubit()),
             BlocProvider(create: (_) => MainMapCubit()),
             BlocProvider(create: (_) => InternetConnCubit())], child: const MainApp())));
 }
@@ -100,7 +103,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => SliverAppBarPage(),
+        builder: (context, state) => SliverAndScrollPage(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
