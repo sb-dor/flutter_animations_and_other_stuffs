@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animations_2/bottom_modal_sheets/bottom_modal_sheet_dynamic_size.dart';
 import 'package:flutter_animations_2/slivers/slivers_bloc/slivers_cubit/slivers_cubit.dart';
 import 'package:flutter_animations_2/slivers/slivers_bloc/slivers_cubit/slivers_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -76,7 +77,7 @@ class _SliverPersistentHeaderW extends SliverPersistentHeaderDelegate {
               itemCount: currentState.names.length,
               itemBuilder: (context, index) {
                 return InkWell(
-                    onTap: () async => [],
+                    onTap: () async => BottomModalSheetDynamicSize.bottomDoubleModalSheet(context: context),
                     child: Container(
                         key: currentState.horizontalKeys[index],
                         padding: const EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
