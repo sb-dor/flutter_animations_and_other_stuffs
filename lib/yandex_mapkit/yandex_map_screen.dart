@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animations_2/app_light_and_dark_theme/app_light_and_dark_theme.dart';
-import 'package:flutter_animations_2/bottom_modal_sheet_dynamic_size/bottom_modal_sheet_dynamic_size.dart';
+import 'package:flutter_animations_2/bottom_modal_sheets/bottom_modal_sheet_dynamic_size.dart';
 import 'package:flutter_animations_2/yandex_mapkit/yandex_mapkit_cubit/main_map_cubit.dart';
 import 'package:flutter_animations_2/yandex_mapkit/yandex_mapkit_cubit/main_map_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -43,7 +43,7 @@ class YandexMapScreen extends StatelessWidget {
                 const SizedBox(width: 10),
                 FloatingActionButton(
                     onPressed: () async =>
-                        BottomModalSheetDynamicSize.bottomSheet(context: context),
+                        BottomModalSheetDynamicSize.bottomSheetWithSizeOfContent(context: context),
                     child: const Icon(Icons.location_city)),
                 const SizedBox(width: 10),
                 FloatingActionButton(

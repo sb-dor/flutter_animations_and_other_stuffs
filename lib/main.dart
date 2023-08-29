@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animations_2/animation_pages/neumorphic_page_transitions_container_page.dart';
 import 'package:flutter_animations_2/app_life_circle/did_change_app_life_circle_page.dart';
+import 'package:flutter_animations_2/bottom_modal_sheets/bottom_modal_sheets_cubit/bottom_modal_sheet_cubit.dart';
 import 'package:flutter_animations_2/esc_pos_printer_with_bluetooth/esc_pos_printer_page.dart';
 import 'package:flutter_animations_2/esc_pos_printer_with_bluetooth/esc_pos_printer_ui_helper.dart';
 import 'package:flutter_animations_2/firebase_push_notification/firebase_push_not.dart';
@@ -63,18 +64,21 @@ void main() async {
   debugPrint("proto1 : ${prototype1.value} | proto2 : ${prototype2.value}");
 
   await PdfGenerator.init();
-  runApp(GetMaterialApp(
-      //get global context here
-      navigatorKey: GlobalContextHelper.globalNavigatorContext,
-      theme: FlexThemeData.light(scheme: FlexScheme.green),
-      darkTheme: FlexThemeData.dark(scheme: FlexScheme.green),
-      themeMode: ThemeMode.light,
-      debugShowCheckedModeBanner: false,
-      home: MultiBlocProvider(
-          providers: [
-            BlocProvider(create: (_) => SliverCubit()),
-            BlocProvider(create: (_) => MainMapCubit()),
-            BlocProvider(create: (_) => InternetConnCubit())], child: const MainApp())));
+  runApp(MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => BottomModalSheetCubits()),
+        BlocProvider(create: (_) => SliverCubit()),
+        BlocProvider(create: (_) => MainMapCubit()),
+        BlocProvider(create: (_) => InternetConnCubit())
+      ],
+      child: GetMaterialApp(
+          //get global context here
+          navigatorKey: GlobalContextHelper.globalNavigatorContext,
+          theme: FlexThemeData.light(scheme: FlexScheme.green),
+          darkTheme: FlexThemeData.dark(scheme: FlexScheme.green),
+          themeMode: ThemeMode.light,
+          debugShowCheckedModeBanner: false,
+          home: MainApp())));
 }
 
 class MainApp extends StatefulWidget {
