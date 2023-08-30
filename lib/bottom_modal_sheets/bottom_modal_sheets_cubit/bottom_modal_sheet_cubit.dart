@@ -10,7 +10,6 @@ class BottomModalSheetCubits extends Cubit<BottomModalSheetStates> {
     var currentState = state.bottomModalSheetStateModel;
 
     currentState.changeableHeight = MediaQuery.of(context).size.height;
-    currentState.tempSavePos = 0.0;
 
     emit(InitialModalBottomSheetStates(currentState));
   }
