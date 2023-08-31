@@ -103,9 +103,10 @@ class BottomModalSheetDynamicSize {
                         width: double.maxFinite,
                         height: MediaQuery.of(context).size.height / 2.5,
                         child: Image.network(
-                          "https://www.syncfusion.com/blogs/wp-content/uploads/2019/12/Flutter_Trends_and_Community_Updates_Social.jpg",
-                          fit: BoxFit.cover,
-                        ))
+                            "https://www.syncfusion.com/blogs/"
+                            "wp-content/uploads/2019/12/"
+                            "Flutter_Trends_and_Community_Updates_Social.jpg",
+                            fit: BoxFit.cover))
                   ]));
             }));
     await showModalBottomSheet(
