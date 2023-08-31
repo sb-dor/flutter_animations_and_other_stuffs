@@ -14,12 +14,25 @@ class BottomModalSheetCubits extends Cubit<BottomModalSheetStates> {
     emit(InitialModalBottomSheetStates(currentState));
   }
 
-  void changeHeight({required BuildContext context}) {
+  void changeHeight({required BuildContext context}) async {
     var currentState = state.bottomModalSheetStateModel;
     RenderBox box =
         currentState.secondModalSheetKey.currentContext?.findRenderObject() as RenderBox;
     double pos = box.localToGlobal(Offset.zero).dy;
-    double middlePos = MediaQuery.of(context).size.height / 3;
+    double middlePos =
+        MediaQuery.of(context).size.height / 3 - (MediaQuery.of(context).size.height / 4);
+
+    if (pos >= MediaQuery.of(context).size.height / 1.6) {
+      currentState.popupWorked = true;
+      emit(InitialModalBottomSheetStates(currentState));
+      await Future.delayed(const Duration(milliseconds: 30));
+      if (context.mounted) Navigator.of(context).popUntil((route) => route.isFirst);
+      Future.delayed(const Duration(milliseconds: 300), () {
+        currentState.popupWorked = false;
+        //do something after closing popup
+      });
+      return;
+    }
 
     if (pos >= middlePos) {
       double res = pos - middlePos;

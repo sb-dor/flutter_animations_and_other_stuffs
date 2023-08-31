@@ -102,7 +102,10 @@ class BottomModalSheetDynamicSize {
                     SizedBox(
                         width: double.maxFinite,
                         height: MediaQuery.of(context).size.height / 2.5,
-                        child: const Placeholder())
+                        child: Image.network(
+                          "https://www.syncfusion.com/blogs/wp-content/uploads/2019/12/Flutter_Trends_and_Community_Updates_Social.jpg",
+                          fit: BoxFit.cover,
+                        ))
                   ]));
             }));
     await showModalBottomSheet(
@@ -120,25 +123,42 @@ class BottomModalSheetDynamicSize {
             var currentState = state.bottomModalSheetStateModel;
             return DraggableScrollableSheet(
                 controller: scrollableController,
-                initialChildSize: 0.700,
+                initialChildSize: 1,
                 expand: false,
                 builder: (context, controller) {
-                  return BlurContainer(
-                    child: Container(
-                        key: currentState.secondModalSheetKey,
-                        child: ListView(
-                            padding: const EdgeInsets.all(10),
-                            controller: controller,
-                            children: List.generate(
-                                100,
-                                (index) => Text(
-                                      "Number: ${index + 1}",
-                                      style: const TextStyle(fontWeight: FontWeight.bold),
-                                    )).toList())),
-                  );
+                  return Container(
+                      key: currentState.secondModalSheetKey,
+                      child: ListView(
+                          padding: const EdgeInsets.all(10),
+                          controller: controller,
+                          children: [
+                            GestureDetector(
+                                onHorizontalDragUpdate: (move) {
+                                  if (move.delta.dx > 0) {
+                                    // Dragging to the right
+                                    debugPrint("Dragging to the right");
+                                  } else if (move.delta.dx < 0) {
+                                    // Dragging to the left
+                                    debugPrint("Dragging to the left");
+                                  }
+                                },
+                                child: Container(height: 200, color: Colors.transparent)),
+                            BlurContainer(
+                              child: Column(
+                                  children: List.generate(
+                                      100,
+                                      (index) => Text(
+                                            "Number: ${index + 1}",
+                                            style: const TextStyle(fontWeight: FontWeight.bold),
+                                          )).toList()),
+                            )
+                          ]));
                 });
           });
         }).then((value) {
+      var modalSheetBloc =
+          BlocProvider.of<BottomModalSheetCubits>(context).state.bottomModalSheetStateModel;
+      if (modalSheetBloc.popupWorked) return;
       Navigator.pop(context);
     });
   }

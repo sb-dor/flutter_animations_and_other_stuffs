@@ -5,5 +5,7 @@ class BottomModalSheetStateModel {
 
   bool loadingRelatedItems = false;
 
+  bool popupWorked = false;
+
   var secondModalSheetKey = GlobalKey();
 }
