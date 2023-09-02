@@ -1,11 +1,16 @@
+import 'dart:convert';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animations_2/animation_pages/neumorphic_page_transitions_container_page.dart';
+import 'package:flutter_animations_2/animation_pages/page_view_with_controller.dart';
 import 'package:flutter_animations_2/app_life_circle/did_change_app_life_circle_page.dart';
 import 'package:flutter_animations_2/bottom_modal_sheets/bottom_modal_sheets_cubit/bottom_modal_sheet_cubit.dart';
+import 'package:flutter_animations_2/dart_features/dart_collections.dart';
+import 'package:flutter_animations_2/delivery_food_ui/screens/home_screen/home_screen.dart';
 import 'package:flutter_animations_2/esc_pos_printer_with_bluetooth/esc_pos_printer_page.dart';
 import 'package:flutter_animations_2/esc_pos_printer_with_bluetooth/esc_pos_printer_ui_helper.dart';
 import 'package:flutter_animations_2/firebase_push_notification/firebase_push_not.dart';
@@ -17,6 +22,7 @@ import 'package:flutter_animations_2/internet_controller/cubit/internet_conn_che
 import 'package:flutter_animations_2/local_notification/awesome_notification_helper.dart';
 import 'package:flutter_animations_2/local_notification/local_notification.dart';
 import 'package:flutter_animations_2/method_channels/method_channels_page.dart';
+import 'package:flutter_animations_2/nft_pages/nft_home_screen.dart';
 import 'package:flutter_animations_2/pdf/data/pdf_generator.dart';
 import 'package:flutter_animations_2/slivers/sliver_app_bar_page.dart';
 import 'package:flutter_animations_2/slivers/slivers_bloc/slivers_cubit/slivers_cubit.dart';
@@ -61,6 +67,15 @@ void main() async {
 
   prototype2.value = 12;
 
+  List<int> intgers = [1, 3, 4, 5, 1, 3, 4];
+  List<bool> bools = [true, true, true];
+  Map<String, dynamic> forLocalDisc = {'intgers': intgers, 'bools': bools};
+
+  debugPrint("for local ${jsonEncode(forLocalDisc)}");
+
+  DartCollections.hashMap();
+  DartCollections.list();
+
   debugPrint("proto1 : ${prototype1.value} | proto2 : ${prototype2.value}");
 
   await PdfGenerator.init();
@@ -78,7 +93,16 @@ void main() async {
           darkTheme: FlexThemeData.dark(scheme: FlexScheme.green),
           themeMode: ThemeMode.light,
           debugShowCheckedModeBanner: false,
-          home: MainApp())));
+          //for adding named routes use like this
+          //do not forget to write main route in your routes like this:
+          //
+          //->          "/" : (context) => YourHomeWidget()
+          //
+          //and do not forget to remove "home" parameter from MaterialApp widget, otherwise it will not work
+          routes: {
+            "/": (context) => const MainApp(),
+            '/nft_home_screen': (context) => const NftHomeScreen()
+          })));
 }
 
 class MainApp extends StatefulWidget {
@@ -107,7 +131,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => SliverAndScrollPage(),
+        builder: (context, state) => PageViewWithController(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
