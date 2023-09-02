@@ -38,7 +38,16 @@ class _SliverAndScrollPageState extends State<SliverAndScrollPage> {
           SliverPersistentHeader(
               pinned: true, floating: false, delegate: _SliverPersistentHeaderW()),
           SliverToBoxAdapter(
-              child: Container(key: currentState.redKey, height: 1000, color: Colors.red)),
+              child: Container(
+                  key: currentState.redKey,
+                  height: 1000,
+                  color: Colors.red,
+                  child: Center(
+                      child: TextButton(
+                          style: const ButtonStyle(
+                              backgroundColor: MaterialStatePropertyAll(Colors.amber)),
+                          onPressed: () => Navigator.pushNamed(context, '/nft_home_screen'),
+                          child: const Text('Go'))))),
           const SliverToBoxAdapter(child: SizedBox(height: 10)),
           SliverToBoxAdapter(
               child: Container(key: currentState.blueKey, height: 1000, color: Colors.blue)),
@@ -77,7 +86,8 @@ class _SliverPersistentHeaderW extends SliverPersistentHeaderDelegate {
               itemCount: currentState.names.length,
               itemBuilder: (context, index) {
                 return InkWell(
-                    onTap: () async => BottomModalSheetDynamicSize.bottomDoubleModalSheet(context: context),
+                    onTap: () async =>
+                        BottomModalSheetDynamicSize.bottomDoubleModalSheet(context: context),
                     child: Container(
                         key: currentState.horizontalKeys[index],
                         padding: const EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
@@ -11,6 +13,8 @@ class PageViewWithController extends StatefulWidget {
 }
 
 class _PageViewWithControllerState extends State<PageViewWithController> {
+  late Timer timer;
+
   List<String> pictureAssets = [
     'assets/images/ice_cream.jpg',
     'assets/images/mister_bean.jpg',
@@ -24,32 +28,64 @@ class _PageViewWithControllerState extends State<PageViewWithController> {
     // TODO: implement initState
     super.initState();
 
-    controller =
-        PageController(initialPage: 0, viewportFraction: 0.5, keepPage: true);
+    controller = PageController(initialPage: 0, viewportFraction: 0.5, keepPage: true);
 
     Product newP = Product(id: 1, price: 15, name: "Apple", pack_qty: 15);
 
     newP.qty = 1.2;
 
     debugPrint("get qty: ${newP.getFromDouble()}");
+    controller.addListener(() {
+      setState(() {
+        initialPage = controller.page?.round() ?? 0;
+      });
+    });
+    startTimer();
   }
 
   int initialPage = 0;
 
+  void startTimer() {
+    timer = Timer.periodic(const Duration(seconds: 5), (timer) async {
+      if (initialPage < pictureAssets.length) {
+        // Assuming there are 3 pages, change to the next page.
+        initialPage++;
+      } else {
+        // If we reach the last page, go back to the first page.
+        initialPage = 0;
+      }
+      controller.animateToPage(initialPage,
+          duration: const Duration(seconds: 1), curve: Curves.linear);
+    });
+  }
+
+  void stopTimer() {
+    timer.cancel();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-      Container(
-          height: 200,
-          child: PageView.builder(
-              controller: controller,
-              itemCount: pictureAssets.length,
-              onPageChanged: (v) => setState(() {
-                    initialPage = v;
-                  }),
-              itemBuilder: (context, index) => Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: rotateImage(index))))
+      Listener(
+        onPointerDown: (down) {
+          stopTimer();
+        },
+        onPointerUp: (up) {
+          startTimer();
+        },
+        child: SizedBox(
+            height: 200,
+            child: PageView.builder(
+                controller: controller,
+                // padEnds: false,
+                // pageSnapping: false,
+                itemCount: pictureAssets.length,
+                onPageChanged: (v) => setState(() {
+                      initialPage = v;
+                    }),
+                itemBuilder: (context, index) =>
+                    Padding(padding: const EdgeInsets.all(8.0), child: rotateImage(index)))),
+      )
     ]);
   }
 
@@ -75,8 +111,7 @@ class _PageViewWithControllerState extends State<PageViewWithController> {
                   child: AnimatedOpacity(
                       duration: const Duration(milliseconds: 275),
                       opacity: initialPage == index ? 1 : 0.4,
-                      child:
-                          Image.asset(pictureAssets[index], fit: BoxFit.cover)),
+                      child: Image.asset(pictureAssets[index], fit: BoxFit.cover)),
                   builder: (BuildContext context, value, Widget? child) {
                     return Transform.scale(scale: value, child: child);
                   }));

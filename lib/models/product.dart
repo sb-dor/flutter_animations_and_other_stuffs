@@ -11,6 +11,8 @@ class Product {
   String name;
 
   Product({required this.id, required this.price, required this.name, this.qty, this.pack_qty});
+
+  Map<String, dynamic> toJson() => {"id": id, 'price': price, 'qty': qty, "pack_qty": pack_qty};
 }
 
 extension NameOfExtension on List<Product> {
