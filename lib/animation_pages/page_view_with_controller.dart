@@ -88,7 +88,7 @@ class _PageViewWithControllerState extends State<PageViewWithController> {
                   // padEnds: false,
                   // pageSnapping: false,
 
-                  // physics: const NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: pictureAssets.length,
                   onPageChanged: (v) => setState(() {
                         initialPage = v;
