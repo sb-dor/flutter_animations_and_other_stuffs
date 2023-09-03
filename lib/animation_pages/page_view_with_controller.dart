@@ -53,6 +53,8 @@ class _PageViewWithControllerState extends State<PageViewWithController> {
       } else {
         // If we reach the last page, go back to the first page.
         initialPage = 0;
+        controller.jumpToPage(initialPage);
+        return;
       }
       controller.animateToPage(initialPage,
           duration: const Duration(seconds: 1), curve: Curves.linear);
@@ -73,18 +75,27 @@ class _PageViewWithControllerState extends State<PageViewWithController> {
         onPointerUp: (up) {
           startTimer();
         },
-        child: SizedBox(
-            height: 200,
-            child: PageView.builder(
-                controller: controller,
-                // padEnds: false,
-                // pageSnapping: false,
-                itemCount: pictureAssets.length,
-                onPageChanged: (v) => setState(() {
-                      initialPage = v;
-                    }),
-                itemBuilder: (context, index) =>
-                    Padding(padding: const EdgeInsets.all(8.0), child: rotateImage(index)))),
+        child: GestureDetector(
+          onHorizontalDragUpdate: (move) {
+            //if you are using on popup or physics that disables scrolling
+            //this is for moving page view with gesture detector
+            controller.jumpTo(controller.offset - move.delta.dx);
+          },
+          child: SizedBox(
+              height: 200,
+              child: PageView.builder(
+                  controller: controller,
+                  // padEnds: false,
+                  // pageSnapping: false,
+
+                  // physics: const NeverScrollableScrollPhysics(),
+                  itemCount: pictureAssets.length,
+                  onPageChanged: (v) => setState(() {
+                        initialPage = v;
+                      }),
+                  itemBuilder: (context, index) =>
+                      Padding(padding: const EdgeInsets.all(8.0), child: rotateImage(index)))),
+        ),
       )
     ]);
   }
