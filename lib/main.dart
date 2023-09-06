@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ import 'package:flutter_animations_2/delivery_food_ui/screens/home_screen/home_s
 import 'package:flutter_animations_2/esc_pos_printer_with_bluetooth/esc_pos_printer_page.dart';
 import 'package:flutter_animations_2/esc_pos_printer_with_bluetooth/esc_pos_printer_ui_helper.dart';
 import 'package:flutter_animations_2/firebase_push_notification/firebase_push_not.dart';
+import 'package:flutter_animations_2/flutter_deep_link/firebase_dynamic_linking.dart';
 import 'package:flutter_animations_2/flutter_deep_link/flutter_deep_linking_route.dart';
 import 'package:flutter_animations_2/flutter_design_patters/factory_design.dart';
 import 'package:flutter_animations_2/flutter_design_patters/prototype_design.dart';
@@ -44,6 +46,7 @@ void main() async {
   await LocalNotification.initLocalNotification();
   await EscPosPrinterUIHelper.init();
   await AwesomeNotificationsHelper.initAwesomeNotifications();
+  await FirebaseDynamicLinking.initDynamicLinks();
   // MainCharacter mainCharacter = MainCharacter("Alien");
   // mainCharacter.race?.saySome();
   // mainCharacter.race?.weapon.shoot();
@@ -87,27 +90,25 @@ void main() async {
         BlocProvider(create: (_) => MainMapCubit()),
         BlocProvider(create: (_) => InternetConnCubit())
       ],
-      child: MaterialApp.router(
-        //if you want to use flutter deep linking use package "go_router"
-        routerConfig: FlutterDeepLinkingRoute.goRouter,
-        //get global context here
-        // navigatorKey: GlobalContextHelper.globalNavigatorContext,
-        theme: FlexThemeData.light(scheme: FlexScheme.green),
-        darkTheme: FlexThemeData.dark(scheme: FlexScheme.green),
-        themeMode: ThemeMode.light,
-        debugShowCheckedModeBanner: false,
-        //for adding named routes use like this
-        //do not forget to write main route in your routes like this:
-        //
-        //->          "/" : (context) => YourHomeWidget()
-        //
-        //and do not forget to remove "home" parameter from MaterialApp widget, otherwise it will not work
-        // initialRoute: '/',
-        // routes: {
-        //   "/": (context) => const MainApp(),
-        //   '/nft_home_screen': (context) => const NftHomeScreen()
-        // }
-      )));
+      child: MaterialApp(
+          //if you want to use flutter deep linking use package "go_router"
+          //get global context here
+          // navigatorKey: GlobalContextHelper.globalNavigatorContext,
+          theme: FlexThemeData.light(scheme: FlexScheme.green),
+          darkTheme: FlexThemeData.dark(scheme: FlexScheme.green),
+          themeMode: ThemeMode.light,
+          debugShowCheckedModeBanner: false,
+          //for adding named routes use like this
+          //do not forget to write main route in your routes like this:
+          //
+          //->          "/" : (context) => YourHomeWidget()
+          //
+          //and do not forget to remove "home" parameter from MaterialApp widget, otherwise it will not work
+          // initialRoute: '/',
+          routes: {
+            "/": (context) => const MainApp(),
+            '/nft_home_screen': (context) => const NftHomeScreen()
+          })));
 }
 
 class MainApp extends StatefulWidget {
@@ -118,6 +119,12 @@ class MainApp extends StatefulWidget {
 }
 
 class _MainAppState extends State<MainApp> {
+  void initDynamicLinks() async {
+    FirebaseDynamicLinks.instance.onLink.listen((event) {
+      debugPrint("link : $event");
+    });
+  }
+
   @override
   void initState() {
     // TODO: implement initState
@@ -126,6 +133,7 @@ class _MainAppState extends State<MainApp> {
     context.read<InternetConnCubit>().listenInternetConn();
     context.read<MainMapCubit>().initMap();
     showNo();
+    initDynamicLinks();
   }
 
   void showNo() async {
@@ -136,7 +144,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => PageViewWithController(),
+        builder: (context, state) => SliverAndScrollPage(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {

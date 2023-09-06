@@ -99,14 +99,16 @@ class BottomModalSheetDynamicSize {
                   height: currentState.changeableHeight,
                   child: Column(children: [
                     const SizedBox(height: 50),
-                    SizedBox(
-                        width: double.maxFinite,
-                        height: MediaQuery.of(context).size.height / 2.5,
-                        child: Image.network(
-                            "https://www.syncfusion.com/blogs/"
-                            "wp-content/uploads/2019/12/"
-                            "Flutter_Trends_and_Community_Updates_Social.jpg",
-                            fit: BoxFit.cover))
+                    Flexible(
+                      child: SizedBox(
+                          width: double.maxFinite,
+                          height: MediaQuery.of(context).size.height / 2.5,
+                          child: Image.network(
+                              "https://www.syncfusion.com/blogs/"
+                              "wp-content/uploads/2019/12/"
+                              "Flutter_Trends_and_Community_Updates_Social.jpg",
+                              fit: BoxFit.cover)),
+                    )
                   ]));
             }));
     await showModalBottomSheet(
@@ -159,8 +161,11 @@ class BottomModalSheetDynamicSize {
         }).then((value) {
       var modalSheetBloc =
           BlocProvider.of<BottomModalSheetCubits>(context).state.bottomModalSheetStateModel;
-      if (modalSheetBloc.popupWorked) return;
-      Navigator.pop(context);
+      // if (modalSheetBloc.popupWorked) return;
+      // Navigator.pop(context);
+      if (Navigator.of(context).canPop()) {
+        Navigator.of(context).pop();
+      }
     });
   }
 }

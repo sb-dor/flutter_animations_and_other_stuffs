@@ -25,8 +25,11 @@ class BottomModalSheetCubits extends Cubit<BottomModalSheetStates> {
     if (pos >= MediaQuery.of(context).size.height / 1.6) {
       currentState.popupWorked = true;
       emit(InitialModalBottomSheetStates(currentState));
-      await Future.delayed(const Duration(milliseconds: 30));
-      if (context.mounted) Navigator.of(context).popUntil((route) => route.isFirst);
+      // await Future.delayed(const Duration(milliseconds: 30));
+      if (Navigator.of(context).canPop()) {
+        Navigator.of(context).pop();
+      }
+      // if (context.mounted) Navigator.of(context).popUntil((route) => route.isFirst);
       Future.delayed(const Duration(milliseconds: 300), () {
         currentState.popupWorked = false;
         //do something after closing popup
