@@ -71,6 +71,7 @@ dependencies:
   go_router: ^10.1.2
   firebase_dynamic_links: ^5.3.5
   uni_links: ^0.5.1
+  add_to_cart_animation: ^2.0.3
 
 dev_dependencies:
   flutter_test:

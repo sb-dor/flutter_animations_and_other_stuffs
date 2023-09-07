@@ -3,9 +3,9 @@ import 'dart:math';
 abstract class Randoms {
   static final random = Random();
 
-  static String randomPictureUrl() {
+  static String randomPictureUrl({int? width, int? height}) {
     final randomInt = random.nextInt(1000);
-    return 'https://picsum.photos/seed/$randomInt/300/300';
+    return 'https://picsum.photos/seed/$randomInt/${width ?? 300}/${height ?? 300}';
   }
 
   static DateTime randomDatetime() {
