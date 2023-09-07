@@ -6,6 +6,8 @@ import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animations_2/animation_pages/animated_cart_page.dart';
+import 'package:flutter_animations_2/animation_pages/animated_cart_with_bottom_navbar.dart';
 import 'package:flutter_animations_2/animation_pages/neumorphic_page_transitions_container_page.dart';
 import 'package:flutter_animations_2/animation_pages/page_view_with_controller.dart';
 import 'package:flutter_animations_2/app_life_circle/did_change_app_life_circle_page.dart';
@@ -144,7 +146,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => SliverAndScrollPage(),
+        builder: (context, state) => AnimatedCartWithBottomNavbar(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {

@@ -28,29 +28,41 @@ class BottomModalSheetDynamicSize {
                           child: Padding(
                               padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
                               child:
-                                  Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                                 const SizedBox(height: 15),
                                 RichText(
                                     text: TextSpan(children: [
-                                  TextSpan(
-                                      text: "≪",
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          color: Theme.of(context).textTheme.displayLarge?.color,
-                                          fontWeight: FontWeight.bold)),
-                                  TextSpan(
-                                      text: " ${Faker().lorem.sentence()} ",
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          color: Theme.of(context).textTheme.displayLarge?.color,
-                                          fontWeight: FontWeight.bold)),
-                                  TextSpan(
-                                      text: "≫",
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          color: Theme.of(context).textTheme.displayLarge?.color,
-                                          fontWeight: FontWeight.bold))
-                                ])),
+                                      TextSpan(
+                                          text: "≪",
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              color: Theme
+                                                  .of(context)
+                                                  .textTheme
+                                                  .displayLarge
+                                                  ?.color,
+                                              fontWeight: FontWeight.bold)),
+                                      TextSpan(
+                                          text: " ${Faker().lorem.sentence()} ",
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              color: Theme
+                                                  .of(context)
+                                                  .textTheme
+                                                  .displayLarge
+                                                  ?.color,
+                                              fontWeight: FontWeight.bold)),
+                                      TextSpan(
+                                          text: "≫",
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              color: Theme
+                                                  .of(context)
+                                                  .textTheme
+                                                  .displayLarge
+                                                  ?.color,
+                                              fontWeight: FontWeight.bold))
+                                    ])),
                                 const SizedBox(height: 10),
                                 Text(Faker().lorem.sentence(),
                                     style: const TextStyle(fontSize: 16), maxLines: 11),
@@ -74,11 +86,12 @@ class BottomModalSheetDynamicSize {
           return DraggableScrollableSheet(
               controller: controller,
               initialChildSize: 0.7,
-              builder: (BuildContext context, ScrollController scrollController) => Container(
-                  color: Colors.white,
-                  child: ListView(
-                      controller: scrollController,
-                      children: List.generate(100, (index) => Text("${index + 1}")).toList())));
+              builder: (BuildContext context, ScrollController scrollController) =>
+                  Container(
+                      color: Colors.white,
+                      child: ListView(
+                          controller: scrollController,
+                          children: List.generate(100, (index) => Text("${index + 1}")).toList())));
         });
   }
 
@@ -91,7 +104,7 @@ class BottomModalSheetDynamicSize {
         isScrollControlled: true,
         shape: const RoundedRectangleBorder(
             borderRadius:
-                BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30))),
+            BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30))),
         builder: (context) =>
             BlocBuilder<BottomModalSheetCubits, BottomModalSheetStates>(builder: (context, state) {
               var currentState = state.bottomModalSheetStateModel;
@@ -100,14 +113,17 @@ class BottomModalSheetDynamicSize {
                   child: Column(children: [
                     const SizedBox(height: 50),
                     Flexible(
-                      child: SizedBox(
-                          width: double.maxFinite,
-                          height: MediaQuery.of(context).size.height / 2.5,
-                          child: Image.network(
-                              "https://www.syncfusion.com/blogs/"
-                              "wp-content/uploads/2019/12/"
-                              "Flutter_Trends_and_Community_Updates_Social.jpg",
-                              fit: BoxFit.cover)),
+                        child: SizedBox(
+                            width: double.maxFinite,
+                            height: MediaQuery
+                                .of(context)
+                                .size
+                                .height / 2.5,
+                            child: Image.network(
+                                "https://www.syncfusion.com/blogs/"
+                                    "wp-content/uploads/2019/12/"
+                                    "Flutter_Trends_and_Community_Updates_Social.jpg",
+                                fit: BoxFit.cover))
                     )
                   ]));
             }));
@@ -123,44 +139,48 @@ class BottomModalSheetDynamicSize {
           });
           return BlocBuilder<BottomModalSheetCubits, BottomModalSheetStates>(
               builder: (context, state) {
-            var currentState = state.bottomModalSheetStateModel;
-            return DraggableScrollableSheet(
-                controller: scrollableController,
-                initialChildSize: 1,
-                expand: false,
-                builder: (context, controller) {
-                  return Container(
-                      key: currentState.secondModalSheetKey,
-                      child: ListView(
-                          padding: const EdgeInsets.all(10),
-                          controller: controller,
-                          children: [
-                            GestureDetector(
-                                onHorizontalDragUpdate: (move) {
-                                  if (move.delta.dx > 0) {
-                                    // Dragging to the right
-                                    debugPrint("Dragging to the right");
-                                  } else if (move.delta.dx < 0) {
-                                    // Dragging to the left
-                                    debugPrint("Dragging to the left");
-                                  }
-                                },
-                                child: Container(height: 200, color: Colors.transparent)),
-                            BlurContainer(
-                              child: Column(
-                                  children: List.generate(
-                                      100,
-                                      (index) => Text(
-                                            "Number: ${index + 1}",
-                                            style: const TextStyle(fontWeight: FontWeight.bold),
-                                          )).toList()),
-                            )
-                          ]));
-                });
-          });
+                var currentState = state.bottomModalSheetStateModel;
+                return DraggableScrollableSheet(
+                    controller: scrollableController,
+                    initialChildSize: 1,
+                    expand: false,
+                    builder: (context, controller) {
+                      return Container(
+                          key: currentState.secondModalSheetKey,
+                          child: ListView(
+                              padding: const EdgeInsets.all(10),
+                              controller: controller,
+                              children: [
+                                GestureDetector(
+                                    onHorizontalDragUpdate: (move) {
+                                      if (move.delta.dx > 0) {
+                                        // Dragging to the right
+                                        debugPrint("Dragging to the right");
+                                      } else if (move.delta.dx < 0) {
+                                        // Dragging to the left
+                                        debugPrint("Dragging to the left");
+                                      }
+                                    },
+                                    child: Container(height: 200, color: Colors.transparent)),
+                                BlurContainer(
+                                  child: Column(
+                                      children: List.generate(
+                                          100,
+                                              (index) =>
+                                              Text(
+                                                "Number: ${index + 1}",
+                                                style: const TextStyle(fontWeight: FontWeight.bold),
+                                              )).toList()),
+                                )
+                              ]));
+                    });
+              });
         }).then((value) {
       var modalSheetBloc =
-          BlocProvider.of<BottomModalSheetCubits>(context).state.bottomModalSheetStateModel;
+          BlocProvider
+              .of<BottomModalSheetCubits>(context)
+              .state
+              .bottomModalSheetStateModel;
       // if (modalSheetBloc.popupWorked) return;
       // Navigator.pop(context);
       if (Navigator.of(context).canPop()) {
