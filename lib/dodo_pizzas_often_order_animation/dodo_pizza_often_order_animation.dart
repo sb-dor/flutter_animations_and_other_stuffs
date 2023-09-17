@@ -20,6 +20,7 @@ class _DodoPizzaOftenOrderAnimationState extends State<DodoPizzaOftenOrderAnimat
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       pageViewController = PageController(
           viewportFraction: MediaQuery.of(context).size.width >= 600 ? 0.250 : 0.750);
+      setState(() {});
     });
   }
 
