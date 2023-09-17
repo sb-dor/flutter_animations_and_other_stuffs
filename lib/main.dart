@@ -14,6 +14,7 @@ import 'package:flutter_animations_2/app_life_circle/did_change_app_life_circle_
 import 'package:flutter_animations_2/bottom_modal_sheets/bottom_modal_sheets_cubit/bottom_modal_sheet_cubit.dart';
 import 'package:flutter_animations_2/dart_features/dart_collections.dart';
 import 'package:flutter_animations_2/delivery_food_ui/screens/home_screen/home_screen.dart';
+import 'package:flutter_animations_2/equatable/equatable_model.dart';
 import 'package:flutter_animations_2/esc_pos_printer_with_bluetooth/esc_pos_printer_page.dart';
 import 'package:flutter_animations_2/esc_pos_printer_with_bluetooth/esc_pos_printer_ui_helper.dart';
 import 'package:flutter_animations_2/firebase_push_notification/firebase_push_not.dart';
@@ -31,6 +32,8 @@ import 'package:flutter_animations_2/nft_pages/nft_home_screen.dart';
 import 'package:flutter_animations_2/pdf/data/pdf_generator.dart';
 import 'package:flutter_animations_2/slivers/sliver_app_bar_page.dart';
 import 'package:flutter_animations_2/slivers/slivers_bloc/slivers_cubit/slivers_cubit.dart';
+import 'package:flutter_animations_2/sqflite/page/sqflite_database_page.dart';
+import 'package:flutter_animations_2/sqflite/sqflite_database_helper.dart';
 import 'package:flutter_animations_2/yandex_mapkit/yandex_map_screen.dart';
 import 'package:flutter_animations_2/yandex_mapkit/yandex_mapkit_cubit/main_map_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -49,6 +52,7 @@ void main() async {
   await EscPosPrinterUIHelper.init();
   await AwesomeNotificationsHelper.initAwesomeNotifications();
   await FirebaseDynamicLinking.initDynamicLinks();
+  await SqfLiteDatabaseHelper.initSqfLiteDatabase();
   // MainCharacter mainCharacter = MainCharacter("Alien");
   // mainCharacter.race?.saySome();
   // mainCharacter.race?.weapon.shoot();
@@ -83,6 +87,11 @@ void main() async {
   DartCollections.list();
 
   debugPrint("proto1 : ${prototype1.value} | proto2 : ${prototype2.value}");
+
+  var eqModel = EquatableModel(id: 1, name: "Avaz", age: 19);
+
+  print("is model equals : ${eqModel == EquatableModel(id: 1, name: "Avaz", age: 19)}");
+
 
   await PdfGenerator.init();
   runApp(MultiBlocProvider(
@@ -146,7 +155,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => AnimatedCartWithBottomNavbar(),
+        builder: (context, state) => SqfliteDatabasePage(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
