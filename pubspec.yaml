@@ -107,6 +107,7 @@ flutter:
     - assets/fonts/
     - assets/fonts/open_sans/
     - assets/icons/
+    - assets/dodo_pizza_often_order_pictures/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

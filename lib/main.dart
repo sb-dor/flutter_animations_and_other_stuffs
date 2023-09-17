@@ -5,6 +5,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animations_2/animation_pages/animated_cart_page.dart';
 import 'package:flutter_animations_2/animation_pages/animated_cart_with_bottom_navbar.dart';
@@ -14,6 +15,7 @@ import 'package:flutter_animations_2/app_life_circle/did_change_app_life_circle_
 import 'package:flutter_animations_2/bottom_modal_sheets/bottom_modal_sheets_cubit/bottom_modal_sheet_cubit.dart';
 import 'package:flutter_animations_2/dart_features/dart_collections.dart';
 import 'package:flutter_animations_2/delivery_food_ui/screens/home_screen/home_screen.dart';
+import 'package:flutter_animations_2/dodo_pizzas_often_order_animation/dodo_pizza_often_order_animation.dart';
 import 'package:flutter_animations_2/equatable/equatable_model.dart';
 import 'package:flutter_animations_2/esc_pos_printer_with_bluetooth/esc_pos_printer_page.dart';
 import 'package:flutter_animations_2/esc_pos_printer_with_bluetooth/esc_pos_printer_ui_helper.dart';
@@ -45,14 +47,16 @@ import 'slivers/sliver_appbar_with_tabbar_page.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //get material app just for showing get's snackBar
-  await Firebase.initializeApp();
-  await FirebasePushNot.initBackGroundNotification();
-  await FirebasePushNot.initForeGroundNotification();
-  await LocalNotification.initLocalNotification();
-  await EscPosPrinterUIHelper.init();
-  await AwesomeNotificationsHelper.initAwesomeNotifications();
-  await FirebaseDynamicLinking.initDynamicLinks();
-  await SqfLiteDatabaseHelper.initSqfLiteDatabase();
+  if (!kIsWeb) {
+    await Firebase.initializeApp();
+    await FirebasePushNot.initBackGroundNotification();
+    await FirebasePushNot.initForeGroundNotification();
+    await LocalNotification.initLocalNotification();
+    await EscPosPrinterUIHelper.init();
+    await AwesomeNotificationsHelper.initAwesomeNotifications();
+    await FirebaseDynamicLinking.initDynamicLinks();
+    await SqfLiteDatabaseHelper.initSqfLiteDatabase();
+  }
   // MainCharacter mainCharacter = MainCharacter("Alien");
   // mainCharacter.race?.saySome();
   // mainCharacter.race?.weapon.shoot();
@@ -92,7 +96,6 @@ void main() async {
 
   print("is model equals : ${eqModel == EquatableModel(id: 1, name: "Avaz", age: 19)}");
 
-
   await PdfGenerator.init();
   runApp(MultiBlocProvider(
       providers: [
@@ -102,6 +105,7 @@ void main() async {
         BlocProvider(create: (_) => InternetConnCubit())
       ],
       child: MaterialApp(
+          scrollBehavior: MyCustomScrollBehavior(),
           //if you want to use flutter deep linking use package "go_router"
           //get global context here
           // navigatorKey: GlobalContextHelper.globalNavigatorContext,
@@ -155,7 +159,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => SqfliteDatabasePage(),
+        builder: (context, state) => DodoPizzaOftenOrderAnimation(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
@@ -169,4 +173,14 @@ class _MainAppState extends State<MainApp> {
           }
         });
   }
+}
+
+//for web if listview horizontal is not scrolling
+class MyCustomScrollBehavior extends MaterialScrollBehavior {
+  // Override behavior methods and getters like dragDevices
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+      };
 }
