@@ -86,7 +86,8 @@ class _PageViewWithControllerState extends State<PageViewWithController> {
               child: PageView.builder(
                   controller: controller,
                   // padEnds: false,
-                  // pageSnapping: false,
+
+                  // pageSnapping: false, // if pageSnapping will be false you will scroll page like listview
 
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: pictureAssets.length,
