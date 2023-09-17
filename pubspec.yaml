@@ -72,6 +72,8 @@ dependencies:
   firebase_dynamic_links: ^5.3.5
   uni_links: ^0.5.1
   add_to_cart_animation: ^2.0.3
+  equatable: ^2.0.5
+  sqflite: ^2.3.0
 
 dev_dependencies:
   flutter_test:
