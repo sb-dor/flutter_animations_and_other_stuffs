@@ -11,13 +11,16 @@ class DodoPizzaOftenOrderAnimation extends StatefulWidget {
 class _DodoPizzaOftenOrderAnimationState extends State<DodoPizzaOftenOrderAnimation> {
   bool animateRight = false;
   bool animateLeft = false;
-  late PageController pageViewController;
+  PageController pageViewController = PageController();
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    pageViewController = PageController(viewportFraction: 0.250);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      pageViewController = PageController(
+          viewportFraction: MediaQuery.of(context).size.width >= 600 ? 0.250 : 0.750);
+    });
   }
 
   @override
@@ -50,7 +53,7 @@ class _DodoPizzaOftenOrderAnimationState extends State<DodoPizzaOftenOrderAnimat
                         itemCount: 5,
                         scrollDirection: Axis.horizontal,
                         padEnds: false,
-                        pageSnapping: false,
+                        // pageSnapping: false,
                         itemBuilder: (context, index) => AnimatedDodoContainer(index: index))),
                 Positioned(
                     right: 0,
