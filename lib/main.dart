@@ -92,9 +92,9 @@ void main() async {
 
   debugPrint("proto1 : ${prototype1.value} | proto2 : ${prototype2.value}");
 
-  var eqModel = EquatableModel(id: 1, name: "Avaz", age: 19);
+  var eqModel = const EquatableModel(id: 1, name: "Avaz", age: 19);
 
-  print("is model equals : ${eqModel == EquatableModel(id: 1, name: "Avaz", age: 19)}");
+  print("is model equals : ${eqModel == const EquatableModel(id: 1, name: "Avaz", age: 19)}");
 
   await PdfGenerator.init();
   runApp(MultiBlocProvider(
@@ -159,7 +159,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => DodoPizzaOftenOrderAnimation(),
+        builder: (context, state) => const SqfliteDatabasePage(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
