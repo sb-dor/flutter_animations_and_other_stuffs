@@ -34,15 +34,25 @@ for more information about permission handler check these links:
 
 
     android.permission.CAMERA maps to NSCameraUsageDescription in Info.plist.
+
     android.permission.RECORD_AUDIO maps to NSMicrophoneUsageDescription in Info.plist.
+
     android.permission.POST_NOTIFICATIONS doesn't have a direct iOS equivalent.
+
     android.permission.BLUETOOTH maps to NSBluetoothPeripheralUsageDescription in Info.plist.
+
     android.permission.BLUETOOTH_SCAN doesn't have a direct iOS equivalent.
+
     android.permission.BLUETOOTH_CONNECT doesn't have a direct iOS equivalent.
+
     android.permission.BLUETOOTH_ADMIN maps to NSBluetoothAlwaysUsageDescription in Info.plist.
+
     android.permission.FOREGROUND_SERVICE doesn't have a direct iOS equivalent.
+
     android.permission.READ_EXTERNAL_STORAGE maps to NSPhotoLibraryUsageDescription in Info.plist.
+
     android.permission.INTERNET doesn't require a specific iOS permission as internet access is allowed by default.
+
     android.permission.ACCESS_FINE_LOCATION maps to NSLocationWhenInUseUsageDescription in Info.plist if you need location access while the app is in the foreground. If you need background location access, you should use NSLocationAlwaysUsageDescription.
    
 
