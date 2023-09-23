@@ -53,7 +53,9 @@ for more information about permission handler check these links:
 
     android.permission.INTERNET doesn't require a specific iOS permission as internet access is allowed by default.
 
-    android.permission.ACCESS_FINE_LOCATION maps to NSLocationWhenInUseUsageDescription in Info.plist if you need location access while the app is in the foreground. If you need background location access, you should use NSLocationAlwaysUsageDescription.
+    android.permission.ACCESS_FINE_LOCATION maps to NSLocationWhenInUseUsageDescription in Info.plist
+
+    if you need location access while the app is in the foreground. If you need background location access, you should use NSLocationAlwaysUsageDescription.
    
 
     how to add to the Info.plist file :
