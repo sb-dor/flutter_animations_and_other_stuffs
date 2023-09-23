@@ -23,9 +23,14 @@ class MainActivity : FlutterActivity() {
 
     override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
 
-        MapKitFactory.setLocale("ru_RU"); // Your preferred language. Not required, defaults to system language
-        MapKitFactory.setApiKey("162cc3e0-4c39-40e6-9f36-6201a2ebec56"); // Your generated API key
+        //cause of putting this "try-catch" is that after clicking upon the "flutter_background_service" notification
+        //yandex map throws an exception
+        try {
+            MapKitFactory.setLocale("ru_RU"); // Your preferred language. Not required, defaults to system language
+            MapKitFactory.setApiKey("162cc3e0-4c39-40e6-9f36-6201a2ebec56"); // Your generated API key
+        } catch (_: AssertionError) {
 
+        }
         super.configureFlutterEngine(flutterEngine)
         MethodChannel(
             flutterEngine.dartExecutor.binaryMessenger, channel
@@ -40,8 +45,10 @@ class MainActivity : FlutterActivity() {
                     result.error("UNAVAILABLE", "Battery level not available.", null)
                 }
             } else if (call.method == "popupMethod") {
-                val myToast = Toast.makeText(applicationContext,"Flutter Android Native Toast",Toast.LENGTH_SHORT)
-                myToast.setGravity(Gravity.LEFT,200,200)
+                val myToast = Toast.makeText(applicationContext,
+                    "Flutter Android Native Toast",
+                    Toast.LENGTH_SHORT)
+                myToast.setGravity(Gravity.LEFT, 200, 200)
                 myToast.show()
             } else {
                 result.notImplemented()

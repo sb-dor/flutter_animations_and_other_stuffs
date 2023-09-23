@@ -25,6 +25,9 @@ import 'package:flutter_animations_2/flutter_deep_link/flutter_deep_linking_rout
 import 'package:flutter_animations_2/flutter_design_patters/factory_design.dart';
 import 'package:flutter_animations_2/flutter_design_patters/prototype_design.dart';
 import 'package:flutter_animations_2/flutter_design_patters/singleton_design.dart';
+import 'package:flutter_animations_2/flutter_permissions/cubit/flutter_permissions_cubit.dart';
+import 'package:flutter_animations_2/flutter_permissions/flutter_permissions_page.dart';
+import 'package:flutter_animations_2/flutter_webview/flutter_webview.dart';
 import 'package:flutter_animations_2/global_context/global_context.helper.dart';
 import 'package:flutter_animations_2/internet_controller/cubit/internet_conn_checker_cubit.dart';
 import 'package:flutter_animations_2/local_notification/awesome_notification_helper.dart';
@@ -99,6 +102,7 @@ void main() async {
   await PdfGenerator.init();
   runApp(MultiBlocProvider(
       providers: [
+        BlocProvider(create: (_) => FlutterPermissionCubit()),
         BlocProvider(create: (_) => BottomModalSheetCubits()),
         BlocProvider(create: (_) => SliverCubit()),
         BlocProvider(create: (_) => MainMapCubit()),
@@ -159,7 +163,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const SqfliteDatabasePage(),
+        builder: (context, state) => const FlutterPermissionsPage(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
