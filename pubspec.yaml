@@ -74,6 +74,8 @@ dependencies:
   add_to_cart_animation: ^2.0.3
   equatable: ^2.0.5
   sqflite: ^2.3.0
+  webview_flutter: ^4.2.4
+  permission_handler: ^11.0.0
 
 dev_dependencies:
   flutter_test:
