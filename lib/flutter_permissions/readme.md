@@ -19,17 +19,27 @@ for more information about permission handler check these links:
 2. https://github.com/baseflow/flutter-permission-handler
 3. https://youtu.be/K7kw0T8k2cg?si=_Fxn2uI29Y12flCq
 
-
+_____________________________________________________________________________________
     <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
     <uses-permission android:name="android.permission.BLUETOOTH" />
+
     <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <uses-permission android:name="android.permission.INTERNET" />
+
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
 
