@@ -1,10 +1,12 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_animations_2/local_notification/awesome_notification_helper.dart';
 import 'package:flutter_animations_2/local_notification/local_notification.dart';
 // import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class FirebasePushNot {
   static final firebaseMessaging = FirebaseMessaging.instance;
+
   // static final localNotification = FlutterLocalNotificationsPlugin();
 
   static Future<void> backgroundMessageHandler(RemoteMessage? message) async {
@@ -12,6 +14,11 @@ class FirebasePushNot {
     debugPrint("Title: ${message.notification?.title}");
     debugPrint("body: ${message.notification?.body}");
     debugPrint("playload: ${message.data}");
+    await AwesomeNotificationsHelper.showAwesomeNotification(
+        title: message.notification?.title ?? '',
+        body: message.notification?.body ?? '',
+        imageType: "welcome_type",
+        image: null);
   }
 
   static Future<void> initBackGroundNotification() async {
@@ -30,8 +37,14 @@ class FirebasePushNot {
 
   static Future<void> foregroundMessageHandler(RemoteMessage? message) async {
     if (message == null) return;
-    await LocalNotification.showNotification(
-        title: message.notification?.title ?? '', body: message.notification?.body ?? '');
+    debugPrint("Title: ${message.notification?.title}");
+    debugPrint("body: ${message.notification?.body}");
+    debugPrint("playload: ${message.data}");
+    await AwesomeNotificationsHelper.showAwesomeNotification(
+        title: message.notification?.title ?? '',
+        body: message.notification?.body ?? '',
+        imageType: "welcome_type",
+        image: null);
   }
 
   static Future<void> initForeGroundNotification() async {

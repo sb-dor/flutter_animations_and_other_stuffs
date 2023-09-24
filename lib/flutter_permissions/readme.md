@@ -5,11 +5,11 @@ first of all add package in your pubspec.yaml file:
         sdk: flutter
     permission_handler: {version}
 
-for getting permissions for anything for android visit this website:
+for getting permissions of anything for android visit this website:
 
 1. https://developer.android.com/reference/android/Manifest.permission
 
-for getting permissions for anything for ios visit this website
+for getting permissions of anything for ios visit this website
 
 2. https://developer.apple.com/documentation/uikit/protecting_the_user_s_privacy/requesting_access_to_protected_resources
 

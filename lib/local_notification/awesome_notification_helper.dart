@@ -44,6 +44,7 @@ class AwesomeNotificationsHelper {
   static Future<void> showNotificationWithBigImageImage(
       {required String title, required String body, required String? image}) async {
     // debugPrint("notification image: ${ApiSettings.MAIN_URL}/get-promo-banner-img/$image");
+    //if you want to show notification every time create and save "id" in shared_preferences and get that
     AwesomeNotifications().createNotification(
         content: NotificationContent(
             id: 1,
@@ -56,6 +57,7 @@ class AwesomeNotificationsHelper {
   }
 
   static Future<void> showSimpleNotification({required String title, required String body}) async {
+    //if you want to show notification every time create and save "id" in shared_preferences and get that
     AwesomeNotifications().createNotification(
         content: NotificationContent(
             id: 2, channelKey: "alshema_local_notify_id", title: title, body: body));
