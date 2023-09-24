@@ -22,7 +22,7 @@ add this line in your AppDelegate.swift file:
 
 if you will get error from "FlutterScanBluetoothPlugin" or some another plugin after closing app 
 try to use "try-catch" for kotlin or java and "do-catch" for swift in file where it throws an error
-for example in file FlutterScanBluetoothPlugin this function is throwing an error on "onViewDestroy" method:
+for example in file FlutterScanBluetoothPlugin.kt this function is throwing an error on "onViewDestroy" method:
 
      override fun onDetachedFromActivity() {
         activityBinding.removeRequestPermissionsResultListener(this)

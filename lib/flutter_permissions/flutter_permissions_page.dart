@@ -34,12 +34,6 @@ class _FlutterPermissionsPageState extends State<FlutterPermissionsPage>
     super.didChangeAppLifecycleState(state);
     if (state == AppLifecycleState.resumed) {
       context.read<FlutterPermissionCubit>().allPermissionChecker();
-    } else if (state == AppLifecycleState.paused) {
-      context.read<FlutterPermissionCubit>().allPermissionChecker();
-    } else if (state == AppLifecycleState.detached) {
-      context.read<FlutterPermissionCubit>().allPermissionChecker();
-    } else if (state == AppLifecycleState.inactive) {
-      context.read<FlutterPermissionCubit>().allPermissionChecker();
     }
   }
 
