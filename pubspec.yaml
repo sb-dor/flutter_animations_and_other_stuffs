@@ -62,7 +62,7 @@ dependencies:
   open_file:
   native_pdf_renderer: 5.0.0
   conditional_builder_null_safety: ^0.0.6
-  flutter_scan_bluetooth: ^2.1.2
+  flutter_scan_bluetooth: ^2.1.4
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
@@ -76,6 +76,8 @@ dependencies:
   sqflite: ^2.3.0
   webview_flutter: ^4.2.4
   permission_handler: ^11.0.0
+  flutter_background_service: ^5.0.1
+  shared_preferences: ^2.2.1
 
 dev_dependencies:
   flutter_test:

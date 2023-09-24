@@ -31,7 +31,7 @@ class MainActivity : FlutterActivity() {
         } catch (_: AssertionError) {
 
         }
-        super.configureFlutterEngine(flutterEngine)
+
         MethodChannel(
             flutterEngine.dartExecutor.binaryMessenger, channel
         ).setMethodCallHandler { call, result ->
@@ -54,6 +54,8 @@ class MainActivity : FlutterActivity() {
                 result.notImplemented()
             }
         }
+
+        super.configureFlutterEngine(flutterEngine)
     }
 
     private fun getBatteryLevel(): Int {

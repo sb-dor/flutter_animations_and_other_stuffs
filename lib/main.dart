@@ -20,6 +20,7 @@ import 'package:flutter_animations_2/equatable/equatable_model.dart';
 import 'package:flutter_animations_2/esc_pos_printer_with_bluetooth/esc_pos_printer_page.dart';
 import 'package:flutter_animations_2/esc_pos_printer_with_bluetooth/esc_pos_printer_ui_helper.dart';
 import 'package:flutter_animations_2/firebase_push_notification/firebase_push_not.dart';
+import 'package:flutter_animations_2/flutter_background_service/flutter_background_service_helper.dart';
 import 'package:flutter_animations_2/flutter_deep_link/firebase_dynamic_linking.dart';
 import 'package:flutter_animations_2/flutter_deep_link/flutter_deep_linking_route.dart';
 import 'package:flutter_animations_2/flutter_design_patters/factory_design.dart';
@@ -41,6 +42,7 @@ import 'package:flutter_animations_2/sqflite/page/sqflite_database_page.dart';
 import 'package:flutter_animations_2/sqflite/sqflite_database_helper.dart';
 import 'package:flutter_animations_2/yandex_mapkit/yandex_map_screen.dart';
 import 'package:flutter_animations_2/yandex_mapkit/yandex_mapkit_cubit/main_map_cubit.dart';
+import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
@@ -59,6 +61,7 @@ void main() async {
     await AwesomeNotificationsHelper.initAwesomeNotifications();
     await FirebaseDynamicLinking.initDynamicLinks();
     await SqfLiteDatabaseHelper.initSqfLiteDatabase();
+    await FlutterBackgroundServiceHelper.initService();
   }
   // MainCharacter mainCharacter = MainCharacter("Alien");
   // mainCharacter.race?.saySome();
