@@ -14,6 +14,7 @@ import 'package:flutter_animations_2/animation_pages/page_view_with_controller.d
 import 'package:flutter_animations_2/app_life_circle/did_change_app_life_circle_page.dart';
 import 'package:flutter_animations_2/bottom_modal_sheets/bottom_modal_sheets_cubit/bottom_modal_sheet_cubit.dart';
 import 'package:flutter_animations_2/dart_features/dart_collections.dart';
+import 'package:flutter_animations_2/dart_sync_async_isolates/dart_sync_and_async.dart';
 import 'package:flutter_animations_2/delivery_food_ui/screens/home_screen/home_screen.dart';
 import 'package:flutter_animations_2/dodo_pizzas_often_order_animation/dodo_pizza_often_order_animation.dart';
 import 'package:flutter_animations_2/equatable/equatable_model.dart';
@@ -28,6 +29,7 @@ import 'package:flutter_animations_2/flutter_design_patters/prototype_design.dar
 import 'package:flutter_animations_2/flutter_design_patters/singleton_design.dart';
 import 'package:flutter_animations_2/flutter_permissions/cubit/flutter_permissions_cubit.dart';
 import 'package:flutter_animations_2/flutter_permissions/flutter_permissions_page.dart';
+import 'package:flutter_animations_2/flutter_riverpod/flutter_riverpod_page.dart';
 import 'package:flutter_animations_2/flutter_webview/flutter_webview.dart';
 import 'package:flutter_animations_2/global_context/global_context.helper.dart';
 import 'package:flutter_animations_2/internet_controller/cubit/internet_conn_checker_cubit.dart';
@@ -44,6 +46,7 @@ import 'package:flutter_animations_2/yandex_mapkit/yandex_map_screen.dart';
 import 'package:flutter_animations_2/yandex_mapkit/yandex_mapkit_cubit/main_map_cubit.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 
 import 'slivers/sliver_and_scroll_page.dart';
@@ -102,6 +105,15 @@ void main() async {
 
   print("is model equals : ${eqModel == const EquatableModel(id: 1, name: "Avaz", age: 19)}");
 
+
+  debugPrint("dart futures : ");
+  DartSyncAndAsync.futures();
+  debugPrint("dart streams:");
+  DartSyncAndAsync.streams();
+  debugPrint("sream listener : ");
+  DartSyncAndAsync.addToStream();
+  DartSyncAndAsync.streamListener();
+
   await PdfGenerator.init();
   runApp(MultiBlocProvider(
       providers: [
@@ -111,26 +123,28 @@ void main() async {
         BlocProvider(create: (_) => MainMapCubit()),
         BlocProvider(create: (_) => InternetConnCubit())
       ],
-      child: MaterialApp(
-          scrollBehavior: MyCustomScrollBehavior(),
-          //if you want to use flutter deep linking use package "go_router"
-          //get global context here
-          // navigatorKey: GlobalContextHelper.globalNavigatorContext,
-          theme: FlexThemeData.light(scheme: FlexScheme.green),
-          darkTheme: FlexThemeData.dark(scheme: FlexScheme.green),
-          themeMode: ThemeMode.light,
-          debugShowCheckedModeBanner: false,
-          //for adding named routes use like this
-          //do not forget to write main route in your routes like this:
-          //
-          //->          "/" : (context) => YourHomeWidget()
-          //
-          //and do not forget to remove "home" parameter from MaterialApp widget, otherwise it will not work
-          // initialRoute: '/',
-          routes: {
-            "/": (context) => const MainApp(),
-            '/nft_home_screen': (context) => const NftHomeScreen()
-          })));
+      child: ProviderScope(
+        child: MaterialApp(
+            scrollBehavior: MyCustomScrollBehavior(),
+            //if you want to use flutter deep linking use package "go_router"
+            //get global context here
+            // navigatorKey: GlobalContextHelper.globalNavigatorContext,
+            theme: FlexThemeData.light(scheme: FlexScheme.green),
+            darkTheme: FlexThemeData.dark(scheme: FlexScheme.green),
+            themeMode: ThemeMode.light,
+            debugShowCheckedModeBanner: false,
+            //for adding named routes use like this
+            //do not forget to write main route in your routes like this:
+            //
+            //->          "/" : (context) => YourHomeWidget()
+            //
+            //and do not forget to remove "home" parameter from MaterialApp widget, otherwise it will not work
+            // initialRoute: '/',
+            routes: {
+              "/": (context) => const MainApp(),
+              '/nft_home_screen': (context) => const NftHomeScreen()
+            }),
+      )));
 }
 
 class MainApp extends StatefulWidget {
@@ -166,7 +180,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const FlutterPermissionsPage(),
+        builder: (context, state) => const FlutterRiverPodPage(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
