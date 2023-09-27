@@ -4,7 +4,7 @@ class GlobalFunctions {
   //timer for refreshing
   Timer? refreshTimer;
 
-  //this function refreshes timer every time when you are calling this func
+  //this function refreshes timer every time when you call this func
   //if you want to use your request such as "search request" or something in the future
   //use this function
   void timerRefresher() async {
