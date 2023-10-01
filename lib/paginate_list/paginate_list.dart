@@ -1,5 +1,4 @@
 class PaginateList {
-
   //check for more information here
   // https://youtu.be/YYV-81L7vf8?si=vhGWM5II0cNGi1jx
 
@@ -26,7 +25,7 @@ class PaginateList {
   ///paginatingList.addAll(PaginateList.paginateList<OBJECT>(wholeList: wholeListThatYouHave, currentList: paginatingList));
   ///--------------------------
   /// Reparse "OBJECT" to "List<T>" - T class object
-  static List<T> paginateList<T extends List>(
+  static List<T> paginateList<T>(
       {required List<T> wholeList,
       required List<T> currentList,
       int perPage = 30,
