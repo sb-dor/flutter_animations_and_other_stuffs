@@ -11,6 +11,9 @@ import 'package:flutter_animations_2/animation_pages/animated_cart_page.dart';
 import 'package:flutter_animations_2/animation_pages/animated_cart_with_bottom_navbar.dart';
 import 'package:flutter_animations_2/animation_pages/neumorphic_page_transitions_container_page.dart';
 import 'package:flutter_animations_2/animation_pages/page_view_with_controller.dart';
+import 'package:flutter_animations_2/animations/vandad_nahandipoor_animations_course/flutter_animated_builder_and_transform/flutter_animated_builder_and_t_main_screen.dart';
+import 'package:flutter_animations_2/animations/vandad_nahandipoor_animations_course/flutter_animated_builder_and_transform/flutter_animated_builder_own_text_moving.dart';
+import 'package:flutter_animations_2/animations/vandad_nahandipoor_animations_course/flutter_chained_animations_curves_and_clippers/flutter_chained_animations_curves_and_clippers.dart';
 import 'package:flutter_animations_2/app_life_circle/did_change_app_life_circle_page.dart';
 import 'package:flutter_animations_2/bottom_modal_sheets/bottom_modal_sheets_cubit/bottom_modal_sheet_cubit.dart';
 import 'package:flutter_animations_2/dart_features/dart_collections.dart';
@@ -105,7 +108,6 @@ void main() async {
 
   print("is model equals : ${eqModel == const EquatableModel(id: 1, name: "Avaz", age: 19)}");
 
-
   debugPrint("dart futures : ");
   DartSyncAndAsync.futures();
   debugPrint("dart streams:");
@@ -180,7 +182,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const DodoPizzaOftenOrderAnimation(),
+        builder: (context, state) => const FlutterChainedAnimationsCurvesAndClippers(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
