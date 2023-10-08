@@ -79,6 +79,8 @@ dependencies:
   flutter_background_service: ^5.0.1
   shared_preferences: ^2.2.1
   flutter_riverpod: ^2.4.0
+  vector_math: ^2.1.4
+  flutter_custom_clippers: ^2.1.0
 
 dev_dependencies:
   flutter_test:
