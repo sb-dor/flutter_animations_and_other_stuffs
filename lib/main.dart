@@ -11,11 +11,16 @@ import 'package:flutter_animations_2/animation_pages/animated_cart_page.dart';
 import 'package:flutter_animations_2/animation_pages/animated_cart_with_bottom_navbar.dart';
 import 'package:flutter_animations_2/animation_pages/neumorphic_page_transitions_container_page.dart';
 import 'package:flutter_animations_2/animation_pages/page_view_with_controller.dart';
+import 'package:flutter_animations_2/animations/vandad_nahandipoor_animations_course/3d_animations_in_flutter_how_to_stack_and_rotate_widget/3d_animations_in_flutter_how_to_stack_and_rotate_widget.dart';
+import 'package:flutter_animations_2/animations/vandad_nahandipoor_animations_course/customer_painter_and_polygons/customer_painter_and_polygons.dart';
 import 'package:flutter_animations_2/animations/vandad_nahandipoor_animations_course/flutter_animated_builder_and_transform/flutter_animated_builder_and_t_main_screen.dart';
 import 'package:flutter_animations_2/animations/vandad_nahandipoor_animations_course/flutter_animated_builder_and_transform/flutter_animated_builder_own_text_moving.dart';
 import 'package:flutter_animations_2/animations/vandad_nahandipoor_animations_course/flutter_chained_animations_curves_and_clippers/flutter_chained_animations_curves_and_clippers.dart';
+import 'package:flutter_animations_2/animations/vandad_nahandipoor_animations_course/flutter_hero_animations/flutter_hero_animations.dart';
 import 'package:flutter_animations_2/app_life_circle/did_change_app_life_circle_page.dart';
 import 'package:flutter_animations_2/bottom_modal_sheets/bottom_modal_sheets_cubit/bottom_modal_sheet_cubit.dart';
+import 'package:flutter_animations_2/custom_clippers/custom_clippers_screen.dart';
+import 'package:flutter_animations_2/custom_clippers/own_customer_clippers.dart';
 import 'package:flutter_animations_2/dart_features/dart_collections.dart';
 import 'package:flutter_animations_2/dart_sync_async_isolates/dart_sync_and_async.dart';
 import 'package:flutter_animations_2/delivery_food_ui/screens/home_screen/home_screen.dart';
@@ -182,7 +187,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const FlutterChainedAnimationsCurvesAndClippers(),
+        builder: (context, state) => const OwnCustomClippers(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
