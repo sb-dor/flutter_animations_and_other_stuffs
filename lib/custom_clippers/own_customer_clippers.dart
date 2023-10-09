@@ -52,17 +52,16 @@ class MyCustomClipper extends CustomClipper<Path> {
     //     radius: const Radius.circular(10), clockwise: false);
     // path.close();
 
-    //start
+    //star
     path.moveTo(size.width / 2, 0);
     path.lineTo(size.width / 3, size.height / 3);
     path.lineTo(0, size.height / 2.7);
     path.lineTo(size.width / 3, size.height / 2);
     path.lineTo(0, size.height);
-    path.lineTo(size.width / 2, size.height / 2);
+    path.lineTo(size.width / 2, size.height / 1.5);
     path.lineTo(size.width, size.height);
-
-    path.lineTo(size.width / 3, size.height - (size.height / 2));
-    path.lineTo(size.width, size.height - (size.height / 3));
+    path.lineTo(size.width - (size.width / 3), size.height / 2);
+    path.lineTo(size.width, size.height / 2.7);
     path.lineTo(size.width - (size.width / 3), size.height / 3);
 
     return path;
