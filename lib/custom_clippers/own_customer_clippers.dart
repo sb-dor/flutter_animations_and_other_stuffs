@@ -83,14 +83,22 @@ class _OwnCustomClippersState extends State<OwnCustomClippers> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Center(
-        child: ClipPath(
-          clipper: MyCustomClipper(),
-          child: Container(
-            width: 200,
-            height: 200,
-            color: Colors.pink,
-          ),
+      body: SizedBox(
+        width: double.infinity,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ClipPath(
+              clipper: MyCustomClipper(),
+              child: Container(
+                width: 100,
+                height: 100,
+                color: Colors.pink,
+              ),
+            ),
+            const Text("I draw start with custom clippers")
+          ],
         ),
       ),
     );
