@@ -43,9 +43,14 @@ import 'package:flutter_animations_2/global_context/global_context.helper.dart';
 import 'package:flutter_animations_2/internet_controller/cubit/internet_conn_checker_cubit.dart';
 import 'package:flutter_animations_2/local_notification/awesome_notification_helper.dart';
 import 'package:flutter_animations_2/local_notification/local_notification.dart';
+import 'package:flutter_animations_2/material3/bottom_navbar/bottom_nav_bar.dart';
+import 'package:flutter_animations_2/material3/material_buttons.dart';
+import 'package:flutter_animations_2/material3/material_changer_cubit/material_change_cubit.dart';
+import 'package:flutter_animations_2/material3/segment_and_badge_button_class.dart';
 import 'package:flutter_animations_2/method_channels/method_channels_page.dart';
 import 'package:flutter_animations_2/nft_pages/nft_home_screen.dart';
 import 'package:flutter_animations_2/pdf/data/pdf_generator.dart';
+import 'package:flutter_animations_2/routing/routing_with_name.dart';
 import 'package:flutter_animations_2/slivers/sliver_app_bar_page.dart';
 import 'package:flutter_animations_2/slivers/slivers_bloc/slivers_cubit/slivers_cubit.dart';
 import 'package:flutter_animations_2/sqflite/page/sqflite_database_page.dart';
@@ -128,29 +133,31 @@ void main() async {
         BlocProvider(create: (_) => BottomModalSheetCubits()),
         BlocProvider(create: (_) => SliverCubit()),
         BlocProvider(create: (_) => MainMapCubit()),
-        BlocProvider(create: (_) => InternetConnCubit())
+        BlocProvider(create: (_) => InternetConnCubit()),
+        BlocProvider(create: (_) => MaterialChangeCubit())
       ],
       child: ProviderScope(
-        child: MaterialApp(
-            scrollBehavior: MyCustomScrollBehavior(),
-            //if you want to use flutter deep linking use package "go_router"
-            //get global context here
-            // navigatorKey: GlobalContextHelper.globalNavigatorContext,
-            theme: FlexThemeData.light(scheme: FlexScheme.green),
-            darkTheme: FlexThemeData.dark(scheme: FlexScheme.green),
-            themeMode: ThemeMode.light,
-            debugShowCheckedModeBanner: false,
-            //for adding named routes use like this
-            //do not forget to write main route in your routes like this:
-            //
-            //->          "/" : (context) => YourHomeWidget()
-            //
-            //and do not forget to remove "home" parameter from MaterialApp widget, otherwise it will not work
-            // initialRoute: '/',
-            routes: {
-              "/": (context) => const MainApp(),
-              '/nft_home_screen': (context) => const NftHomeScreen()
-            }),
+        child: BlocBuilder<MaterialChangeCubit, bool>(builder: (context, materialUiState) {
+          return MaterialApp(
+              scrollBehavior: MyCustomScrollBehavior(),
+              //if you want to use flutter deep linking use package "go_router"
+              //get global context here
+              // navigatorKey: GlobalContextHelper.globalNavigatorContext,
+              theme: FlexThemeData.light(scheme: FlexScheme.green, useMaterial3: materialUiState),
+              darkTheme:
+                  FlexThemeData.dark(scheme: FlexScheme.green, useMaterial3: materialUiState),
+              themeMode: ThemeMode.light,
+              debugShowCheckedModeBanner: false,
+              //for adding named routes use like this
+              //do not forget to write main route in your routes like this:
+              //
+              //->          "/" : (context) => YourHomeWidget()
+              //
+              //and do not forget to remove "home" parameter from MaterialApp widget, otherwise it will not work
+              // initialRoute: '/',
+              routes: RoutingWithName.routes(),
+              initialRoute: "/");
+        }),
       )));
 }
 
@@ -187,7 +194,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const OwnCustomClippers(),
+        builder: (context, state) => const BottomNavBar(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
