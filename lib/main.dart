@@ -13,6 +13,7 @@ import 'package:flutter_animations_2/animation_pages/neumorphic_page_transitions
 import 'package:flutter_animations_2/animation_pages/page_view_with_controller.dart';
 import 'package:flutter_animations_2/animations/vandad_nahandipoor_animations_course/3d_animations_in_flutter_how_to_stack_and_rotate_widget/3d_animations_in_flutter_how_to_stack_and_rotate_widget.dart';
 import 'package:flutter_animations_2/animations/vandad_nahandipoor_animations_course/customer_painter_and_polygons/customer_painter_and_polygons.dart';
+import 'package:flutter_animations_2/animations/vandad_nahandipoor_animations_course/flutter_3d_drawer/flutter_3d_drawer.dart';
 import 'package:flutter_animations_2/animations/vandad_nahandipoor_animations_course/flutter_animated_builder_and_transform/flutter_animated_builder_and_t_main_screen.dart';
 import 'package:flutter_animations_2/animations/vandad_nahandipoor_animations_course/flutter_animated_builder_and_transform/flutter_animated_builder_own_text_moving.dart';
 import 'package:flutter_animations_2/animations/vandad_nahandipoor_animations_course/flutter_chained_animations_curves_and_clippers/flutter_chained_animations_curves_and_clippers.dart';
@@ -24,6 +25,7 @@ import 'package:flutter_animations_2/custom_clippers/own_customer_clippers.dart'
 import 'package:flutter_animations_2/dart_features/dart_collections.dart';
 import 'package:flutter_animations_2/dart_sync_async_isolates/dart_sync_and_async.dart';
 import 'package:flutter_animations_2/delivery_food_ui/screens/home_screen/home_screen.dart';
+import 'package:flutter_animations_2/dodo_pizza_phone_choose_pizza_animation/dodo_pizza_phone_choose_pizza_animation.dart';
 import 'package:flutter_animations_2/dodo_pizzas_often_order_animation/dodo_pizza_often_order_animation.dart';
 import 'package:flutter_animations_2/equatable/equatable_model.dart';
 import 'package:flutter_animations_2/esc_pos_printer_with_bluetooth/esc_pos_printer_page.dart';
@@ -194,7 +196,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const BottomNavBar(),
+        builder: (context, state) => const DodoPizzaPhoneChoosePizzaAnimation(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {

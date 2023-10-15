@@ -10,6 +10,6 @@ abstract class RoutingWithName {
         "/segment_button_page": (context) => const SegmentButtonClass()
       };
 
-//for getting data through "pushNamed" - "arguments"
-// var any = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
+//  for getting data through "pushNamed" - "arguments"
+//  var any = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
 }

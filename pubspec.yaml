@@ -81,6 +81,7 @@ dependencies:
   flutter_riverpod: ^2.4.0
   vector_math: ^2.1.4
   flutter_custom_clippers: ^2.1.0
+  carousel_slider: ^4.2.1
 
 dev_dependencies:
   flutter_test:
