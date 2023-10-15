@@ -105,12 +105,17 @@ class _PageViewWithControllerState extends State<PageViewWithController> {
     return AnimatedBuilder(
         animation: controller,
         builder: (context, child) {
+          //for smoothly changing, the widget where is in index position will be typically but other widgets will smoothly change their scale
+          //double scale =
+          //(1 - (initialPageOfFirstController - index).abs() * 0.50)
+          // .clamp(0.65, 1.0);
+
           double value = 0;
           double _scale = initialPage == index ? 1 : 0.8;
           if (controller.position.haveDimensions) {
             value = index - (controller.page ?? 0);
 
-            //clamp for doing animation to that index for exmaple,
+            //clamp for doing animation to that index for example,
             //you are in 0 index animate with work (-1 left index, zero is your index, 1 right index)
             value = (value * 0.040).clamp(-1, 1);
           }

@@ -129,7 +129,8 @@ class _DodoPizzaPhoneChoosePizzaAnimationState extends State<DodoPizzaPhoneChoos
                             itemCount: DodoPizzaModel.list.length,
                             physics: const AlwaysScrollableScrollPhysics(),
                             itemBuilder: (context, index) {
-                              //for changing scale smoothly
+                              //for smoothly changing, the widget where is in index position will
+                              // be typically but other widgets will smoothly change their scale
                               double scale =
                                   (1 - (initialPageOfFirstController - index).abs() * 0.50)
                                       .clamp(0.65, 1.0);
@@ -183,6 +184,8 @@ class _DodoPizzaPhoneChoosePizzaAnimationState extends State<DodoPizzaPhoneChoos
                             itemCount: DodoPizzaModel.list.length,
                             physics: const AlwaysScrollableScrollPhysics(),
                             itemBuilder: (context, index) {
+                              //for smoothly changing, the widget where is in index position will
+                              // be typically but other widgets will smoothly change their scale
                               double scale =
                                   (1 - (initialPageOfSecondController - index).abs() * 0.50)
                                       .clamp(0.65, 1.0);
