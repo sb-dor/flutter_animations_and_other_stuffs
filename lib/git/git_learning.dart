@@ -1,0 +1,3 @@
+class GitLearning {
+  void multiple() {}
+}
