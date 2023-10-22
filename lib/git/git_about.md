@@ -20,3 +20,8 @@ but if you want to see difference between commits in one file just write name of
 tab" button
 
     git diff <file name>
+
+
+if you want to see all changes in your branch write
+
+    git log

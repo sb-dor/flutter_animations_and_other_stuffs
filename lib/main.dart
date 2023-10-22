@@ -9,6 +9,9 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animations_2/animation_pages/animated_cart_page.dart';
 import 'package:flutter_animations_2/animation_pages/animated_cart_with_bottom_navbar.dart';
+import 'package:flutter_animations_2/animation_pages/exhibition_bottom_sheet.dart';
+import 'package:flutter_animations_2/animation_pages/flutter_parallax_horizontal_effect.dart';
+import 'package:flutter_animations_2/animation_pages/flutter_parallax_vertical_effect.dart';
 import 'package:flutter_animations_2/animation_pages/neumorphic_page_transitions_container_page.dart';
 import 'package:flutter_animations_2/animation_pages/page_view_with_controller.dart';
 import 'package:flutter_animations_2/animations/vandad_nahandipoor_animations_course/3d_animations_in_flutter_how_to_stack_and_rotate_widget/3d_animations_in_flutter_how_to_stack_and_rotate_widget.dart';
@@ -57,6 +60,8 @@ import 'package:flutter_animations_2/slivers/sliver_app_bar_page.dart';
 import 'package:flutter_animations_2/slivers/slivers_bloc/slivers_cubit/slivers_cubit.dart';
 import 'package:flutter_animations_2/sqflite/page/sqflite_database_page.dart';
 import 'package:flutter_animations_2/sqflite/sqflite_database_helper.dart';
+import 'package:flutter_animations_2/video_player/video_player_page.dart';
+import 'package:flutter_animations_2/video_player/youtube_player_page.dart';
 import 'package:flutter_animations_2/yandex_mapkit/yandex_map_screen.dart';
 import 'package:flutter_animations_2/yandex_mapkit/yandex_mapkit_cubit/main_map_cubit.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
@@ -196,7 +201,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const DodoPizzaPhoneChoosePizzaAnimation(),
+        builder: (context, state) => const MainExhibitionBottomSheet(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
