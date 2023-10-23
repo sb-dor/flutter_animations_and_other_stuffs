@@ -18,10 +18,10 @@ class MainExhibitionBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(title: Text("Exhibition bottom sheet")),
+      appBar: AppBar(title: const Text("Exhibition bottom sheet")),
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
-        child: Stack(children: [
+        child: const Stack(children: [
           SafeArea(child: Column(children: [Text("Hello world")])),
           ExhibitionBottomSheet()
         ]),
