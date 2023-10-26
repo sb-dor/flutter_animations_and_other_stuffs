@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_animations_2/dart_features/oop/oop.dart';
 import 'package:flutter_animations_2/models/cars/bmw.dart';
 
 class DartSyncAndAsync {
@@ -62,3 +63,20 @@ class DartSyncAndAsync {
     });
   }
 }
+
+//from dart_features/dart_oop.class
+class DartDD implements InterfaceClass {
+  @override
+  void function() {
+    // TODO: implement function
+  }
+
+  @override
+  String? name;
+}
+
+/// should be [sealed], [final] or [base] class,
+/// [gives an error]
+/// [class DartDDD extends BaseClass] {}
+
+base class DartDDD extends BaseClass {}
