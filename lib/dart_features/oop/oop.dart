@@ -40,6 +40,7 @@ interface class InterfaceClass {
 /// simple class can not implement, extend [base] classes
 /// any class that will implement or extend it should be class modifier of [base], [final] or [sealed] class
 /// they can be used from another files
+/// you can create object of base classes
 base class BaseClass {}
 
 // gives an error:
@@ -63,5 +64,7 @@ abstract interface class Haha extends SealedClass {
 class ForUse {
   void func() {
     // SealedClass sealedClass = SealedClass; //can not create an object
+
+    BaseClass baseClass = BaseClass();
   }
 }
