@@ -56,6 +56,7 @@ import 'package:flutter_animations_2/method_channels/method_channels_page.dart';
 import 'package:flutter_animations_2/nft_pages/nft_home_screen.dart';
 import 'package:flutter_animations_2/pdf/data/pdf_generator.dart';
 import 'package:flutter_animations_2/routing/routing_with_name.dart';
+import 'package:flutter_animations_2/slivers/nested_scroll_view_page.dart';
 import 'package:flutter_animations_2/slivers/sliver_app_bar_page.dart';
 import 'package:flutter_animations_2/slivers/slivers_bloc/slivers_cubit/slivers_cubit.dart';
 import 'package:flutter_animations_2/sqflite/page/sqflite_database_page.dart';
@@ -201,7 +202,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const MainExhibitionBottomSheet(),
+        builder: (context, state) => const NestedScrollViewPage(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
