@@ -1,7 +1,7 @@
 abstract class AbstractClass {
   // abstract function in dart can have method body and also can not have method body for functions
   // for ex:
-  void function();
+  void function1s();
 
   void function2() {}
 
@@ -20,7 +20,7 @@ abstract class AbstractClass {
 
 class ThatExtendsAbstractClass extends AbstractClass {
   @override
-  void function() {}
+  void function1s() {}
 }
 
 //interface -> you can't extend but can implement from another file
@@ -56,7 +56,7 @@ sealed class SealedClass {
 }
 
 abstract interface class Haha extends SealedClass {
-  void func();
+  void func1();
 
   void any() {}
 }
