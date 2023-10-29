@@ -11,7 +11,7 @@ class Singleton {
 
   //private constructor
   Singleton._() { //instead of writing "_" for constructor you can write any name
-    debugPrint("hello singleton");
+    debugPrint("hello singleton"); // optional, you can just not create method body
   }
 
   void add() {
