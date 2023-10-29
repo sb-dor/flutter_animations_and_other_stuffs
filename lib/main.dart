@@ -28,6 +28,8 @@ import 'package:flutter_animations_2/custom_clippers/own_customer_clippers.dart'
 import 'package:flutter_animations_2/dart_features/dart_collections.dart';
 import 'package:flutter_animations_2/dart_sync_async_isolates/dart_sync_and_async.dart';
 import 'package:flutter_animations_2/delivery_food_ui/screens/home_screen/home_screen.dart';
+import 'package:flutter_animations_2/design_templates/mvvm/view_mvvm.dart';
+import 'package:flutter_animations_2/design_templates/mvvm/viewmodel_mvvm.dart';
 import 'package:flutter_animations_2/dodo_pizza_phone_choose_pizza_animation/dodo_pizza_phone_choose_pizza_animation.dart';
 import 'package:flutter_animations_2/dodo_pizzas_often_order_animation/dodo_pizza_often_order_animation.dart';
 import 'package:flutter_animations_2/equatable/equatable_model.dart';
@@ -69,6 +71,7 @@ import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart' as provider;
 
 import 'slivers/sliver_and_scroll_page.dart';
 import 'slivers/sliver_appbar_with_tabbar_page.dart';
@@ -144,28 +147,35 @@ void main() async {
         BlocProvider(create: (_) => InternetConnCubit()),
         BlocProvider(create: (_) => MaterialChangeCubit())
       ],
-      child: ProviderScope(
-        child: BlocBuilder<MaterialChangeCubit, bool>(builder: (context, materialUiState) {
-          return MaterialApp(
-              scrollBehavior: MyCustomScrollBehavior(),
-              //if you want to use flutter deep linking use package "go_router"
-              //get global context here
-              // navigatorKey: GlobalContextHelper.globalNavigatorContext,
-              theme: FlexThemeData.light(scheme: FlexScheme.green, useMaterial3: materialUiState),
-              darkTheme:
-                  FlexThemeData.dark(scheme: FlexScheme.green, useMaterial3: materialUiState),
-              themeMode: ThemeMode.light,
-              debugShowCheckedModeBanner: false,
-              //for adding named routes use like this
-              //do not forget to write main route in your routes like this:
-              //
-              //->          "/" : (context) => YourHomeWidget()
-              //
-              //and do not forget to remove "home" parameter from MaterialApp widget, otherwise it will not work
-              // initialRoute: '/',
-              routes: RoutingWithName.routes(),
-              initialRoute: "/");
-        }),
+      child: provider.MultiProvider(
+        providers: [
+          provider.ChangeNotifierProvider(
+            create: (_) => ViewModelMVVM(),
+          )
+        ],
+        child: ProviderScope(
+          child: BlocBuilder<MaterialChangeCubit, bool>(builder: (context, materialUiState) {
+            return MaterialApp(
+                scrollBehavior: MyCustomScrollBehavior(),
+                //if you want to use flutter deep linking use package "go_router"
+                //get global context here
+                // navigatorKey: GlobalContextHelper.globalNavigatorContext,
+                theme: FlexThemeData.light(scheme: FlexScheme.green, useMaterial3: materialUiState),
+                darkTheme:
+                    FlexThemeData.dark(scheme: FlexScheme.green, useMaterial3: materialUiState),
+                themeMode: ThemeMode.light,
+                debugShowCheckedModeBanner: false,
+                //for adding named routes use like this
+                //do not forget to write main route in your routes like this:
+                //
+                //->          "/" : (context) => YourHomeWidget()
+                //
+                //and do not forget to remove "home" parameter from MaterialApp widget, otherwise it will not work
+                // initialRoute: '/',
+                routes: RoutingWithName.routes(),
+                initialRoute: "/");
+          }),
+        ),
       )));
 }
 
@@ -202,7 +212,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const NestedScrollViewPage(),
+        builder: (context, state) => const ViewMVVM(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
