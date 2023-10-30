@@ -9,7 +9,7 @@ class ViewMVVM extends StatelessWidget {
   Widget build(BuildContext context) {
     var viewModelMVVM = Provider.of<ViewModelMVVM>(context);
     return Scaffold(
-      appBar: AppBar(title: Text("MVVM")),
+      appBar: AppBar(title: const Text("MVVM")),
       body: SizedBox(
           width: double.maxFinite,
           child: Column(
@@ -19,7 +19,7 @@ class ViewMVVM extends StatelessWidget {
                 Text("${viewModelMVVM.modelMVVM.counter}"),
                 TextButton(
                     onPressed: () => viewModelMVVM.increment(),
-                    child: Text("Text Button Increment"))
+                    child: const Text("Text Button Increment"))
               ])),
     );
   }

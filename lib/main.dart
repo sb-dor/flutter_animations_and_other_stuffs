@@ -25,6 +25,7 @@ import 'package:flutter_animations_2/app_life_circle/did_change_app_life_circle_
 import 'package:flutter_animations_2/bottom_modal_sheets/bottom_modal_sheets_cubit/bottom_modal_sheet_cubit.dart';
 import 'package:flutter_animations_2/custom_clippers/custom_clippers_screen.dart';
 import 'package:flutter_animations_2/custom_clippers/own_customer_clippers.dart';
+import 'package:flutter_animations_2/custom_painter/custom_painter_screen.dart';
 import 'package:flutter_animations_2/dart_features/dart_collections.dart';
 import 'package:flutter_animations_2/dart_sync_async_isolates/dart_sync_and_async.dart';
 import 'package:flutter_animations_2/delivery_food_ui/screens/home_screen/home_screen.dart';
@@ -212,7 +213,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const ViewMVVM(),
+        builder: (context, state) => const CustomPainterScreen(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
