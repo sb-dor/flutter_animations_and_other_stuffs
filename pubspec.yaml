@@ -58,9 +58,9 @@ dependencies:
 
   # for pos printer:
   path_provider: ^2.0.15
-  pdf: ^3.10.4
+  pdf: ^3.8.4
   open_file:
-  native_pdf_renderer: 5.0.0
+  pdfx: 2.5.0
   conditional_builder_null_safety: ^0.0.6
   flutter_scan_bluetooth: ^2.1.4
   # The following adds the Cupertino Icons font to your application.
@@ -85,6 +85,7 @@ dependencies:
   video_player: ^2.7.2
   youtube_player_flutter: ^8.1.2
   provider: ^6.0.5
+  upgrader: any
 
 dev_dependencies:
   flutter_test:
