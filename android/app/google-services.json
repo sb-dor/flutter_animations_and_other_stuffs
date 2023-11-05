@@ -28,7 +28,7 @@
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD2CUGsJkU8JKWhJs2YKDe8WQ_sqH03380"
+          "current_key": "AIzaSyAM3v7A6t4DptFfu2hUz2MDvk_zIydW34k"
         }
       ],
       "services": {
@@ -37,6 +37,13 @@
             {
               "client_id": "403332127037-ii6p0igeue09qqol2aiq3lmud4v0k3hl.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "403332127037-obmo3e7j6u826o28122pdc91qeap7e7b.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flutterAnimations2"
+              }
             }
           ]
         }

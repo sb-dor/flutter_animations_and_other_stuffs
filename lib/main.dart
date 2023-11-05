@@ -64,6 +64,7 @@ import 'package:flutter_animations_2/slivers/sliver_app_bar_page.dart';
 import 'package:flutter_animations_2/slivers/slivers_bloc/slivers_cubit/slivers_cubit.dart';
 import 'package:flutter_animations_2/sqflite/page/sqflite_database_page.dart';
 import 'package:flutter_animations_2/sqflite/sqflite_database_helper.dart';
+import 'package:flutter_animations_2/updgrader/upgrader_page.dart';
 import 'package:flutter_animations_2/video_player/video_player_page.dart';
 import 'package:flutter_animations_2/video_player/youtube_player_page.dart';
 import 'package:flutter_animations_2/yandex_mapkit/yandex_map_screen.dart';
@@ -213,7 +214,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const CustomPainterScreen(),
+        builder: (context, state) => const UpGraderPage(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
