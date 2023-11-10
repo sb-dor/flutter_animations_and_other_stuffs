@@ -28,26 +28,26 @@ class _UpGraderPageState extends State<UpGraderPage> {
       debugPrint("store version : $storeVersion");
       debugPrint("message is : $message");
       debugPrint("app store link : $appStoreLink");
-      debugPrint("is update available $isUpdateAvailable");
+      debugPrint("is update available : $isUpdateAvailable");
 
       if (isUpdateAvailable && context.mounted) {
         showDialog(
-            barrierDismissible: false,
-            context: context,
-            builder: (context) => WillPopScope(
-                  onWillPop: () async => false,
-                  child: AlertDialog(
-                    title: const Text("Обновить?"),
-                    content: Text(message),
-                    actions: [
-                      TextButton(
-                          onPressed: () => Navigator.pop(context), child: const Text("ПОЗЖЕ")),
-                      TextButton(
-                          onPressed: () => Upgrader.sharedInstance.onUserUpdated(context, false),
-                          child: const Text("ОБНОВИТЬ"))
-                    ],
-                  ),
-                ));
+          barrierDismissible: false,
+          context: context,
+          builder: (context) => WillPopScope(
+            onWillPop: () async => false,
+            child: AlertDialog(
+              title: const Text("Обновить?"),
+              content: Text(message),
+              actions: [
+                TextButton(onPressed: () => Navigator.pop(context), child: const Text("ПОЗЖЕ")),
+                TextButton(
+                    onPressed: () => Upgrader.sharedInstance.onUserUpdated(context, false),
+                    child: const Text("ОБНОВИТЬ")),
+              ],
+            ),
+          ),
+        );
       }
     });
   }
