@@ -37,6 +37,13 @@ class _DidChangeAppLifeCirclePageState extends State<DidChangeAppLifeCirclePage>
     }
   }
 
+  // works whenever the widget tree changes or some widget configuration changes
+  @override
+  void didUpdateWidget(covariant DidChangeAppLifeCirclePage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    debugPrint("updating widget");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

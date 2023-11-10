@@ -22,6 +22,10 @@ import 'package:flutter_animations_2/animations/vandad_nahandipoor_animations_co
 import 'package:flutter_animations_2/animations/vandad_nahandipoor_animations_course/flutter_chained_animations_curves_and_clippers/flutter_chained_animations_curves_and_clippers.dart';
 import 'package:flutter_animations_2/animations/vandad_nahandipoor_animations_course/flutter_hero_animations/flutter_hero_animations.dart';
 import 'package:flutter_animations_2/app_life_circle/did_change_app_life_circle_page.dart';
+import 'package:flutter_animations_2/bloc_learning/bloc_to_bloc_comm/bloc_to_bloc_communication.dart';
+import 'package:flutter_animations_2/bloc_learning/bloc_to_bloc_comm/first_bloc/first_bloc.dart';
+import 'package:flutter_animations_2/bloc_learning/bloc_to_bloc_comm/second_bloc/second_bloc.dart';
+import 'package:flutter_animations_2/bloc_learning/streams/simpe_bloc_page.dart';
 import 'package:flutter_animations_2/bottom_modal_sheets/bottom_modal_sheets_cubit/bottom_modal_sheet_cubit.dart';
 import 'package:flutter_animations_2/custom_clippers/custom_clippers_screen.dart';
 import 'package:flutter_animations_2/custom_clippers/own_customer_clippers.dart';
@@ -147,7 +151,13 @@ void main() async {
         BlocProvider(create: (_) => SliverCubit()),
         BlocProvider(create: (_) => MainMapCubit()),
         BlocProvider(create: (_) => InternetConnCubit()),
-        BlocProvider(create: (_) => MaterialChangeCubit())
+        BlocProvider(create: (_) => MaterialChangeCubit()),
+
+        //
+        BlocProvider(create: (_) => FirstBloc()),
+
+        //to init second bloc
+        BlocProvider(create: (_) => SecondBloc(firstBloc: BlocProvider.of<FirstBloc>(_)))
       ],
       child: provider.MultiProvider(
         providers: [
@@ -214,7 +224,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const UpGraderPage(),
+        builder: (context, state) => const BlocToBlocCommunication(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
