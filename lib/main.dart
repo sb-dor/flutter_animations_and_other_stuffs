@@ -22,6 +22,8 @@ import 'package:flutter_animations_2/animations/vandad_nahandipoor_animations_co
 import 'package:flutter_animations_2/animations/vandad_nahandipoor_animations_course/flutter_chained_animations_curves_and_clippers/flutter_chained_animations_curves_and_clippers.dart';
 import 'package:flutter_animations_2/animations/vandad_nahandipoor_animations_course/flutter_hero_animations/flutter_hero_animations.dart';
 import 'package:flutter_animations_2/app_life_circle/did_change_app_life_circle_page.dart';
+import 'package:flutter_animations_2/bloc_learning/bloc_concurrency/main_bloc_concurrency.dart';
+import 'package:flutter_animations_2/bloc_learning/bloc_concurrency/main_bloc_concurrency_page.dart';
 import 'package:flutter_animations_2/bloc_learning/bloc_to_bloc_comm/bloc_to_bloc_communication.dart';
 import 'package:flutter_animations_2/bloc_learning/bloc_to_bloc_comm/first_bloc/first_bloc.dart';
 import 'package:flutter_animations_2/bloc_learning/bloc_to_bloc_comm/second_bloc/second_bloc.dart';
@@ -68,7 +70,7 @@ import 'package:flutter_animations_2/slivers/sliver_app_bar_page.dart';
 import 'package:flutter_animations_2/slivers/slivers_bloc/slivers_cubit/slivers_cubit.dart';
 import 'package:flutter_animations_2/sqflite/page/sqflite_database_page.dart';
 import 'package:flutter_animations_2/sqflite/sqflite_database_helper.dart';
-import 'package:flutter_animations_2/updgrader/upgrader_page.dart';
+import 'package:flutter_animations_2/upgrader/upgrader_page.dart';
 import 'package:flutter_animations_2/video_player/video_player_page.dart';
 import 'package:flutter_animations_2/video_player/youtube_player_page.dart';
 import 'package:flutter_animations_2/yandex_mapkit/yandex_map_screen.dart';
@@ -152,6 +154,7 @@ void main() async {
         BlocProvider(create: (_) => MainMapCubit()),
         BlocProvider(create: (_) => InternetConnCubit()),
         BlocProvider(create: (_) => MaterialChangeCubit()),
+        BlocProvider(create: (_) => MainBlocConcurrency()),
 
         //
         BlocProvider(create: (_) => FirstBloc()),
@@ -224,7 +227,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const BlocToBlocCommunication(),
+        builder: (context, state) => const MaiNBlocConcurrencyPage(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
