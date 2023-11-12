@@ -472,4 +472,22 @@ class MainMapCubit extends Cubit<MainMapStates> {
 
     emit(InitialMapStates(currentState));
   }
+
+  void suggestPositionsInRequest() async {
+    final resultWithSession = YandexSuggest.getSuggestions(
+        text: "Зарафшон",
+        boundingBox: const BoundingBox(
+            northEast: Point(latitude: 56.0421, longitude: 38.0284),
+            southWest: Point(latitude: 55.5143, longitude: 37.24841)),
+        suggestOptions: const SuggestOptions(
+          suggestType: SuggestType.geo,
+          suggestWords: true,
+        ));
+
+    var res = await resultWithSession.result;
+
+    for (var each in res.items ?? <SuggestItem>[]) {
+      debugPrint("${each.title}");
+    }
+  }
 }

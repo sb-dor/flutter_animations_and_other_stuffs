@@ -22,11 +22,15 @@ class YandexMapScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(children: [
-                  Column(children: [
+                  Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                     ElevatedButton.icon(
                         onPressed: () => context.read<MainMapCubit>().addPolygonPlacesInMap(),
                         icon: const Icon(Icons.policy),
                         label: const Text("polygon")),
+                    ElevatedButton.icon(
+                        onPressed: () => context.read<MainMapCubit>().suggestPositionsInRequest(),
+                        icon: const Icon(Icons.settings_suggest),
+                        label: const Text("suggest address")),
                   ])
                 ]),
                 Row(children: [
