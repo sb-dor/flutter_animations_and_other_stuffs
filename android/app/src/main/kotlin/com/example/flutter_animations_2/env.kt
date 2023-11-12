@@ -1,1 +1,0 @@
-const val MAPID = "162cc3e0-4c39-40e6-9f36-6201a2ebec56";
