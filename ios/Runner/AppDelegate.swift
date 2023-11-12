@@ -12,6 +12,7 @@ import YandexMapsMobile
     //cause of putting this "do-catch" is that after clicking upon the "flutter_background_service" notification
 
     //yandex map throws an exception
+    //the key is already locked and you cannot use it
     try{
         YMKMapKit.setLocale("ru_RU") // Your preferred language. Not required, defaults to system language
         YMKMapKit.setApiKey("XXXXXXXXXXXXXXXXXXXX") // Your generated API key

@@ -26,6 +26,8 @@ class MainActivity : FlutterActivity() {
 
         //cause of putting this "try-catch" is that after clicking upon the "flutter_background_service" notification
         //yandex map throws an exception
+
+        // the key is already locked and you cannot use it
         try {
             MapKitFactory.setLocale("ru_RU"); // Your preferred language. Not required, defaults to system language
             MapKitFactory.setApiKey(MAPID); // Your generated API key
