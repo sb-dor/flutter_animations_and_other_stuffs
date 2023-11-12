@@ -1,6 +1,7 @@
 package com.example.flutter_animations_2
 
 
+import MAPID
 import io.flutter.embedding.android.FlutterActivity;
 import io.flutter.embedding.engine.FlutterEngine;
 import io.flutter.plugins.GeneratedPluginRegistrant;
@@ -27,7 +28,7 @@ class MainActivity : FlutterActivity() {
         //yandex map throws an exception
         try {
             MapKitFactory.setLocale("ru_RU"); // Your preferred language. Not required, defaults to system language
-            MapKitFactory.setApiKey("162cc3e0-4c39-40e6-9f36-6201a2ebec56"); // Your generated API key
+            MapKitFactory.setApiKey(MAPID); // Your generated API key
         } catch (_: AssertionError) {
 
         }

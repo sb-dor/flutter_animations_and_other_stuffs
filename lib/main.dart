@@ -171,6 +171,7 @@ void main() async {
         child: ProviderScope(
           child: BlocBuilder<MaterialChangeCubit, bool>(builder: (context, materialUiState) {
             return MaterialApp(
+                navigatorKey: GlobalContextHelper.globalNavigatorContext,
                 scrollBehavior: MyCustomScrollBehavior(),
                 //if you want to use flutter deep linking use package "go_router"
                 //get global context here
@@ -215,6 +216,8 @@ class _MainAppState extends State<MainApp> {
     //initiate the listener of internet conn here
     context.read<InternetConnCubit>().listenInternetConn();
     context.read<MainMapCubit>().initMap();
+    context.read<MainMapCubit>().initCoordinatesFromListOfCoordinatedWithCluster();
+    // context.read<MainMapCubit>().initCoordinatedFromListOfCoordinates();
     showNo();
     initDynamicLinks();
   }
@@ -227,7 +230,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const MaiNBlocConcurrencyPage(),
+        builder: (context, state) => const YandexMapScreen(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {

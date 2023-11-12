@@ -15,43 +15,70 @@ class YandexMapScreen extends StatelessWidget {
     return BlocBuilder<MainMapCubit, MainMapStates>(builder: (context, mapState) {
       var currentState = mapState.mapStateModel;
       return Scaffold(
-          floatingActionButton: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              if (currentState.searchRes != null)
-                Align(
-                    alignment: Alignment.centerRight,
-                    child: Container(
-                        color: Colors.white,
-                        width: 150,
-                        height: 40,
-                        child: Center(child: Text("${currentState.searchRes}")))),
-              Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-                Expanded(
-                    child: Container(
-                  height: 50,
-                  color: Colors.grey.withOpacity(0.4),
-                  child: TextField(
-                    controller: currentState.searchByNameController,
-                    onEditingComplete: () =>
-                        context.read<MainMapCubit>().searchByText(context: context),
-                  ),
-                )),
-                FloatingActionButton(
-                    onPressed: () async => context.read<MainMapCubit>().makeRoutes(),
-                    child: const Icon(Icons.route)),
-                const SizedBox(width: 10),
-                FloatingActionButton(
-                    onPressed: () async =>
-                        BottomModalSheetDynamicSize.bottomSheetWithSizeOfContent(context: context),
-                    child: const Icon(Icons.location_city)),
-                const SizedBox(width: 10),
-                FloatingActionButton(
-                    onPressed: () async =>
-                        context.read<MainMapCubit>().searchByPoint(context: context),
-                    child: const Icon(Icons.search))
-              ]),
-            ],
+          floatingActionButton: Padding(
+            padding: const EdgeInsets.only(left: 30),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(children: [
+                  Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    ElevatedButton.icon(
+                        onPressed: () => context.read<MainMapCubit>().plusZoom(),
+                        icon: const Icon(Icons.add),
+                        label: const Text("Zoom")),
+                    ElevatedButton.icon(
+                        onPressed: () => context.read<MainMapCubit>().minusZoom(),
+                        icon: const Icon(Icons.remove),
+                        label: const Text("Zoom")),
+                  ]),
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        ElevatedButton.icon(
+                          onPressed: () async => [],
+                          icon: Icon(Icons.location_on),
+                          label: Text("Screen point"),
+                        )
+                      ])
+                ]),
+                if (currentState.searchRes != null)
+                  Align(
+                      alignment: Alignment.centerRight,
+                      child: Container(
+                          color: Colors.white,
+                          width: 150,
+                          height: 40,
+                          child: Center(child: Text("${currentState.searchRes}")))),
+                Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+                  Expanded(
+                      child: Container(
+                    height: 50,
+                    color: Colors.grey.withOpacity(0.4),
+                    child: TextField(
+                      controller: currentState.searchByNameController,
+                      onEditingComplete: () =>
+                          context.read<MainMapCubit>().searchByText(context: context),
+                    ),
+                  )),
+                  FloatingActionButton(
+                      onPressed: () async => context.read<MainMapCubit>().makeRoutes(),
+                      child: const Icon(Icons.route, color: Colors.white)),
+                  const SizedBox(width: 10),
+                  FloatingActionButton(
+                      onPressed: () async =>
+                          BottomModalSheetDynamicSize.bottomSheetWithSizeOfContent(
+                              context: context),
+                      child: const Icon(Icons.location_city, color: Colors.white)),
+                  const SizedBox(width: 10),
+                  FloatingActionButton(
+                      onPressed: () async =>
+                          context.read<MainMapCubit>().searchByPoint(context: context),
+                      child: const Icon(Icons.search, color: Colors.white))
+                ]),
+              ],
+            ),
           ),
           body: SizedBox(
               width: MediaQuery.of(context).size.width,
@@ -61,6 +88,9 @@ class YandexMapScreen extends StatelessWidget {
                   nightModeEnabled: AppTheme.checkDarkMode(context: context),
                   // key: mapObjects,
                   mapObjects: currentState.mapObjects,
+                  zoomGesturesEnabled: true,
+                  rotateGesturesEnabled: true,
+                  focusRect: currentState.focusRect,
                   mapMode: MapMode.normal,
                   logoAlignment: const MapAlignment(
                       vertical: VerticalAlignment.top, horizontal: HorizontalAlignment.left),
@@ -72,8 +102,17 @@ class YandexMapScreen extends StatelessWidget {
                   },
                   // onMapTap: (Point point) => context.read<MainMapCubit>().getPoint(point: point),
                   onObjectTap: (object) {
-                    debugPrint("object tapping");
+                    debugPrint(
+                        "object geometry: ${object.geometry}"); // gives us a Geometry object where point is there
+                    debugPrint("object name: ${object.name}");
+                    debugPrint("selecting metadata id: ${object.selectionMetadata?.id}");
+                    debugPrint("object geometry[0]: ${object.geometry[0]}");
+                    debugPrint("object geometry[1]: ${object.geometry[1]}");
+                    debugPrint("object description text: ${object.descriptionText}");
                   },
+                  // if you want to search your location use this one
+                  onMapTap: (Point point) =>
+                      context.read<MainMapCubit>().onMapTap(point: point, context: context),
                   onTrafficChanged: (TrafficLevel? trafficLevel) => [],
                   onMapCreated: (YandexMapController yandexMapController) async => context
                       .read<MainMapCubit>()

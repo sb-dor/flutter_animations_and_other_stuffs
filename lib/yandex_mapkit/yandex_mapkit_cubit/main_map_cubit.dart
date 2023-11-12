@@ -8,6 +8,75 @@ import 'package:yandex_mapkit/yandex_mapkit.dart';
 class MainMapCubit extends Cubit<MainMapStates> {
   MainMapCubit() : super(InitialMapStates(MapStateModel()));
 
+  // if you will use function under this function comment this one
+  // this function will show placeMarks while you will increase zoom, but hide while you will decrease
+  void initCoordinatesFromListOfCoordinatedWithCluster() {
+    var currentState = state.mapStateModel;
+
+    List<PlacemarkMapObject> placeMarks = [];
+
+    for (var each in currentState.listOfCoordinates) {
+      MapObjectId mapId = MapObjectId('map_id_${each.lat}${each.lon}');
+      placeMarks.add(PlacemarkMapObject(
+          mapId: mapId,
+          point: Point(latitude: each.lat, longitude: each.lon),
+          icon: PlacemarkIcon.single(PlacemarkIconStyle(
+              anchor: const Offset(0.5, 1),
+              image: BitmapDescriptor.fromAssetImage("assets/icons/map_icon.png"),
+              scale: 0.100)),
+          opacity: 0.5));
+    }
+
+    var cluster = ClusterizedPlacemarkCollection(
+      mapId: const MapObjectId("cluster_map_id"),
+      placemarks: placeMarks,
+      radius: 10,
+      minZoom: 15,
+      // zoom where cluster will start to show
+      onClusterTap: (ClusterizedPlacemarkCollection self, Cluster cluster) {
+        debugPrint("on cluster tap");
+      },
+      onTap: (ClusterizedPlacemarkCollection self, Point point) {
+        debugPrint("on tap");
+      },
+      // if you want to show radius of map add this one
+      // onClusterAdded: (ClusterizedPlacemarkCollection self, Cluster cluster) async {
+      //   return cluster.copyWith(
+      //       appearance: cluster.appearance.copyWith(
+      //           icon: PlacemarkIcon.single(PlacemarkIconStyle(
+      //     anchor: const Offset(0.5, 1),
+      //     image: BitmapDescriptor.fromAssetImage('assets/icons/cluster.png'),
+      //     scale: 1,
+      //   ))));
+      // },
+    );
+
+    currentState.mapObjects.add(cluster);
+
+    emit(InitialMapStates(currentState));
+  }
+
+  // if you will you function above comment this one
+  void initCoordinatedFromListOfCoordinates() {
+    var currentState = state.mapStateModel;
+
+    for (var each in currentState.listOfCoordinates) {
+      MapObjectId mapId = MapObjectId('map_id_${each.lat}${each.lon}');
+      currentState.placeMarks.add(PlacemarkMapObject(
+          mapId: mapId,
+          point: Point(latitude: each.lat, longitude: each.lon),
+          icon: PlacemarkIcon.single(PlacemarkIconStyle(
+              anchor: const Offset(0.5, 1),
+              image: BitmapDescriptor.fromAssetImage("assets/icons/map_icon.png"),
+              scale: 0.100)),
+          opacity: 0.5));
+    }
+
+    currentState.mapObjects.addAll(currentState.placeMarks);
+
+    emit(InitialMapStates(currentState));
+  }
+
   //use init in first initState of map to initialize the map variables
   void initMap() {
     var currentState = state.mapStateModel;
@@ -18,14 +87,18 @@ class MainMapCubit extends Cubit<MainMapStates> {
         mapId: currentState.cameraMapObjectId,
         point: const Point(latitude: 38.576271, longitude: 68.779716),
         icon: PlacemarkIcon.single(PlacemarkIconStyle(
-            image: BitmapDescriptor.fromAssetImage("assets/icons/map_icon.png"), scale: 0.170)),
+            anchor: const Offset(0.5, 1),
+            image: BitmapDescriptor.fromAssetImage("assets/icons/map_icon.png"),
+            scale: 0.170)),
         opacity: 0.5);
     //38.589252 68.742095
     currentState.firstObject = PlacemarkMapObject(
         mapId: currentState.firstPlaceMarkId,
         point: const Point(latitude: 38.589252, longitude: 68.742095),
         icon: PlacemarkIcon.single(PlacemarkIconStyle(
-            image: BitmapDescriptor.fromAssetImage("assets/icons/map_icon.png"), scale: 0.100)),
+            anchor: const Offset(0.5, 1),
+            image: BitmapDescriptor.fromAssetImage("assets/icons/map_icon.png"),
+            scale: 0.100)),
         opacity: 0.5,
         //if you want to do some stuff while tapping on place mark use this onTap callback
         onTap: (placeMark, point) async {
@@ -44,7 +117,9 @@ class MainMapCubit extends Cubit<MainMapStates> {
         mapId: currentState.secondPlaceMarkId,
         point: const Point(latitude: 38.548496, longitude: 68.772179),
         icon: PlacemarkIcon.single(PlacemarkIconStyle(
-            image: BitmapDescriptor.fromAssetImage("assets/icons/map_icon.png"), scale: 0.100)),
+            anchor: const Offset(0.5, 1),
+            image: BitmapDescriptor.fromAssetImage("assets/icons/map_icon.png"),
+            scale: 0.100)),
         opacity: 0.5,
         //if you want to do some stuff while tapping on place mark use this onTap callback
         onTap: (placeMark, point) async {
@@ -247,6 +322,53 @@ class MainMapCubit extends Cubit<MainMapStates> {
         strokeWidth: 3,
       ));
     });
+    emit(InitialMapStates(currentState));
+  }
+
+  // for increasing zoom
+  void plusZoom() async {
+    var currentState = state.mapStateModel;
+    var camera = await currentState.controller.getCameraPosition();
+    currentState.controller.moveCamera(CameraUpdate.zoomTo(camera.zoom + 0.3),
+        animation: const MapAnimation(type: MapAnimationType.smooth, duration: 0.1));
+    emit(InitialMapStates(currentState));
+  }
+
+  // for decreasing zoom
+  void minusZoom() async {
+    var currentState = state.mapStateModel;
+    var camera = await currentState.controller.getCameraPosition();
+    currentState.controller.moveCamera(CameraUpdate.zoomTo(camera.zoom - 0.3),
+        animation: const MapAnimation(type: MapAnimationType.smooth, duration: 0.1));
+    emit(InitialMapStates(currentState));
+  }
+
+  // while user taps on map
+  void onMapTap({required Point point, required BuildContext context}) async {
+    var currentState = state.mapStateModel;
+
+    final placeMarkMapObject = currentState.mapObjects
+        .firstWhere((el) => el.mapId == currentState.cameraMapObjectId) as PlacemarkMapObject;
+
+    currentState.mapObjects[currentState.mapObjects.indexOf(placeMarkMapObject)] =
+        placeMarkMapObject.copyWith(point: point);
+
+    var cameraPos = await currentState.controller.getCameraPosition();
+
+    var searchRes = YandexSearch.searchByPoint(
+        point: point,
+        zoom: cameraPos.zoom.toInt(),
+        searchOptions: const SearchOptions(
+          searchType: SearchType.geo,
+          geometry: false,
+        ));
+
+    var res = await searchRes.result;
+
+    if (!context.mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("${res.items?[0].name}"), duration: const Duration(milliseconds: 500)));
+
     emit(InitialMapStates(currentState));
   }
 }

@@ -33,4 +33,24 @@ class MapStateModel {
   bool loadingMap = false;
 
   String? searchRes;
+
+  //whenever you have coordinates you should have placeMarkObject and MapObjectId for each of them
+  List<Coordinate> listOfCoordinates = [
+    Coordinate(lat: 38.565559, lon: 68.760942),
+    Coordinate(lat: 38.567230, lon: 68.761265),
+    Coordinate(lat: 38.565714, lon: 68.753998),
+    Coordinate(lat: 38.568126, lon: 68.760241),
+  ];
+
+  // after initialing placeMarks you should add this list's objects to "mapObjects"
+  List<PlacemarkMapObject> placeMarks = [];
+
+  ScreenRect? focusRect;
+}
+
+class Coordinate {
+  double lat;
+  double lon;
+
+  Coordinate({required this.lat, required this.lon});
 }
