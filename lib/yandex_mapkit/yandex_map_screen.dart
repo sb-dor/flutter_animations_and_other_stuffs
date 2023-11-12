@@ -28,7 +28,7 @@ class YandexMapScreen extends StatelessWidget {
                         icon: const Icon(Icons.policy),
                         label: const Text("polygon")),
                     ElevatedButton.icon(
-                        onPressed: () => context.read<MainMapCubit>().suggestPositionsInRequest(),
+                        onPressed: () => context.read<MainMapCubit>().suggestPositionsInRequest(null),
                         icon: const Icon(Icons.settings_suggest),
                         label: const Text("suggest address")),
                   ])

@@ -377,6 +377,8 @@ class MainMapCubit extends Cubit<MainMapStates> {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("${res.items?[0].name}"), duration: const Duration(milliseconds: 500)));
 
+    suggestPositionsInRequest(res.items?[0].name);
+
     emit(InitialMapStates(currentState));
   }
 
@@ -473,9 +475,10 @@ class MainMapCubit extends Cubit<MainMapStates> {
     emit(InitialMapStates(currentState));
   }
 
-  void suggestPositionsInRequest() async {
+  // when user search some address this function will suggest him other same addresses
+  void suggestPositionsInRequest(String? addressName) async {
     final resultWithSession = YandexSuggest.getSuggestions(
-        text: "Зарафшон",
+        text: addressName ?? "микрорайон Зарафшон, 1м3",
         boundingBox: const BoundingBox(
             northEast: Point(latitude: 56.0421, longitude: 38.0284),
             southWest: Point(latitude: 55.5143, longitude: 37.24841)),
@@ -487,7 +490,14 @@ class MainMapCubit extends Cubit<MainMapStates> {
     var res = await resultWithSession.result;
 
     for (var each in res.items ?? <SuggestItem>[]) {
-      debugPrint("${each.title}");
+      debugPrint("title: ${each.title}");
+      debugPrint("subtitle: ${each.subtitle}");
+      debugPrint("displayText: ${each.displayText}");
+      debugPrint("searchText: ${each.searchText}");
     }
+
+    List<SuggestItem> suggests = (res.items??[]).where((element) => element.subtitle == "Душанбе").toList();
+
+    debugPrint("suggests list : ${suggests.length}");
   }
 }
