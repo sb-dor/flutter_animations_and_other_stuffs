@@ -8,6 +8,10 @@ if you want to remove last add write any file name at first than click "tab" but
 
     git restore --staged <file name>
 
+if you already pushed with added file to remove file write:
+
+    git rm --cached <file name>
+
 to commit write:
 
     git commit -m 'message'
