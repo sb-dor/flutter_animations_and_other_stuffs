@@ -31,13 +31,13 @@ class MainBlocConcurrency extends Bloc<MainConcurrencyEvent, MainConcurrencyStat
 
 // type of transformers:
 
-    /// [ concurrent() -> process events concurrently -> события обрабатываются одновременно]
+    /// [ concurrent() -> process events concurrently | события обрабатываются одновременно]
 
-    /// [ sequential() -> process events sequentially -> события обрабатываются последовательно]
+    /// [ sequential() -> process events sequentially | события обрабатываются последовательно]
 
-    /// [ droppable() -> ignore any events added while an event is processing -> игрорирет любые события, добавленные во время обработки события]
+    /// [ droppable() -> ignore any events added while an event i.s processing | игрорирет любые события, добавленные во время обработки события]
 
-    /// [ restartable() -> process only the latest event and cancel previous event handlers ->  обрабатывает только последнее событие и отменять предыдущие обработчики событий]
+    /// [ restartable() -> process only the latest event and cancel previous event handlers |  обрабатывает только последнее событие и отменять предыдущие обработчики событий]
 
     on<CounterIncrement>((event, emit) async {
       await counterIncrement(emit);
