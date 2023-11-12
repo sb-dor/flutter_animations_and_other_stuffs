@@ -31,24 +31,26 @@ class MainMapCubit extends Cubit<MainMapStates> {
       mapId: const MapObjectId("cluster_map_id"),
       placemarks: placeMarks,
       radius: 10,
-      minZoom: 15,
       // zoom where cluster will start to show
+      minZoom: 15,
       onClusterTap: (ClusterizedPlacemarkCollection self, Cluster cluster) {
         debugPrint("on cluster tap");
       },
       onTap: (ClusterizedPlacemarkCollection self, Point point) {
         debugPrint("on tap");
       },
-      // if you want to show radius of map add this one
-      // onClusterAdded: (ClusterizedPlacemarkCollection self, Cluster cluster) async {
-      //   return cluster.copyWith(
-      //       appearance: cluster.appearance.copyWith(
-      //           icon: PlacemarkIcon.single(PlacemarkIconStyle(
-      //     anchor: const Offset(0.5, 1),
-      //     image: BitmapDescriptor.fromAssetImage('assets/icons/cluster.png'),
-      //     scale: 1,
-      //   ))));
-      // },
+      // if you want to show circle of not shown placeMarks in map add this one
+      // this will show temp position of added PlaceMarks
+
+      onClusterAdded: (ClusterizedPlacemarkCollection self, Cluster cluster) async {
+        return cluster.copyWith(
+            appearance: cluster.appearance.copyWith(
+                icon: PlacemarkIcon.single(PlacemarkIconStyle(
+          anchor: const Offset(0.5, 1),
+          image: BitmapDescriptor.fromBytes(await currentState.buildClusterAppearance(cluster)),
+          scale: 1,
+        ))));
+      },
     );
 
     currentState.mapObjects.add(cluster);
@@ -154,7 +156,7 @@ class MainMapCubit extends Cubit<MainMapStates> {
         .firstWhere((el) => el.mapId == currentState.cameraMapObjectId) as PlacemarkMapObject;
 
     await currentState.controller.moveCamera(
-        CameraUpdate.newCameraPosition(CameraPosition(target: placeMarkMapObject.point, zoom: 11)));
+        CameraUpdate.newCameraPosition(CameraPosition(target: placeMarkMapObject.point, zoom: 12)));
 
     emit(InitialMapStates(currentState));
   }
@@ -355,6 +357,12 @@ class MainMapCubit extends Cubit<MainMapStates> {
 
     var cameraPos = await currentState.controller.getCameraPosition();
 
+    currentState.controller.moveCamera(
+      CameraUpdate.newCameraPosition(CameraPosition(
+          target: point, zoom: cameraPos.zoom, azimuth: cameraPos.azimuth, tilt: cameraPos.tilt)),
+      animation: const MapAnimation(type: MapAnimationType.smooth, duration: 0.3),
+    );
+
     var searchRes = YandexSearch.searchByPoint(
         point: point,
         zoom: cameraPos.zoom.toInt(),
@@ -368,6 +376,99 @@ class MainMapCubit extends Cubit<MainMapStates> {
     if (!context.mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("${res.items?[0].name}"), duration: const Duration(milliseconds: 500)));
+
+    emit(InitialMapStates(currentState));
+  }
+
+  // while use clicks on any object on the map, the object will be blue color
+  void onObjectTap({required GeoObject geoObject}) async {
+    var currentState = state.mapStateModel;
+
+    // debugPrint(
+    //     "object geometry: ${geoObject.geometry}"); // gives us a Geometry object where point is there
+    // debugPrint("object name: ${geoObject.name}");
+    // debugPrint("selecting metadata id: ${geoObject.selectionMetadata?.id}");
+    // debugPrint("object geometry[0]: ${geoObject.geometry[0]}");
+    // debugPrint("object geometry[1]: ${geoObject.geometry[1]}");
+
+    if (geoObject.selectionMetadata != null) {
+      currentState.controller
+          .selectGeoObject(geoObject.selectionMetadata!.id, geoObject.selectionMetadata!.layerId);
+
+      // for deselecting object on map
+      // currentState.controller.deselectGeoObject();
+    }
+  }
+
+  // changing map type, vector is normal type of yandexMap that we use
+  void changeMapType({required MapType mapType}) {
+    var currentState = state.mapStateModel;
+
+    currentState.mapType = mapType;
+
+    emit(InitialMapStates(currentState));
+  }
+
+  void addCircleMapObject() {
+    var currentState = state.mapStateModel;
+
+    if (currentState.mapObjects
+        .any((element) => element.mapId == const MapObjectId('circle_map_object_id-1'))) {
+      currentState.mapObjects
+          .removeWhere((element) => element.mapId == const MapObjectId('circle_map_object_id-1'));
+      emit(InitialMapStates(currentState));
+      return;
+    }
+
+    final mapObject = CircleMapObject(
+      mapId: const MapObjectId('circle_map_object_id-1'),
+      circle: const Circle(center: Point(latitude: 38.583026, longitude: 68.716816), radius: 1000),
+      strokeColor: Colors.blue[700]!,
+      fillColor: Colors.blue[300]!.withOpacity(0.3),
+      onTap: (CircleMapObject self, Point point) => debugPrint('Tapped me at $point'),
+    );
+
+    debugPrint("radius : ${mapObject.circle.radius}");
+
+    currentState.mapObjects.add(mapObject);
+
+    emit(InitialMapStates(currentState));
+  }
+
+  void addPolygonPlacesInMap() {
+    var currentState = state.mapStateModel;
+
+    if (currentState.mapObjects
+        .any((element) => element.mapId == const MapObjectId('polygon_map_object_id-1'))) {
+      currentState.mapObjects
+          .removeWhere((element) => element.mapId == const MapObjectId('polygon_map_object_id-1'));
+      emit(InitialMapStates(currentState));
+      return;
+    }
+
+    //this function adds polygons like dodoPizza shows that the order cannot be ordered outside the drawn border
+    var polygonMapObject = PolygonMapObject(
+        strokeColor: Colors.orange[700]!,
+        strokeWidth: 3.0,
+        fillColor: Colors.yellow[200]!.withOpacity(0.4),
+        onTap: (PolygonMapObject self, Point point) => print('Tapped me at $point'),
+        mapId: const MapObjectId("polygon_map_object_id-1"),
+        polygon: const Polygon(
+            outerRing: LinearRing(points: [
+              Point(latitude: 38.613058, longitude: 68.770464),
+              Point(latitude: 38.560157, longitude: 68.706866),
+              Point(latitude: 38.496407, longitude: 68.758543),
+              Point(latitude: 38.563542, longitude: 68.818047),
+            ]),
+            innerRings: [
+              // LinearRing(points: [
+              //   Point(latitude: 38.583058, longitude: 68.740464),
+              //   Point(latitude: 38.556157, longitude: 68.726866),
+              //   Point(latitude: 38.516407, longitude: 68.748543),
+              // ])
+            ]));
+
+    currentState.mapObjects.add(polygonMapObject);
 
     emit(InitialMapStates(currentState));
   }

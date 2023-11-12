@@ -22,6 +22,14 @@ class YandexMapScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(children: [
+                  Column(children: [
+                    ElevatedButton.icon(
+                        onPressed: () => context.read<MainMapCubit>().addPolygonPlacesInMap(),
+                        icon: const Icon(Icons.policy),
+                        label: const Text("polygon")),
+                  ])
+                ]),
+                Row(children: [
                   Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                     ElevatedButton.icon(
                         onPressed: () => context.read<MainMapCubit>().plusZoom(),
@@ -36,11 +44,46 @@ class YandexMapScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
+                        PopupMenuButton(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.blueAccent.shade100,
+                                  borderRadius: BorderRadius.circular(20)),
+                              padding: const EdgeInsets.all(10),
+                              child:
+                                  const Row(children: [Icon(Icons.map), Text("Change Map Type")]),
+                            ),
+                            itemBuilder: (context) => [
+                                  PopupMenuItem(
+                                      onTap: () => context
+                                          .read<MainMapCubit>()
+                                          .changeMapType(mapType: MapType.none),
+                                      child: const Text("None")),
+                                  PopupMenuItem(
+                                      onTap: () => context
+                                          .read<MainMapCubit>()
+                                          .changeMapType(mapType: MapType.hybrid),
+                                      child: const Text("hybrid")),
+                                  PopupMenuItem(
+                                      onTap: () => context
+                                          .read<MainMapCubit>()
+                                          .changeMapType(mapType: MapType.map),
+                                      child: const Text("map")),
+                                  PopupMenuItem(
+                                      onTap: () => context
+                                          .read<MainMapCubit>()
+                                          .changeMapType(mapType: MapType.satellite),
+                                      child: const Text("satellite")),
+                                  PopupMenuItem(
+                                      onTap: () => context
+                                          .read<MainMapCubit>()
+                                          .changeMapType(mapType: MapType.vector),
+                                      child: const Text("vector"))
+                                ]),
                         ElevatedButton.icon(
-                          onPressed: () async => [],
-                          icon: Icon(Icons.location_on),
-                          label: Text("Screen point"),
-                        )
+                            onPressed: () => context.read<MainMapCubit>().addCircleMapObject(),
+                            icon: Icon(Icons.circle),
+                            label: Text("Add circle map object"))
                       ])
                 ]),
                 if (currentState.searchRes != null)
@@ -90,8 +133,8 @@ class YandexMapScreen extends StatelessWidget {
                   mapObjects: currentState.mapObjects,
                   zoomGesturesEnabled: true,
                   rotateGesturesEnabled: true,
-                  focusRect: currentState.focusRect,
                   mapMode: MapMode.normal,
+                  mapType: currentState.mapType,
                   logoAlignment: const MapAlignment(
                       vertical: VerticalAlignment.top, horizontal: HorizontalAlignment.left),
                   onCameraPositionChanged:
@@ -102,13 +145,7 @@ class YandexMapScreen extends StatelessWidget {
                   },
                   // onMapTap: (Point point) => context.read<MainMapCubit>().getPoint(point: point),
                   onObjectTap: (object) {
-                    debugPrint(
-                        "object geometry: ${object.geometry}"); // gives us a Geometry object where point is there
-                    debugPrint("object name: ${object.name}");
-                    debugPrint("selecting metadata id: ${object.selectionMetadata?.id}");
-                    debugPrint("object geometry[0]: ${object.geometry[0]}");
-                    debugPrint("object geometry[1]: ${object.geometry[1]}");
-                    debugPrint("object description text: ${object.descriptionText}");
+                    context.read<MainMapCubit>().onObjectTap(geoObject: object);
                   },
                   // if you want to search your location use this one
                   onMapTap: (Point point) =>
