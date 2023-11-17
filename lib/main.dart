@@ -33,6 +33,7 @@ import 'package:flutter_animations_2/custom_clippers/custom_clippers_screen.dart
 import 'package:flutter_animations_2/custom_clippers/own_customer_clippers.dart';
 import 'package:flutter_animations_2/custom_painter/custom_painter_screen.dart';
 import 'package:flutter_animations_2/dart_features/dart_collections.dart';
+import 'package:flutter_animations_2/dart_sync_async_isolates/dart_isolates.dart';
 import 'package:flutter_animations_2/dart_sync_async_isolates/dart_sync_and_async.dart';
 import 'package:flutter_animations_2/delivery_food_ui/screens/home_screen/home_screen.dart';
 import 'package:flutter_animations_2/design_templates/mvvm/view_mvvm.dart';
@@ -145,6 +146,9 @@ void main() async {
   DartSyncAndAsync.addToStream();
   DartSyncAndAsync.streamListener();
 
+  debugPrint("all isolates start here");
+  DartIsolates.runIsolate();
+
   await PdfGenerator.init();
   runApp(MultiBlocProvider(
       providers: [
@@ -230,7 +234,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const YandexMapScreen(),
+        builder: (context, state) => const MaiNBlocConcurrencyPage(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
