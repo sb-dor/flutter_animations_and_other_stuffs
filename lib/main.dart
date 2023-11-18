@@ -112,42 +112,43 @@ void main() async {
     return true;
   };
 
-  ApplicationType applicationType = ApplicationType("RestaurantType");
-  applicationType.saveInvoice();
-
-  Singleton? singleton = Singleton.instance;
-  Singleton? singleton2 = Singleton.instance;
-
-  Prototype prototype1 = Prototype(value: 10);
-  Prototype prototype2 = prototype1.clone();
-
-  prototype2.value = 12;
-
-  List<int> intgers = [1, 3, 4, 5, 1, 3, 4];
-  List<bool> bools = [true, true, true];
-  Map<String, dynamic> forLocalDisc = {'intgers': intgers, 'bools': bools};
-
-  debugPrint("for local ${jsonEncode(forLocalDisc)}");
-
-  DartCollections.hashMap();
-  DartCollections.list();
-
-  debugPrint("proto1 : ${prototype1.value} | proto2 : ${prototype2.value}");
-
-  var eqModel = const EquatableModel(id: 1, name: "Avaz", age: 19);
-
-  print("is model equals : ${eqModel == const EquatableModel(id: 1, name: "Avaz", age: 19)}");
-
-  debugPrint("dart futures : ");
-  DartSyncAndAsync.futures();
-  debugPrint("dart streams:");
-  DartSyncAndAsync.streams();
-  debugPrint("sream listener : ");
-  DartSyncAndAsync.addToStream();
-  DartSyncAndAsync.streamListener();
-
-  debugPrint("all isolates start here");
-  DartIsolates.runIsolate();
+  // ApplicationType applicationType = ApplicationType("RestaurantType");
+  // applicationType.saveInvoice();
+  //
+  // Singleton? singleton = Singleton.instance;
+  // Singleton? singleton2 = Singleton.instance;
+  //
+  // Prototype prototype1 = Prototype(value: 10);
+  // Prototype prototype2 = prototype1.clone();
+  //
+  // prototype2.value = 12;
+  //
+  // List<int> intgers = [1, 3, 4, 5, 1, 3, 4];
+  // List<bool> bools = [true, true, true];
+  // Map<String, dynamic> forLocalDisc = {'intgers': intgers, 'bools': bools};
+  //
+  // debugPrint("for local ${jsonEncode(forLocalDisc)}");
+  //
+  // DartCollections.hashMap();
+  // DartCollections.list();
+  //
+  // debugPrint("proto1 : ${prototype1.value} | proto2 : ${prototype2.value}");
+  //
+  // var eqModel = const EquatableModel(id: 1, name: "Avaz", age: 19);
+  //
+  // print("is model equals : ${eqModel == const EquatableModel(id: 1, name: "Avaz", age: 19)}");
+  //
+  // debugPrint("dart futures : ");
+  // DartSyncAndAsync.futures();
+  // debugPrint("dart streams:");
+  // DartSyncAndAsync.streams();
+  // debugPrint("sream listener : ");
+  // DartSyncAndAsync.addToStream();
+  // DartSyncAndAsync.streamListener();
+  //
+  // debugPrint("all isolates start here");
+  // DartIsolates.runIsolate();
+  DartIsolates.runIsolate2();
 
   await PdfGenerator.init();
   runApp(MultiBlocProvider(
