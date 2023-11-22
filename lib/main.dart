@@ -46,6 +46,7 @@ import 'package:flutter_animations_2/esc_pos_printer_with_bluetooth/esc_pos_prin
 import 'package:flutter_animations_2/excel/excel_page.dart';
 import 'package:flutter_animations_2/firebase_push_notification/firebase_push_not.dart';
 import 'package:flutter_animations_2/flutter_background_service/flutter_background_service_helper.dart';
+import 'package:flutter_animations_2/flutter_blurhash/flutter_blurhash_page.dart';
 import 'package:flutter_animations_2/flutter_deep_link/firebase_dynamic_linking.dart';
 import 'package:flutter_animations_2/flutter_deep_link/flutter_deep_linking_route.dart';
 import 'package:flutter_animations_2/flutter_design_patters/factory_design.dart';
@@ -236,7 +237,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const ExcelPage(),
+        builder: (context, state) => const FlutterBlurHash(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
