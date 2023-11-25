@@ -5,29 +5,27 @@ import 'package:shimmer/shimmer.dart';
 
 class ImageLoaderWidget extends StatelessWidget {
   final String url;
+  final String errorImageUrl;
+  final String? imageBlurHash;
   final double? height;
   final double? width;
   final BoxFit? boxFit;
   final EdgeInsets? marginShimmerContainer;
   final EdgeInsets? paddingShimmerContainer;
-  final String errorImageUrl;
   final BorderRadius? borderRadius;
-  final String? hashedImage;
-  final Duration? duration;
 
-  const ImageLoaderWidget({
-    Key? key,
-    required this.url,
-    required this.errorImageUrl,
-    this.height,
-    this.width,
-    this.boxFit,
-    this.marginShimmerContainer,
-    this.paddingShimmerContainer,
-    this.borderRadius,
-    this.hashedImage,
-    this.duration,
-  }) : super(key: key);
+  const ImageLoaderWidget(
+      {Key? key,
+      required this.url,
+      required this.errorImageUrl,
+      this.imageBlurHash,
+      this.height,
+      this.width,
+      this.boxFit,
+      this.marginShimmerContainer,
+      this.paddingShimmerContainer,
+      this.borderRadius})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -41,19 +39,32 @@ class ImageLoaderWidget extends StatelessWidget {
         },
         fit: boxFit ?? BoxFit.scaleDown,
         placeholder: (context, url) {
-          return Shimmer.fromColors(
-            baseColor: Colors.grey[300]!,
-            highlightColor: Colors.white,
-            period: duration ?? const Duration(milliseconds: 1500),
-            child: Container(
+          if (imageBlurHash != null) {
+            return Container(
                 margin: marginShimmerContainer,
                 padding: paddingShimmerContainer,
                 width: width,
                 height: height,
-                decoration: BoxDecoration(color: Colors.grey.shade200, borderRadius: borderRadius)),
-          );
+                decoration: BoxDecoration(borderRadius: borderRadius),
+                child: BlurHash(
+                  hash: imageBlurHash ?? 'L00w16X:L#qZf,fke.e.HXm*y?UH',
+                  imageFit: boxFit ?? BoxFit.scaleDown,
+                  duration: const Duration(seconds: 2),
+                  curve: Curves.linear,
+                ));
+          }
+          return Shimmer.fromColors(
+              baseColor: Colors.grey[300]!,
+              highlightColor: Colors.white,
+              child: Container(
+                  margin: marginShimmerContainer,
+                  padding: paddingShimmerContainer,
+                  width: width,
+                  height: height,
+                  decoration:
+                      BoxDecoration(color: Colors.grey.shade200, borderRadius: borderRadius)));
         },
-        errorWidget: (context, url, error) =>
-            Image.asset(errorImageUrl, height: height, width: width, fit: BoxFit.scaleDown));
+        errorWidget: (context, url, error) => Image.asset(errorImageUrl,
+            height: height, width: width, fit: boxFit ?? BoxFit.scaleDown));
   }
 }

@@ -84,6 +84,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart' as provider;
 
+import 'animation_pages/animated_appbar_page.dart';
 import 'slivers/sliver_and_scroll_page.dart';
 import 'slivers/sliver_appbar_with_tabbar_page.dart';
 
@@ -237,7 +238,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const FlutterBlurHash(),
+        builder: (context, state) => const AnimatedAppbarPage(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
