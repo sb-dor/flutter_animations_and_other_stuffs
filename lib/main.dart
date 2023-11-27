@@ -238,7 +238,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const AnimatedAppbarPage(),
+        builder: (context, state) => const AnimatedAppbarPage(reverseAnimation: false),
         listener: (context, state) {
           //listen internet conn here
           if (state) {

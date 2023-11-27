@@ -7,6 +7,7 @@ class AnimatedAppbarPage extends StatefulWidget {
   final double? titleSize;
   final String? titleText;
   final Widget? leading;
+  final bool reverseAnimation;
 
   const AnimatedAppbarPage({
     Key? key,
@@ -14,6 +15,7 @@ class AnimatedAppbarPage extends StatefulWidget {
     this.titleSize = 20,
     this.titleText,
     this.leading,
+    this.reverseAnimation = false,
   }) : super(key: key);
 
   @override
@@ -23,13 +25,18 @@ class AnimatedAppbarPage extends StatefulWidget {
 class _AnimatedAppbarPageState extends State<AnimatedAppbarPage> {
   final ScrollController _scrollController = ScrollController();
   final double appBarMiddle = kToolbarHeight / 4;
+  final double appBarEnd = ((kToolbarHeight * 2) - (kToolbarHeight / 4)) - 30;
   late double value;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    value = appBarMiddle;
+    if (widget.reverseAnimation) {
+      value = appBarEnd;
+    } else {
+      value = appBarMiddle;
+    }
   }
 
   @override
@@ -39,20 +46,12 @@ class _AnimatedAppbarPageState extends State<AnimatedAppbarPage> {
           animation: _scrollController,
           builder: (context, child) {
             if (_scrollController.hasClients) {
-              if (value < appBarMiddle) {
-                value = appBarMiddle;
+              if (widget.reverseAnimation) {
+                value = _appBarAnimationReverseValue();
               } else {
-                value = _scrollController.offset * 0.20;
-                if ((value + 30) < ((kToolbarHeight * 2) - (kToolbarHeight / 4))) {
-                  if (value < appBarMiddle) {
-                    value = appBarMiddle;
-                  }
-                } else {
-                  value = ((kToolbarHeight * 2) - (kToolbarHeight / 4)) - 30;
-                }
+                value = _appBarAnimationValue();
               }
             }
-            debugPrint("size of text: ${20 + (value * 0.10)}");
             return SizedBox(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
@@ -80,7 +79,7 @@ class _AnimatedAppbarPageState extends State<AnimatedAppbarPage> {
                           ],
                         ),
                       ),
-                      const SizedBox(height: 60),
+                      SizedBox(height: value),
                       Expanded(
                           child: ListView.builder(
                               padding: const EdgeInsets.only(left: 10, right: 10),
@@ -108,5 +107,37 @@ class _AnimatedAppbarPageState extends State<AnimatedAppbarPage> {
             );
           }),
     );
+  }
+
+  double _appBarAnimationValue() {
+    if (value < appBarMiddle) {
+      value = appBarMiddle;
+    } else {
+      value = _scrollController.offset * 0.20;
+      if ((value + 30) < ((kToolbarHeight * 2) - (kToolbarHeight / 4))) {
+        if (value < appBarMiddle) {
+          value = appBarMiddle;
+        }
+      } else {
+        value = appBarEnd;
+      }
+    }
+    return value;
+  }
+
+  double _appBarAnimationReverseValue() {
+    if (value < appBarMiddle) {
+      value = appBarMiddle;
+    } else {
+      value = appBarEnd - (_scrollController.offset * 0.20);
+      if ((value + 30) < ((kToolbarHeight * 2) - (kToolbarHeight / 4))) {
+        if (value < appBarMiddle) {
+          value = appBarMiddle;
+        }
+      } else {
+        value = appBarEnd;
+      }
+    }
+    return value;
   }
 }
