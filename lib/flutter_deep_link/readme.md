@@ -1,9 +1,18 @@
-for using flutter deep linking you should to install the package go router
 
-for more information:
+add this code in your AndroidManifest.xml
+    
+    <activity
+    
+        <meta-data android:name="flutter_deeplinking_enabled" android:value="true" />
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="http" android:host="avazsho.com" />
+                <data android:scheme="https" android:host="avazsho.com"/>
+            </intent-filter>
 
+     </activity>
 
-1. https://youtu.be/KNAb2XL7k2g?si=tpa1zjqWeS_rs_pZ
-2. https://pub.dev/packages/go_router/example
-
-3.for more information for deeplink with firebase -> https://youtu.be/2St6ZpZq0NU?si=VvPNSPJgYzLrYbyh
+you can write any other url in that place where I wrote avazsho.com.
+And also remember to put inside activity

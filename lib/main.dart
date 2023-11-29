@@ -47,8 +47,7 @@ import 'package:flutter_animations_2/excel/excel_page.dart';
 import 'package:flutter_animations_2/firebase_push_notification/firebase_push_not.dart';
 import 'package:flutter_animations_2/flutter_background_service/flutter_background_service_helper.dart';
 import 'package:flutter_animations_2/flutter_blurhash/flutter_blurhash_page.dart';
-import 'package:flutter_animations_2/flutter_deep_link/firebase_dynamic_linking.dart';
-import 'package:flutter_animations_2/flutter_deep_link/flutter_deep_linking_route.dart';
+import 'package:flutter_animations_2/flutter_deep_link/flutter_deeplink_page.dart';
 import 'package:flutter_animations_2/flutter_design_patters/factory_design.dart';
 import 'package:flutter_animations_2/flutter_design_patters/prototype_design.dart';
 import 'package:flutter_animations_2/flutter_design_patters/singleton_design.dart';
@@ -98,7 +97,6 @@ void main() async {
     await LocalNotification.initLocalNotification();
     await EscPosPrinterUIHelper.init();
     await AwesomeNotificationsHelper.initAwesomeNotifications();
-    await FirebaseDynamicLinking.initDynamicLinks();
     await SqfLiteDatabaseHelper.initSqfLiteDatabase();
     await FlutterBackgroundServiceHelper.initService();
   }
@@ -178,26 +176,27 @@ void main() async {
         ],
         child: ProviderScope(
           child: BlocBuilder<MaterialChangeCubit, bool>(builder: (context, materialUiState) {
-            return MaterialApp(
-                navigatorKey: GlobalContextHelper.globalNavigatorContext,
-                scrollBehavior: MyCustomScrollBehavior(),
-                //if you want to use flutter deep linking use package "go_router"
-                //get global context here
-                // navigatorKey: GlobalContextHelper.globalNavigatorContext,
-                theme: FlexThemeData.light(scheme: FlexScheme.green, useMaterial3: materialUiState),
-                darkTheme:
-                    FlexThemeData.dark(scheme: FlexScheme.green, useMaterial3: materialUiState),
-                themeMode: ThemeMode.light,
-                debugShowCheckedModeBanner: false,
-                //for adding named routes use like this
-                //do not forget to write main route in your routes like this:
-                //
-                //->          "/" : (context) => YourHomeWidget()
-                //
-                //and do not forget to remove "home" parameter from MaterialApp widget, otherwise it will not work
-                // initialRoute: '/',
-                routes: RoutingWithName.routes(),
-                initialRoute: "/");
+            return FlutterDeepLinkPage();
+            // return MaterialApp(
+            //     navigatorKey: GlobalContextHelper.globalNavigatorContext,
+            //     scrollBehavior: MyCustomScrollBehavior(),
+            //     //if you want to use flutter deep linking use package "go_router"
+            //     //get global context here
+            //     // navigatorKey: GlobalContextHelper.globalNavigatorContext,
+            //     theme: FlexThemeData.light(scheme: FlexScheme.green, useMaterial3: materialUiState),
+            //     darkTheme:
+            //         FlexThemeData.dark(scheme: FlexScheme.green, useMaterial3: materialUiState),
+            //     themeMode: ThemeMode.light,
+            //     debugShowCheckedModeBanner: false,
+            //     //for adding named routes use like this
+            //     //do not forget to write main route in your routes like this:
+            //     //
+            //     //->          "/" : (context) => YourHomeWidget()
+            //     //
+            //     //and do not forget to remove "home" parameter from MaterialApp widget, otherwise it will not work
+            //     // initialRoute: '/',
+            //     routes: RoutingWithName.routes(),
+            //     initialRoute: "/");
           }),
         ),
       )));
