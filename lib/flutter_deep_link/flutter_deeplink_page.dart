@@ -18,7 +18,12 @@ final goRouter = GoRouter(routes: [
               debugPrint("uri : ${state.uri}");
               debugPrint("uri query: ${state.uri.query}");
               debugPrint("uri query parameters: ${state.uri.queryParameters}");
-              return const _Profile();
+              var param = state.uri.queryParameters;
+              return _Profile(
+                age: param['avaz'],
+                birthDay: param['birthday'],
+                name: param['name'],
+              );
             })
       ])
 ]);
@@ -45,10 +50,16 @@ class _HomePage extends StatelessWidget {
 }
 
 class _Profile extends StatelessWidget {
-  const _Profile({Key? key}) : super(key: key);
+  final String? age;
+  final String? name;
+  final String? birthDay;
+
+  const _Profile({Key? key, this.age, this.name, this.birthDay}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(title: const Text("Profile")));
+    return Scaffold(
+        appBar: AppBar(title: Text("Profile: $name")),
+        body: Center(child: Text("Age: $age | birthday: $birthDay")));
   }
 }
