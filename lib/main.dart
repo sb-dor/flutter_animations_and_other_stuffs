@@ -47,6 +47,8 @@ import 'package:flutter_animations_2/excel/excel_page.dart';
 import 'package:flutter_animations_2/firebase_push_notification/firebase_push_not.dart';
 import 'package:flutter_animations_2/flutter_background_service/flutter_background_service_helper.dart';
 import 'package:flutter_animations_2/flutter_blurhash/flutter_blurhash_page.dart';
+import 'package:flutter_animations_2/flutter_camera/flutter_camera_helper.dart';
+import 'package:flutter_animations_2/flutter_camera/flutter_camera_page.dart';
 import 'package:flutter_animations_2/flutter_deep_link/flutter_deeplink_page.dart';
 import 'package:flutter_animations_2/flutter_design_patters/factory_design.dart';
 import 'package:flutter_animations_2/flutter_design_patters/prototype_design.dart';
@@ -102,6 +104,7 @@ void main() async {
     await SqfLiteDatabaseHelper.initSqfLiteDatabase();
     await FlutterBackgroundServiceHelper.initService();
     await HiveDatabaseHelper.instance.initHive();
+    await FlutterCameraHelper.instance.initCameras();
   }
   // MainCharacter mainCharacter = MainCharacter("Alien");
   // mainCharacter.race?.saySome();
@@ -240,7 +243,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => HiveDatabasePage(),
+        builder: (context, state) => FlutterCameraPage(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {

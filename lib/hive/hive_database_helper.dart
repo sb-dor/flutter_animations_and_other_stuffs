@@ -21,6 +21,9 @@ class HiveDatabaseHelper {
 
   // every time whenever we put data to box we will put like "List<Map<String, dynamic>>" data
   // that is why if we want to get data we will get in in this type "List<Map<String, dynamic>>"
+
+  // the reason that i created this box like List<Map<String, dynamic>> is that i wanted to make it
+  // same to sqflite database
   Future<List<Map<String, dynamic>>> getFromBox({required String boxName}) async {
     late Box box;
     if (Hive.isBoxOpen(boxName)) {
@@ -43,8 +46,11 @@ class HiveDatabaseHelper {
     } else {
       box = await Hive.openBox(boxName);
     }
+
     /// get by key (key name is ["values"])
-    var values = box.get('values'); /// you can name this ["values"] what event you want;
+    var values = box.get('values');
+
+    /// you can name this ["values"] what event you want;
 
     List<dynamic> results = values ?? [];
 
@@ -66,7 +72,9 @@ class HiveDatabaseHelper {
     } else {
       box = await Hive.openBox(boxName);
     }
-    var values = await box.get('values'); /// you can name this ["values"] what event you want;
+    var values = await box.get('values');
+
+    /// you can name this ["values"] what event you want;
 
     List<dynamic> tempList = values ?? [];
 
@@ -76,7 +84,9 @@ class HiveDatabaseHelper {
 
     boxValues.removeWhere((element) => element.containsKey(key) && element[key] == value);
 
-    box.put('values', boxValues); /// you can name this ["values"] what event you want;
+    box.put('values', boxValues);
+
+    /// you can name this ["values"] what event you want;
   }
 
   Future<void> deleteAll({required String boxName}) async {
@@ -89,11 +99,10 @@ class HiveDatabaseHelper {
     box.put('values', <Map<String, dynamic>>[]);
   }
 
-  Future<void> update(
-      {required String boxName,
-      required String key,
-      required dynamic value,
-      required Map<String, dynamic> updatingValue}) async {
+  Future<void> update({required String boxName,
+    required String key,
+    required dynamic value,
+    required Map<String, dynamic> updatingValue}) async {
     late Box box;
 
     if (Hive.isBoxOpen(boxName)) {
@@ -102,7 +111,9 @@ class HiveDatabaseHelper {
       box = await Hive.openBox(boxName);
     }
 
-    var values = await box.get('values'); /// you can name this ["values"] what event you want;
+    var values = await box.get('values');
+
+    /// you can name this ["values"] what event you want;
 
     List<dynamic> tempList = values ?? [];
 
@@ -111,13 +122,15 @@ class HiveDatabaseHelper {
     if (boxValues.isEmpty) return;
 
     var valueIndex =
-        boxValues.indexWhere((element) => element.containsKey(key) && element[key] == value);
+    boxValues.indexWhere((element) => element.containsKey(key) && element[key] == value);
 
     boxValues.removeWhere((element) => element.containsKey(key) && element[key] == value);
 
     boxValues.insert(valueIndex, updatingValue);
 
-    box.put('values', boxValues); /// you can name this ["values"] what event you want;
+    box.put('values', boxValues);
+
+    /// you can name this ["values"] what event you want;
   }
 
   Map<String, dynamic> _convertMap(Map<dynamic, dynamic> originalMap) {
