@@ -13,8 +13,8 @@ class HiveDatabaseHelper {
     var directory = await getApplicationDocumentsDirectory();
     Hive.init(directory.path);
     await BoxCollection.open(
-      'hive_database_name',
-      {'table1', 'table2'},
+      'hive_database_name', // name of database
+      {'table1', 'table2'}, // name of boxes (tables)
       path: directory.path,
     );
   }
@@ -43,8 +43,8 @@ class HiveDatabaseHelper {
     } else {
       box = await Hive.openBox(boxName);
     }
-    // get by key (key name is "values")
-    var values = box.get('values'); // you can name this "values" what event you want;
+    /// get by key (key name is ["values"])
+    var values = box.get('values'); /// you can name this ["values"] what event you want;
 
     List<dynamic> results = values ?? [];
 
@@ -66,7 +66,7 @@ class HiveDatabaseHelper {
     } else {
       box = await Hive.openBox(boxName);
     }
-    var values = await box.get('values'); // you can name this "values" what event you want;
+    var values = await box.get('values'); /// you can name this ["values"] what event you want;
 
     List<dynamic> tempList = values ?? [];
 
@@ -76,7 +76,7 @@ class HiveDatabaseHelper {
 
     boxValues.removeWhere((element) => element.containsKey(key) && element[key] == value);
 
-    box.put('values', boxValues); // you can name this "values" what event you want;
+    box.put('values', boxValues); /// you can name this ["values"] what event you want;
   }
 
   Future<void> deleteAll({required String boxName}) async {
@@ -102,7 +102,7 @@ class HiveDatabaseHelper {
       box = await Hive.openBox(boxName);
     }
 
-    var values = await box.get('values'); // you can name this "values" what event you want;
+    var values = await box.get('values'); /// you can name this ["values"] what event you want;
 
     List<dynamic> tempList = values ?? [];
 
@@ -117,7 +117,7 @@ class HiveDatabaseHelper {
 
     boxValues.insert(valueIndex, updatingValue);
 
-    box.put('values', boxValues); // you can name this "values" what event you want;
+    box.put('values', boxValues); /// you can name this ["values"] what event you want;
   }
 
   Map<String, dynamic> _convertMap(Map<dynamic, dynamic> originalMap) {
