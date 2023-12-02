@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animations_2/widgets/image_loader_widget.dart';
 import 'package:flutter_blurhash/flutter_blurhash.dart';
 
 class FlutterBlurHash extends StatefulWidget {

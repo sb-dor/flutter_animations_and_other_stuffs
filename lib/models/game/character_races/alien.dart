@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animations_2/models/game/character_helpers/race.dart';
-import 'package:flutter_animations_2/models/game/character_helpers/vehicle.dart';
-import 'package:flutter_animations_2/models/game/character_helpers/weapon.dart';
 
 class Alien extends Race {
   Alien({required super.vehicle, required super.weapon});

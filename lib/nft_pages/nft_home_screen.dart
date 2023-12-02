@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animations_2/animation_pages/animated_list_with_animations_page.dart';
-import 'package:flutter_animations_2/animation_pages/animted_list_page.dart';
 import 'package:flutter_animations_2/animations/fade_animation.dart';
 import 'package:flutter_animations_2/animations/navigation/navigation.dart';
 import 'package:flutter_animations_2/animations/navigation/page_transition_animation.dart';

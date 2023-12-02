@@ -1,12 +1,7 @@
-import 'dart:developer';
 import 'dart:io';
-
 import 'package:excel/excel.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:get/get.dart';
 import 'package:path/path.dart' as path;
 
 class _TypeOfSolve {

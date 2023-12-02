@@ -1,7 +1,6 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_animations_2/local_notification/awesome_notification_helper.dart';
-import 'package:flutter_animations_2/local_notification/local_notification.dart';
 // import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class FirebasePushNot {

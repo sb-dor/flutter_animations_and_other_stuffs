@@ -1,10 +1,5 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_animations_2/animations/fade_animation.dart';
 import 'package:flutter_animations_2/animations/scale_animation.dart';
-import 'package:flutter_animations_2/animations/slide_animation.dart';
-import 'package:get/get_navigation/src/routes/default_transitions.dart';
 
 class AnimatedListPage extends StatefulWidget {
   const AnimatedListPage({Key? key}) : super(key: key);
@@ -50,7 +45,7 @@ class _AnimatedListPageState extends State<AnimatedListPage> {
   void addItem() async {
     forAdd.add(names[0]);
     await Future.delayed(const Duration(milliseconds: 30));
-    print(forAdd.length);
+    debugPrint("${forAdd.length}");
     listKey.currentState?.insertItem(
         0); //if you want to add from bottom write "array.length - 1";
     setState(() {});

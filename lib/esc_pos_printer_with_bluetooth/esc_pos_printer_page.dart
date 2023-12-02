@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animations_2/esc_pos_printer_with_bluetooth/esc_pos_printer_ui_helper.dart';
 import 'package:flutter_animations_2/esc_pos_printer_with_bluetooth/printer_manager.dart';
 import 'package:flutter_scan_bluetooth/flutter_scan_bluetooth.dart';
 
@@ -47,7 +46,7 @@ class _EscPosPrinterPageState extends State<EscPosPrinterPage> {
           TextButton(
               onPressed: () async {
                 // if (selectedDevice == null) return;
-                var image = await EscPosPrinterUIHelper.createPdf() ?? '';
+                // var image = await EscPosPrinterUIHelper.createPdf() ?? '';
                 // if (image.isEmpty) return;
                 // await PrinterManager.printImg(image);
               },

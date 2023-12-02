@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animations_2/hive/hive_database_helper.dart';
-import 'package:hive/hive.dart';
 
 class HiveDatabasePage extends StatefulWidget {
   const HiveDatabasePage({Key? key}) : super(key: key);
@@ -15,7 +14,6 @@ class _HiveDatabasePageState extends State<HiveDatabasePage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     initData();
   }
@@ -48,7 +46,7 @@ class _HiveDatabasePageState extends State<HiveDatabasePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Hive")),
+      appBar: AppBar(title: const Text("Hive")),
       body: SizedBox(
         width: double.maxFinite,
         child: Column(
@@ -56,8 +54,8 @@ class _HiveDatabasePageState extends State<HiveDatabasePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text("Counter _$_counter"),
-              ElevatedButton(onPressed: () => addValue(false), child: Text("Plus")),
-              ElevatedButton(onPressed: () => addValue(true), child: Text("Minus")),
+              ElevatedButton(onPressed: () => addValue(false), child: const Text("Plus")),
+              ElevatedButton(onPressed: () => addValue(true), child: const Text("Minus")),
             ]),
       ),
     );

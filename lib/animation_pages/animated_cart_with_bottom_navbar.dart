@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:add_to_cart_animation/add_to_cart_animation.dart';
-import 'package:flutter_animations_2/functions/randoms.dart';
 
 class AnimatedCartWithBottomNavbar extends StatefulWidget {
   const AnimatedCartWithBottomNavbar({Key? key}) : super(key: key);
@@ -13,7 +12,6 @@ class _AnimatedCartWithBottomNavbarState extends State<AnimatedCartWithBottomNav
   // We can detect the location of the cart by this  GlobalKey<CartIconKey>
   GlobalKey<CartIconKey> cartKey = GlobalKey<CartIconKey>();
   late Function(GlobalKey) runAddToCartAnimation;
-  var _cartQuantityItems = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +55,7 @@ class _AnimatedCartWithBottomNavbarState extends State<AnimatedCartWithBottomNav
                                 "add_to_cart_animation/example/assets/apple.png",
                                 width: 60,
                                 height: 60)),
-                        SizedBox(width: 10),
+                        const SizedBox(width: 10),
                         Text("Widget number ${index + 1}")
                       ])));
             }))));

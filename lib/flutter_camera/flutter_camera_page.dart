@@ -51,24 +51,20 @@ class _FlutterCameraPageState extends State<FlutterCameraPage> {
       await flutterPermissionCubit.requestCameraPermission();
       return;
     }
-
+    
     var appDirectory = await getExternalStorageDirectory();
 
     var path = appDirectory?.path;
 
     for (var picture in pictures) {
       File file = File("$path/${picture.name}");
-
       file.writeAsBytesSync(await picture.readAsBytes());
-
       await Gal.putImage(picture.path); //save image in gallery
     }
 
     for (var video in videos) {
       File file = File("$path/${video.name}");
-
       file.writeAsBytesSync(await video.readAsBytes());
-
       await Gal.putVideo(video.path); //save image in gallery
     }
   }

@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_animations_2/esc_pos_printer_with_bluetooth/esc_pos_printer_ui_helper.dart';
 import 'package:flutter_animations_2/multi_image_selector_page/helper/multi_selector_helper.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -21,10 +20,10 @@ class _MultiImageSelectorPageState extends State<MultiImageSelectorPage> {
         appBar: AppBar(
           title: const Text("Multi Image Picker"),
           actions: [
-            IconButton(onPressed: () => throw Exception(), icon: Icon(Icons.bug_report)),
+            IconButton(onPressed: () => throw Exception(), icon: const Icon(Icons.bug_report)),
             IconButton(
                 onPressed: () => MultiSelectorHelper.pickMultipleMediaFunc(),
-                icon: Icon(Icons.send))
+                icon: const Icon(Icons.send))
           ],
         ),
         body: Column(children: [
@@ -37,9 +36,9 @@ class _MultiImageSelectorPageState extends State<MultiImageSelectorPage> {
                     context: context,
                     builder: (context) => AlertDialog(
                             title: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                          CircularProgressIndicator(),
-                          SizedBox(width: 5),
-                          Container(margin: EdgeInsets.only(left: 7), child: Text("Loading...")),
+                          const CircularProgressIndicator(),
+                          const SizedBox(width: 5),
+                          Container(margin: const EdgeInsets.only(left: 7), child: const Text("Loading...")),
                         ])));
                 await MultiSelectorHelper.sendImages(images);
                 Navigator.pop(context);

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animations_2/animation_pages/animted_list_page.dart';
-import 'package:flutter_animations_2/animations/navigation/navigation.dart';
-import 'package:flutter_animations_2/animations/navigation/page_transition_animation.dart';
 import 'package:flutter_animations_2/animations/own_navigation_without_seeing_anything/navigation_class.dart';
 import 'package:flutter_animations_2/network/connections.dart';
 

@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_animations_2/animations/fade_animation.dart';
 
 enum NavigationClassTypes {
   fromLeft,

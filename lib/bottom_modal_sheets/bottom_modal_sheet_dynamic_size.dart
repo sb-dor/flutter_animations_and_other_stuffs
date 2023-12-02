@@ -176,11 +176,6 @@ class BottomModalSheetDynamicSize {
                     });
               });
         }).then((value) {
-      var modalSheetBloc =
-          BlocProvider
-              .of<BottomModalSheetCubits>(context)
-              .state
-              .bottomModalSheetStateModel;
       // if (modalSheetBloc.popupWorked) return;
       // Navigator.pop(context);
       if (Navigator.of(context).canPop()) {

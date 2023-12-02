@@ -9,12 +9,10 @@ class FlutterWebView extends StatefulWidget {
 }
 
 class _FlutterWebViewState extends State<FlutterWebView> {
-  final _key = UniqueKey();
   late WebViewController controller;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)

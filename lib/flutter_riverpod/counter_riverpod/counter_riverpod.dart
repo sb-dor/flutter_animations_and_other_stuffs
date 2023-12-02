@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_animations_2/flutter_riverpod/counter_riverpod/state_model/counter_state_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
