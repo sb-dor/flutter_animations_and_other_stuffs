@@ -16,7 +16,7 @@ class FlutterCameraPage extends StatefulWidget {
   State<FlutterCameraPage> createState() => _FlutterCameraPageState();
 }
 
-class _FlutterCameraPageState extends State<FlutterCameraPage> with WidgetsBindingObserver {
+class _FlutterCameraPageState extends State<FlutterCameraPage> {
   FlutterCameraHelper flutterCameraHelper = FlutterCameraHelper.instance;
   CameraController? _cameraController;
   List<XFile> pictures = [];
@@ -24,12 +24,9 @@ class _FlutterCameraPageState extends State<FlutterCameraPage> with WidgetsBindi
   bool loadingTakingPicture = false;
   bool isRecording = false;
 
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) async {
-    // TODO: implement didChangeAppLifecycleState
-    super.didChangeAppLifecycleState(state);
-    context.read<FlutterPermissionCubit>().allPermissionChecker();
-  }
+  double? minZoom;
+  double? maxZoom;
+  double? averageZoom;
 
   @override
   void initState() {
@@ -41,6 +38,9 @@ class _FlutterCameraPageState extends State<FlutterCameraPage> with WidgetsBindi
   void initController() async {
     _cameraController = CameraController(flutterCameraHelper.cameras[0], ResolutionPreset.max);
     await _cameraController?.initialize();
+    minZoom = await _cameraController?.getMinZoomLevel();
+    maxZoom = await _cameraController?.getMaxZoomLevel();
+    averageZoom = (maxZoom ?? 1) / 2;
     setState(() {});
   }
 
@@ -177,15 +177,51 @@ class _FlutterCameraPageState extends State<FlutterCameraPage> with WidgetsBindi
                                       )),
                                 ))
                             .toList())),
-                if (videos.isNotEmpty || pictures.isNotEmpty)
-                  Positioned(
-                      top: MediaQuery.of(context).size.height * 0.04 + 50,
-                      left: 0,
-                      right: 0,
-                      child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-                        ElevatedButton(
-                            onPressed: () async => saveImages(), child: const Text("Save"))
-                      ]))
+                Positioned(
+                    top: MediaQuery.of(context).size.height * 0.04 + 50,
+                    left: 0,
+                    right: 0,
+                    child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                      Expanded(
+                        child: ElevatedButton(
+                            onPressed: () async {
+                              _cameraController?.setZoomLevel(minZoom ?? 1);
+                            },
+                            child: Text(
+                              "$minZoom Zoom",
+                              textAlign: TextAlign.center,
+                            )),
+                      ),
+                      Expanded(
+                        child: ElevatedButton(
+                            onPressed: () async {
+                              _cameraController?.setZoomLevel(maxZoom ?? 1);
+                            },
+                            child: Text(
+                              "$maxZoom Zoom",
+                              textAlign: TextAlign.center,
+                            )),
+                      ),
+                      Expanded(
+                        child: ElevatedButton(
+                            onPressed: () async {
+                              _cameraController?.setZoomLevel(averageZoom ?? 1);
+                            },
+                            child: Text(
+                              "$averageZoom Zoom",
+                              textAlign: TextAlign.center,
+                            )),
+                      ),
+                      if (videos.isNotEmpty || pictures.isNotEmpty)
+                        Expanded(
+                          child: ElevatedButton(
+                              onPressed: () async => saveImages(),
+                              child: const Text(
+                                "Save",
+                                textAlign: TextAlign.center,
+                              )),
+                        )
+                    ]))
               ],
             )
           : const Center(child: CircularProgressIndicator()),
