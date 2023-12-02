@@ -56,6 +56,8 @@ import 'package:flutter_animations_2/flutter_permissions/flutter_permissions_pag
 import 'package:flutter_animations_2/flutter_riverpod/flutter_riverpod_page.dart';
 import 'package:flutter_animations_2/flutter_webview/flutter_webview.dart';
 import 'package:flutter_animations_2/global_context/global_context.helper.dart';
+import 'package:flutter_animations_2/hive/hive_database_helper.dart';
+import 'package:flutter_animations_2/hive/hive_database_page.dart';
 import 'package:flutter_animations_2/internet_controller/cubit/internet_conn_checker_cubit.dart';
 import 'package:flutter_animations_2/local_notification/awesome_notification_helper.dart';
 import 'package:flutter_animations_2/local_notification/local_notification.dart';
@@ -99,6 +101,7 @@ void main() async {
     await AwesomeNotificationsHelper.initAwesomeNotifications();
     await SqfLiteDatabaseHelper.initSqfLiteDatabase();
     await FlutterBackgroundServiceHelper.initService();
+    await HiveDatabaseHelper.instance.initHive();
   }
   // MainCharacter mainCharacter = MainCharacter("Alien");
   // mainCharacter.race?.saySome();
@@ -176,27 +179,27 @@ void main() async {
         ],
         child: ProviderScope(
           child: BlocBuilder<MaterialChangeCubit, bool>(builder: (context, materialUiState) {
-            return FlutterDeepLinkPage();
-            // return MaterialApp(
-            //     navigatorKey: GlobalContextHelper.globalNavigatorContext,
-            //     scrollBehavior: MyCustomScrollBehavior(),
-            //     //if you want to use flutter deep linking use package "go_router"
-            //     //get global context here
-            //     // navigatorKey: GlobalContextHelper.globalNavigatorContext,
-            //     theme: FlexThemeData.light(scheme: FlexScheme.green, useMaterial3: materialUiState),
-            //     darkTheme:
-            //         FlexThemeData.dark(scheme: FlexScheme.green, useMaterial3: materialUiState),
-            //     themeMode: ThemeMode.light,
-            //     debugShowCheckedModeBanner: false,
-            //     //for adding named routes use like this
-            //     //do not forget to write main route in your routes like this:
-            //     //
-            //     //->          "/" : (context) => YourHomeWidget()
-            //     //
-            //     //and do not forget to remove "home" parameter from MaterialApp widget, otherwise it will not work
-            //     // initialRoute: '/',
-            //     routes: RoutingWithName.routes(),
-            //     initialRoute: "/");
+            // return FlutterDeepLinkPage();
+            return MaterialApp(
+                navigatorKey: GlobalContextHelper.globalNavigatorContext,
+                scrollBehavior: MyCustomScrollBehavior(),
+                //if you want to use flutter deep linking use package "go_router"
+                //get global context here
+                // navigatorKey: GlobalContextHelper.globalNavigatorContext,
+                theme: FlexThemeData.light(scheme: FlexScheme.green, useMaterial3: materialUiState),
+                darkTheme:
+                    FlexThemeData.dark(scheme: FlexScheme.green, useMaterial3: materialUiState),
+                themeMode: ThemeMode.light,
+                debugShowCheckedModeBanner: false,
+                //for adding named routes use like this
+                //do not forget to write main route in your routes like this:
+                //
+                //->          "/" : (context) => YourHomeWidget()
+                //
+                //and do not forget to remove "home" parameter from MaterialApp widget, otherwise it will not work
+                // initialRoute: '/',
+                routes: RoutingWithName.routes(),
+                initialRoute: "/");
           }),
         ),
       )));
@@ -237,7 +240,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const AnimatedAppbarPage(reverseAnimation: false),
+        builder: (context, state) => HiveDatabasePage(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {

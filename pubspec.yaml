@@ -93,6 +93,7 @@ dependencies:
   flutter_blurhash: ^0.8.2
   cached_network_image: ^3.3.0
   shimmer: ^3.0.0
+  hive: ^2.2.3
 
 dev_dependencies:
   flutter_test:
