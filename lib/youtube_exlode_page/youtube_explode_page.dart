@@ -38,7 +38,8 @@ class _YoutubeExplodePageState extends State<YoutubeExplodePage> {
         ));
   }
 
-  Future<void> getVideoInformationWithYTExplode({required String videoId}) async {
+  Future<void> getVideoInformationWithYTExplode(
+      {required String videoId, bool audioOfVideo = false}) async {
     downloadingFile = true;
     setState(() {});
     try {
@@ -46,22 +47,18 @@ class _YoutubeExplodePageState extends State<YoutubeExplodePage> {
 
       var manifest = await _youtubeExplode.videos.streamsClient.getManifest(videoId);
 
-      debugPrint("videoOnlyUrl: ${manifest.videoOnly.withHighestBitrate().url.toString()}"); //
-      debugPrint(
-          "autoOnlyUrl: ${manifest.audioOnly.withHighestBitrate().url.toString()}"); // just a audio
+      var videoOnlyUrl = manifest.videoOnly.withHighestBitrate().url.toString(); //
+      var audioOnlyUrl = manifest.audioOnly.withHighestBitrate().url.toString(); // just a audio
 
-      debugPrint("video: ${manifest.video.withHighestBitrate().url.toString()}"); // just a video
-      debugPrint(
-          "audio: ${manifest.audio.withHighestBitrate().url.toString()}"); //video with audio url
+      var videoUrl = manifest.video.withHighestBitrate().url.toString(); // just a video
+      var videoWithAudioUrl =
+          manifest.audio.withHighestBitrate().url.toString(); //video with audio url
 
-      var videoWithAudio = manifest.audio.withHighestBitrate().url.toString();
-
-      var videoFromUrl = await Dio().get<List<int>>(videoWithAudio,
+      var videoFromUrl = await Dio().get<List<int>>(audioOfVideo ? audioOnlyUrl : videoWithAudioUrl,
           options: Options(responseType: ResponseType.bytes, headers: {
             'Content-Type': 'application/json; charset=UTF-8',
             'Accept': 'application/json',
           }), onReceiveProgress: (int receive, int total) {
-
         // here is a formula for solving progress of downloading
         var solvePercentage = receive / total * 100;
         percentage = solvePercentage / 100;
@@ -72,7 +69,9 @@ class _YoutubeExplodePageState extends State<YoutubeExplodePage> {
 
       var getExStorage = await getExternalStorageDirectory();
 
-      var createVideoPath = "${getExStorage?.path}/videoName.mp4";
+      var createVideoPath = audioOfVideo
+          ? "${getExStorage?.path}/audioName.mp3"
+          : "${getExStorage?.path}/videoName.mp4";
 
       File file = File(createVideoPath);
 
@@ -130,7 +129,7 @@ class _YoutubeExplodePageState extends State<YoutubeExplodePage> {
           ElevatedButton(
               onPressed: () async {
                 // if (downloadingFile) return;
-                await getVideoInformationWithYTExplode(videoId: videoId);
+                await getVideoInformationWithYTExplode(videoId: videoId,audioOfVideo: true);
               },
               child: downloadingFile
                   ? SizedBox(
