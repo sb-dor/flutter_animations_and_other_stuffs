@@ -45,10 +45,10 @@ packages:
     dependency: "direct main"
     description:
       name: awesome_notifications
-      sha256: "6ba98d73553c8a54e7b77f8dd8b95ce9d32a7839ef182b28cf2ad54ec28b1821"
+      sha256: "65f730f9c0e73a346039ef746384bcff1773f9f03821b859705a7ab8db977b23"
       url: "https://pub.dev"
     source: hosted
-    version: "0.7.5-dev.3"
+    version: "0.8.2"
   barcode:
     dependency: transitive
     description:
@@ -592,6 +592,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  freezed_annotation:
+    dependency: transitive
+    description:
+      name: freezed_annotation
+      sha256: c3fd9336eb55a38cc1bbd79ab17573113a8deccd0ecbbf926cca3c62803b5c2d
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.4.1"
   gal:
     dependency: "direct main"
     description:
@@ -816,6 +824,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.7"
+  json_annotation:
+    dependency: transitive
+    description:
+      name: json_annotation
+      sha256: b10a7b2ff83d83c777edba3c6a0f97045ddadd56c944e1a23a3fdf43a1bf4467
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.8.1"
   lints:
     dependency: transitive
     description:
@@ -1605,6 +1621,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.3.3"
+  youtube_explode_dart:
+    dependency: "direct main"
+    description:
+      name: youtube_explode_dart
+      sha256: "98fd11b51adbbca76cbdb17f560168f1d7a9835cecceea965f49eb1e5eed155c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.2"
   youtube_player_flutter:
     dependency: "direct main"
     description:

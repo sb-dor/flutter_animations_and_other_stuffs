@@ -34,7 +34,7 @@ class AnimatedCartPageState extends State<AnimatedCartPage> {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Animated Cart Page"),
+          title: const Text("Animated Cart Page"),
           centerTitle: false,
           actions: [
             //  Adding 'clear-cart-button'

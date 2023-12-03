@@ -58,7 +58,7 @@ class _FlutterCameraPageState extends State<FlutterCameraPage> {
 
     for (var picture in pictures) {
       File file = File("$path/${picture.name}");
-      file.writeAsBytesSync(await picture.readAsBytes());
+      file.writeAsBytesSync(await picture.readAsBytes()); 
       await Gal.putImage(picture.path); //save image in gallery
     }
 
