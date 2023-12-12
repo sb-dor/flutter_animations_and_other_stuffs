@@ -98,10 +98,11 @@ class HiveDatabaseHelper {
     box.put('values', <Map<String, dynamic>>[]);
   }
 
-  Future<void> update({required String boxName,
-    required String key,
-    required dynamic value,
-    required Map<String, dynamic> updatingValue}) async {
+  Future<void> update(
+      {required String boxName,
+      required String key,
+      required dynamic value,
+      required Map<String, dynamic> updatingValue}) async {
     late Box box;
 
     if (Hive.isBoxOpen(boxName)) {
@@ -121,7 +122,7 @@ class HiveDatabaseHelper {
     if (boxValues.isEmpty) return;
 
     var valueIndex =
-    boxValues.indexWhere((element) => element.containsKey(key) && element[key] == value);
+        boxValues.indexWhere((element) => element.containsKey(key) && element[key] == value);
 
     boxValues.removeWhere((element) => element.containsKey(key) && element[key] == value);
 
@@ -140,6 +141,9 @@ class HiveDatabaseHelper {
         newMap[key] = value;
       } else {
         newMap[key.toString()] = value;
+      }
+      if (value is Map<dynamic, dynamic>) {
+        newMap[key.toString()] = _convertMap(value);
       }
     });
 
