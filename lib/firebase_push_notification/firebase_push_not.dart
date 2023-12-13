@@ -13,6 +13,17 @@ class FirebasePushNot {
     debugPrint("Title: ${message.notification?.title}");
     debugPrint("body: ${message.notification?.body}");
     debugPrint("playload: ${message.data}");
+
+
+    // debugPrint("payLoad: ${message.data}");
+    //
+    // if sending from laravel is json type
+    // Map<String, dynamic> notification = jsonDecode(message.data['title']);
+
+    // await AwesomeNotificationsHelper.showAwesomeNotification(
+    //     notification: notification['notification'], offline: false);
+
+
     await AwesomeNotificationsHelper.showAwesomeNotification(
         title: message.notification?.title ?? '',
         body: message.notification?.body ?? '',
@@ -36,6 +47,17 @@ class FirebasePushNot {
 
   static Future<void> foregroundMessageHandler(RemoteMessage? message) async {
     if (message == null) return;
+
+    // debugPrint("payLoad: ${message.data}");
+    //
+    // if sending from laravel is json type
+    // Map<String, dynamic> notification = jsonDecode(message.data['title']);
+
+    // await AwesomeNotificationsHelper.showAwesomeNotification(
+    //     notification: notification['notification'], offline: false);
+
+
+
     debugPrint("Title: ${message.notification?.title}");
     debugPrint("body: ${message.notification?.body}");
     debugPrint("playload: ${message.data}");

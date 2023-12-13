@@ -1,4 +1,5 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:flutter_app_badger/flutter_app_badger.dart';
 
 class AwesomeNotificationsHelper {
   //main init. you should add this line in main.dart
@@ -61,5 +62,25 @@ class AwesomeNotificationsHelper {
     AwesomeNotifications().createNotification(
         content: NotificationContent(
             id: 2, channelKey: "alshema_local_notify_id", title: title, body: body));
+  }
+
+// function for getting and saving last notification id:
+// re-comment this in your own code
+
+// static Future<int> _lastNotificationId() async {
+//   int lastNotificationId = await SharedPrefer.getIntByKey(key: 'last_notify_id') ?? 0;
+//   lastNotificationId++;
+//   await SharedPrefer.setIntWithKey(key: "last_notify_id", value: lastNotificationId);
+//   return lastNotificationId;
+// }
+
+  static Future<void> _clearAllNotifications() async {
+    await AwesomeNotifications().cancelAll();
+    await _updateNotificationBadge();
+  }
+
+  static Future<void> _updateNotificationBadge() async {
+    await FlutterAppBadger.removeBadge();
+    await FlutterAppBadger.updateBadgeCount(0);
   }
 }

@@ -46,7 +46,7 @@ dependencies:
   mailer: ^6.0.1 #sends message to emails
   flex_color_scheme: ^7.2.0
   awesome_notifications: ^0.8.2
-
+  flutter_app_badger: ^1.5.0
   google_fonts: ^5.1.0
   google_sign_in: ^6.1.4
   firebase_core: ^2.14.0

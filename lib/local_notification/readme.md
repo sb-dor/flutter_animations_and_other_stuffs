@@ -35,3 +35,8 @@ in android/app/build.gradle
 __
 if you want to use awesome_notification plugin instead of local_notification do all stuff from
 documentation 
+
+
+use this package for deleting badge after showing notification upon app icon
+
+    flutter_app_badger: ^1.5.0 
