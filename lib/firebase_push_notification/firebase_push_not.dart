@@ -8,27 +8,19 @@ class FirebasePushNot {
 
   // static final localNotification = FlutterLocalNotificationsPlugin();
 
-  static Future<void> backgroundMessageHandler(RemoteMessage? message) async {
-    if (message == null) return;
-    debugPrint("Title: ${message.notification?.title}");
-    debugPrint("body: ${message.notification?.body}");
-    debugPrint("playload: ${message.data}");
+  // to subscribe to the topic
+  static Future<String?> initTopic() async {
+    await firebaseMessaging.requestPermission();
 
+    final firebaseToken = await firebaseMessaging.getToken();
 
-    // debugPrint("payLoad: ${message.data}");
-    //
-    // if sending from laravel is json type
-    // Map<String, dynamic> notification = jsonDecode(message.data['title']);
+    await firebaseMessaging.subscribeToTopic('name_of_your_any_topic');
 
-    // await AwesomeNotificationsHelper.showAwesomeNotification(
-    //     notification: notification['notification'], offline: false);
+    initBackGroundNotification();
 
+    initForeGroundNotification();
 
-    await AwesomeNotificationsHelper.showAwesomeNotification(
-        title: message.notification?.title ?? '',
-        body: message.notification?.body ?? '',
-        imageType: "welcome_type",
-        image: null);
+    return firebaseToken;
   }
 
   static Future<void> initBackGroundNotification() async {
@@ -42,10 +34,35 @@ class FirebasePushNot {
     //real fun look like this
     //-> FirebaseMessaging.onBackgroundMessage((message) async {});
     //but what we put another fun that takes same parameter it will be good
-    FirebaseMessaging.onBackgroundMessage(backgroundMessageHandler);
+    FirebaseMessaging.onBackgroundMessage(_backgroundMessageHandler);
   }
 
-  static Future<void> foregroundMessageHandler(RemoteMessage? message) async {
+  static Future<void> initForeGroundNotification() async {
+    FirebaseMessaging.onMessage.listen(_foregroundMessageHandler);
+  }
+
+  static Future<void> _backgroundMessageHandler(RemoteMessage? message) async {
+    if (message == null) return;
+    debugPrint("Title: ${message.notification?.title}");
+    debugPrint("body: ${message.notification?.body}");
+    debugPrint("playload: ${message.data}");
+
+    // debugPrint("payLoad: ${message.data}");
+    //
+    // if sending from laravel is json type
+    // Map<String, dynamic> notification = jsonDecode(message.data['title']);
+
+    // await AwesomeNotificationsHelper.showAwesomeNotification(
+    //     notification: notification['notification'], offline: false);
+
+    await AwesomeNotificationsHelper.showAwesomeNotification(
+        title: message.notification?.title ?? '',
+        body: message.notification?.body ?? '',
+        imageType: "welcome_type",
+        image: null);
+  }
+
+  static Future<void> _foregroundMessageHandler(RemoteMessage? message) async {
     if (message == null) return;
 
     // debugPrint("payLoad: ${message.data}");
@@ -56,8 +73,6 @@ class FirebasePushNot {
     // await AwesomeNotificationsHelper.showAwesomeNotification(
     //     notification: notification['notification'], offline: false);
 
-
-
     debugPrint("Title: ${message.notification?.title}");
     debugPrint("body: ${message.notification?.body}");
     debugPrint("playload: ${message.data}");
@@ -66,9 +81,5 @@ class FirebasePushNot {
         body: message.notification?.body ?? '',
         imageType: "welcome_type",
         image: null);
-  }
-
-  static Future<void> initForeGroundNotification() async {
-    FirebaseMessaging.onMessage.listen(foregroundMessageHandler);
   }
 }
