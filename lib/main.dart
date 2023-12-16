@@ -43,6 +43,7 @@ void main() async {
   //get material app just for showing get's snackBar
   if (!kIsWeb) {
     await Firebase.initializeApp();
+    await FirebasePushNot.initTopic();
     await FirebasePushNot.initBackGroundNotification();
     await FirebasePushNot.initForeGroundNotification();
     await LocalNotification.initLocalNotification();

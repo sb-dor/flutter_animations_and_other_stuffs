@@ -45,7 +45,7 @@ class FirebasePushNot {
     if (message == null) return;
     debugPrint("Title: ${message.notification?.title}");
     debugPrint("body: ${message.notification?.body}");
-    debugPrint("playload: ${message.data}");
+    debugPrint("playload of background listener: ${message.data}");
 
     // debugPrint("payLoad: ${message.data}");
     //
@@ -75,7 +75,7 @@ class FirebasePushNot {
 
     debugPrint("Title: ${message.notification?.title}");
     debugPrint("body: ${message.notification?.body}");
-    debugPrint("playload: ${message.data}");
+    debugPrint("playload of foreground listener: ${message.data}");
     await AwesomeNotificationsHelper.showAwesomeNotification(
         title: message.notification?.title ?? '',
         body: message.notification?.body ?? '',
