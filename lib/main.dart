@@ -12,6 +12,7 @@ import 'package:flutter_animations_2/bloc_learning/bloc_to_bloc_comm/second_bloc
 import 'package:flutter_animations_2/bottom_modal_sheets/bottom_modal_sheets_cubit/bottom_modal_sheet_cubit.dart';
 import 'package:flutter_animations_2/dart_sync_async_isolates/dart_isolates.dart';
 import 'package:flutter_animations_2/design_templates/mvvm/viewmodel_mvvm.dart';
+import 'package:flutter_animations_2/dodo_pizza_phone_choose_pizza_animation/dodo_pizza_turn_screen_animation.dart';
 import 'package:flutter_animations_2/esc_pos_printer_with_bluetooth/esc_pos_printer_ui_helper.dart';
 import 'package:flutter_animations_2/firebase_push_notification/firebase_push_not.dart';
 import 'package:flutter_animations_2/flutter_background_service/flutter_background_service_helper.dart';
@@ -190,7 +191,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const YoutubeExplodePage(),
+        builder: (context, state) => const DodoPizzaTurnPizzaAnimation(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
