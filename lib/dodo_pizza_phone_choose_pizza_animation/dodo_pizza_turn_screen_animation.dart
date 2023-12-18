@@ -34,7 +34,7 @@ class _DodoPizzaTurnPizzaAnimationState extends State<DodoPizzaTurnPizzaAnimatio
           child: PageView(
             // pageSnapping: false,
             controller: _pageController,
-            padEnds: false,
+            // padEnds: false,
             children: const [
               MainTurnAnimation(),
               MainTurnAnimation(),
