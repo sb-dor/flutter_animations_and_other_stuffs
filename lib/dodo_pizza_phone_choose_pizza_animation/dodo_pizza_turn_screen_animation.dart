@@ -97,7 +97,9 @@ class _MainTurnAnimationState extends State<MainTurnAnimation> with TickerProvid
                       Positioned.fill(
                         child: Transform(
                           alignment: Alignment.center,
-                          transform: Matrix4.identity()..rotateY(_firstWidgetTurnAnimation.value),
+                          transform: Matrix4.identity()
+                            ..setEntry(3, 2, 0.001)
+                            ..rotateY(_firstWidgetTurnAnimation.value),
                           child: Container(
                             margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                             decoration: BoxDecoration(
@@ -139,7 +141,9 @@ class _MainTurnAnimationState extends State<MainTurnAnimation> with TickerProvid
                         // top: 10,
                         child: Transform(
                           alignment: Alignment.center,
-                          transform: Matrix4.identity()..rotateY(_secondWidgetTurnAnimation.value),
+                          transform: Matrix4.identity()
+                            ..setEntry(3, 2, 0.001)
+                            ..rotateY(_secondWidgetTurnAnimation.value),
                           child: GestureDetector(
                             onTap: () {
                               if (_firstWidgetTurnAnimationController.isCompleted &&

@@ -11,6 +11,8 @@ import 'package:flutter_animations_2/bloc_learning/bloc_to_bloc_comm/first_bloc/
 import 'package:flutter_animations_2/bloc_learning/bloc_to_bloc_comm/second_bloc/second_bloc.dart';
 import 'package:flutter_animations_2/bottom_modal_sheets/bottom_modal_sheets_cubit/bottom_modal_sheet_cubit.dart';
 import 'package:flutter_animations_2/dart_sync_async_isolates/dart_isolates.dart';
+import 'package:flutter_animations_2/dart_sync_async_isolates/vandads_isolates/dart_iso_example1.dart';
+import 'package:flutter_animations_2/dart_sync_async_isolates/vandads_isolates/dart_iso_example2.dart';
 import 'package:flutter_animations_2/design_templates/mvvm/viewmodel_mvvm.dart';
 import 'package:flutter_animations_2/dodo_pizza_phone_choose_pizza_animation/dodo_pizza_turn_screen_animation.dart';
 import 'package:flutter_animations_2/esc_pos_printer_with_bluetooth/esc_pos_printer_ui_helper.dart';
@@ -104,7 +106,10 @@ void main() async {
   //
   // debugPrint("all isolates start here");
   // DartIsolates.runIsolate();
-  DartIsolates.runIsolate2();
+  // DartIsolates.runIsolate2();
+
+  DartIsoExample1.runIsolate();
+  DartIsoExample2.theMainFunc();
 
   await PdfGenerator.init();
   runApp(MultiBlocProvider(
