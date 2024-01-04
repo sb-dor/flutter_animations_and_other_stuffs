@@ -3,6 +3,8 @@ import 'dart:isolate';
 import 'package:flutter/cupertino.dart';
 
 abstract class DartIsoExample2 {
+  /// [https://stackoverflow.com/questions/71406166/unhandled-exception-invalid-arguments-illegal-argument-in-isolate-message]
+
   static void theMainFunc() async {
     final message = await getMessage("What are you doing");
     debugPrint("The message is $message");
@@ -11,7 +13,7 @@ abstract class DartIsoExample2 {
   static Future<String> getMessage(String forGreeting) async {
     final rp = ReceivePort();
     Isolate.spawn(
-      _communicator,
+      _communicator, // remember that you should create top level function or static method if you want to isolate work
       rp.sendPort,
     );
 
@@ -22,6 +24,8 @@ abstract class DartIsoExample2 {
     return broadcastRp.takeWhile((element) => element is String).cast<String>().take(1).first;
   }
 
+  // remember that you should create top level function or static method if you want to isolate work
+  // look link above for more information
   static void _communicator(SendPort sp) async {
     final rp = ReceivePort();
     sp.send(rp.sendPort);
