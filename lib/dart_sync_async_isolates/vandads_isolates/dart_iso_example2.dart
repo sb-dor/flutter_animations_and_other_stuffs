@@ -13,14 +13,30 @@ abstract class DartIsoExample2 {
   static Future<String> getMessage(String forGreeting) async {
     final rp = ReceivePort();
     Isolate.spawn(
-      _communicator, // remember that you should create top level function or static method if you want to isolate work
+      _communicator,
+      // remember that you should create top level function or static method if you want to isolate work
       rp.sendPort,
     );
 
     final broadcastRp = rp.asBroadcastStream();
+
     final SendPort communicatorSendPort = await broadcastRp.first;
+
     communicatorSendPort.send(forGreeting);
 
+    // you can listen your isolate message in two ways:
+
+    // first way:
+    broadcastRp.listen((event) {
+      // get data by "event" here
+    });
+
+    // and second way (which is helpful when you are getting data in BLoc):
+    await for (final each in broadcastRp) {
+      // get data by "each" here
+    }
+
+    // is using for returning something
     return broadcastRp.takeWhile((element) => element is String).cast<String>().take(1).first;
   }
 

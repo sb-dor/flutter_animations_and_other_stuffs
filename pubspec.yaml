@@ -99,6 +99,8 @@ dependencies:
   youtube_explode_dart: ^2.0.2
   ffmpeg_kit_flutter: ^6.0.3
 
+  html: ^0.15.4
+
 
 dev_dependencies:
   flutter_test:

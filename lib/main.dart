@@ -21,6 +21,7 @@ import 'package:flutter_animations_2/flutter_background_service/flutter_backgrou
 import 'package:flutter_animations_2/flutter_camera/flutter_camera_helper.dart';
 import 'package:flutter_animations_2/flutter_camera/flutter_camera_page.dart';
 import 'package:flutter_animations_2/flutter_permissions/cubit/flutter_permissions_cubit.dart';
+import 'package:flutter_animations_2/flutter_web_scrapper/flutter_web_scrapper_page.dart';
 import 'package:flutter_animations_2/global_context/global_context.helper.dart';
 import 'package:flutter_animations_2/hive/hive_database_helper.dart';
 import 'package:flutter_animations_2/internet_controller/cubit/internet_conn_checker_cubit.dart';
@@ -108,8 +109,8 @@ void main() async {
   // DartIsolates.runIsolate();
   // DartIsolates.runIsolate2();
 
-  DartIsoExample1.runIsolate();
-  DartIsoExample2.theMainFunc();
+  // DartIsoExample1.runIsolate();
+  // DartIsoExample2.theMainFunc();
 
   await PdfGenerator.init();
   runApp(MultiBlocProvider(
@@ -196,7 +197,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const DodoPizzaTurnPizzaAnimation(),
+        builder: (context, state) => const FlutterWebScrapperPage(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
