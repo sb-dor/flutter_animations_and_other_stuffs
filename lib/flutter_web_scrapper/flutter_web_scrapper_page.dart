@@ -55,7 +55,7 @@ class _FlutterWebScrapperPageState extends State<FlutterWebScrapperPage> {
                           height: 100,
                           child: Image.network(
                             list[index]['images'].first ?? "",
-                            errorBuilder: (context, ob, st) => Text("Error"),
+                            errorBuilder: (context, ob, st) => const Text("Error"),
                           ),
                         )
                       else
