@@ -55,17 +55,11 @@ class _YoutubeFlutterAnimationPageState extends State<YoutubeFlutterAnimationPag
                   padEnds: true,
                   itemBuilder: (context, index) {
                     double value = 0.0;
-                    // if (_pageController.position.haveDimensions) {
-                    //   value = index - (_pageController.page ?? 0.0);
-                    //   if (index == _pageController.page?.floor()) {
-                    //     value = -value * 0.100;
-                    //   } else if (index == (_pageController.page?.floor() ?? 0.0) + 1) {
-                    //     value = value * 0.100;
-                    //   } else {
-                    //     value = -value * 0.100;
-                    //   }
-                    //   debugPrint("value $index : $value");
-                    // }
+                    if (_pageController.position.haveDimensions) {
+                      value = index - (_pageController.page ?? 0);
+
+                      value = (value * 0.070).clamp(0.0, 1.0);
+                    }
 
                     return Transform.scale(
                       scale: value + 1,
@@ -90,7 +84,7 @@ class _YoutubeFlutterAnimationPageState extends State<YoutubeFlutterAnimationPag
                               child: Center(
                                 child: AnimatedContainer(
                                   duration: const Duration(milliseconds: 250),
-                                  height: 300 ,
+                                  height: 300,
                                   width: MediaQuery.of(context).size.width,
                                   padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
                                   decoration: BoxDecoration(
