@@ -79,54 +79,54 @@ class _YoutubeFlutterAnimationPageState extends State<YoutubeFlutterAnimationPag
                             ),
                           ),
                         ),
-                        child: Container(
-                          color: Colors.red,
-                          child: Stack(
-                            children: [
-                              AnimatedPositioned(
-                                duration: const Duration(milliseconds: 250),
-                                top: 0,
-                                right: list[index].isOpen ? 5 : 15,
-                                left: list[index].isOpen ? 5 : 15,
-                                bottom: list[index].isOpen ? -70 : 0,
-                                child: Center(
-                                  child: Container(
-                                    height: 300,
-                                    width: MediaQuery.of(context).size.width,
-                                    padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
-                                    decoration: BoxDecoration(
+                        child: Stack(
+                          children: [
+                            AnimatedPositioned(
+                              duration: const Duration(milliseconds: 250),
+                              top: 0,
+                              right: list[index].isOpen ? 5 : 15,
+                              left: list[index].isOpen ? 5 : 15,
+                              bottom: list[index].isOpen ? -70 : 0,
+                              child: Center(
+                                child: AnimatedContainer(
+                                  duration: const Duration(milliseconds: 250),
+                                  height: 300,
+                                  width: MediaQuery.of(context).size.width,
+                                  padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                                  decoration: BoxDecoration(
                                       color: Colors.white,
                                       borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    child: Hero(
-                                      tag: "${list[index].imageUrl ?? '-'}_about",
-                                      child: Material(
-                                        color: Colors.transparent,
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          mainAxisAlignment: MainAxisAlignment.end,
-                                          children: [
-                                            Text("${list[index].address}"),
-                                            Text("${list[index].location}"),
-                                          ],
-                                        ),
+                                      boxShadow: list[index].isOpen
+                                          ? [const BoxShadow(color: Colors.grey, blurRadius: 5)]
+                                          : []),
+                                  child: Hero(
+                                    tag: "${list[index].imageUrl ?? '-'}_about",
+                                    child: Material(
+                                      color: Colors.transparent,
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        mainAxisAlignment: MainAxisAlignment.end,
+                                        children: [
+                                          Text("${list[index].address}"),
+                                          Text("${list[index].location}"),
+                                        ],
                                       ),
                                     ),
                                   ),
                                 ),
                               ),
-                              AnimatedPositioned(
-                                duration: const Duration(milliseconds: 250),
-                                top: 0,
-                                right: 15,
-                                left: 15,
-                                bottom: list[index].isOpen ? 70 : 0,
-                                child: _CardItem(
-                                  ytFlLocModel: list[index],
-                                ),
+                            ),
+                            AnimatedPositioned(
+                              duration: const Duration(milliseconds: 250),
+                              top: 0,
+                              right: 15,
+                              left: 15,
+                              bottom: list[index].isOpen ? 70 : 0,
+                              child: _CardItem(
+                                ytFlLocModel: list[index],
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                     );
