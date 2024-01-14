@@ -90,7 +90,7 @@ class _YoutubeFlutterAnimationPageState extends State<YoutubeFlutterAnimationPag
                               child: Center(
                                 child: AnimatedContainer(
                                   duration: const Duration(milliseconds: 250),
-                                  height: 300,
+                                  height: 300 ,
                                   width: MediaQuery.of(context).size.width,
                                   padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
                                   decoration: BoxDecoration(
