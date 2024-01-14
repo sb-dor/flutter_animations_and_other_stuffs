@@ -1,5 +1,5 @@
 
-import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_core/firebase_core.dart' show Firebase;
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
@@ -38,6 +38,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart' as provider;
 
+import 'animation_pages/sin_wave_page.dart';
+import 'animation_pages/youtube_flutter_location_animation/youtube_flutter_location_animation.dart';
 import 'flutter_blurhash/flutter_blurhash_page.dart';
 import 'youtube_exlode_page/youtube_explode_page.dart';
 
@@ -197,7 +199,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const FlutterWebScrapperPage(),
+        builder: (context, state) => const YoutubeFlutterAnimationPage(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
