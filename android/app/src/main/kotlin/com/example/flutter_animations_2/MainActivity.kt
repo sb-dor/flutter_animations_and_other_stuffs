@@ -1,7 +1,7 @@
 package com.example.flutter_animations_2
 
 
-import MAP_ID
+import MAP_YANDEX_ID
 import io.flutter.embedding.android.FlutterActivity;
 import io.flutter.embedding.engine.FlutterEngine;
 import io.flutter.plugins.GeneratedPluginRegistrant;
@@ -30,7 +30,7 @@ class MainActivity : FlutterActivity() {
         // the key is already locked and you cannot use it
         try {
             MapKitFactory.setLocale("ru_RU"); // Your preferred language. Not required, defaults to system language
-            MapKitFactory.setApiKey(MAP_ID); // Your generated API key
+            MapKitFactory.setApiKey(MAP_YANDEX_ID); // Your generated API key
         } catch (_: AssertionError) {
 
         }

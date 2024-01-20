@@ -24,6 +24,7 @@ import 'package:flutter_animations_2/flutter_camera/flutter_camera_page.dart';
 import 'package:flutter_animations_2/flutter_permissions/cubit/flutter_permissions_cubit.dart';
 import 'package:flutter_animations_2/flutter_web_scrapper/flutter_web_scrapper_page.dart';
 import 'package:flutter_animations_2/global_context/global_context.helper.dart';
+import 'package:flutter_animations_2/google_map/presentation/google_map_page.dart';
 import 'package:flutter_animations_2/hive/hive_database_helper.dart';
 import 'package:flutter_animations_2/internet_controller/cubit/internet_conn_checker_cubit.dart';
 import 'package:flutter_animations_2/local_notification/awesome_notification_helper.dart';
@@ -42,6 +43,7 @@ import 'package:provider/provider.dart' as provider;
 import 'animation_pages/sin_wave_page.dart';
 import 'animation_pages/youtube_flutter_location_animation/youtube_flutter_location_animation.dart';
 import 'flutter_blurhash/flutter_blurhash_page.dart';
+import 'google_map/cubit/main_google_map_cubit.dart';
 import 'youtube_exlode_page/youtube_explode_page.dart';
 
 
@@ -125,6 +127,7 @@ void main() async {
         BlocProvider(create: (_) => InternetConnCubit()),
         BlocProvider(create: (_) => MaterialChangeCubit()),
         BlocProvider(create: (_) => MainBlocConcurrency()),
+        BlocProvider(create: (_) => MainGoogleMapCubit()),
 
         //
         BlocProvider(create: (_) => FirstBloc()),
@@ -200,7 +203,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const YoutubeCoffeeAppAnimationPage(),
+        builder: (context, state) => const GoogleMapPage(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
