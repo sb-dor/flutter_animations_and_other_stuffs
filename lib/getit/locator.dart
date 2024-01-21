@@ -15,7 +15,9 @@ void setup() {
   // since your MemeDomainController is implementing MemeRepository you have to register them like this :
   locator.registerLazySingleton<MemeRepository>(() => MemeDomainController());
 
-  // main different between registering factories and singleton is that getIt
+  // main different between registering factories and singleton in getIt is:
+  // singleton creates single class for whole application (means that when you call particular class it will be called once)
+  // factories is vise versa, unlike singleton is will create the new instance of particular class every time when you call that class
 
   // if your class is not implementing or extending some another class
   // you can register them as usual:
