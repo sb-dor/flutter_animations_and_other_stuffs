@@ -42,12 +42,15 @@ import 'package:provider/provider.dart' as provider;
 import 'animation_pages/sin_wave_page.dart';
 import 'animation_pages/youtube_flutter_location_animation/youtube_flutter_location_animation.dart';
 import 'flutter_blurhash/flutter_blurhash_page.dart';
+import 'getit/locator.dart';
+import 'getit/repository/getit_page.dart';
 import 'google_map/cubit/main_google_map_cubit.dart';
 import 'yandex_mapkit/yandex_map_screen.dart';
 import 'youtube_exlode_page/youtube_explode_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  setup();
   //get material app just for showing get's snackBar
   if (!kIsWeb) {
     try {
@@ -204,7 +207,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const YandexMapScreen(),
+        builder: (context, state) => const GetItPage(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
