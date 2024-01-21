@@ -84,3 +84,10 @@ android/app/src/main/.../MainActivity.kt
             super.configureFlutterEngine(flutterEngine)
          }
       }
+
+
+for any integrations with Yandex.map use this packages:
+
+      flutter_polyline_points: [version]
+      location: [version]
+      geocoding:  [version]
