@@ -1,4 +1,3 @@
-
 import 'package:firebase_core/firebase_core.dart' show Firebase;
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
@@ -46,22 +45,23 @@ import 'flutter_blurhash/flutter_blurhash_page.dart';
 import 'google_map/cubit/main_google_map_cubit.dart';
 import 'youtube_exlode_page/youtube_explode_page.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //get material app just for showing get's snackBar
   if (!kIsWeb) {
-    await Firebase.initializeApp();
-    await FirebasePushNot.initTopic();
-    await FirebasePushNot.initBackGroundNotification();
-    await FirebasePushNot.initForeGroundNotification();
-    await LocalNotification.initLocalNotification();
-    await EscPosPrinterUIHelper.init();
-    await AwesomeNotificationsHelper.initAwesomeNotifications();
-    await SqfLiteDatabaseHelper.initSqfLiteDatabase();
-    await FlutterBackgroundServiceHelper.initService();
-    await HiveDatabaseHelper.instance.initHive();
-    await FlutterCameraHelper.instance.initCameras();
+    try {
+      await Firebase.initializeApp();
+      await FirebasePushNot.initTopic();
+      await FirebasePushNot.initBackGroundNotification();
+      await FirebasePushNot.initForeGroundNotification();
+      await LocalNotification.initLocalNotification();
+      await EscPosPrinterUIHelper.init();
+      await AwesomeNotificationsHelper.initAwesomeNotifications();
+      await SqfLiteDatabaseHelper.initSqfLiteDatabase();
+      await FlutterBackgroundServiceHelper.initService();
+      await HiveDatabaseHelper.instance.initHive();
+      await FlutterCameraHelper.instance.initCameras();
+    } catch (_) {}
   }
   // MainCharacter mainCharacter = MainCharacter("Alien");
   // mainCharacter.race?.saySome();
@@ -191,7 +191,7 @@ class _MainAppState extends State<MainApp> {
     context.read<MainMapCubit>().initMap();
     context.read<MainMapCubit>().initCoordinatesFromListOfCoordinatedWithCluster();
     // context.read<MainMapCubit>().initCoordinatedFromListOfCoordinates();
-    showNo();
+    // showNo();
     initDynamicLinks();
   }
 

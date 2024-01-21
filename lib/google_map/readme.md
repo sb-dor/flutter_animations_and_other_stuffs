@@ -9,3 +9,11 @@ add the package in your yaml.file:
 if you want to get address from LatLon, use this package:
 
     geocoding:  [version]
+
+in order to get user location foreground or event background use this one:
+
+    location: [version]
+
+in order to draw destination (polylines) between two coordinates use this one: 
+
+    flutter_polyline_points: [version]
