@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 class MapStateModel {
+  int polyLineDestinationIds = 0;
+  bool selectingUserDestination = false;
   //create unique id for all placeMarks
   final MapObjectId firstPlaceMarkId = const MapObjectId('first_place_mark_id');
   final MapObjectId cameraMapObjectId = const MapObjectId('camera_placeMark');

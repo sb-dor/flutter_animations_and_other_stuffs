@@ -3,6 +3,8 @@ import 'package:flutter_animations_2/global_context/global_context.helper.dart';
 import 'package:flutter_animations_2/yandex_mapkit/yandex_mapkit_cubit/main_map_states.dart';
 import 'package:flutter_animations_2/yandex_mapkit/yandex_mapkit_cubit/state_model/map_state_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:get/get.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 class MainMapCubit extends Cubit<MainMapStates> {
@@ -496,8 +498,81 @@ class MainMapCubit extends Cubit<MainMapStates> {
       debugPrint("searchText: ${each.searchText}");
     }
 
-    List<SuggestItem> suggests = (res.items??[]).where((element) => element.subtitle == "Душанбе").toList();
+    List<SuggestItem> suggests =
+        (res.items ?? []).where((element) => element.subtitle == "Душанбе").toList();
 
     debugPrint("suggests list : ${suggests.length}");
+  }
+
+  //
+
+  void _clearDestinationsMarks() {
+    var currentState = state.mapStateModel;
+    currentState.mapObjects.removeWhere(
+      (element) =>
+          element.mapId.value == 'destination_1' ||
+          element.mapId.value == 'destination_2' ||
+          element.mapId.value == 'destination',
+    );
+    currentState.polyLineDestinationIds = 0;
+  }
+
+  void startToSelectDestination() {
+    var currentState = state.mapStateModel;
+    currentState.selectingUserDestination = !currentState.selectingUserDestination;
+    if (currentState.selectingUserDestination) _clearDestinationsMarks();
+    emit(InitialMapStates(currentState));
+  }
+
+  void addTwoPolyLinesBetweenTwoDestinations(Point point) async {
+    var currentState = state.mapStateModel;
+
+    currentState.polyLineDestinationIds++;
+
+    MapObjectId firstPlaceMarkId =
+        MapObjectId('destination_${currentState.polyLineDestinationIds}');
+
+    PlacemarkMapObject marker = PlacemarkMapObject(mapId: firstPlaceMarkId, point: point);
+
+    currentState.mapObjects.add(marker);
+
+    final PlacemarkMapObject? firstMarker = currentState.mapObjects
+            .firstWhereOrNull((element) => element.mapId.value == 'destination_1')
+        as PlacemarkMapObject?;
+
+    final PlacemarkMapObject? secondMarker = currentState.mapObjects
+            .firstWhereOrNull((element) => element.mapId.value == 'destination_2')
+        as PlacemarkMapObject?;
+
+    debugPrint("first: ${firstMarker?.point} | second: ${secondMarker?.point}");
+
+    if (firstMarker != null && secondMarker != null) {
+      final yandexSearch = YandexDriving.requestRoutes(
+        points: [
+          RequestPoint(point: firstMarker.point, requestPointType: RequestPointType.wayPoint),
+          RequestPoint(point: secondMarker.point, requestPointType: RequestPointType.wayPoint)
+        ],
+        drivingOptions: const DrivingOptions(initialAzimuth: 0, routesCount: 5, avoidTolls: true),
+      );
+
+      final result = await yandexSearch.result;
+
+      const MapObjectId placeMark = MapObjectId('destination');
+
+      final getPos = PolylineMapObject(
+        mapId: placeMark,
+        polyline: Polyline(
+            points:
+                (result.routes ?? []).first.geometry),
+        strokeColor: Theme.of(GlobalContextHelper.globalNavigatorContext.currentContext!)
+            .colorScheme
+            .secondary,
+        strokeWidth: 3,
+      );
+
+      currentState.selectingUserDestination = false;
+      currentState.mapObjects.add(getPos);
+    }
+    emit(InitialMapStates(currentState));
   }
 }

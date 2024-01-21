@@ -43,6 +43,7 @@ import 'animation_pages/sin_wave_page.dart';
 import 'animation_pages/youtube_flutter_location_animation/youtube_flutter_location_animation.dart';
 import 'flutter_blurhash/flutter_blurhash_page.dart';
 import 'google_map/cubit/main_google_map_cubit.dart';
+import 'yandex_mapkit/yandex_map_screen.dart';
 import 'youtube_exlode_page/youtube_explode_page.dart';
 
 void main() async {
@@ -203,7 +204,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const GoogleMapPage(),
+        builder: (context, state) => const YandexMapScreen(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
