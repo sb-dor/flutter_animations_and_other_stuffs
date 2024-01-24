@@ -41,6 +41,7 @@ import 'package:provider/provider.dart' as provider;
 
 import 'animation_pages/sin_wave_page.dart';
 import 'animation_pages/youtube_flutter_location_animation/youtube_flutter_location_animation.dart';
+import 'floor_database/floor_database_page.dart';
 import 'flutter_blurhash/flutter_blurhash_page.dart';
 import 'getit/locator.dart';
 import 'getit/repository/getit_page.dart';
@@ -50,7 +51,7 @@ import 'youtube_exlode_page/youtube_explode_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  setup();
+  await setup();
   //get material app just for showing get's snackBar
   if (!kIsWeb) {
     try {
@@ -207,7 +208,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const GetItPage(),
+        builder: (context, state) => const FloorDatabasePage(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
