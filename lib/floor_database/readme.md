@@ -1,6 +1,13 @@
 add this package on your pubspec.yaml file
 
-    floor: ^1.4.2
+    dependencies:
+      flutter:
+          sdk: flutter
+      floor: ^1.4.2
+
+    dev_dependencies:
+      floor_generator: ^1.4.2
+      build_runner: ^2.1.2
 
 read the main documentation about how to create database with floor package
 

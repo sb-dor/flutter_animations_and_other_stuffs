@@ -10,6 +10,7 @@ import 'package:flutter_animations_2/bloc_learning/bloc_concurrency/main_bloc_co
 import 'package:flutter_animations_2/bloc_learning/bloc_to_bloc_comm/first_bloc/first_bloc.dart';
 import 'package:flutter_animations_2/bloc_learning/bloc_to_bloc_comm/second_bloc/second_bloc.dart';
 import 'package:flutter_animations_2/bottom_modal_sheets/bottom_modal_sheets_cubit/bottom_modal_sheet_cubit.dart';
+import 'package:flutter_animations_2/clean_architecture/cubit/day_cubit.dart';
 import 'package:flutter_animations_2/dart_sync_async_isolates/dart_isolates.dart';
 import 'package:flutter_animations_2/dart_sync_async_isolates/vandads_isolates/dart_iso_example1.dart';
 import 'package:flutter_animations_2/dart_sync_async_isolates/vandads_isolates/dart_iso_example2.dart';
@@ -41,6 +42,7 @@ import 'package:provider/provider.dart' as provider;
 
 import 'animation_pages/sin_wave_page.dart';
 import 'animation_pages/youtube_flutter_location_animation/youtube_flutter_location_animation.dart';
+import 'clean_architecture/presentation/clean_architecture_page.dart';
 import 'floor_database/floor_database_page.dart';
 import 'flutter_blurhash/flutter_blurhash_page.dart';
 import 'getit/locator.dart';
@@ -133,6 +135,7 @@ void main() async {
         BlocProvider(create: (_) => MaterialChangeCubit()),
         BlocProvider(create: (_) => MainBlocConcurrency()),
         BlocProvider(create: (_) => MainGoogleMapCubit()),
+        BlocProvider(create: (_) => DayCubit()),
 
         //
         BlocProvider(create: (_) => FirstBloc()),
@@ -208,7 +211,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const FloorDatabasePage(),
+        builder: (context, state) => const CleanArchitecturePage(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
