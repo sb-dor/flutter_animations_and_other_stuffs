@@ -108,6 +108,9 @@ dependencies:
 
   floor: ^1.4.2
 
+  flutter_nearby_connections: ^1.1.2
+  device_info_plus: ^9.1.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

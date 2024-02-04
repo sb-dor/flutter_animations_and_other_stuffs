@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animations_2/app_light_and_dark_theme/app_light_and_dark_theme.dart';
 import 'package:flutter_animations_2/bottom_modal_sheets/bottom_modal_sheet_dynamic_size.dart';
+import 'package:flutter_animations_2/yandex_mapkit/get_lat_lot_by_screen_drawing_screen.dart';
 import 'package:flutter_animations_2/yandex_mapkit/yandex_mapkit_cubit/main_map_cubit.dart';
 import 'package:flutter_animations_2/yandex_mapkit/yandex_mapkit_cubit/main_map_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,23 +23,38 @@ class YandexMapScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(children: [
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  ElevatedButton.icon(
-                      onPressed: () => context.read<MainMapCubit>().addPolygonPlacesInMap(),
-                      icon: const Icon(Icons.policy),
-                      label: const Text("polygon")),
-                  ElevatedButton.icon(
-                      onPressed: () => context.read<MainMapCubit>().suggestPositionsInRequest(null),
-                      icon: const Icon(Icons.settings_suggest),
-                      label: const Text("suggest address")),
-                ]),
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  if (!currentState.selectingUserDestination)
+                Expanded(
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                     ElevatedButton.icon(
-                        onPressed: () => context.read<MainMapCubit>().startToSelectDestination(),
+                        onPressed: () => context.read<MainMapCubit>().addPolygonPlacesInMap(),
                         icon: const Icon(Icons.policy),
-                        label: const Text("Polyline Two")),
-                ])
+                        label: const Text("polygon")),
+                    ElevatedButton.icon(
+                        onPressed: () =>
+                            context.read<MainMapCubit>().suggestPositionsInRequest(null),
+                        icon: const Icon(Icons.settings_suggest),
+                        label: const Text("suggest address")),
+                  ]),
+                ),
+                Expanded(
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    if (!currentState.selectingUserDestination)
+                      ElevatedButton.icon(
+                          onPressed: () => context.read<MainMapCubit>().startToSelectDestination(),
+                          icon: const Icon(Icons.policy),
+                          label: const Text("Polyline Two")),
+                    ElevatedButton.icon(
+                        onPressed: () async => await showDialog(
+                                    barrierColor: Colors.transparent,
+                                    context: context,
+                                    builder: (context) => GetLatLotByScreenDrawingScreen())
+                                .then((value) {
+                              context.read<MainMapCubit>().clearSavedPoints();
+                            }),
+                        icon: const Icon(Icons.policy),
+                        label: const Text("Get Position by screen")),
+                  ]),
+                )
               ]),
               Row(children: [
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

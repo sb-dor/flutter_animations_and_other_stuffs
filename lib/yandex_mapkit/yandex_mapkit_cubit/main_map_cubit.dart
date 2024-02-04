@@ -169,6 +169,8 @@ class MainMapCubit extends Cubit<MainMapStates> {
 
     debugPrint("camera position zoom ${cameraPosition.zoom}");
 
+    debugPrint("camera position target ${cameraPosition.target}");
+
     final firstMarkMapObject = currentState.mapObjects
         .firstWhere((el) => el.mapId == currentState.firstPlaceMarkId) as PlacemarkMapObject;
 
@@ -561,9 +563,7 @@ class MainMapCubit extends Cubit<MainMapStates> {
 
       final getPos = PolylineMapObject(
         mapId: placeMark,
-        polyline: Polyline(
-            points:
-                (result.routes ?? []).first.geometry),
+        polyline: Polyline(points: (result.routes ?? []).first.geometry),
         strokeColor: Theme.of(GlobalContextHelper.globalNavigatorContext.currentContext!)
             .colorScheme
             .secondary,
@@ -573,6 +573,45 @@ class MainMapCubit extends Cubit<MainMapStates> {
       currentState.selectingUserDestination = false;
       currentState.mapObjects.add(getPos);
     }
+    emit(InitialMapStates(currentState));
+  }
+
+  // for finding address through drawing points in screen
+  // from "Яндекс недвижимость"
+  void getPointFromScreenPosition(Offset screenPositionOffset) async {
+    var currentState = state.mapStateModel;
+
+    currentState.searchingPlaces.add(
+      Positioned(
+        left: screenPositionOffset.dx,
+        top: screenPositionOffset.dy,
+        child: Container(
+          width: 50,
+          height: 50,
+          decoration: BoxDecoration(
+            color: Colors.black.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(50),
+          ),
+        ),
+      ),
+    );
+
+    var screenPoint = ScreenPoint(x: screenPositionOffset.dx, y: screenPositionOffset.dy);
+
+    // add this point to the list and make request with this points in server
+    var point = await currentState.controller.getPoint(screenPoint);
+
+    emit(InitialMapStates(currentState));
+
+    debugPrint("point is : ${point}");
+  }
+
+  void clearSavedPoints() {
+    var currentState = state.mapStateModel;
+
+    currentState.searchingPlaces.clear();
+    currentState.searchingPoints.clear();
+
     emit(InitialMapStates(currentState));
   }
 }

@@ -39,6 +39,10 @@ class MapStateModel {
 
   String? searchRes;
 
+  List<Widget> searchingPlaces = [];
+
+  List<Point> searchingPoints = [];
+
   //whenever you have coordinates you should have placeMarkObject and MapObjectId for each of them
   List<Coordinate> listOfCoordinates = [
     Coordinate(lat: 38.565559, lon: 68.760942),
