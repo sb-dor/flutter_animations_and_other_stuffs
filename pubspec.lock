@@ -293,10 +293,10 @@ packages:
     dependency: "direct main"
     description:
       name: connectivity_plus
-      sha256: b74247fad72c171381dbe700ca17da24deac637ab6d43c343b42867acb95c991
+      sha256: "224a77051d52a11fbad53dd57827594d3bd24f945af28bd70bab376d68d437f0"
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.6"
+    version: "5.0.2"
   connectivity_plus_platform_interface:
     dependency: transitive
     description:
@@ -345,6 +345,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.6"
+  dart_ping:
+    dependency: transitive
+    description:
+      name: dart_ping
+      sha256: "623cce963c66643cb26661187651a1c69ec09ac3a8bae3a17717aed0e17c0054"
+      url: "https://pub.dev"
+    source: hosted
+    version: "7.0.2"
   dart_style:
     dependency: transitive
     description:
@@ -718,14 +726,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.3"
-  flutter_nearby_connections:
-    dependency: "direct main"
-    description:
-      name: flutter_nearby_connections
-      sha256: f2003fde3df5d99ce15693b1603de168f66a2e7c50b84786191236cc32e3afdc
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.2"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
@@ -1240,6 +1240,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
+  network_discovery:
+    dependency: "direct main"
+    description:
+      name: network_discovery
+      sha256: c9369dd1a31c0b7132a4cbca3ee91fb5b314159e1b072a689ef991a79f1e4ee3
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
+  network_info_plus:
+    dependency: "direct main"
+    description:
+      name: network_info_plus
+      sha256: "4601b815b1c6a46d84839f65cd774a7d999738471d910fae00d813e9e98b04e1"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.1.0+1"
+  network_info_plus_platform_interface:
+    dependency: transitive
+    description:
+      name: network_info_plus_platform_interface
+      sha256: "881f5029c5edaf19c616c201d3d8b366c5b1384afd5c1da5a49e4345de82fb8b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.3"
   nm:
     dependency: transitive
     description:

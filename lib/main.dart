@@ -23,6 +23,7 @@ import 'package:flutter_animations_2/flutter_camera/flutter_camera_helper.dart';
 import 'package:flutter_animations_2/flutter_camera/flutter_camera_page.dart';
 import 'package:flutter_animations_2/flutter_gestures/pages/flutter_draw_something_with_finger.dart';
 import 'package:flutter_animations_2/flutter_gestures/pages/flutter_gestures_move_by_position_page.dart';
+import 'package:flutter_animations_2/flutter_nearby_connectivity/yt_nearby_p2p_connection/cubit/nearby_server_cubit.dart';
 import 'package:flutter_animations_2/flutter_permissions/cubit/flutter_permissions_cubit.dart';
 import 'package:flutter_animations_2/flutter_web_scrapper/flutter_web_scrapper_page.dart';
 import 'package:flutter_animations_2/global_context/global_context.helper.dart';
@@ -49,7 +50,7 @@ import 'floor_database/floor_database_page.dart';
 import 'flutter_blurhash/flutter_blurhash_page.dart';
 import 'flutter_gestures/pages/flutter_drag_element_to_widget_and_paste_page.dart';
 import 'flutter_gestures/pages/flutter_draw_something_with_finger_new_one.dart';
-import 'flutter_nearby_connectivity/flutter_nearby_connectivity_page.dart';
+import 'flutter_nearby_connectivity/yt_nearby_p2p_connection/presentation/flutter_p2p_connection_page.dart';
 import 'getit/locator.dart';
 import 'getit/repository/getit_page.dart';
 import 'google_map/cubit/main_google_map_cubit.dart';
@@ -146,7 +147,8 @@ void main() async {
         BlocProvider(create: (_) => FirstBloc()),
 
         //to init second bloc
-        BlocProvider(create: (_) => SecondBloc(firstBloc: BlocProvider.of<FirstBloc>(_)))
+        BlocProvider(create: (_) => SecondBloc(firstBloc: BlocProvider.of<FirstBloc>(_))),
+        BlocProvider(create: (_) => NearbyServerCubit()),
       ],
       child: provider.MultiProvider(
         providers: [
@@ -216,7 +218,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const FlutterNearbyConnectivityPage(),
+        builder: (context, state) => const FlutterP2pConnectionPage(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
