@@ -21,6 +21,7 @@ class NearbyClient {
   void connect() async {
     if (hostName == null || port == null) return;
     socket = await Socket.connect(hostName, port!);
+    isConnected = true;
     socket?.listen(
       (event) {
         onData!(event);
@@ -28,6 +29,7 @@ class NearbyClient {
       onError: onError,
       onDone: () async {
         final deviceInfoPlugin = DeviceInfoPlugin();
+
 
         String deviceInfo = '';
 

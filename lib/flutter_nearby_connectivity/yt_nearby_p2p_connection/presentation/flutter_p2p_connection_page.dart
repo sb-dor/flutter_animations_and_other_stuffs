@@ -55,17 +55,30 @@ class _FlutterP2pConnectionPageState extends State<FlutterP2pConnectionPage> {
                   fontWeight: FontWeight.bold,
                 ),
                 const SizedBox(width: 10),
-                TextWidget(
-                    text: (currentState.client?.isConnected ?? false)
-                        ? "Connected to the ${currentState.client?.hostName}"
-                        : "Off"),
+                Expanded(
+                  child: TextWidget(
+                      text: (currentState.client?.isConnected ?? false)
+                          ? "Connected to the ${currentState.client?.hostName}"
+                          : "Off"),
+                ),
                 Spacer(),
-                ElevatedButton(
-                  onPressed: () {
-                    context.read<NearbyServerCubit>().initDevices();
-                    showAllDevices();
-                  },
-                  child: const Text("Connect"),
+                Column(
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        context.read<NearbyServerCubit>().initDevices();
+                        showAllDevices();
+                      },
+                      child: const Text("Connect"),
+                    ),
+                    if ((currentState.client?.isConnected ?? false))
+                      ElevatedButton(
+                        onPressed: () {
+                          context.read<NearbyServerCubit>().destroyClient();
+                        },
+                        child: const Text("Disconnect"),
+                      )
+                  ],
                 )
               ],
             ),

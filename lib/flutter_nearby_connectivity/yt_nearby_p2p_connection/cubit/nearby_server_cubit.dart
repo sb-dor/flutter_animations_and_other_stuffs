@@ -17,7 +17,7 @@ class NearbyServerCubit extends Cubit<NearbyServerStates> {
   }
 
   Future<void> initServer() async {
-    await _destroyClient();
+    await destroyClient();
     if ((_currentState.server?.running ?? false)) {
       await _currentState.server?.stopServer();
       _currentState.server = null;
@@ -25,7 +25,6 @@ class NearbyServerCubit extends Cubit<NearbyServerStates> {
       _currentState.server ??= NearbyServer(_data, _error);
       await _currentState.server?.start();
     }
-
     emit(InitialNearbyServerState(_currentState));
   }
 
@@ -41,11 +40,12 @@ class NearbyServerCubit extends Cubit<NearbyServerStates> {
     await _getIpAddress();
   }
 
-  Future<void> _destroyClient() async {
+  Future<void> destroyClient() async {
     if ((_currentState.client?.isConnected ?? false)) {
       _currentState.client?.disconnect("DeviceInfo");
       _currentState.client = null;
     }
+    emit(InitialNearbyServerState(_currentState));
   }
 
   void _data(Uint8List data) {
@@ -82,12 +82,14 @@ class NearbyServerCubit extends Cubit<NearbyServerStates> {
 
     _currentState.stream = NetworkDiscovery.discover(subnet, 4000);
 
-    _currentState.stream?.listen((networkAddress) {
+    if (_currentState.stream == null) return;
+
+    await for (final networkAddress in _currentState.stream!) {
       print("networks: ${networkAddress.ip}");
       if (_currentState.networkAddress.any((el) => el.ip == networkAddress.ip)) return;
       _currentState.networkAddress.add(networkAddress);
-    });
-    emit(InitialNearbyServerState(_currentState));
+      emit(InitialNearbyServerState(_currentState));
+    }
   }
 
   Future<void> connectToServer(NetworkAddress networkAddress) async {
@@ -95,6 +97,7 @@ class NearbyServerCubit extends Cubit<NearbyServerStates> {
         NearbyClient(hostName: networkAddress.ip, port: 4000, onData: _data, onError: _error);
     _currentState.client?.connect();
     sendClientMessage();
+    await Future.delayed(const Duration(seconds: 1));
     emit(InitialNearbyServerState(_currentState));
   }
 }
