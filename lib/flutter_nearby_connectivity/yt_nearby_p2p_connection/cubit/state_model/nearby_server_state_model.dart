@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
@@ -18,6 +19,12 @@ class NearbyServerStateModel {
   Stream<NetworkAddress>? stream;
 
   List<NetworkAddress> networkAddress = [];
+
+  List<File> files = [];
+
+  Timer? tempTimerForFile;
+
+  List<int> filesData = [];
 
   Future<String> getDeviceName() async {
     final deviceInfoPlugin = DeviceInfoPlugin();

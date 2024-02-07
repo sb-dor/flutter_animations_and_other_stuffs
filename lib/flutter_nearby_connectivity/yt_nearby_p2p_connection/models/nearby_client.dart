@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
@@ -26,7 +27,8 @@ class NearbyClient {
       isConnected = true;
       String deviceName = await getDeviceName();
       write("successfully connected with the ${await getDeviceName()}"); // write to the server
-      onData!(Uint8List.fromList("successfully connected to the $deviceName".codeUnits)); // write to yourself
+      onData!(Uint8List.fromList(
+          "successfully connected to the $deviceName".codeUnits)); // write to yourself
       socket?.listen(
         (event) {
           onData!(event);
@@ -42,7 +44,10 @@ class NearbyClient {
     }
   }
 
-  
+  void sendFile(File file) async {
+    socket?.addStream(file.openRead());
+  }
+
   // write means that you are writing something to the server
   void write(String message) {
     socket?.write(message);

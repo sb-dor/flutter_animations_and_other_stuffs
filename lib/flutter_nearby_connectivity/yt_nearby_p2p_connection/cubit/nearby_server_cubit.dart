@@ -1,3 +1,5 @@
+import 'dart:async';
+import 'dart:io';
 import 'dart:typed_data';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/cupertino.dart';
@@ -5,7 +7,9 @@ import 'package:flutter_animations_2/flutter_nearby_connectivity/yt_nearby_p2p_c
 import 'package:flutter_animations_2/flutter_nearby_connectivity/yt_nearby_p2p_connection/models/nearby_client.dart';
 import 'package:flutter_animations_2/flutter_nearby_connectivity/yt_nearby_p2p_connection/models/nearby_server.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:network_info_plus/network_info_plus.dart';
+import 'package:path_provider/path_provider.dart';
 import 'nearby_server_states.dart';
 import 'package:network_discovery/network_discovery.dart';
 
@@ -49,10 +53,34 @@ class NearbyServerCubit extends Cubit<NearbyServerStates> {
     emit(InitialNearbyServerState(_currentState));
   }
 
-  void _data(Uint8List data) {
-    final receiveData = String.fromCharCodes(data);
-    _currentState.serverComingData.add(receiveData);
-    emit(InitialNearbyServerState(_currentState));
+  void _data(Uint8List data) async {
+    /// [getting just a string data]
+
+    // final receiveData = String.fromCharCodes(data);
+    // _currentState.serverComingData.add(receiveData);
+    // emit(InitialNearbyServerState(_currentState));
+
+    _currentState.filesData.addAll(data);
+
+    debugPrint("data length: ${_currentState.filesData.length}");
+
+    if ((_currentState.tempTimerForFile?.isActive ?? false)) {
+      _currentState.tempTimerForFile?.cancel();
+    }
+
+    _currentState.tempTimerForFile = Timer(const Duration(seconds: 3), () async {
+      final path = await getExternalStorageDirectory();
+
+      final fileFromDat = File("${path?.path}/${DateTime.now().toString()}.jpg"); // every time new name
+
+      fileFromDat.writeAsBytesSync(_currentState.filesData);
+
+      _currentState.files.add(fileFromDat);
+
+      _currentState.filesData.clear();
+
+      emit(InitialNearbyServerState(_currentState));
+    });
   }
 
   void _error(dynamic error) {
@@ -112,5 +140,12 @@ class NearbyServerCubit extends Cubit<NearbyServerStates> {
     await Future.delayed(const Duration(seconds: 1));
 
     emit(InitialNearbyServerState(_currentState));
+  }
+
+  Future<void> sendFileToServer() async {
+    if (_currentState.client?.isConnected == false || _currentState.client == null) return;
+    var image = await ImagePicker().pickMedia();
+    if (image == null) return;
+    _currentState.client?.sendFile(File(image.path));
   }
 }

@@ -13,12 +13,6 @@ class FlutterP2pConnectionPage extends StatefulWidget {
 
 class _FlutterP2pConnectionPageState extends State<FlutterP2pConnectionPage> {
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -27,7 +21,7 @@ class _FlutterP2pConnectionPageState extends State<FlutterP2pConnectionPage> {
       body: BlocBuilder<NearbyServerCubit, NearbyServerStates>(builder: (context, state) {
         var currentState = state.nearbyServerStateModel;
         return ListView(
-          padding: EdgeInsets.only(left: 10, right: 10),
+          padding: const EdgeInsets.only(left: 10, right: 10),
           physics: const AlwaysScrollableScrollPhysics(),
           children: [
             Row(
@@ -61,7 +55,7 @@ class _FlutterP2pConnectionPageState extends State<FlutterP2pConnectionPage> {
                           ? "Connected to the ${currentState.client?.hostName}"
                           : "Off"),
                 ),
-                Spacer(),
+                const Spacer(),
                 Column(
                   children: [
                     ElevatedButton(
@@ -114,6 +108,20 @@ class _FlutterP2pConnectionPageState extends State<FlutterP2pConnectionPage> {
                 )
               ],
             ),
+            if ((currentState.client?.isConnected ?? false))
+              ElevatedButton(
+                onPressed: () => context.read<NearbyServerCubit>().sendFileToServer(),
+                child: const Text("Pick file and send"),
+              ),
+            ListView.separated(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              separatorBuilder: (context, index) => const SizedBox(height: 10),
+              itemCount: currentState.files.length,
+              itemBuilder: (context, index) {
+                return Image.file(currentState.files[index]);
+              },
+            ),
             ListView.separated(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
@@ -149,7 +157,7 @@ class _FlutterP2pConnectionPageState extends State<FlutterP2pConnectionPage> {
                             .read<NearbyServerCubit>()
                             .connectToServer(currentState.networkAddress[index]);
                       },
-                      child: Text("${message.ip}"));
+                      child: Text(message.ip));
                 },
               );
             }),
