@@ -1,4 +1,5 @@
 import 'dart:typed_data';
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_animations_2/flutter_nearby_connectivity/yt_nearby_p2p_connection/cubit/state_model/nearby_server_state_model.dart';
 import 'package:flutter_animations_2/flutter_nearby_connectivity/yt_nearby_p2p_connection/models/nearby_client.dart';
@@ -42,7 +43,7 @@ class NearbyServerCubit extends Cubit<NearbyServerStates> {
 
   Future<void> destroyClient() async {
     if ((_currentState.client?.isConnected ?? false)) {
-      _currentState.client?.disconnect("DeviceInfo");
+      _currentState.client?.disconnect(await _currentState.getDeviceName());
       _currentState.client = null;
     }
     emit(InitialNearbyServerState(_currentState));
@@ -70,8 +71,10 @@ class NearbyServerCubit extends Cubit<NearbyServerStates> {
     _currentState.client?.write(_currentState.messageController.text.trim());
   }
 
+  // check for all devices which is started server in one ip address and in current port
   Future<void> _getIpAddress() async {
     var networkInfo = await NetworkInfo().getWifiIP();
+
     if (networkInfo == null) return;
 
     _currentState.networkAddress.clear();
@@ -80,7 +83,10 @@ class NearbyServerCubit extends Cubit<NearbyServerStates> {
 
     final String subnet = networkInfo.substring(0, networkInfo.lastIndexOf('.'));
 
-    _currentState.stream = NetworkDiscovery.discover(subnet, 4000);
+    _currentState.stream = NetworkDiscovery.discover(
+      subnet,
+      4000, // you can write your own port instead of 4000
+    );
 
     if (_currentState.stream == null) return;
 
@@ -93,11 +99,18 @@ class NearbyServerCubit extends Cubit<NearbyServerStates> {
   }
 
   Future<void> connectToServer(NetworkAddress networkAddress) async {
-    _currentState.client =
-        NearbyClient(hostName: networkAddress.ip, port: 4000, onData: _data, onError: _error);
+    _currentState.client = NearbyClient(
+      hostName: networkAddress.ip,
+      port: 4000, // you can write your own port instead of 4000
+      onData: _data,
+      onError: _error,
+    );
     _currentState.client?.connect();
+
     sendClientMessage();
+
     await Future.delayed(const Duration(seconds: 1));
+
     emit(InitialNearbyServerState(_currentState));
   }
 }

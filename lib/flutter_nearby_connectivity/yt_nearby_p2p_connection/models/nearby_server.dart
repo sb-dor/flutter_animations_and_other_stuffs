@@ -26,7 +26,10 @@ class NearbyServer {
       //
       debugPrint("working here after server init");
       // bind your own device connected address
-      server = await ServerSocket.bind(netWorkInfo, 4000);
+      server = await ServerSocket.bind(
+        netWorkInfo,
+        4000, // you can write your own port instead of 4000
+      );
       running = true;
       server?.listen(_onRequest);
       const String message = "Server is listening in port 4000";
