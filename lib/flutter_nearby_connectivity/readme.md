@@ -3,6 +3,7 @@ add these packages in you pubspec.yaml file
     device_info_plus: ^9.1.2
     network_info_plus: ^4.1.0+1
     network_discovery: ^1.0.0
+    mime: ^1.0.5
 
 urls for more information:
 

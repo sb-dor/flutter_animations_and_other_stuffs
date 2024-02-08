@@ -1,13 +1,13 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
-import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_animations_2/flutter_nearby_connectivity/yt_nearby_p2p_connection/cubit/state_model/nearby_server_state_model.dart';
 import 'package:flutter_animations_2/flutter_nearby_connectivity/yt_nearby_p2p_connection/models/nearby_client.dart';
 import 'package:flutter_animations_2/flutter_nearby_connectivity/yt_nearby_p2p_connection/models/nearby_server.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:mime/mime.dart';
 import 'package:network_info_plus/network_info_plus.dart';
 import 'package:path_provider/path_provider.dart';
 import 'nearby_server_states.dart';
@@ -71,7 +71,13 @@ class NearbyServerCubit extends Cubit<NearbyServerStates> {
     _currentState.tempTimerForFile = Timer(const Duration(seconds: 3), () async {
       final path = await getExternalStorageDirectory();
 
-      final fileFromDat = File("${path?.path}/${DateTime.now().toString()}.jpg"); // every time new name
+      var mime = lookupMimeType('', headerBytes: _currentState.filesData) ?? '';
+
+      var extension = extensionFromMime(mime);
+
+      print("extension for meme: $extension");
+
+      final fileFromDat = File("${path?.path}/${DateTime.now().toString()}.$extension"); // every time new name
 
       fileFromDat.writeAsBytesSync(_currentState.filesData);
 
