@@ -113,6 +113,8 @@ dependencies:
   network_discovery: ^1.0.0
   mime: ^1.0.5
 
+  url_strategy: ^0.2.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

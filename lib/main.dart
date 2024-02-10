@@ -42,6 +42,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart' as provider;
+import 'package:url_strategy/url_strategy.dart';
 
 import 'animation_pages/sin_wave_page.dart';
 import 'animation_pages/youtube_flutter_location_animation/youtube_flutter_location_animation.dart';
@@ -54,14 +55,17 @@ import 'flutter_nearby_connectivity/yt_nearby_p2p_connection/presentation/flutte
 import 'getit/locator.dart';
 import 'getit/repository/getit_page.dart';
 import 'google_map/cubit/main_google_map_cubit.dart';
+import 'web_page_with_url/helpers/routing_helper.dart';
 import 'yandex_mapkit/yandex_map_screen.dart';
 import 'youtube_exlode_page/youtube_explode_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await setup();
+  setPathUrlStrategy();
   //get material app just for showing get's snackBar
   if (!kIsWeb) {
+    await setup();
+
     try {
       await Firebase.initializeApp();
       await FirebasePushNot.initTopic();
@@ -72,22 +76,24 @@ void main() async {
       await AwesomeNotificationsHelper.initAwesomeNotifications();
       await SqfLiteDatabaseHelper.initSqfLiteDatabase();
       await FlutterBackgroundServiceHelper.initService();
+      await PdfGenerator.init();
       await HiveDatabaseHelper.instance.initHive();
       await FlutterCameraHelper.instance.initCameras();
+
+      FlutterError.onError = (errorDetails) {
+        FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+      };
+      // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
+      PlatformDispatcher.instance.onError = (error, stack) {
+        FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+        return true;
+      };
     } catch (_) {}
   }
   // MainCharacter mainCharacter = MainCharacter("Alien");
   // mainCharacter.race?.saySome();
   // mainCharacter.race?.weapon.shoot();
   //using firebase crashlytics for checking app bugs
-  FlutterError.onError = (errorDetails) {
-    FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
-  };
-  // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
-  PlatformDispatcher.instance.onError = (error, stack) {
-    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
-    return true;
-  };
 
   // ApplicationType applicationType = ApplicationType("RestaurantType");
   // applicationType.saveInvoice();
@@ -130,7 +136,6 @@ void main() async {
   // DartIsoExample1.runIsolate();
   // DartIsoExample2.theMainFunc();
 
-  await PdfGenerator.init();
   runApp(MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => FlutterPermissionCubit()),
@@ -159,26 +164,28 @@ void main() async {
         child: ProviderScope(
           child: BlocBuilder<MaterialChangeCubit, bool>(builder: (context, materialUiState) {
             // return FlutterDeepLinkPage();
-            return MaterialApp(
-                navigatorKey: GlobalContextHelper.globalNavigatorContext,
-                scrollBehavior: MyCustomScrollBehavior(),
-                //if you want to use flutter deep linking use package "go_router"
-                //get global context here
-                // navigatorKey: GlobalContextHelper.globalNavigatorContext,
-                theme: FlexThemeData.light(scheme: FlexScheme.green, useMaterial3: materialUiState),
-                darkTheme:
-                    FlexThemeData.dark(scheme: FlexScheme.green, useMaterial3: materialUiState),
-                themeMode: ThemeMode.light,
-                debugShowCheckedModeBanner: false,
-                //for adding named routes use like this
-                //do not forget to write main route in your routes like this:
-                //
-                //->          "/" : (context) => YourHomeWidget()
-                //
-                //and do not forget to remove "home" parameter from MaterialApp widget, otherwise it will not work
-                // initialRoute: '/',
-                routes: RoutingWithName.routes(),
-                initialRoute: "/");
+            return MaterialApp.router(
+              routerConfig: webRouter,
+              scrollBehavior: MyCustomScrollBehavior(),
+              //if you want to use flutter deep linking use package "go_router"
+              //get global context here
+              scaffoldMessengerKey: GlobalContextHelper.globalNavigatorSContext,
+
+              theme: FlexThemeData.light(scheme: FlexScheme.green, useMaterial3: materialUiState),
+              darkTheme:
+                  FlexThemeData.dark(scheme: FlexScheme.green, useMaterial3: materialUiState),
+              themeMode: ThemeMode.light,
+              debugShowCheckedModeBanner: false,
+              //for adding named routes use like this
+              //do not forget to write main route in your routes like this:
+              //
+              //->          "/" : (context) => YourHomeWidget()
+              //
+              //and do not forget to remove "home" parameter from MaterialApp widget, otherwise it will not work
+              // initialRoute: '/',
+              // routes: RoutingWithName.routes(),
+              // initialRoute: "/"
+            );
           }),
         ),
       )));
