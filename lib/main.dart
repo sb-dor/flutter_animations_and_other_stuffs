@@ -47,6 +47,7 @@ import 'package:url_strategy/url_strategy.dart';
 import 'animation_pages/sin_wave_page.dart';
 import 'animation_pages/youtube_flutter_location_animation/youtube_flutter_location_animation.dart';
 import 'clean_architecture/presentation/clean_architecture_page.dart';
+import 'custom_painter/progress_chart/progress_chart.dart';
 import 'floor_database/floor_database_page.dart';
 import 'flutter_blurhash/flutter_blurhash_page.dart';
 import 'flutter_gestures/pages/flutter_drag_element_to_widget_and_paste_page.dart';
@@ -164,8 +165,8 @@ void main() async {
         child: ProviderScope(
           child: BlocBuilder<MaterialChangeCubit, bool>(builder: (context, materialUiState) {
             // return FlutterDeepLinkPage();
-            return MaterialApp.router(
-              routerConfig: webRouter,
+            return MaterialApp(
+              // routerConfig: webRouter,
               scrollBehavior: MyCustomScrollBehavior(),
               //if you want to use flutter deep linking use package "go_router"
               //get global context here
@@ -182,8 +183,8 @@ void main() async {
               //->          "/" : (context) => YourHomeWidget()
               //
               //and do not forget to remove "home" parameter from MaterialApp widget, otherwise it will not work
-              // initialRoute: '/',
-              // routes: RoutingWithName.routes(),
+              initialRoute: '/',
+              routes: RoutingWithName.routes(),
               // initialRoute: "/"
             );
           }),
@@ -225,7 +226,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const FlutterP2pConnectionPage(),
+        builder: (context, state) => const ProgressChart(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {

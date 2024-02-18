@@ -13,6 +13,10 @@ class Product {
   Product({required this.id, required this.price, required this.name, this.qty, this.pack_qty});
 
   Map<String, dynamic> toJson() => {"id": id, 'price': price, 'qty': qty, "pack_qty": pack_qty};
+
+  Product? operator +(Product? product) {
+    return Product(id: id, price: price + (product?.price ?? 0), name: name);
+  }
 }
 
 extension NameOfExtension on List<Product> {
