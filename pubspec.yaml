@@ -51,7 +51,7 @@ dependencies:
   google_sign_in: ^6.1.4
   firebase_core: ^2.14.0
   firebase_messaging: ^14.6.4
-#  flutter_local_notifications: ^15.1.0+1
+  #  flutter_local_notifications: ^15.1.0+1
 
   intl: ^0.18.1
   firebase_crashlytics: ^3.3.3
@@ -114,6 +114,10 @@ dependencies:
   mime: ^1.0.5
 
   url_strategy: ^0.2.0
+
+  freezed: ^2.4.7
+  freezed_annotation: ^2.4.1
+
 
 dev_dependencies:
   flutter_test:

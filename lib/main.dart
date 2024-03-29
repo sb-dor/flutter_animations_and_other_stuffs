@@ -9,6 +9,8 @@ import 'package:flutter_animations_2/animation_pages/youtube_coffee_app_animatio
 import 'package:flutter_animations_2/bloc_learning/bloc_concurrency/main_bloc_concurrency.dart';
 import 'package:flutter_animations_2/bloc_learning/bloc_to_bloc_comm/first_bloc/first_bloc.dart';
 import 'package:flutter_animations_2/bloc_learning/bloc_to_bloc_comm/second_bloc/second_bloc.dart';
+import 'package:flutter_animations_2/bloc_learning/using_freezed/using_freezed_bloc.dart';
+import 'package:flutter_animations_2/bloc_learning/using_freezed/using_freezed_page.dart';
 import 'package:flutter_animations_2/bottom_modal_sheets/bottom_modal_sheets_cubit/bottom_modal_sheet_cubit.dart';
 import 'package:flutter_animations_2/clean_architecture/cubit/day_cubit.dart';
 import 'package:flutter_animations_2/dart_sync_async_isolates/dart_isolates.dart';
@@ -155,6 +157,9 @@ void main() async {
         //to init second bloc
         BlocProvider(create: (_) => SecondBloc(firstBloc: BlocProvider.of<FirstBloc>(_))),
         BlocProvider(create: (_) => NearbyServerCubit()),
+
+        //
+        BlocProvider(create: (_) => UsingFreezedBloc()),
       ],
       child: provider.MultiProvider(
         providers: [
@@ -226,7 +231,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const ProgressChart(),
+        builder: (context, state) => const UsingFreezedPage(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
