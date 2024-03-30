@@ -5,6 +5,7 @@ import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animations_2/animation_pages/flutter_tutorial_diegoveloper_list_animation/flutter_tutorial_diegoveloper_list_animation.dart';
 import 'package:flutter_animations_2/animation_pages/youtube_coffee_app_animation/youtube_coffe_app_animation_page.dart';
 import 'package:flutter_animations_2/bloc_learning/bloc_concurrency/main_bloc_concurrency.dart';
 import 'package:flutter_animations_2/bloc_learning/bloc_to_bloc_comm/first_bloc/first_bloc.dart';
@@ -231,7 +232,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const UsingFreezedPage(),
+        builder: (context, state) => const FlutterTutorialDiegoDeveloperListAnimation(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
