@@ -38,6 +38,7 @@ import 'package:flutter_animations_2/local_notification/local_notification.dart'
 import 'package:flutter_animations_2/material3/material_changer_cubit/material_change_cubit.dart';
 import 'package:flutter_animations_2/pdf/data/pdf_generator.dart';
 import 'package:flutter_animations_2/routing/routing_with_name.dart';
+import 'package:flutter_animations_2/slivers/sliver_app_bar_page.dart';
 import 'package:flutter_animations_2/slivers/slivers_bloc/slivers_cubit/slivers_cubit.dart';
 import 'package:flutter_animations_2/sqflite/sqflite_database_helper.dart';
 import 'package:flutter_animations_2/yandex_mapkit/yandex_mapkit_cubit/main_map_cubit.dart';
@@ -59,6 +60,8 @@ import 'flutter_nearby_connectivity/yt_nearby_p2p_connection/presentation/flutte
 import 'getit/locator.dart';
 import 'getit/repository/getit_page.dart';
 import 'google_map/cubit/main_google_map_cubit.dart';
+import 'slivers/sliver_and_scroll_page.dart';
+import 'slivers/sliver_app_bar_title_animation.dart';
 import 'web_page_with_url/helpers/routing_helper.dart';
 import 'yandex_mapkit/yandex_map_screen.dart';
 import 'youtube_exlode_page/youtube_explode_page.dart';
@@ -232,7 +235,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const FlutterTutorialDiegoDeveloperListAnimation(),
+        builder: (context, state) => const SliverAppBarTitleAnimation(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
