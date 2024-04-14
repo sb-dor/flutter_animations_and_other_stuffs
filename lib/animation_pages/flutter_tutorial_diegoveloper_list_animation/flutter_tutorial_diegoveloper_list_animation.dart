@@ -127,7 +127,7 @@ class _FlutterTutorialDeListaAnimadaState
                         scale: scale,
                         child: Align(
                           heightFactor:
-                              0.650, // takes the whole size of the item and multiplies it by 0.7
+                              0.650, // takes the whole size of the item and multiplies it by 0.650
                           alignment: Alignment.bottomCenter,
                           child: Container(
                             height: eachItemSize,

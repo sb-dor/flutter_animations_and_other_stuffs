@@ -49,6 +49,7 @@ import 'package:provider/provider.dart' as provider;
 import 'package:url_strategy/url_strategy.dart';
 
 import 'animation_pages/sin_wave_page.dart';
+import 'animation_pages/youtube_pageview_scroll_animation_challenge/stack_scroll_animation_page.dart';
 import 'animation_pages/youtube_flutter_location_animation/youtube_flutter_location_animation.dart';
 import 'clean_architecture/presentation/clean_architecture_page.dart';
 import 'custom_painter/progress_chart/progress_chart.dart';
@@ -235,7 +236,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const SliverAppBarTitleAnimation(),
+        builder: (context, state) => const StackScrollAnimationPage(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {

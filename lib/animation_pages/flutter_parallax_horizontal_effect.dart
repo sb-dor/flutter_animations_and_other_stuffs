@@ -3,8 +3,16 @@ import 'dart:math' as math;
 
 class CardModel {
   final String name, image, date;
+  double position;
+  double height;
 
-  CardModel({required this.name, required this.image, required this.date});
+  CardModel({
+    required this.name,
+    required this.image,
+    required this.date,
+    this.position = 0.0,
+    this.height = 0.0,
+  });
 }
 
 List<CardModel> demoCardData = [
