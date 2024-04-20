@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animations_2/navigation/declarative_navigation/first_screen/first_dec_screen.dart';
-import 'package:flutter_animations_2/navigation/declarative_navigation/second_screen/second_dec_screen.dart';
+
+import 'first_screen/first_dec_screen.dart';
+import 'second_screen/second_dec_screen.dart';
 
 class MainDeclarativeNavigationScreen extends StatefulWidget {
   const MainDeclarativeNavigationScreen({super.key});

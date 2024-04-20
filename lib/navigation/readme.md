@@ -8,3 +8,9 @@ all about imperative and declarative navigation you can find here:
 5. https://denis-bohatyrov.medium.com/why-you-should-not-use-navigation-2-0-with-flutter-d1c1fe8a485a
 6. https://habr.com/ru/articles/757818/
 7. https://www.youtube.com/watch?v=fqGlaXpyWvM&t=17s
+
+
+
+if you want to do some tabbar code with declarative approach check out this link:
+
+1. https://habr.com/ru/articles/757818/
