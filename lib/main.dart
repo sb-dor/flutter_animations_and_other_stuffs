@@ -36,6 +36,8 @@ import 'package:flutter_animations_2/internet_controller/cubit/internet_conn_che
 import 'package:flutter_animations_2/local_notification/awesome_notification_helper.dart';
 import 'package:flutter_animations_2/local_notification/local_notification.dart';
 import 'package:flutter_animations_2/material3/material_changer_cubit/material_change_cubit.dart';
+import 'package:flutter_animations_2/navigation/declarative_navigation/main_declerative_navigation_screen_default.dart';
+import 'package:flutter_animations_2/navigation/imperative_navigation/imperative_nav_second_screen.dart';
 import 'package:flutter_animations_2/pdf/data/pdf_generator.dart';
 import 'package:flutter_animations_2/routing/routing_with_name.dart';
 import 'package:flutter_animations_2/slivers/sliver_app_bar_page.dart';
@@ -55,12 +57,14 @@ import 'clean_architecture/presentation/clean_architecture_page.dart';
 import 'custom_painter/progress_chart/progress_chart.dart';
 import 'floor_database/floor_database_page.dart';
 import 'flutter_blurhash/flutter_blurhash_page.dart';
+import 'flutter_deep_link/flutter_deeplink_page.dart';
 import 'flutter_gestures/pages/flutter_drag_element_to_widget_and_paste_page.dart';
 import 'flutter_gestures/pages/flutter_draw_something_with_finger_new_one.dart';
 import 'flutter_nearby_connectivity/yt_nearby_p2p_connection/presentation/flutter_p2p_connection_page.dart';
 import 'getit/locator.dart';
 import 'getit/repository/getit_page.dart';
 import 'google_map/cubit/main_google_map_cubit.dart';
+import 'navigation/imperative_navigation/imperative_nav_first_screen.dart';
 import 'slivers/sliver_and_scroll_page.dart';
 import 'slivers/sliver_app_bar_title_animation.dart';
 import 'web_page_with_url/helpers/routing_helper.dart';
@@ -174,6 +178,7 @@ void main() async {
         ],
         child: ProviderScope(
           child: BlocBuilder<MaterialChangeCubit, bool>(builder: (context, materialUiState) {
+            return const MainDeclarativeNavigationScreen();
             // return FlutterDeepLinkPage();
             return MaterialApp(
               // routerConfig: webRouter,
@@ -236,7 +241,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const StackScrollAnimationPage(),
+        builder: (context, state) => const ImperativeNavigationFirstScreen(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
