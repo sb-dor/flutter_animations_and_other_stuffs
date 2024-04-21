@@ -33,6 +33,7 @@ import 'package:flutter_animations_2/global_context/global_context.helper.dart';
 import 'package:flutter_animations_2/google_map/presentation/google_map_page.dart';
 import 'package:flutter_animations_2/hive/hive_database_helper.dart';
 import 'package:flutter_animations_2/internet_controller/cubit/internet_conn_checker_cubit.dart';
+import 'package:flutter_animations_2/intl_localization/intl_localization_screen.dart';
 import 'package:flutter_animations_2/local_notification/awesome_notification_helper.dart';
 import 'package:flutter_animations_2/local_notification/local_notification.dart';
 import 'package:flutter_animations_2/material3/material_changer_cubit/material_change_cubit.dart';
@@ -46,6 +47,7 @@ import 'package:flutter_animations_2/slivers/slivers_bloc/slivers_cubit/slivers_
 import 'package:flutter_animations_2/sqflite/sqflite_database_helper.dart';
 import 'package:flutter_animations_2/yandex_mapkit/yandex_mapkit_cubit/main_map_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart' as provider;
@@ -62,6 +64,7 @@ import 'flutter_deep_link/flutter_deeplink_page.dart';
 import 'flutter_gestures/pages/flutter_drag_element_to_widget_and_paste_page.dart';
 import 'flutter_gestures/pages/flutter_draw_something_with_finger_new_one.dart';
 import 'flutter_nearby_connectivity/yt_nearby_p2p_connection/presentation/flutter_p2p_connection_page.dart';
+import 'generated/l10n.dart';
 import 'getit/locator.dart';
 import 'getit/repository/getit_page.dart';
 import 'google_map/cubit/main_google_map_cubit.dart';
@@ -182,11 +185,22 @@ void main() async {
         ],
         child: ProviderScope(
           child: BlocBuilder<MaterialChangeCubit, bool>(builder: (context, materialUiState) {
-            return const MainAutoRoutePackageScreen();
+            // return const MainAutoRoutePackageScreen();
             // return MainGoRouterDecNavigation();
             // return const MainDeclarativeNavigationScreen();
             // return FlutterDeepLinkPage();
             return MaterialApp(
+              localizationsDelegates: const [
+                S.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              // to use only en otherwise app will understand the language by your phone language
+              // - optional remove if you want
+              locale: Locale("ru"),
+              // supported locales that will be used in app
+              supportedLocales: S.delegate.supportedLocales,
               // routerConfig: webRouter,
               scrollBehavior: MyCustomScrollBehavior(),
               //if you want to use flutter deep linking use package "go_router"
@@ -247,7 +261,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const OverlaySecondPage(),
+        builder: (context, state) => const IntlLocalizationScreen(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {

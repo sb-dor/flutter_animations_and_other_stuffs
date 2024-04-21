@@ -1,0 +1,4 @@
+{
+  "Hello" : "Hello",
+  "points_info" : "You have got about {num_of_points} points, bro!"
+}
