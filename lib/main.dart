@@ -36,6 +36,7 @@ import 'package:flutter_animations_2/internet_controller/cubit/internet_conn_che
 import 'package:flutter_animations_2/local_notification/awesome_notification_helper.dart';
 import 'package:flutter_animations_2/local_notification/local_notification.dart';
 import 'package:flutter_animations_2/material3/material_changer_cubit/material_change_cubit.dart';
+import 'package:flutter_animations_2/navigation/declarative_navigation/auto_route_package_navigation/main_auto_route_package_navigation.dart';
 import 'package:flutter_animations_2/navigation/declarative_navigation/flutters_declarative_navigation/main_declerative_navigation_screen_default.dart';
 import 'package:flutter_animations_2/navigation/imperative_navigation/imperative_nav_second_screen.dart';
 import 'package:flutter_animations_2/pdf/data/pdf_generator.dart';
@@ -181,6 +182,7 @@ void main() async {
         ],
         child: ProviderScope(
           child: BlocBuilder<MaterialChangeCubit, bool>(builder: (context, materialUiState) {
+            return const MainAutoRoutePackageScreen();
             // return MainGoRouterDecNavigation();
             // return const MainDeclarativeNavigationScreen();
             // return FlutterDeepLinkPage();
