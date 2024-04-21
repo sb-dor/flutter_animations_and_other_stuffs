@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 @RoutePage()
 class AutoRouteSecondScreen extends StatefulWidget {
@@ -23,7 +24,11 @@ class _AutoRouteSecondScreenState extends State<AutoRouteSecondScreen> {
       ),
       body: Center(
         child: ElevatedButton(
-          onPressed: () => AutoRouter.of(context).popForced(),
+          onPressed: () {
+            if (AutoRouter.of(context).canPop()) {
+              AutoRouter.of(context).popForced();
+            }
+          },
           child: const Text("data"),
         ),
       ),
