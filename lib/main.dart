@@ -67,6 +67,7 @@ import 'google_map/cubit/main_google_map_cubit.dart';
 import 'navigation/declarative_navigation/go_router_dec_navigation/main_go_router_dec_navigation.dart';
 import 'navigation/imperative_navigation/imperative_nav_first_screen.dart';
 import 'overlay/overlay_page.dart';
+import 'overlay/overlay_second_page.dart';
 import 'slivers/sliver_and_scroll_page.dart';
 import 'slivers/sliver_app_bar_title_animation.dart';
 import 'web_page_with_url/helpers/routing_helper.dart';
@@ -244,7 +245,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const OverlayPage(),
+        builder: (context, state) => const OverlaySecondPage(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {

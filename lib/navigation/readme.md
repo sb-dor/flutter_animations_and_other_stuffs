@@ -14,3 +14,5 @@ all about imperative and declarative navigation you can find here:
 if you want to do some tabbar code with declarative approach check out this link:
 
 1. https://habr.com/ru/articles/757818/
+
+
