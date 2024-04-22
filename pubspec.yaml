@@ -120,6 +120,7 @@ dependencies:
   freezed: ^2.4.7
   freezed_annotation: ^2.4.1
   auto_route: ^8.1.0
+  rxdart: ^0.27.7
 
 
 dev_dependencies:

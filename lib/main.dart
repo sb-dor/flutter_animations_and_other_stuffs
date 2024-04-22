@@ -42,6 +42,7 @@ import 'package:flutter_animations_2/navigation/declarative_navigation/flutters_
 import 'package:flutter_animations_2/navigation/imperative_navigation/imperative_nav_second_screen.dart';
 import 'package:flutter_animations_2/pdf/data/pdf_generator.dart';
 import 'package:flutter_animations_2/routing/routing_with_name.dart';
+import 'package:flutter_animations_2/rxdart/rxdart_learning_screen.dart';
 import 'package:flutter_animations_2/slivers/sliver_app_bar_page.dart';
 import 'package:flutter_animations_2/slivers/slivers_bloc/slivers_cubit/slivers_cubit.dart';
 import 'package:flutter_animations_2/sqflite/sqflite_database_helper.dart';
@@ -261,7 +262,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const IntlLocalizationScreen(),
+        builder: (context, state) => const RxDartLearningScreen(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
