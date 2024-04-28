@@ -1,4 +1,4 @@
-import 'package:agora_rtc_engine/agora_rtc_engine.dart';
+import 'package:agora_rtc_engine/rtc_engine.dart';
 import 'package:flutter/material.dart';
 
 class IndexPage extends StatefulWidget {
@@ -11,7 +11,7 @@ class IndexPage extends StatefulWidget {
 class _IndexPageState extends State<IndexPage> {
   final TextEditingController _channelController = TextEditingController(text: '');
   bool _validateError = false;
-  ClientRoleType? _role = ClientRoleType.clientRoleBroadcaster;
+  ClientRole? _role = ClientRole.Broadcaster;
 
   @override
   void dispose() {
@@ -46,19 +46,19 @@ class _IndexPageState extends State<IndexPage> {
                   hintText: "Channel name",
                 ),
               ),
-              RadioListTile<ClientRoleType?>(
-                value: ClientRoleType.clientRoleBroadcaster,
+              RadioListTile<ClientRole?>(
+                value: ClientRole.Broadcaster,
                 groupValue: _role,
-                onChanged: (ClientRoleType? value) {
+                onChanged: (ClientRole? value) {
                   setState(() {
                     _role = value;
                   });
                 },
               ),
-              RadioListTile<ClientRoleType?>(
-                value: ClientRoleType.clientRoleAudience,
+              RadioListTile<ClientRole?>(
+                value: ClientRole.Audience,
                 groupValue: _role,
-                onChanged: (ClientRoleType? value) {
+                onChanged: (ClientRole? value) {
                   setState(() {
                     _role = value;
                   });

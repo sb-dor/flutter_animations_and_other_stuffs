@@ -1,9 +1,9 @@
+import 'package:agora_rtc_engine/rtc_engine.dart';
 import 'package:flutter/material.dart';
-import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 
 class CallPage extends StatefulWidget {
   final String? channelName;
-  final ClientRoleType? role;
+  final ClientRole? role;
 
   const CallPage({
     super.key,
