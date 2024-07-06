@@ -200,7 +200,7 @@ void main() async {
               ],
               // to use only en otherwise app will understand the language by your phone language
               // - optional remove if you want
-              locale: Locale("ru"),
+              locale: const Locale("ru"),
               // supported locales that will be used in app
               supportedLocales: S.delegate.supportedLocales,
               // routerConfig: webRouter,
