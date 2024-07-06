@@ -16,11 +16,11 @@ class ProductInfoText extends StatelessWidget {
         Text(
           text,
           style:
-              Theme.of(context).textTheme.bodyText1!.copyWith(fontSize: rf(12)),
+              Theme.of(context).textTheme.titleMedium!.copyWith(fontSize: rf(12)),
         ),
         Text(
           value,
-          style: Theme.of(context).textTheme.headline6!.copyWith(
+          style: Theme.of(context).textTheme.titleMedium!.copyWith(
                 fontSize: rf(16),
                 height: 1.5,
               ),

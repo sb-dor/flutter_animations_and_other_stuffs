@@ -6,7 +6,7 @@ import '../../utils/utils.dart';
 import '../custom_widgets.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({
+  const CustomAppBar({super.key,
     this.title = '',
     this.isTitleCentered,
     this.hasBackButton = true,
@@ -73,7 +73,7 @@ class CustomAppBar extends StatelessWidget {
                             'Back',
                             style: Theme.of(context)
                                 .textTheme
-                                .headline6!
+                                .titleLarge!
                                 .copyWith(
                                   fontSize: rf(14),
                                   color:
@@ -93,7 +93,7 @@ class CustomAppBar extends StatelessWidget {
                       title,
                       textAlign: TextAlign.center,
                       overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.headline6,
+                      style: Theme.of(context).textTheme.titleLarge,
                     ),
                   ),
                 ),

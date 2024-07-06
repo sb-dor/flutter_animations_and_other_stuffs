@@ -38,7 +38,7 @@ class VendorCard extends StatelessWidget {
                 name,
                 style: Theme.of(context)
                     .textTheme
-                    .headline5!
+                    .titleMedium!
                     .copyWith(fontSize: rf(16)),
               ),
               SizedBox(height: rh(5)),
@@ -56,12 +56,12 @@ class VendorCard extends StatelessWidget {
                     rating,
                     style: Theme.of(context)
                         .textTheme
-                        .headline6!
+                        .titleMedium!
                         .copyWith(fontSize: rf(14)),
                   ),
                   Text(
                     '  * Fast food * \$2.5',
-                    style: Theme.of(context).textTheme.headline6!.copyWith(
+                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
                           color: Colors.grey.shade400,
                           fontSize: rf(12),
                         ),
@@ -87,7 +87,7 @@ class VendorCard extends StatelessWidget {
                         ),
                         Text(' 15-20 min',
                             style:
-                                Theme.of(context).textTheme.bodyText1!.copyWith(
+                                Theme.of(context).textTheme.titleMedium!.copyWith(
                                       fontSize: rf(12),
                                       fontWeight: FontWeight.bold,
                                       color: const Color(0xff977f98),
@@ -100,7 +100,7 @@ class VendorCard extends StatelessWidget {
                   ),
                   Text(
                     '2.4 km',
-                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
                           color: Colors.grey.shade400,
                           fontSize: rf(12),
                         ),

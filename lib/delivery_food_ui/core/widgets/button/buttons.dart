@@ -40,7 +40,7 @@ class Buttons {
           ? const FittedBox(child: CircularProgressIndicator())
           : Text(
               text.toUpperCase(),
-              style: Theme.of(context).textTheme.button,
+              style: Theme.of(context).textTheme.bodyMedium,
             ),
     );
   }
@@ -79,7 +79,7 @@ class Buttons {
         children: [
           Text(
             text.toUpperCase(),
-            style: Theme.of(context).textTheme.button,
+            style: Theme.of(context).textTheme.bodyMedium,
           ),
           if (isLoading)
             const FittedBox(child: CircularProgressIndicator())
@@ -122,7 +122,7 @@ class Buttons {
           ? const FittedBox(child: CircularProgressIndicator())
           : Text(
               text.toUpperCase(),
-              style: Theme.of(context).textTheme.button!.copyWith(
+              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                     fontSize: rf(14),
                   ),
             ),
@@ -155,7 +155,7 @@ class Buttons {
           ? const FittedBox(child: CircularProgressIndicator())
           : Text(
               text.toUpperCase(),
-              style: Theme.of(context).textTheme.button!.copyWith(
+              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                     color: textColor ?? Theme.of(context).colorScheme.onSurface,
                     fontSize: rf(9),
                     fontWeight: FontWeight.w800,

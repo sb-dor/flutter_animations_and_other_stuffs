@@ -46,7 +46,7 @@ class ProductItem extends StatelessWidget {
                 title,
                 style: Theme.of(context)
                     .textTheme
-                    .headline6!
+                    .titleMedium!
                     .copyWith(fontSize: rf(14)),
               ),
               SizedBox(
@@ -58,7 +58,7 @@ class ProductItem extends StatelessWidget {
                   detail,
                   style: Theme.of(context)
                       .textTheme
-                      .bodyText2!
+                      .titleMedium!
                       .copyWith(color: Colors.grey.shade400, fontSize: rf(10)),
                   maxLines: 2,
                 ),
@@ -74,7 +74,7 @@ class ProductItem extends StatelessWidget {
                 "\$9.75",
                 style: Theme.of(context)
                     .textTheme
-                    .headline5!
+                    .titleMedium!
                     .copyWith(fontSize: rf(12)),
               ),
               SizedBox(height: rh(space2x)),

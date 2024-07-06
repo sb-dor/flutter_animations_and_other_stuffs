@@ -31,7 +31,6 @@ class AppTheme {
       primaryColor: _primaryColorLight,
       primaryColorDark: _buttonColor,
       primaryColorLight: _primaryColorLight,
-      errorColor: _errorColorLight,
       scaffoldBackgroundColor: _scaffoldColorLight,
       disabledColor: Colors.white.withOpacity(0.15),
       progressIndicatorTheme: const ProgressIndicatorThemeData(
@@ -45,82 +44,79 @@ class AppTheme {
         error: _errorColorLight,
       ),
       textTheme: TextTheme(
-        headline1: TextStyle(
+        headlineLarge: TextStyle(
           fontFamily: 'Outfit',
           fontSize: rf(32),
           fontWeight: FontWeight.w900,
           letterSpacing: -1.5,
           color: Colors.black,
         ),
-        headline2: TextStyle(
+        headlineMedium: TextStyle(
           fontFamily: 'Outfit',
           fontSize: rf(28),
           fontWeight: FontWeight.w800,
           letterSpacing: -1.0,
           color: Colors.black,
         ),
-        headline3: TextStyle(
+        headlineSmall: TextStyle(
           fontFamily: 'Outfit',
           fontSize: rf(24),
           fontWeight: FontWeight.w800,
           letterSpacing: -0.75,
           color: Colors.black,
         ),
-        headline4: TextStyle(
+        titleLarge: TextStyle(
           fontFamily: 'Outfit',
           fontSize: rf(20),
           fontWeight: FontWeight.w800,
           letterSpacing: -0.50,
           color: Colors.black,
         ),
-        headline5: TextStyle(
+        titleMedium: TextStyle(
           fontFamily: 'Outfit',
           fontSize: rf(18),
           fontWeight: FontWeight.w800,
           letterSpacing: -0.5,
           color: Colors.black,
         ),
-
-        headline6: TextStyle(
+        titleSmall: TextStyle(
           fontFamily: 'Outfit',
           fontSize: rf(16),
           fontWeight: FontWeight.w700,
           letterSpacing: -0.25,
           color: Colors.black,
         ),
-        subtitle1: TextStyle(
+        bodyLarge: TextStyle(
           fontFamily: 'Outfit',
           fontSize: rf(16),
           letterSpacing: 0.15,
           color: Colors.black,
         ),
-        subtitle2: TextStyle(
+        bodyMedium: TextStyle(
           fontFamily: 'Outfit',
           fontSize: rf(14),
           letterSpacing: 0.1,
           fontWeight: FontWeight.w600,
           color: Colors.black,
         ),
-        caption: TextStyle(
+        bodySmall: TextStyle(
           fontFamily: 'Outfit',
           fontSize: rf(12),
           color: Colors.black,
         ),
-        bodyText1: TextStyle(
+        labelLarge: TextStyle(
           fontFamily: 'Outfit',
           fontSize: rf(16),
           letterSpacing: 0.5,
           color: Colors.black,
         ),
-        bodyText2: TextStyle(
+        labelMedium: TextStyle(
           fontFamily: 'Outfit',
           fontSize: rf(14),
           letterSpacing: 0.25,
           color: Colors.black,
         ),
-
-        //BUTTON
-        button: TextStyle(
+        labelSmall: TextStyle(
           fontFamily: 'Outfit',
           fontSize: rf(11),
           letterSpacing: 1.25,
@@ -136,7 +132,6 @@ class AppTheme {
       primaryColor: _primaryColorDark,
       primaryColorDark: _primaryColorDark,
       primaryColorLight: _secondaryColorDark,
-      errorColor: _errorColorDark,
       scaffoldBackgroundColor: _scaffoldColorDark,
       disabledColor: Colors.white.withOpacity(0.15),
       splashColor: Colors.white.withOpacity(0.50),
@@ -151,60 +146,57 @@ class AppTheme {
         error: _errorColorDark,
       ),
       textTheme: TextTheme(
-        headline1: TextStyle(
+        headlineLarge: TextStyle(
           fontSize: rf(32),
           fontWeight: FontWeight.w900,
           letterSpacing: -1.5,
         ),
-        headline2: TextStyle(
+        headlineMedium: TextStyle(
           fontSize: rf(28),
           fontWeight: FontWeight.w800,
           letterSpacing: -1.0,
         ),
-        headline3: TextStyle(
+        headlineSmall: TextStyle(
           fontSize: rf(24),
           fontWeight: FontWeight.w800,
           letterSpacing: -0.75,
         ),
-        headline4: TextStyle(
+        titleLarge: TextStyle(
           fontSize: rf(20),
           fontWeight: FontWeight.w800,
           letterSpacing: -0.50,
         ),
-        headline5: TextStyle(
+        titleMedium: TextStyle(
           fontSize: rf(18),
           fontWeight: FontWeight.w800,
           letterSpacing: -0.5,
         ),
-
-        headline6: TextStyle(
+        titleSmall: TextStyle(
           fontSize: rf(16),
           fontWeight: FontWeight.w700,
           letterSpacing: -0.25,
         ),
-        subtitle1: TextStyle(
+        bodyLarge: TextStyle(
           fontSize: rf(16),
           letterSpacing: 0.15,
         ),
-        subtitle2: TextStyle(
+        bodyMedium: TextStyle(
           fontSize: rf(14),
           letterSpacing: 0.1,
           fontWeight: FontWeight.w600,
         ),
-        caption: TextStyle(
+        bodySmall: TextStyle(
           fontSize: rf(12),
         ),
-        bodyText1: TextStyle(
+        labelLarge: TextStyle(
           fontSize: rf(16),
           letterSpacing: 0.5,
         ),
-        bodyText2: TextStyle(
+        labelMedium: TextStyle(
           fontSize: rf(14),
           letterSpacing: 0.25,
         ),
-
-        //BUTTON
-        button: TextStyle(
+        labelSmall: TextStyle(
           fontSize: rf(11),
           letterSpacing: 1.25,
           fontWeight: FontWeight.w700,

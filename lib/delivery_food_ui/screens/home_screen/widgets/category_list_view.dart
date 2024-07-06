@@ -75,7 +75,7 @@ class CategoryItem extends StatelessWidget {
           ),
           Text(
             name,
-            style: Theme.of(context).textTheme.headline6!.copyWith(
+            style: Theme.of(context).textTheme.titleLarge!.copyWith(
                   fontSize: rf(12),
                 ),
           ),

@@ -98,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: RichText(
                     text: TextSpan(
                       text: 'Hi, ',
-                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
                             fontSize: rf(24),
                             fontWeight: FontWeight.normal,
                           ),
@@ -106,7 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         TextSpan(
                           text: 'Jack',
                           style:
-                              Theme.of(context).textTheme.headline6!.copyWith(
+                              Theme.of(context).textTheme.titleMedium!.copyWith(
                                     fontSize: rf(24),
                                   ),
                         ),
@@ -118,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: space2x),
                   child: Text(
                     'DELIVER TO 779 CASSIE',
-                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
                           fontSize: rf(12),
                           height: 1.5,
                         ),

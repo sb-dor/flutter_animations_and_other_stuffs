@@ -149,13 +149,13 @@ class _ProductScreenState extends State<ProductScreen> {
                       children: <Widget>[
                         Text(
                           'Raspberry Donut',
-                          style: Theme.of(context).textTheme.headline4,
+                          style: Theme.of(context).textTheme.titleMedium,
                         ),
                         SizedBox(height: rh(space1x)),
                         Text(
                           '\$12.95',
                           style:
-                              Theme.of(context).textTheme.headline4!.copyWith(
+                              Theme.of(context).textTheme.titleMedium!.copyWith(
                                     color: Theme.of(context).primaryColorDark,
                                     fontSize: rf(18),
                                     fontWeight: FontWeight.normal,
@@ -164,7 +164,7 @@ class _ProductScreenState extends State<ProductScreen> {
                         SizedBox(height: rh(space2x)),
                         Text(
                           'lorem ipsum doremetlorem ipsum doremetlorem ipsum doremetlorem ipsum doremetlorem ipsum doremetlorem ipsum doremetlorem ipsum doremetlorem ipsum doremetorem ipsum doremet',
-                          style: Theme.of(context).textTheme.bodyText2,
+                          style: Theme.of(context).textTheme.titleMedium,
                         ),
                       ],
                     ),

@@ -33,7 +33,7 @@ class VendorInfoCard extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: Theme.of(context).textTheme.headline4!.copyWith(
+                style: Theme.of(context).textTheme.titleMedium!.copyWith(
                       fontSize: rf(20),
                     ),
               ),
@@ -55,12 +55,12 @@ class VendorInfoCard extends StatelessWidget {
                     "$rating",
                     style: Theme.of(context)
                         .textTheme
-                        .headline6!
+                        .titleMedium!
                         .copyWith(fontSize: rf(12)),
                   ),
                   Text(
                     " • fast food • \$\$ • 15-20 min",
-                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
                           color: Colors.grey.shade400,
                           fontSize: rf(12),
                         ),
@@ -85,7 +85,7 @@ class VendorInfoCard extends StatelessWidget {
                       "Free delivery",
                       style: Theme.of(context)
                           .textTheme
-                          .headline6!
+                          .titleMedium!
                           .copyWith(fontSize: rf(12)),
                     ),
                   ),
@@ -94,7 +94,7 @@ class VendorInfoCard extends StatelessWidget {
                   ),
                   Text(
                     "21 reviews",
-                    style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
                           color: Colors.grey.shade400,
                           fontSize: rf(12),
                         ),
