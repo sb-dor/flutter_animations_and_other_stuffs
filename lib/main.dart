@@ -15,6 +15,7 @@ import 'package:flutter_animations_2/bloc_learning/using_freezed/using_freezed_b
 import 'package:flutter_animations_2/bloc_learning/using_freezed/using_freezed_page.dart';
 import 'package:flutter_animations_2/bottom_modal_sheets/bottom_modal_sheets_cubit/bottom_modal_sheet_cubit.dart';
 import 'package:flutter_animations_2/clean_architecture/cubit/day_cubit.dart';
+import 'package:flutter_animations_2/dart_features/dart_enums.dart';
 import 'package:flutter_animations_2/dart_sync_async_isolates/dart_isolates.dart';
 import 'package:flutter_animations_2/dart_sync_async_isolates/vandads_isolates/dart_iso_example1.dart';
 import 'package:flutter_animations_2/dart_sync_async_isolates/vandads_isolates/dart_iso_example2.dart';
@@ -112,6 +113,13 @@ void main() async {
       };
     } catch (_) {}
   }
+
+  final user = AccountStatus.admin;
+
+  print(user.desc);
+
+  // status.
+
   // MainCharacter mainCharacter = MainCharacter("Alien");
   // mainCharacter.race?.saySome();
   // mainCharacter.race?.weapon.shoot();
