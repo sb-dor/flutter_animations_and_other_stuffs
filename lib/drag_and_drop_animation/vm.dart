@@ -39,25 +39,25 @@ final _items = [
   Item(
     firstName: "Ian",
     lastName: "Hickson",
-    asset: 'ian_hickson.png',
+    asset: 'drag_and_drop_animation_assets/ian_hickson.png',
     money: 60,
   ),
   Item(
     firstName: "Eric",
     lastName: "Seidel",
-    asset: 'eric_seidel.jpg',
+    asset: 'drag_and_drop_animation_assets/eric_seidel.jpg',
     money: 50,
   ),
   Item(
     firstName: "Adam",
     lastName: "Barth",
-    asset: 'adam_barth.jpg',
+    asset: 'drag_and_drop_animation_assets/adam_barth.jpg',
     money: 60,
   ),
   Item(
       firstName: "Filip",
       lastName: "Hráček",
-      asset: 'filip_hracek.jpg',
+      asset: 'drag_and_drop_animation_assets/filip_hracek.jpg',
       money: 40),
 ];
 

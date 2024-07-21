@@ -1,5 +1,7 @@
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intersperse/intersperse.dart';
 import 'package:provider/provider.dart';
 import 'package:dimensions_theme/dimensions_theme.dart';
 import 'footer.dart';
@@ -11,12 +13,7 @@ import 'theme.dart';
 const double kHeaderHeight = 260;
 const double kHeaderInset = 50;
 
-void main() {
-  runApp(
-    const AnimatedDragDropApp(),
-  );
-}
-
+// main app
 class AnimatedDragDropApp extends StatelessWidget {
   const AnimatedDragDropApp({
     super.key,

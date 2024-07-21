@@ -1,8 +1,8 @@
-import 'package:animateddropdown/theme.dart';
-import 'package:animateddropdown/utils.dart';
-import 'package:animateddropdown/vm.dart';
 import 'package:dimensions_theme/dimensions_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animations_2/drag_and_drop_animation/theme.dart';
+import 'package:flutter_animations_2/drag_and_drop_animation/utils.dart';
+import 'package:flutter_animations_2/drag_and_drop_animation/vm.dart';
 
 const avatarVerticalRadius = 50 / 2;
 const avatarHorizontalRadius = 43 / 2;

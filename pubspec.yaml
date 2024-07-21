@@ -123,6 +123,10 @@ dependencies:
   rxdart: ^0.27.7
   agora_rtc_engine: ^5.3.0
   responsive_framework: ^1.4.0
+  flextras: ^1.0.0
+  intersperse: ^2.0.0
+  dimensions_theme: ^0.1.1
+  dotted_border: ^2.1.0
 
 
 dev_dependencies:
@@ -164,6 +168,7 @@ flutter:
     - assets/dodo_pizza_often_order_pictures/
     - assets/parallax_effect_images/
     - assets/youtube_coffee_anim_pic/
+    - assets/drag_and_drop_animation_assets/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

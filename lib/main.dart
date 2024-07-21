@@ -60,6 +60,7 @@ import 'animation_pages/youtube_pageview_scroll_animation_challenge/stack_scroll
 import 'animation_pages/youtube_flutter_location_animation/youtube_flutter_location_animation.dart';
 import 'clean_architecture/presentation/clean_architecture_page.dart';
 import 'custom_painter/progress_chart/progress_chart.dart';
+import 'drag_and_drop_animation/animated_drag_drop_app.dart';
 import 'floor_database/floor_database_page.dart';
 import 'flutter_blurhash/flutter_blurhash_page.dart';
 import 'flutter_deep_link/flutter_deeplink_page.dart';
@@ -191,7 +192,7 @@ void main() async {
             // return MainGoRouterDecNavigation();
             // return const MainDeclarativeNavigationScreen();
             // return FlutterDeepLinkPage();
-            return MaterialApp(
+            return GetMaterialApp(
               localizationsDelegates: const [
                 S.delegate,
                 GlobalMaterialLocalizations.delegate,
@@ -263,7 +264,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const IndexPage(),
+        builder: (context, state) => const AnimatedDragDropApp(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {

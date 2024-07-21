@@ -409,6 +409,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.0.0"
+  dimensions_theme:
+    dependency: "direct main"
+    description:
+      name: dimensions_theme
+      sha256: "2a33831939bcc057d9f1d466faee3d0d3fe4e98a2b432d4399a3255511c48fb3"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.1"
   dio:
     dependency: "direct main"
     description:
@@ -417,6 +425,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.3.2"
+  dotted_border:
+    dependency: "direct main"
+    description:
+      name: dotted_border
+      sha256: "108837e11848ca776c53b30bc870086f84b62ed6e01c503ed976e8f8c7df9c04"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
   equatable:
     dependency: "direct main"
     description:
@@ -633,6 +649,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.4.0"
+  flextras:
+    dependency: "direct main"
+    description:
+      name: flextras
+      sha256: e73b5c86dd9419569d2a48db470059b41b496012513e4e1bdc56ba2c661048d9
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   floor:
     dependency: "direct main"
     description:
@@ -1133,6 +1157,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.1+1"
+  intersperse:
+    dependency: "direct main"
+    description:
+      name: intersperse
+      sha256: "2f8a905c96f6cbba978644a3d5b31b8d86ddc44917662df7d27a61f3df66a576"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   intl:
     dependency: "direct main"
     description:
@@ -1397,6 +1429,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.9.0"
+  path_drawing:
+    dependency: transitive
+    description:
+      name: path_drawing
+      sha256: bbb1934c0cbb03091af082a6389ca2080345291ef07a5fa6d6e078ba8682f977
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   path_parsing:
     dependency: transitive
     description:
