@@ -114,9 +114,10 @@ void main() async {
     } catch (_) {}
   }
 
-  final user = AccountStatus.admin;
+  const user = AccountStatus.admin;
 
-  print(user.desc);
+  final typeOfUser = AccountStatus.fromString("admin11");
+  print("user type of enum is: ${typeOfUser.desc}");
 
   // status.
 

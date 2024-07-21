@@ -1,4 +1,8 @@
 // I learned it from -> https://medium.com/@ethiel97/enums-on-steroids-with-dart-best-enum-features-ever-ff7ba7996b87
+// i has a good documentation about enums in dart
+
+
+
 // and I thing that especially this implementation is not good idea to implement
 enum Status {
   initial,
@@ -36,5 +40,13 @@ enum AccountStatus {
   // - admin
   // - guest
   // - user
-  const AccountStatus({required this.value, required this.desc});
+  const AccountStatus({required this.value, required this.desc}); // you can't create constructor
+
+  // but you can create "factory"
+  factory AccountStatus.fromString(String value) {
+    return AccountStatus.values.firstWhere(
+      (e) => e.value == value,
+      orElse: () => AccountStatus.guest,
+    );
+  }
 }
