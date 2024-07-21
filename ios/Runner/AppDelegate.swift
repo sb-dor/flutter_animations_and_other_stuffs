@@ -1,6 +1,8 @@
 import UIKit
 import Flutter
 import YandexMapsMobile
+import FirebaseCore
+//import flutter_local_notifications
 
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate {
@@ -9,11 +11,13 @@ import YandexMapsMobile
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
 
+    FirebaseApp.configure()
+
     //cause of putting this "do-catch" is that after clicking upon the "flutter_background_service" notification
 
     //yandex map throws an exception
     //the key is already locked and you cannot use it
-    try{
+    do{
         YMKMapKit.setLocale("ru_RU") // Your preferred language. Not required, defaults to system language
         YMKMapKit.setApiKey("XXXXXXXXXXXXXXXXXXXX") // Your generated API key
     } catch {
@@ -22,9 +26,9 @@ import YandexMapsMobile
 
 
 
-    FlutterLocalNotificationsPlugin.setPluginRegistrantCallback { (registry) in
-        GeneratedPluginRegistrant.register(with: registry)
-    }
+//    FlutterLocalNotificationsPlugin.setPluginRegistrantCallback { (registry) in
+//        GeneratedPluginRegistrant.register(with: registry)
+//    }
 
     if #available(iOS 10.0, *) {
     UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate

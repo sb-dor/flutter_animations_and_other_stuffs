@@ -3,19 +3,19 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>403332127037-obmo3e7j6u826o28122pdc91qeap7e7b.apps.googleusercontent.com</string>
+	<string>403332127037-7haesdjul2kituta47ek9h76bft1ab5h.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.403332127037-obmo3e7j6u826o28122pdc91qeap7e7b</string>
+	<string>com.googleusercontent.apps.403332127037-7haesdjul2kituta47ek9h76bft1ab5h</string>
 	<key>ANDROID_CLIENT_ID</key>
 	<string>403332127037-cfcmkuj8bu6a6pjk7q5a8q5q44bj6jfm.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyD0qd1tK0kqGrA5BLVGWi74sjafkmnLqo0</string>
+	<string>AIzaSyAJ1UeymiS3ZV_Z1Mqx54qA6y34FiY6vfU</string>
 	<key>GCM_SENDER_ID</key>
 	<string>403332127037</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.flutterAnimations2</string>
+	<string>com.example.flutter-animations2</string>
 	<key>PROJECT_ID</key>
 	<string>sign-in-firebase-93418</string>
 	<key>STORAGE_BUCKET</key>
@@ -31,7 +31,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:403332127037:ios:ca733b3915d59a76ea0d54</string>
+	<string>1:403332127037:ios:b511b57007f9bd81ea0d54</string>
 	<key>DATABASE_URL</key>
 	<string>https://sign-in-firebase-93418-default-rtdb.firebaseio.com</string>
 </dict>
