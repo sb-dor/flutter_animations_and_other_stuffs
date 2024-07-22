@@ -250,6 +250,8 @@ class _ItemBankState extends State<ItemBank> with TickerProviderStateMixin {
                         hitTestBehavior: HitTestBehavior.opaque,
                         onDragStarted: () => onDragStarted(e),
                         onDragEnd: (details) => onItemDropped(details, e),
+                        // that exactly widget
+                        // that will stuck in your dragging position
                         feedback: VerticalItemCardDragFeedback(
                           item: e,
                           cardKey: cardKey,

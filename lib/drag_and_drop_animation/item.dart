@@ -55,6 +55,9 @@ class VerticalItemCardDragFeedback extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Transform.translate(
+      // if you will not put this Transform.translate
+      // in dragging your widget will appear somewhere else
+      // there is why need Offset(-80, -80) in order to show your widget under the dragging position
       offset: const Offset(-80, -80),
       child: DefaultTextStyle(
         style: const TextStyle(
@@ -246,7 +249,7 @@ class AnimatedHorizontalCard extends StatefulWidget {
 }
 
 class _AnimatedHorizontalCardState extends State<AnimatedHorizontalCard> {
-  bool morhAnimationCompleted = false;
+  bool morphAnimationCompleted = false;
   OverlayEntry? entry;
 
   final cardKey = GlobalKey();
@@ -265,6 +268,12 @@ class _AnimatedHorizontalCardState extends State<AnimatedHorizontalCard> {
         onDone: onDone,
       ),
     );
+    // whenever user drops the card the morph animation starts
+    // and starts with overlay
+    // there is "onDone" function that whenever animation ens
+    // we will show exactly same widget
+    // but before ending animation it's hiding
+    // in order to just
     Overlay.of(context).insert(entry!);
   }
 
@@ -284,7 +293,7 @@ class _AnimatedHorizontalCardState extends State<AnimatedHorizontalCard> {
     if (context.mounted) {
       entry?.remove();
       setState(() {
-        morhAnimationCompleted = true;
+        morphAnimationCompleted = true;
       });
     }
   }
@@ -292,7 +301,7 @@ class _AnimatedHorizontalCardState extends State<AnimatedHorizontalCard> {
   @override
   Widget build(BuildContext context) {
     return Visibility(
-      visible: morhAnimationCompleted,
+      visible: morphAnimationCompleted,
       maintainState: true,
       maintainAnimation: true,
       maintainSize: true,
@@ -330,7 +339,9 @@ class MorphAnimation extends StatefulWidget {
 }
 
 class _MorphAnimationState extends State<MorphAnimation> with SingleTickerProviderStateMixin {
-  late final animation = AnimationController(vsync: this);
+  late final animation = AnimationController(
+    vsync: this,
+  );
 
   late final avatarAnimation = CurvedAnimation(
     parent: animation,
@@ -400,8 +411,9 @@ class _MorphAnimationState extends State<MorphAnimation> with SingleTickerProvid
   late Animatable<double> lastNameXTween;
   late Animatable<double> lastNameYTween;
 
-  final trailingOpacityTween =
-      Tween<double>(begin: 0, end: 1).chain(CurveTween(curve: Curves.ease));
+  final trailingOpacityTween = Tween<double>(begin: 0, end: 1).chain(
+    CurveTween(curve: Curves.ease),
+  );
 
   Item get item => widget.item;
 
@@ -442,20 +454,24 @@ class _MorphAnimationState extends State<MorphAnimation> with SingleTickerProvid
     const xCurve = Curves.ease;
     const yCurve = Curves.decelerate;
 
-    cardXTween =
-        Tween(begin: cardOffsets.$1.dx, end: cardOffsets.$2.dx).chain(CurveTween(curve: xCurve));
-    cardYTween =
-        Tween(begin: cardOffsets.$1.dy, end: cardOffsets.$2.dy).chain(CurveTween(curve: yCurve));
+    cardXTween = Tween(begin: cardOffsets.$1.dx, end: cardOffsets.$2.dx).chain(
+      CurveTween(curve: xCurve),
+    );
+    cardYTween = Tween(begin: cardOffsets.$1.dy, end: cardOffsets.$2.dy).chain(
+      CurveTween(curve: yCurve),
+    );
 
     final avatarOffsets = calculateOffsets(
       widget.item.dropAvatarOffset!,
       avatarKey,
     );
 
-    avatarXTween = Tween(begin: avatarOffsets.$1.dx, end: avatarOffsets.$2.dx)
-        .chain(CurveTween(curve: xCurve));
-    avatarYTween = Tween(begin: avatarOffsets.$1.dy, end: avatarOffsets.$2.dy)
-        .chain(CurveTween(curve: yCurve));
+    avatarXTween = Tween(begin: avatarOffsets.$1.dx, end: avatarOffsets.$2.dx).chain(
+      CurveTween(curve: xCurve),
+    );
+    avatarYTween = Tween(begin: avatarOffsets.$1.dy, end: avatarOffsets.$2.dy).chain(
+      CurveTween(curve: yCurve),
+    );
 
     final firstNameOffsets = calculateOffsets(
       widget.item.dropFirstNameOffset!,
@@ -465,8 +481,9 @@ class _MorphAnimationState extends State<MorphAnimation> with SingleTickerProvid
     firstNameXTween = Tween(begin: firstNameOffsets.$1.dx, end: firstNameOffsets.$2.dx)
         .chain(CurveTween(curve: xCurve));
 
-    firstNameYTween = Tween(begin: firstNameOffsets.$1.dy, end: firstNameOffsets.$2.dy)
-        .chain(CurveTween(curve: yCurve));
+    firstNameYTween = Tween(begin: firstNameOffsets.$1.dy, end: firstNameOffsets.$2.dy).chain(
+      CurveTween(curve: yCurve),
+    );
 
     final lastNameOffsets = calculateOffsets(
       widget.item.dropLastNameOffset!,
