@@ -252,11 +252,16 @@ class _AnimatedHorizontalCardState extends State<AnimatedHorizontalCard> {
   bool morphAnimationCompleted = false;
   OverlayEntry? entry;
 
+  // when you will drag item inside target
+  // it will create an item inside with this globalKeys
+  // globalKeys represent the final position of the item
   final cardKey = GlobalKey();
   final avatarKey = GlobalKey();
   final firstNameKey = GlobalKey();
   final lastNameKey = GlobalKey();
 
+  // but this morphAnimation will have both item last dragged position
+  // and final position (from above globalKeys)
   void onItemDropped() {
     entry = OverlayEntry(
       builder: (context) => MorphAnimation(
@@ -301,6 +306,12 @@ class _AnimatedHorizontalCardState extends State<AnimatedHorizontalCard> {
   @override
   Widget build(BuildContext context) {
     return Visibility(
+      // this visibility is for when user
+      // dragging item inside target
+      // you have to finish the morphAnimation at first
+      // then show item inside target because
+      // because the item that you are dragging
+      // will be exist inside list but we will not show till animation ends
       visible: morphAnimationCompleted,
       maintainState: true,
       maintainAnimation: true,
@@ -370,6 +381,7 @@ class _MorphAnimationState extends State<MorphAnimation> with SingleTickerProvid
   get lastNameKey => widget.lastNameKey;
 
   get cardKey => widget.cardKey;
+
   final stackKey = GlobalKey();
 
   late Animatable<Size> cardSizeTween;
@@ -417,6 +429,7 @@ class _MorphAnimationState extends State<MorphAnimation> with SingleTickerProvid
 
   Item get item => widget.item;
 
+  // this calculate offset will calculate from which offset to which offset move animation
   (Offset, Offset) calculateOffsets(
     Offset startOffsetGlobal,
     GlobalKey targetKey,
@@ -435,12 +448,8 @@ class _MorphAnimationState extends State<MorphAnimation> with SingleTickerProvid
   @override
   void initState() {
     super.initState();
-    animation
-        .animateTo(
-      1,
-      duration: morphDuration,
-    )
-        .whenComplete(() {
+    //
+    animation.animateTo(1, duration: morphDuration).whenComplete(() {
       widget.onDone();
     });
   }
@@ -454,9 +463,12 @@ class _MorphAnimationState extends State<MorphAnimation> with SingleTickerProvid
     const xCurve = Curves.ease;
     const yCurve = Curves.decelerate;
 
+    // card X position
     cardXTween = Tween(begin: cardOffsets.$1.dx, end: cardOffsets.$2.dx).chain(
       CurveTween(curve: xCurve),
     );
+
+    // card Y position
     cardYTween = Tween(begin: cardOffsets.$1.dy, end: cardOffsets.$2.dy).chain(
       CurveTween(curve: yCurve),
     );
@@ -469,6 +481,7 @@ class _MorphAnimationState extends State<MorphAnimation> with SingleTickerProvid
     avatarXTween = Tween(begin: avatarOffsets.$1.dx, end: avatarOffsets.$2.dx).chain(
       CurveTween(curve: xCurve),
     );
+
     avatarYTween = Tween(begin: avatarOffsets.$1.dy, end: avatarOffsets.$2.dy).chain(
       CurveTween(curve: yCurve),
     );

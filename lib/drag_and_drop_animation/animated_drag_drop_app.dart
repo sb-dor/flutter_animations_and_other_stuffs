@@ -198,6 +198,7 @@ class _ItemBankState extends State<ItemBank> with TickerProviderStateMixin {
     // it means that whenever we put our item inside
     // dropping position it will get all data through this
     // settings
+    // we put this globalKeys inside widget of "feedback" in "Draggable" widget
     item.setDropOffsets(
       dropOffset: findOffset(cardKey),
       cardSize: findBox(cardKey).size,
@@ -252,6 +253,8 @@ class _ItemBankState extends State<ItemBank> with TickerProviderStateMixin {
                         onDragEnd: (details) => onItemDropped(details, e),
                         // that exactly widget
                         // that will stuck in your dragging position
+                        // set all globalkey to this widget
+                        // in order to understand where is our item
                         feedback: VerticalItemCardDragFeedback(
                           item: e,
                           cardKey: cardKey,
@@ -341,6 +344,11 @@ class _SelectedItemListState extends State<SelectedItemList> {
                         )
                       : const SizedBox.shrink(),
                 ),
+                // "candidateData" data is the data before
+                // dropping item inside this target
+                // it means that the list or whatever
+                // will look like "candidateData" which is list, if you will drop your
+                // item inside this target
                 if (candidateData.isNotEmpty)
                   AnimatedHorizontalCard(
                     item: candidateData.first!,

@@ -13,6 +13,7 @@ import 'package:flutter_animations_2/bottom_modal_sheets/bottom_modal_sheets_cub
 import 'package:flutter_animations_2/clean_architecture/cubit/day_cubit.dart';
 import 'package:flutter_animations_2/dart_features/dart_enums.dart';
 import 'package:flutter_animations_2/design_templates/mvvm/viewmodel_mvvm.dart';
+import 'package:flutter_animations_2/drag_and_drop_own_animation/drag_and_drop_own_animation.dart';
 import 'package:flutter_animations_2/esc_pos_printer_with_bluetooth/esc_pos_printer_ui_helper.dart';
 import 'package:flutter_animations_2/firebase_push_notification/firebase_push_not.dart';
 import 'package:flutter_animations_2/flutter_background_service/flutter_background_service_helper.dart';
@@ -233,7 +234,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const AnimatedDragDropApp(),
+        builder: (context, state) => const DragAndDropOwnAnimation(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {

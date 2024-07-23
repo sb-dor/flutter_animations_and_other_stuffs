@@ -56,10 +56,10 @@ class _FlutterDragElementToWidgetAndPasterState extends State<FlutterDragElement
               ],
             ),
             const Spacer(),
-            DragTarget(
+            DragTarget<int>(
               // onAccept can accept anything
-              onAcceptWithDetails: (int data) {
-                sum += data;
+              onAcceptWithDetails: (data) {
+                sum += data.data;
                 setState(() {});
               },
               builder:
