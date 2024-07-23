@@ -26,7 +26,7 @@ class _FlutterHeroAnimationsState extends State<FlutterHeroAnimations> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("People")),
+      appBar: AppBar(title: const Text("People")),
       body: ListView.builder(
           itemCount: people.length,
           itemBuilder: (context, index) {
@@ -38,14 +38,14 @@ class _FlutterHeroAnimationsState extends State<FlutterHeroAnimations> {
                     MaterialPageRoute(
                         builder: (context) => DetailsFlutterHeroAnimationPage(person: person)));
               },
-              trailing: Icon(Icons.arrow_forward_ios),
+              trailing: const Icon(Icons.arrow_forward_ios),
               leading: Hero(
-                  tag: "${person.name}",
+                  tag: person.name,
                   child: Material(
                       color: Colors.transparent,
-                      child: Text("${person.emoji}",
-                          style: TextStyle(fontSize: 40, color: Colors.black)))),
-              title: Text("${person.name}"),
+                      child: Text(person.emoji,
+                          style: const TextStyle(fontSize: 40, color: Colors.black)))),
+              title: Text(person.name),
               subtitle: Text("${person.age} years"),
             );
           }),
@@ -79,19 +79,19 @@ class DetailsFlutterHeroAnimationPage extends StatelessWidget {
                 }
                 return Material(color: Colors.transparent, child: widget);
               },
-              tag: "${person.name}",
+              tag: person.name,
               child: Material(
                   color: Colors.transparent,
                   child: Text(
-                    "${person.emoji}",
-                    style: TextStyle(fontSize: 50),
+                    person.emoji,
+                    style: const TextStyle(fontSize: 50),
                   )))),
       body: Center(
         child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-          SizedBox(height: 20),
-          Text(person.name, style: TextStyle(fontSize: 20)),
-          SizedBox(height: 20),
-          Text("${person.age} years old", style: TextStyle(fontSize: 20)),
+          const SizedBox(height: 20),
+          Text(person.name, style: const TextStyle(fontSize: 20)),
+          const SizedBox(height: 20),
+          Text("${person.age} years old", style: const TextStyle(fontSize: 20)),
         ]),
       ),
     );

@@ -14,9 +14,9 @@ class _NestedScrollViewPageState extends State<NestedScrollViewPage> {
   double offsetToMinus = 0.0;
 
   List<Tab> tabs = [
-    Tab(text: "First screen"),
-    Tab(text: "Second screen"),
-    Tab(text: "Third screen"),
+    const Tab(text: "First screen"),
+    const Tab(text: "Second screen"),
+    const Tab(text: "Third screen"),
   ];
 
   @override
@@ -46,7 +46,7 @@ class _NestedScrollViewPageState extends State<NestedScrollViewPage> {
             controller: _nestedScrollController,
             headerSliverBuilder: (context, innerBoxIsScrolled) => [
                   SliverAppBar(
-                    title: Text("Nested scroll view"),
+                    title: const Text("Nested scroll view"),
                     backgroundColor: Colors.amber,
                     pinned: true,
                     floating: true,
@@ -68,8 +68,8 @@ class _NestedScrollViewPageState extends State<NestedScrollViewPage> {
                         child: ListView.separated(
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
-                            padding: EdgeInsets.only(left: 10, right: 10),
-                            separatorBuilder: (context, index) => SizedBox(height: 10),
+                            padding: const EdgeInsets.only(left: 10, right: 10),
+                            separatorBuilder: (context, index) => const SizedBox(height: 10),
                             itemCount: 30,
                             itemBuilder: (context, index) {
                               return Text("${index + 1}");
@@ -91,7 +91,7 @@ class _HelloWorldDelegate extends SliverPersistentHeaderDelegate {
   @override
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
     return Container(
-        height: 30, color: Colors.red, child: Text("Hello world", style: TextStyle(fontSize: 20)));
+        height: 30, color: Colors.red, child: const Text("Hello world", style: TextStyle(fontSize: 20)));
   }
 
   @override

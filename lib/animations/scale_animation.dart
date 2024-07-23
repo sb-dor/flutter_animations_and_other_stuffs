@@ -49,7 +49,7 @@ class ScaleAnimation extends StatelessWidget {
   Widget build(BuildContext context) {
     return TweenAnimationBuilder(
         tween: Tween<double>(begin: begin ?? 2, end: end ?? 1),
-        duration: duration ?? Duration(milliseconds: 750),
+        duration: duration ?? const Duration(milliseconds: 750),
         curve: Interval(intervalStart ?? 0, intervalEnd ?? 1,
             curve: curve ?? Curves.fastOutSlowIn),
         builder: (context, value, child) =>

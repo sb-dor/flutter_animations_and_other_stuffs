@@ -107,7 +107,7 @@ class _FlutterParallaxEffectState extends State<FlutterParallaxHorizontalEffect>
                       ),
                       child: Column(
                         children: <Widget>[
-                          Align(alignment: Alignment(pageOffset, 0), child: Text("Avaz")),
+                          Align(alignment: Alignment(pageOffset, 0), child: const Text("Avaz")),
                           // Image
                           ClipRRect(
                             borderRadius: const BorderRadius.vertical(top: Radius.circular(32)),

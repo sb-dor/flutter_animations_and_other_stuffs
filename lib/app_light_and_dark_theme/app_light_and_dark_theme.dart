@@ -57,7 +57,7 @@ class AppTheme {
       iconTheme: const IconThemeData(color: AppColors.iconDark),
       colorScheme: lightBase.colorScheme
           .copyWith(secondary: accentColor)
-          .copyWith(background: _LightColors.background));
+          .copyWith(surface: _LightColors.background));
 
   /// Dark theme and its settings.
   static ThemeData get dark => ThemeData(
@@ -78,5 +78,5 @@ class AppTheme {
       iconTheme: const IconThemeData(color: AppColors.iconLight),
       colorScheme: darkBase.colorScheme
           .copyWith(secondary: accentColor)
-          .copyWith(background: _DarkColors.background));
+          .copyWith(surface: _DarkColors.background));
 }

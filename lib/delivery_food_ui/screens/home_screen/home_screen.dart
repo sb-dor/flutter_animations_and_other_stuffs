@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animations_2/delivery_food_ui/core/animations/fade_animation.dart';
 import 'package:flutter_animations_2/delivery_food_ui/core/animations/page_transition.dart';
 import 'package:flutter_animations_2/delivery_food_ui/core/animations/slide_animation.dart';
-import 'package:flutter_animations_2/delivery_food_ui/core/utils/navigation.dart';
 import 'package:flutter_animations_2/delivery_food_ui/core/utils/utils.dart';
 import 'package:flutter_animations_2/delivery_food_ui/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:flutter_animations_2/delivery_food_ui/data.dart';
@@ -94,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
               children: <Widget>[
                 const CustomAppBar(hasBackButton: false),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: space2x),
+                  padding: const EdgeInsets.symmetric(horizontal: space2x),
                   child: RichText(
                     text: TextSpan(
                       text: 'Hi, ',

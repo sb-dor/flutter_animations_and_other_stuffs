@@ -34,7 +34,7 @@ class _SineWavePageState extends State<SineWavePage> with SingleTickerProviderSt
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Loading Animation Page"),
+          title: const Text("Loading Animation Page"),
           backgroundColor: Colors.blueGrey,
         ),
         body: AnimatedBuilder(

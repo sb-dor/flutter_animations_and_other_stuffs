@@ -106,17 +106,17 @@ class _ProductScreenState extends State<ProductScreen> {
                       top: rh(40),
                       bottom: 0,
                       right: rw(space4x),
-                      child: Align(
+                      child: const Align(
                         alignment: Alignment.centerRight,
                         child: FadeAnimation(
-                          duration: const Duration(milliseconds: 1250),
+                          duration: Duration(milliseconds: 1250),
                           child: ScaleAnimation(
                             intervalStart: 0.4,
-                            duration: const Duration(milliseconds: 1250),
+                            duration: Duration(milliseconds: 1250),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: const <Widget>[
+                              children: <Widget>[
                                 ProductInfoText(text: 'Weight', value: '400g'),
                                 ProductInfoText(
                                   text: 'Calories',

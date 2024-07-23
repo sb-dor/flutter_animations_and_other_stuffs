@@ -27,7 +27,7 @@ class _DodoPizzaTurnPizzaAnimationState extends State<DodoPizzaTurnPizzaAnimatio
         title: const Text("Dodo pizza animation"),
       ),
       body: Center(
-        child: Container(
+        child: SizedBox(
           height: MediaQuery.of(context).size.height * 0.720,
           width: MediaQuery.of(context).size.width,
           // color: Colors.red,
@@ -109,7 +109,7 @@ class _MainTurnAnimationState extends State<MainTurnAnimation> with TickerProvid
                                 boxShadow: [
                                   BoxShadow(
                                     color: Colors.grey.shade400,
-                                    offset: Offset(0.5, 0.5),
+                                    offset: const Offset(0.5, 0.5),
                                     blurRadius: 5,
                                   )
                                 ]),
@@ -164,7 +164,7 @@ class _MainTurnAnimationState extends State<MainTurnAnimation> with TickerProvid
                                   boxShadow: [
                                     BoxShadow(
                                       color: Colors.grey.shade400,
-                                      offset: Offset(0.5, 0.5),
+                                      offset: const Offset(0.5, 0.5),
                                       blurRadius: 5,
                                     )
                                   ]),
@@ -181,7 +181,7 @@ class _MainTurnAnimationState extends State<MainTurnAnimation> with TickerProvid
                                         _firstWidgetTurnAnimationController.forward();
                                         _secondWidgetTurnAnimationController.forward();
                                       },
-                                      child: TextWidget(text: "Отмена"))
+                                      child: const TextWidget(text: "Отмена"))
                                 ],
                               ),
                             ),

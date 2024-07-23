@@ -43,7 +43,7 @@ class _PingPongPageState extends State<PingPongPage> {
         },
         child: Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
-          child: Container(
+          child: SizedBox(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
             child: Stack(children: [
@@ -56,7 +56,7 @@ class _PingPongPageState extends State<PingPongPage> {
                         color: Colors.white, borderRadius: BorderRadius.circular(10))),
               ),
               Container(
-                alignment: Alignment(0, 1),
+                alignment: const Alignment(0, 1),
                 height: 20,
                 child: Container(
                     width: MediaQuery.of(context).size.width / 3,

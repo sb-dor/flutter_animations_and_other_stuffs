@@ -47,7 +47,7 @@ class YandexMapScreen extends StatelessWidget {
                         onPressed: () async => await showDialog(
                                     barrierColor: Colors.transparent,
                                     context: context,
-                                    builder: (context) => GetLatLotByScreenDrawingScreen())
+                                    builder: (context) => const GetLatLotByScreenDrawingScreen())
                                 .then((value) {
                               context.read<MainMapCubit>().clearSavedPoints();
                             }),
@@ -108,8 +108,8 @@ class YandexMapScreen extends StatelessWidget {
                               ]),
                       ElevatedButton.icon(
                           onPressed: () => context.read<MainMapCubit>().addCircleMapObject(),
-                          icon: Icon(Icons.circle),
-                          label: Text("Add circle map object"))
+                          icon: const Icon(Icons.circle),
+                          label: const Text("Add circle map object"))
                     ])
               ]),
               if (currentState.searchRes != null)

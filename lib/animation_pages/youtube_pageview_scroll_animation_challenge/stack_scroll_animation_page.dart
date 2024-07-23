@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_animations_2/animation_pages/flutter_parallax_horizontal_effect.dart';
 import 'package:hexcolor/hexcolor.dart';
 
@@ -215,8 +213,8 @@ class _StackScrollAnimationPageState extends State<StackScrollAnimationPage> {
                       ),
                     );
                   }),
-              Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20),
+              const Padding(
+                padding: EdgeInsets.only(left: 20, right: 20),
                 child: Row(
                   children: [
                     Expanded(
@@ -237,7 +235,7 @@ class _StackScrollAnimationPageState extends State<StackScrollAnimationPage> {
                   ],
                 ),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               ListView.separated(
                 padding: const EdgeInsets.only(left: 20, right: 20),
                 shrinkWrap: true,

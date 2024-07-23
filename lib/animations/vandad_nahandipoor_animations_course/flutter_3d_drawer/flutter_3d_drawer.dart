@@ -20,8 +20,8 @@ class _FlutterThreeDimensionDrawerState extends State<FlutterThreeDimensionDrawe
   void initState() {
     // TODO: implement initState
     super.initState();
-    drawerController = AnimationController(vsync: this, duration: Duration(milliseconds: 500));
-    childController = AnimationController(vsync: this, duration: Duration(milliseconds: 500));
+    drawerController = AnimationController(vsync: this, duration: const Duration(milliseconds: 500));
+    childController = AnimationController(vsync: this, duration: const Duration(milliseconds: 500));
 
     drawerAnimation = Tween<double>(begin: 0, end: -pi / 2).animate(drawerController);
 
@@ -44,7 +44,7 @@ class _FlutterThreeDimensionDrawerState extends State<FlutterThreeDimensionDrawe
           onHorizontalDragUpdate: (drag) {
             print("data dx : ${drag.delta.dx}");
           },
-          child: Stack(children: [MyDrawer(), MyChild()])),
+          child: const Stack(children: [MyDrawer(), MyChild()])),
     );
   }
 }

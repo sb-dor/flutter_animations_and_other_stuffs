@@ -1,10 +1,7 @@
 import 'package:faker/faker.dart' as f;
 import 'package:flex_color_scheme/flex_color_scheme.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_animations_2/animation_pages/flutter_tutorial_diegoveloper_list_animation/models/flutter_diegodev_animation_list_model.dart';
-import 'package:flutter_animations_2/functions/global_functions.dart';
 import 'package:flutter_animations_2/functions/randoms.dart';
 
 class FlutterTutorialDiegoDeveloperListAnimation extends StatefulWidget {
@@ -68,7 +65,7 @@ class _FlutterTutorialDeListaAnimadaState
         title: const Text("List animation"),
       ),
       body: ListView(
-        physics: AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
+        physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
         controller: _scrollController,
         shrinkWrap: true,
         children: [
@@ -99,7 +96,7 @@ class _FlutterTutorialDeListaAnimadaState
               animation: _scrollController,
               builder: (context, child) {
                 return ListView.builder(
-                  padding: EdgeInsets.only(top: 50),
+                  padding: const EdgeInsets.only(top: 50),
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: items.length,

@@ -104,33 +104,33 @@ class _ExcelPageState extends State<ExcelPage> {
       appBar: AppBar(
         title: const Text("Excel file parser"),
       ),
-      body: ListView(padding: EdgeInsets.only(left: 10, right: 10), children: [
+      body: ListView(padding: const EdgeInsets.only(left: 10, right: 10), children: [
         Row(children: [
           Expanded(
               child: TextField(
             controller: fieldForSearchController,
-            decoration: InputDecoration(hintText: "Field for doing something"),
+            decoration: const InputDecoration(hintText: "Field for doing something"),
           )),
           ElevatedButton(
               style: ButtonStyle(
-                  backgroundColor: MaterialStatePropertyAll(
+                  backgroundColor: WidgetStatePropertyAll(
                       tempOfSolve?.type == "average" ? Colors.orange : null)),
               onPressed: () => setState(() {
                     tempOfSolve = _TypeOfSolve(type: "average");
                     saved = false;
                   }),
-              child: Text("AV")),
+              child: const Text("AV")),
           ElevatedButton(
               style: ButtonStyle(
                   backgroundColor:
-                      MaterialStatePropertyAll(tempOfSolve?.type == "sum" ? Colors.orange : null)),
+                      WidgetStatePropertyAll(tempOfSolve?.type == "sum" ? Colors.orange : null)),
               onPressed: () => setState(() {
                     tempOfSolve = _TypeOfSolve(type: "sum");
                     saved = false;
                   }),
-              child: Text("SUM")),
+              child: const Text("SUM")),
         ]),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Row(
           children: [
             ElevatedButton(

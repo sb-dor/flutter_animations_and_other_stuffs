@@ -1,6 +1,4 @@
-import 'dart:developer';
 
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:html/dom.dart' as dom;
@@ -68,7 +66,7 @@ class FlutterWebScrapperHelper {
 
   String? _getImageFromAttribute(String? data) {
     if (data == null) return null;
-    var reg = RegExp('https?:[^)]+\.(?:png|jpg|webp)');
+    var reg = RegExp('https?:[^)]+.(?:png|jpg|webp)');
     var matches = reg.allMatches(data);
     debugPrint("image $data");
     if (matches.isEmpty) return null;

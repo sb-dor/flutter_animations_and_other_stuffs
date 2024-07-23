@@ -1,7 +1,6 @@
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animations_2/animation_pages/youtube_flutter_location_animation/models/yt_fl_loc_model.dart';
-import 'package:flutter_animations_2/functions/randoms.dart';
 
 class YoutubeCoffeeAppAnimationPage extends StatefulWidget {
   const YoutubeCoffeeAppAnimationPage({super.key});
@@ -55,7 +54,7 @@ class _YoutubeCoffeeAppAnimationPageState extends State<YoutubeCoffeeAppAnimatio
               }
               return Center(
                 child: Container(
-                  padding: EdgeInsets.only(bottom: 10),
+                  padding: const EdgeInsets.only(bottom: 10),
                   height: 100,
                   width: 100,
                   child: Image.asset(

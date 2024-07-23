@@ -39,7 +39,7 @@ class SliverCubit extends Cubit<SliverStates> {
           kToolbarHeight +
           55; //you should set position after appbar, 55 is persistent sliver bar
 
-      debugPrint("scroll pos : ${scrollPos}");
+      debugPrint("scroll pos : $scrollPos");
       debugPrint("menu key: ${currentState.bluePos}");
 
       if (scrollPos < currentState.bluePos) {

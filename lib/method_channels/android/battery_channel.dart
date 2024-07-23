@@ -13,7 +13,7 @@ class BatteryChannel {
     try {
       var result = await channel.invokeMethod(getButteryMethod);
       butteryLevel = "Buttery is $result";
-      debugPrint("getting value ${result}");
+      debugPrint("getting value $result");
     } catch (e) {
       debugPrint("e");
     }

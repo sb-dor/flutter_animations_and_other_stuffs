@@ -45,7 +45,7 @@ class _SliverAndScrollPageState extends State<SliverAndScrollPage> {
                   child: Center(
                       child: TextButton(
                           style: const ButtonStyle(
-                              backgroundColor: MaterialStatePropertyAll(Colors.amber)),
+                              backgroundColor: WidgetStatePropertyAll(Colors.amber)),
                           onPressed: () => Navigator.pushNamed(context, '/nft_home_screen'),
                           child: const Text('Go'))))),
           const SliverToBoxAdapter(child: SizedBox(height: 10)),

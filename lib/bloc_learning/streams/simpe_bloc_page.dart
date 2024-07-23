@@ -21,7 +21,7 @@ class _SimpleBlocPageWithStreamState extends State<SimpleBlocPageWithStream> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Bloc with stream")),
+      appBar: AppBar(title: const Text("Bloc with stream")),
       body: SizedBox(
           width: double.maxFinite,
           child: Column(

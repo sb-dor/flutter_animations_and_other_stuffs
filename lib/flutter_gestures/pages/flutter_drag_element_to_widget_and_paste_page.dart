@@ -38,12 +38,7 @@ class _FlutterDragElementToWidgetAndPasterState extends State<FlutterDragElement
                 ),
                 const SizedBox(width: 10),
                 Draggable(
-                  data: 1, // for adding value
-                  child: Container(
-                    padding: const EdgeInsets.all(20),
-                    color: Colors.red,
-                    child: const Text("Draggable"),
-                  ),
+                  data: 1,
                   feedback: Material(
                     child: Container(
                       padding: const EdgeInsets.all(20),
@@ -51,14 +46,19 @@ class _FlutterDragElementToWidgetAndPasterState extends State<FlutterDragElement
                       child: const Text("Draggable"),
                     ),
                   ),
-                  childWhenDragging: const SizedBox(),
+                  childWhenDragging: const SizedBox(), // for adding value
+                  child: Container(
+                    padding: const EdgeInsets.all(20),
+                    color: Colors.red,
+                    child: const Text("Draggable"),
+                  ),
                 ),
               ],
             ),
             const Spacer(),
             DragTarget(
               // onAccept can accept anything
-              onAccept: (int data) {
+              onAcceptWithDetails: (int data) {
                 sum += data;
                 setState(() {});
               },
@@ -68,7 +68,7 @@ class _FlutterDragElementToWidgetAndPasterState extends State<FlutterDragElement
                   width: 100,
                   height: 100,
                   color: Colors.green,
-                  child: Text("${sum}"),
+                  child: Text("$sum"),
                 );
               },
             )

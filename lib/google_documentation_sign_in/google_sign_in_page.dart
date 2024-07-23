@@ -42,9 +42,9 @@ class _GoogleSignInPageState extends State<GoogleSignInPage> {
                   });
                 }
               },
-              child: Text("Click to Register")),
-          SizedBox(height: 10),
-          Text("$email")
+              child: const Text("Click to Register")),
+          const SizedBox(height: 10),
+          Text(email)
         ],
       ),
     ));

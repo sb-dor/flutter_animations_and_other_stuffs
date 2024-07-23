@@ -41,7 +41,7 @@ class PageTransition extends PageRouteBuilder {
           pageBuilder: (_, animation, secondaryAnimation) => child,
           //Child var scope is in function
           transitionsBuilder: (_, animation, secondaryAnimation, child) {
-            final _animatedCurve =
+            final animatedCurve =
                 CurvedAnimation(parent: animation, curve: curve);
             switch (type) {
               case PageTransitionType.none:
@@ -49,38 +49,38 @@ class PageTransition extends PageRouteBuilder {
               case PageTransitionType.fadeIn:
                 return FadeTransition(
                   opacity:
-                      Tween<double>(begin: 0, end: 1).animate(_animatedCurve),
+                      Tween<double>(begin: 0, end: 1).animate(animatedCurve),
                   child: child,
                 );
               case PageTransitionType.scaleUp:
                 return ScaleTransition(
                   scale:
-                      Tween<double>(begin: 0, end: 1).animate(_animatedCurve),
+                      Tween<double>(begin: 0, end: 1).animate(animatedCurve),
                   child: child,
                 );
               case PageTransitionType.scaleDown:
                 return ScaleTransition(
                   scale:
-                      Tween<double>(begin: 2, end: 1).animate(_animatedCurve),
+                      Tween<double>(begin: 2, end: 1).animate(animatedCurve),
                   child: child,
                 );
               case PageTransitionType.scaleUpWithFadeIn:
                 return ScaleTransition(
                   scale:
-                      Tween<double>(begin: 0.8, end: 1).animate(_animatedCurve),
+                      Tween<double>(begin: 0.8, end: 1).animate(animatedCurve),
                   child: FadeTransition(
                     opacity:
-                        Tween<double>(begin: 0, end: 1).animate(_animatedCurve),
+                        Tween<double>(begin: 0, end: 1).animate(animatedCurve),
                     child: child,
                   ),
                 );
               case PageTransitionType.scaleDownWithFadeIn:
                 return ScaleTransition(
                   scale:
-                      Tween<double>(begin: 1.2, end: 1).animate(_animatedCurve),
+                      Tween<double>(begin: 1.2, end: 1).animate(animatedCurve),
                   child: FadeTransition(
                     opacity:
-                        Tween<double>(begin: 0, end: 1).animate(_animatedCurve),
+                        Tween<double>(begin: 0, end: 1).animate(animatedCurve),
                     child: child,
                   ),
                 );
@@ -89,7 +89,7 @@ class PageTransition extends PageRouteBuilder {
                   position: Tween<Offset>(
                     begin: const Offset(0, -1),
                     end: const Offset(0, 0),
-                  ).animate(_animatedCurve),
+                  ).animate(animatedCurve),
                   child: child,
                 );
               case PageTransitionType.fromLeft:
@@ -97,7 +97,7 @@ class PageTransition extends PageRouteBuilder {
                   position: Tween<Offset>(
                     begin: const Offset(-1, 0),
                     end: const Offset(0, 0),
-                  ).animate(_animatedCurve),
+                  ).animate(animatedCurve),
                   child: child,
                 );
               case PageTransitionType.fromBottom:
@@ -105,7 +105,7 @@ class PageTransition extends PageRouteBuilder {
                   position: Tween<Offset>(
                     begin: const Offset(0, 1),
                     end: const Offset(0, 0),
-                  ).animate(_animatedCurve),
+                  ).animate(animatedCurve),
                   child: child,
                 );
               case PageTransitionType.fromRight:
@@ -113,7 +113,7 @@ class PageTransition extends PageRouteBuilder {
                   position: Tween<Offset>(
                     begin: const Offset(1, 0),
                     end: const Offset(0, 0),
-                  ).animate(_animatedCurve),
+                  ).animate(animatedCurve),
                   child: child,
                 );
               default:

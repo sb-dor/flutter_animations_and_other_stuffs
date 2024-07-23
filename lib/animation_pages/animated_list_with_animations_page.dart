@@ -16,8 +16,8 @@ class AnimatedListWithAnimationPage extends StatelessWidget {
               onPressed: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => NeumorphicContainer())),
-              icon: Icon(Icons.add))
+                      builder: (context) => const NeumorphicContainer())),
+              icon: const Icon(Icons.add))
         ],
       ),
       body: ListView.separated(
@@ -27,7 +27,7 @@ class AnimatedListWithAnimationPage extends StatelessWidget {
                 intervalStart: getIntervalStartByIndex(index),
                 duration: const Duration(milliseconds: 1500),
                 curve: Curves.bounceOut,
-                begin: Offset(150, 0),
+                begin: const Offset(150, 0),
                 child: Card(
                     color: Colors.amber,
                     child: Row(children: [

@@ -41,7 +41,7 @@ class _GetItPageState extends State<GetItPage> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () => getNextMeme(),
-        child: Icon(Icons.skip_next),
+        child: const Icon(Icons.skip_next),
       ),
       body: CustomScrollView(
         slivers: [
@@ -51,7 +51,7 @@ class _GetItPageState extends State<GetItPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 if (memeModel == null)
-                  CircularProgressIndicator()
+                  const CircularProgressIndicator()
                 else
                   Column(
                     children: [Image.network(memeModel?.image ?? '')],

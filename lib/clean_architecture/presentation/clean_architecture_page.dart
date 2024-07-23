@@ -3,7 +3,6 @@ import 'package:flutter_animations_2/clean_architecture/cubit/day_cubit.dart';
 import 'package:flutter_animations_2/clean_architecture/cubit/day_states.dart';
 import 'package:flutter_animations_2/clean_architecture/data/repository/day_data_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class CleanArchitecturePage extends StatefulWidget {
   const CleanArchitecturePage({super.key});

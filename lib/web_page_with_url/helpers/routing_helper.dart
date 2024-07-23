@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_animations_2/web_page_with_url/pages/main_web_details_page_with_url.dart';
 import 'package:flutter_animations_2/web_page_with_url/pages/main_web_page_with_url.dart';
 import 'package:go_router/go_router.dart';

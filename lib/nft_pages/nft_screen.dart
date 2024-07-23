@@ -41,17 +41,17 @@ class NftScreen extends StatelessWidget {
                 left: 10,
                 child: IconButton(
                   onPressed: () => Navigator.pop(context),
-                  icon: Icon(Icons.arrow_back,color: Colors.white,),
+                  icon: const Icon(Icons.arrow_back,color: Colors.white,),
                 ))
           ]),
           const SizedBox(height: 15),
           Expanded(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 15),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    FadeAnimation(
+                    const FadeAnimation(
                       intervalStart: 0.2,
                       child: Text("Monkey #10",
                           style: TextStyle(
@@ -59,8 +59,8 @@ class NftScreen extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                               fontSize: 18)),
                     ),
-                    SizedBox(height: 15),
-                    FadeAnimation(
+                    const SizedBox(height: 15),
+                    const FadeAnimation(
                       intervalStart: 0.3,
                       child: Text("Own by Gennady",
                           style: TextStyle(
@@ -69,8 +69,8 @@ class NftScreen extends StatelessWidget {
                             fontSize: 15,
                           )),
                     ),
-                    SizedBox(height: 40),
-                    FadeAnimation(
+                    const SizedBox(height: 40),
+                    const FadeAnimation(
                       intervalStart: 0.4,
                       child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -81,7 +81,7 @@ class NftScreen extends StatelessWidget {
                                 title: "3d 5h 10m", content: "Remaining Time"),
                           ]),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     FadeAnimation(
                       intervalStart: 0.5,
                       child: Container(
@@ -89,16 +89,16 @@ class NftScreen extends StatelessWidget {
                         height: 60,
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
-                            color: Color(0xff3000ff),
+                            color: const Color(0xff3000ff),
                             borderRadius: BorderRadius.circular(8)),
-                        child: Text("Place bid",
+                        child: const Text("Place bid",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold)),
                       ),
                     ),
-                    SizedBox(height: 40)
+                    const SizedBox(height: 40)
                   ]),
             ),
           )
@@ -117,10 +117,10 @@ class InfoTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(children: [
       Text(title,
-          style: TextStyle(
+          style: const TextStyle(
               fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white)),
-      SizedBox(height: 10),
-      Text(title, style: TextStyle(color: Colors.white54))
+      const SizedBox(height: 10),
+      Text(title, style: const TextStyle(color: Colors.white54))
     ]);
   }
 }

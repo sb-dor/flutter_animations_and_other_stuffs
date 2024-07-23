@@ -13,7 +13,7 @@ class _FlutterBlurHashState extends State<FlutterBlurHash> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Flutter blur image"),
+        title: const Text("Flutter blur image"),
       ),
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
@@ -21,7 +21,7 @@ class _FlutterBlurHashState extends State<FlutterBlurHash> {
           SizedBox(
             width: MediaQuery.of(context).size.width,
             height: 200,
-            child: BlurHash(
+            child: const BlurHash(
               hash: "L6Db=+9aM{e.01%Lt7Rk~V%1M|WC",
               image: "http://192.168.100.244:8000/api/image/url",
               curve: Curves.bounceInOut,

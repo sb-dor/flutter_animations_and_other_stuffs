@@ -54,7 +54,7 @@ class _FlutterAnimatedBuilderOwnTextMovingState extends State<FlutterAnimatedBui
               builder: (context, child) {
                 return Transform.translate(
                     offset: _animation.value,
-                    child: Text("A long text should be here",
+                    child: const Text("A long text should be here",
                         style: TextStyle(
                             color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold)));
               })),

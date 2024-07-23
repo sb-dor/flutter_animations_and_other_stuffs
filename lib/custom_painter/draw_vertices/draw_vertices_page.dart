@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -119,7 +118,7 @@ class ExamplePainter extends CustomPainter {
         center,
         center + const Offset(100, 0),
         center + const Offset(100, 100),
-        center + Offset(0, 100),
+        center + const Offset(0, 100),
       ],
       colors: [
         Colors.red,

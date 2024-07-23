@@ -192,7 +192,7 @@ class PdfGenerator {
 
     if (pageImg != null) {
       String path = (await getApplicationDocumentsDirectory()).path;
-      File file = File(path + "MY_IMG.png");
+      File file = File("${path}MY_IMG.png");
 
       await file.writeAsBytes(pageImg.bytes);
       // OpenFile.open(file.path);

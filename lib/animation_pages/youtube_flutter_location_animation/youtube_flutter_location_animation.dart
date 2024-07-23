@@ -1,5 +1,4 @@
 import 'package:faker/faker.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animations_2/animation_pages/youtube_flutter_location_animation/models/yt_fl_loc_model.dart';
 import 'package:flutter_animations_2/functions/randoms.dart';
@@ -155,7 +154,7 @@ class _YoutubeFlutterAnimationPageState extends State<YoutubeFlutterAnimationPag
 class _CardItem extends StatelessWidget {
   final YtFlLocModel ytFlLocModel;
 
-  const _CardItem({super.key, required this.ytFlLocModel});
+  const _CardItem({required this.ytFlLocModel});
 
   @override
   Widget build(BuildContext context) {
@@ -181,7 +180,6 @@ class _PageForAddressView extends StatelessWidget {
   final YtFlLocModel ytFlLocModel;
 
   const _PageForAddressView({
-    super.key,
     required this.ytFlLocModel,
   });
 

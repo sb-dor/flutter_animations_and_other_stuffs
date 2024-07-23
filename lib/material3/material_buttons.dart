@@ -19,11 +19,11 @@ class MaterialButtons extends StatelessWidget {
           ),
           FloatingActionButton.large(
             onPressed: () => [],
-            child: Text("larg fab"),
+            child: const Text("larg fab"),
           ),
           FloatingActionButton.small(
             onPressed: () => [],
-            child: Text("small"),
+            child: const Text("small"),
           ),
         ],
       ),

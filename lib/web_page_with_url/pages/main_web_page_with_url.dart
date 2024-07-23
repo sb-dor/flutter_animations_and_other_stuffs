@@ -16,7 +16,7 @@ class _MainWebPageWithUrlState extends State<MainWebPageWithUrl> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Url navigation"),
+        title: const Text("Url navigation"),
       ),
       body: Column(
         children: [
@@ -38,7 +38,7 @@ class _MainWebPageWithUrlState extends State<MainWebPageWithUrl> {
                   ),
                 );
               },
-              child: Text("Router"))
+              child: const Text("Router"))
         ],
       ),
     );

@@ -22,7 +22,7 @@ class BottomNavBar extends StatelessWidget {
               icon: const Icon(Icons.three_k))
         ],
       ),
-      bottomNavigationBar: NavigationBar(labelBehavior: labelBehavior, destinations: [
+      bottomNavigationBar: NavigationBar(labelBehavior: labelBehavior, destinations: const [
         NavigationDestination(icon: Icon(Icons.add), label: "Add"),
         NavigationDestination(icon: Icon(Icons.remove), label: "remove"),
         NavigationDestination(icon: Icon(Icons.delete), label: "delete"),
@@ -33,7 +33,7 @@ class BottomNavBar extends StatelessWidget {
                 Navigator.pushNamed(context, '/segment_button_page',
                     arguments: {"name": "anything"});
               },
-              child: Text("Another page"))),
+              child: const Text("Another page"))),
     );
   }
 }

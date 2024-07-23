@@ -64,7 +64,7 @@ class _FlutterParallaxVerticalEffectState extends State<FlutterParallaxVerticalE
                   width: MediaQuery.of(context).size.width / 2,
                   decoration: BoxDecoration(color: Colors.white, boxShadow: [
                     BoxShadow(
-                        color: Colors.grey.withOpacity(0.5), offset: Offset(1, 1), blurRadius: 5)
+                        color: Colors.grey.withOpacity(0.5), offset: const Offset(1, 1), blurRadius: 5)
                   ]),
                   child: Column(
                     children: [

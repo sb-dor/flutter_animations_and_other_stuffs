@@ -1,9 +1,7 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animations_2/navigation/declarative_navigation/auto_route_package_navigation/helper/auto_route_helper.dart';
-import 'package:flutter_animations_2/navigation/declarative_navigation/auto_route_package_navigation/second_screen/auto_route_second_screen.dart';
 
 @RoutePage()
 class AutoRouteFirstScreen extends StatefulWidget {

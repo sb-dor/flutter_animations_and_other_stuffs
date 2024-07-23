@@ -3,7 +3,6 @@ import 'package:flutter_animations_2/global_context/global_context.helper.dart';
 import 'package:flutter_animations_2/yandex_mapkit/yandex_mapkit_cubit/main_map_states.dart';
 import 'package:flutter_animations_2/yandex_mapkit/yandex_mapkit_cubit/state_model/map_state_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
@@ -603,7 +602,7 @@ class MainMapCubit extends Cubit<MainMapStates> {
 
     emit(InitialMapStates(currentState));
 
-    debugPrint("point is : ${point}");
+    debugPrint("point is : $point");
   }
 
   void clearSavedPoints() {

@@ -111,7 +111,7 @@ Widget _buildTile() {
       ),
       const SizedBox(width: 10),
       Text(
-        "${Faker().lorem.word()}",
+        Faker().lorem.word(),
         style: const TextStyle(fontWeight: FontWeight.bold),
       ),
     ],

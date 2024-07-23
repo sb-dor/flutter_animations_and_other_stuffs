@@ -14,7 +14,7 @@ class _RiveAnimationPageState extends State<RiveAnimationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: HexColor('#eb3a60'),
-        body: Stack(
+        body: const Stack(
           children: [
             Center(child: RiveAnimation.asset('rives/vehicles.riv')),
             Positioned(

@@ -12,7 +12,7 @@ class _CustomPainterScreenState extends State<CustomPainterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Custom Painters")),
+      appBar: AppBar(title: const Text("Custom Painters")),
       body: ListView(children: [
         Container(
           color: Colors.amber,

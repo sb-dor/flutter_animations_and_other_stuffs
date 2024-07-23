@@ -111,7 +111,7 @@ class _PageViewWithControllerState extends State<PageViewWithController> {
           // .clamp(0.65, 1.0);
 
           double value = 0;
-          double _scale = initialPage == index ? 1 : 0.8;
+          double scale = initialPage == index ? 1 : 0.8;
           if (controller.position.haveDimensions) {
             value = index - (controller.page ?? 0);
 
@@ -123,7 +123,7 @@ class _PageViewWithControllerState extends State<PageViewWithController> {
               //for rotating transform.rotate
               angle: math.pi * value,
               child: TweenAnimationBuilder(
-                  tween: Tween<double>(begin: _scale, end: _scale),
+                  tween: Tween<double>(begin: scale, end: scale),
                   duration: const Duration(milliseconds: 75),
                   child: AnimatedOpacity(
                       duration: const Duration(milliseconds: 275),

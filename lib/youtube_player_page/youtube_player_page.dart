@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class YoutubePlayerPage extends StatefulWidget {
@@ -26,7 +25,7 @@ class _YoutubePlayerPageState extends State<YoutubePlayerPage> with WidgetsBindi
 
     _controller = YoutubePlayerController(
         initialVideoId: 'pLBugaPFGrk',
-        flags: YoutubePlayerFlags(
+        flags: const YoutubePlayerFlags(
           hideControls: false,
           controlsVisibleAtStart: true,
           autoPlay: true,
@@ -54,7 +53,7 @@ class _YoutubePlayerPageState extends State<YoutubePlayerPage> with WidgetsBindi
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Youtube Video Player")),
+      appBar: AppBar(title: const Text("Youtube Video Player")),
       body: YoutubePlayerBuilder(
           player: YoutubePlayer(controller: _controller),
           builder: (context, player) {
@@ -65,7 +64,7 @@ class _YoutubePlayerPageState extends State<YoutubePlayerPage> with WidgetsBindi
                 controller: _controller,
                 showVideoProgressIndicator: true,
                 progressIndicatorColor: Colors.red,
-                progressColors: ProgressBarColors(
+                progressColors: const ProgressBarColors(
                   playedColor: Colors.amber,
                   handleColor: Colors.amberAccent,
                 ),
@@ -74,7 +73,7 @@ class _YoutubePlayerPageState extends State<YoutubePlayerPage> with WidgetsBindi
                 padding: const EdgeInsets.only(left: 5, right: 5, bottom: 10),
                 child: Text(
                   'Title: ${_controller.metadata.title}',
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
               Padding(

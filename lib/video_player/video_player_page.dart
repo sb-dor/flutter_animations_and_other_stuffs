@@ -44,7 +44,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> with SingleTickerProv
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Video player")),
+      appBar: AppBar(title: const Text("Video player")),
       body: Center(
           child: SizedBox(
               width: MediaQuery.of(context).size.width,

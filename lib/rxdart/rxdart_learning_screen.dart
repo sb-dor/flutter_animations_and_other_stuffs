@@ -31,7 +31,7 @@ class _RxDartLearningScreenState extends State<RxDartLearningScreen> {
               builder: (context, snapshot) {
                 return Text(
                   "${snapshot.data ?? 0}",
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.black,
                   ),
                 );

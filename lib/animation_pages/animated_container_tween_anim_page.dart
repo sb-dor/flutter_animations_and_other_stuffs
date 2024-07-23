@@ -34,9 +34,9 @@ class _AnimatedContainerState extends State<AnimatedContainer> {
     return TweenAnimationBuilder(
         tween: Tween<Offset>(begin: Offset(x, y), end: Offset(x, -y)),
         duration: const Duration(milliseconds: 375),
-        child: Column(
+        child: const Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [Text("Hello"), Text("World")]),
+            children: [Text("Hello"), Text("World")]),
         builder: (context, val, child) => Listener(
               onPointerUp: (v) => setState(() {
                 y = 3;

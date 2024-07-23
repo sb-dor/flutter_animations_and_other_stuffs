@@ -59,11 +59,11 @@ class _DonalCustomPaintState extends State<DonalCustomPaint> with TickerProvider
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CustomPaint(
-              child: SizedBox(
+              painter: DonatChartPainter(dataItems),
+              child: const SizedBox(
                 width: 200,
                 height: 200,
               ),
-              painter: DonatChartPainter(dataItems),
             )
           ],
         ),
@@ -125,7 +125,7 @@ class DonatChartPainter extends CustomPainter {
         canvas,
         pos,
         each.label,
-        TextStyle(color: Colors.black, fontSize: 10),
+        const TextStyle(color: Colors.black, fontSize: 10),
         radius * 0.3,
       );
 
