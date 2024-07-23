@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animations_2/drag_and_drop_animation/utils.dart';
 import 'package:flutter_animations_2/drag_and_drop_own_animation/models/dad_animation_model.dart';
+import 'package:flutter_animations_2/drag_and_drop_own_animation/overlay_animation.dart';
 import 'package:flutter_animations_2/drag_and_drop_own_animation/provider/drag_and_drop_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -12,65 +13,78 @@ class DragAndDropOwnAnimation extends StatefulWidget {
 }
 
 class _DragAndDropOwnAnimationState extends State<DragAndDropOwnAnimation> {
-  final positionDragOffsetKey = GlobalKey();
-  final fNameDragOffsetKey = GlobalKey();
-  final lNameDragOffsetKey = GlobalKey();
   final imageDragOffsetKey = GlobalKey();
-  final moneyDragOffsetKey = GlobalKey();
+  final fNameDragOffsetKey = GlobalKey();
 
-  void onDragEnd(DraggableDetails data, DADAnimationModel model) {
+  void onDragEnd(DraggableDetails drag, DADAnimationModel model) {
+    if (!drag.wasAccepted) return;
     final provider = Provider.of<DragAndDropProvider>(context, listen: false);
     provider.addToList(
       model
         ..initDADAnimationOffsets(
-          position: findOffset(positionDragOffsetKey),
+          imagePosition: findOffset(imageDragOffsetKey),
           fNamePosition: findOffset(fNameDragOffsetKey),
-          lNamePosition: findOffset(lNameDragOffsetKey),
-          imageOffSet: findOffset(imageDragOffsetKey),
-          moneyOffSet: findOffset(moneyDragOffsetKey),
         ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    final dadListProvider = Provider.of<DragAndDropProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Test drop down animation"),
       ),
       body: ListView(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         children: [
           Wrap(
-            children: dadAnimationModels
+            children: dadListProvider.items
                 .map(
                   (e) => Draggable<DADAnimationModel>(
+                    key: ObjectKey(e),
+                    data: e,
                     onDragEnd: (v) => onDragEnd(v, e),
                     feedback: _ItemWidget(
                       item: e,
-                      positionKey: positionDragOffsetKey,
+                      imagePosition: imageDragOffsetKey,
                       fNameKey: fNameDragOffsetKey,
-                      lNameKey: lNameDragOffsetKey,
-                      imageKey: imageDragOffsetKey,
-                      moneyKey: moneyDragOffsetKey,
-                      feedBackWidget: true,
+                      animation: false,
                     ),
-                    child: _ItemWidget(item: e),
+                    childWhenDragging: const SizedBox(),
+                    child: _ItemWidget(
+                      item: e,
+                      key: UniqueKey(),
+                      animation: false,
+                    ),
                   ),
                 )
                 .toList(),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           DragTarget<DADAnimationModel>(
             builder: (context, candidateData, rejectedData) => Container(
-              height: 300,
+              constraints: const BoxConstraints(minHeight: 300),
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.grey),
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: candidateData.isEmpty
-                  ? Center(child: Text("Drop data"))
-                  : Text("${candidateData.first?.fNamePosition}"),
+              child: Wrap(
+                children: [
+                  ...dadListProvider.dadList
+                      .map(
+                        (e) => _ItemWidget(
+                          item: e,
+                        ),
+                      )
+                      .toList(),
+                  if (candidateData.isNotEmpty)
+                    _ItemWidget(
+                      item: candidateData.first!,
+                      animation: false,
+                    ),
+                ],
+              ),
             ),
           )
         ],
@@ -81,22 +95,16 @@ class _DragAndDropOwnAnimationState extends State<DragAndDropOwnAnimation> {
 
 class _ItemWidget extends StatefulWidget {
   final DADAnimationModel item;
-  final GlobalKey? positionKey;
+  final GlobalKey? imagePosition;
   final GlobalKey? fNameKey;
-  final GlobalKey? lNameKey;
-  final GlobalKey? imageKey;
-  final GlobalKey? moneyKey;
-  final bool feedBackWidget;
+  final bool animation;
 
   const _ItemWidget({
     super.key,
     required this.item,
-    this.positionKey,
+    this.imagePosition,
     this.fNameKey,
-    this.lNameKey,
-    this.imageKey,
-    this.moneyKey,
-    this.feedBackWidget = false,
+    this.animation = true,
   });
 
   @override
@@ -104,39 +112,68 @@ class _ItemWidget extends StatefulWidget {
 }
 
 class _ItemWidgetState extends State<_ItemWidget> {
-  late GlobalKey positionKey;
+  bool animationEnd = false;
+  OverlayEntry? entry;
+  late GlobalKey imagePosition;
   late GlobalKey fNameKey;
-  late GlobalKey lNameKey;
-  late GlobalKey imageKey;
-  late GlobalKey moneyKey;
 
   @override
   void initState() {
     super.initState();
-    positionKey = widget.positionKey ?? GlobalKey();
+    imagePosition = widget.imagePosition ?? GlobalKey();
     fNameKey = widget.fNameKey ?? GlobalKey();
-    lNameKey = widget.lNameKey ?? GlobalKey();
-    imageKey = widget.imageKey ?? GlobalKey();
-    moneyKey = widget.moneyKey ?? GlobalKey();
+  }
+
+  void startMorphAnimation() {
+    if (!widget.animation) return;
+    entry = OverlayEntry(
+      builder: (context) {
+        return OverlayAnimation(
+          dadAnimationModel: widget.item,
+          imagePosition: widget.imagePosition,
+          fNamePosition: widget.fNameKey,
+          onAnimationEnd: () {
+            animationEnd = true;
+            setState(() {});
+          },
+        );
+      },
+    );
+    Overlay.of(context).insert(entry!);
   }
 
   @override
   Widget build(BuildContext context) {
-    final child = Container(
-      padding: EdgeInsets.all(8),
-      child: Column(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(50),
-            child: SizedBox(
-              width: 90,
-              height: 90,
-              child: Image.asset(
-                "assets/${widget.item.asset!}",
+    final child = Visibility(
+      visible: widget.animation ? animationEnd : true,
+      child: Material(
+        color: Colors.transparent,
+        child: Container(
+          padding: const EdgeInsets.all(8),
+          child: Column(
+            children: [
+              ClipRRect(
+                key: widget.imagePosition,
+                borderRadius: BorderRadius.circular(50),
+                child: SizedBox(
+                  width: 90,
+                  height: 90,
+                  child: Image.asset(
+                    "assets/${widget.item.asset!}",
+                  ),
+                ),
               ),
-            ),
+              const SizedBox(height: 10),
+              Text(
+                key: widget.fNameKey,
+                "${widget.item.lastName}",
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
     return child;

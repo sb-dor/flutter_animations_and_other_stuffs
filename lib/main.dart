@@ -14,6 +14,7 @@ import 'package:flutter_animations_2/clean_architecture/cubit/day_cubit.dart';
 import 'package:flutter_animations_2/dart_features/dart_enums.dart';
 import 'package:flutter_animations_2/design_templates/mvvm/viewmodel_mvvm.dart';
 import 'package:flutter_animations_2/drag_and_drop_own_animation/drag_and_drop_own_animation.dart';
+import 'package:flutter_animations_2/drag_and_drop_own_animation/provider/drag_and_drop_provider.dart';
 import 'package:flutter_animations_2/esc_pos_printer_with_bluetooth/esc_pos_printer_ui_helper.dart';
 import 'package:flutter_animations_2/firebase_push_notification/firebase_push_not.dart';
 import 'package:flutter_animations_2/flutter_background_service/flutter_background_service_helper.dart';
@@ -154,7 +155,10 @@ void main() async {
         providers: [
           provider.ChangeNotifierProvider(
             create: (_) => ViewModelMVVM(),
-          )
+          ),
+          provider.ChangeNotifierProvider(
+            create: (_) => DragAndDropProvider(),
+          ),
         ],
         child: ProviderScope(
           child: BlocBuilder<MaterialChangeCubit, bool>(builder: (context, materialUiState) {

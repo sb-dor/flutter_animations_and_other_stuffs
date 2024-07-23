@@ -7,11 +7,8 @@ class DADAnimationModel {
   String? asset;
   double? money;
 
-  Offset? position;
+  Offset? imagePosition;
   Offset? fNamePosition;
-  Offset? lNamePosition;
-  Offset? imageOffSet;
-  Offset? moneyOffSet;
 
   DADAnimationModel({
     this.firstName,
@@ -21,17 +18,11 @@ class DADAnimationModel {
   });
 
   void initDADAnimationOffsets({
-    required Offset? position,
+    required Offset? imagePosition,
     required Offset? fNamePosition,
-    required Offset? lNamePosition,
-    required Offset? imageOffSet,
-    required Offset? moneyOffSet,
   }) {
-    this.position = position;
+    this.imagePosition = imagePosition;
     this.fNamePosition = fNamePosition;
-    this.lNamePosition = lNamePosition;
-    this.imageOffSet = imageOffSet;
-    this.moneyOffSet = moneyOffSet;
   }
 }
 
