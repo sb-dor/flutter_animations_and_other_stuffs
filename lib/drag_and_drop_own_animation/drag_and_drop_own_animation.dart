@@ -45,17 +45,17 @@ class _DragAndDropOwnAnimationState extends State<DragAndDropOwnAnimation> {
                     key: ObjectKey(e),
                     data: e,
                     onDragEnd: (v) => onDragEnd(v, e),
-                    feedback: _ItemWidget(
+
+                    feedback: _ReusableItemWidget(
+                      key: ObjectKey(e),
                       item: e,
                       imagePosition: imageDragOffsetKey,
-                      fNameKey: fNameDragOffsetKey,
-                      animation: false,
+                      fNamePosition: fNameDragOffsetKey,
                     ),
                     childWhenDragging: const SizedBox(),
-                    child: _ItemWidget(
+                    child: _ReusableItemWidget(
                       item: e,
                       key: UniqueKey(),
-                      animation: false,
                     ),
                   ),
                 )
@@ -78,11 +78,10 @@ class _DragAndDropOwnAnimationState extends State<DragAndDropOwnAnimation> {
                         ),
                       )
                       .toList(),
-                  if (candidateData.isNotEmpty)
-                    _ItemWidget(
-                      item: candidateData.first!,
-                      animation: false,
-                    ),
+                  // if (candidateData.isNotEmpty)
+                  //   _ReusableItemWidget(
+                  //     item: candidateData.first!,
+                  //   ),
                 ],
               ),
             ),
@@ -95,16 +94,10 @@ class _DragAndDropOwnAnimationState extends State<DragAndDropOwnAnimation> {
 
 class _ItemWidget extends StatefulWidget {
   final DADAnimationModel item;
-  final GlobalKey? imagePosition;
-  final GlobalKey? fNameKey;
-  final bool animation;
 
   const _ItemWidget({
     super.key,
     required this.item,
-    this.imagePosition,
-    this.fNameKey,
-    this.animation = true,
   });
 
   @override
@@ -112,28 +105,30 @@ class _ItemWidget extends StatefulWidget {
 }
 
 class _ItemWidgetState extends State<_ItemWidget> {
-  bool animationEnd = false;
   OverlayEntry? entry;
-  late GlobalKey imagePosition;
-  late GlobalKey fNameKey;
+  bool animationEnd = false;
+  GlobalKey imagePosition = GlobalKey();
+  GlobalKey fNamePosition = GlobalKey();
 
   @override
   void initState() {
     super.initState();
-    imagePosition = widget.imagePosition ?? GlobalKey();
-    fNameKey = widget.fNameKey ?? GlobalKey();
+    WidgetsBinding.instance.addPostFrameCallback((v) {
+      startMorphAnimation();
+    });
   }
 
   void startMorphAnimation() {
-    if (!widget.animation) return;
+    debugPrint("coming inside drag and drop entry ${imagePosition.currentWidget}");
     entry = OverlayEntry(
       builder: (context) {
         return OverlayAnimation(
           dadAnimationModel: widget.item,
-          imagePosition: widget.imagePosition,
-          fNamePosition: widget.fNameKey,
+          imagePosition: imagePosition,
+          fNamePosition: fNamePosition,
           onAnimationEnd: () {
             animationEnd = true;
+            entry?.remove();
             setState(() {});
           },
         );
@@ -145,30 +140,37 @@ class _ItemWidgetState extends State<_ItemWidget> {
   @override
   Widget build(BuildContext context) {
     final child = Visibility(
-      visible: widget.animation ? animationEnd : true,
+      visible: animationEnd,
+      maintainState: true,
+      maintainAnimation: true,
+      maintainSize: true,
       child: Material(
         color: Colors.transparent,
         child: Container(
           padding: const EdgeInsets.all(8),
           child: Column(
             children: [
-              ClipRRect(
-                key: widget.imagePosition,
-                borderRadius: BorderRadius.circular(50),
-                child: SizedBox(
-                  width: 90,
-                  height: 90,
-                  child: Image.asset(
-                    "assets/${widget.item.asset!}",
+              Container(
+                key: imagePosition,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(50),
+                  child: SizedBox(
+                    width: 90,
+                    height: 90,
+                    child: Image.asset(
+                      "assets/${widget.item.asset!}",
+                    ),
                   ),
                 ),
               ),
               const SizedBox(height: 10),
-              Text(
-                key: widget.fNameKey,
-                "${widget.item.lastName}",
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
+              Container(
+                key: fNamePosition,
+                child: Text(
+                  "${widget.item.firstName}",
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ],
@@ -177,5 +179,55 @@ class _ItemWidgetState extends State<_ItemWidget> {
       ),
     );
     return child;
+  }
+}
+
+class _ReusableItemWidget extends StatelessWidget {
+  final GlobalKey? imagePosition;
+  final GlobalKey? fNamePosition;
+  final DADAnimationModel item;
+
+  const _ReusableItemWidget({
+    super.key,
+    this.imagePosition,
+    this.fNamePosition,
+    required this.item,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      child: Container(
+        padding: const EdgeInsets.all(8),
+        child: Column(
+          children: [
+            Container(
+              key: imagePosition,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(50),
+                child: SizedBox(
+                  width: 90,
+                  height: 90,
+                  child: Image.asset(
+                    "assets/${item.asset!}",
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 10),
+            Container(
+              key: fNamePosition,
+              child: Text(
+                "${item.firstName}",
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

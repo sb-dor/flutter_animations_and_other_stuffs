@@ -46,19 +46,11 @@ class _OverlayAnimationState extends State<OverlayAnimation> with TickerProvider
   }
 
   void morph() {
-    final dragAndTargetOffset = calculateOffsets(
-      widget.dadAnimationModel.imagePosition!,
-      widget.imagePosition!,
-    );
-
-    final fNameDragAndTargetOffset = calculateOffsets(
-      widget.dadAnimationModel.fNamePosition!,
-      widget.fNamePosition!,
-    );
+    // debugPrint("drag and target offset: ${dragAndTargetOffset.$1} | ${dragAndTargetOffset.$2}");
 
     imageOffsetTween = Tween(
-      begin: dragAndTargetOffset.$1,
-      end: dragAndTargetOffset.$2,
+      begin: widget.dadAnimationModel.imagePosition,
+      end: findOffset(widget.imagePosition!),
     ).animate(
       CurvedAnimation(
         parent: animationSettings,
@@ -67,8 +59,8 @@ class _OverlayAnimationState extends State<OverlayAnimation> with TickerProvider
     );
 
     fNameOffsetTween = Tween(
-      begin: fNameDragAndTargetOffset.$1,
-      end: fNameDragAndTargetOffset.$2,
+      begin: widget.dadAnimationModel.fNamePosition,
+      end: findOffset(widget.fNamePosition!),
     ).animate(
       CurvedAnimation(
         parent: animationSettings,
@@ -79,43 +71,46 @@ class _OverlayAnimationState extends State<OverlayAnimation> with TickerProvider
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: animationSettings,
-      builder: (context, child) {
-        return Material(
-          color: Colors.transparent,
-          child: Container(
-            padding: const EdgeInsets.all(8),
-            child: Column(
-              children: [
-                Transform.translate(
-                  offset: imageOffsetTween.value,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(50),
-                    child: SizedBox(
-                      width: 90,
-                      height: 90,
-                      child: Image.asset(
-                        "assets/${widget.dadAnimationModel.asset!}",
+    return Transform.translate(
+      offset: Offset(-150, 0),
+      child: AnimatedBuilder(
+        animation: animationSettings,
+        builder: (context, child) {
+          return Material(
+            type: MaterialType.transparency,
+            child: Container(
+              padding: const EdgeInsets.all(8),
+              child: Column(
+                children: [
+                  Transform.translate(
+                    offset: imageOffsetTween.value,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(50),
+                      child: SizedBox(
+                        width: 90,
+                        height: 90,
+                        child: Image.asset(
+                          "assets/${widget.dadAnimationModel.asset!}",
+                        ),
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 10),
-                Transform.translate(
-                  offset: fNameOffsetTween.value,
-                  child: Text(
-                    "${widget.dadAnimationModel.firstName}",
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
+                  const SizedBox(height: 10),
+                  Transform.translate(
+                    offset: fNameOffsetTween.value,
+                    child: Text(
+                      "${widget.dadAnimationModel.firstName}",
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }
