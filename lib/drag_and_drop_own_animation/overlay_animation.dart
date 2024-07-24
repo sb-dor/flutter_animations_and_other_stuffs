@@ -46,7 +46,8 @@ class _OverlayAnimationState extends State<OverlayAnimation> with TickerProvider
   }
 
   void morph() {
-    // debugPrint("drag and target offset: ${dragAndTargetOffset.$1} | ${dragAndTargetOffset.$2}");
+    debugPrint("dropping image pos 2: ${findOffset(widget.imagePosition!)}");
+    debugPrint("dropping name pos 2: ${findOffset(widget.fNamePosition!)}");
 
     imageOffsetTween = Tween(
       begin: widget.dadAnimationModel.imagePosition,
@@ -71,33 +72,33 @@ class _OverlayAnimationState extends State<OverlayAnimation> with TickerProvider
 
   @override
   Widget build(BuildContext context) {
-    return Transform.translate(
-      offset: Offset(-150, 0),
-      child: AnimatedBuilder(
-        animation: animationSettings,
-        builder: (context, child) {
-          return Material(
-            type: MaterialType.transparency,
-            child: Container(
-              padding: const EdgeInsets.all(8),
-              child: Column(
-                children: [
-                  Transform.translate(
-                    offset: imageOffsetTween.value,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(50),
-                      child: SizedBox(
-                        width: 90,
-                        height: 90,
-                        child: Image.asset(
-                          "assets/${widget.dadAnimationModel.asset!}",
-                        ),
+    return AnimatedBuilder(
+      animation: animationSettings,
+      builder: (context, child) {
+        return Material(
+          type: MaterialType.transparency,
+          child: Container(
+            padding: const EdgeInsets.all(8),
+            // do not forget to to put stack otherwise it will not work properly
+            child: Stack(
+              children: [
+                Transform.translate(
+                  offset: imageOffsetTween.value,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(50),
+                    child: SizedBox(
+                      width: 90,
+                      height: 90,
+                      child: Image.asset(
+                        "assets/${widget.dadAnimationModel.asset!}",
                       ),
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  Transform.translate(
-                    offset: fNameOffsetTween.value,
+                ),
+                const SizedBox(height: 10),
+                Transform.translate(
+                  offset: fNameOffsetTween.value,
+                  child: Container(
                     child: Text(
                       "${widget.dadAnimationModel.firstName}",
                       style: const TextStyle(
@@ -105,12 +106,12 @@ class _OverlayAnimationState extends State<OverlayAnimation> with TickerProvider
                       ),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }

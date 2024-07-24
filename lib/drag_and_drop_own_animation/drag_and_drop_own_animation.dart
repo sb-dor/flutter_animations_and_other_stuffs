@@ -19,6 +19,8 @@ class _DragAndDropOwnAnimationState extends State<DragAndDropOwnAnimation> {
   void onDragEnd(DraggableDetails drag, DADAnimationModel model) {
     if (!drag.wasAccepted) return;
     final provider = Provider.of<DragAndDropProvider>(context, listen: false);
+    debugPrint("dropping image pos : ${findOffset(imageDragOffsetKey)}");
+    debugPrint("dropping name pos : ${findOffset(fNameDragOffsetKey)}");
     provider.addToList(
       model
         ..initDADAnimationOffsets(
