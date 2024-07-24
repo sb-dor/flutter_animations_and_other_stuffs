@@ -21,6 +21,7 @@ import 'package:flutter_animations_2/flutter_background_service/flutter_backgrou
 import 'package:flutter_animations_2/flutter_camera/flutter_camera_helper.dart';
 import 'package:flutter_animations_2/flutter_nearby_connectivity/yt_nearby_p2p_connection/cubit/nearby_server_cubit.dart';
 import 'package:flutter_animations_2/flutter_permissions/cubit/flutter_permissions_cubit.dart';
+import 'package:flutter_animations_2/flutter_riverpod/riverpod_generated_code/riverpod_generated_code_page.dart';
 import 'package:flutter_animations_2/global_context/global_context.helper.dart';
 import 'package:flutter_animations_2/hive/hive_database_helper.dart';
 import 'package:flutter_animations_2/internet_controller/cubit/internet_conn_checker_cubit.dart';
@@ -238,7 +239,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const DragAndDropOwnAnimation(),
+        builder: (context, state) => const RiverpodGeneratedCodePage(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
