@@ -8,16 +8,18 @@ class RiverpodProductServiceModel {
 }
 
 class ProductService {
-  Future<List<RiverpodProductServiceModel>> getProducts(ProductFilterModel filter) async {
+  Future<List<RiverpodProductServiceModel>> getProducts(ProductFilterModel? filter) async {
     // Simulate a network call and filter the products
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
 
     // Sample data
     List<RiverpodProductServiceModel> allProducts = [
-      RiverpodProductServiceModel(name: 'Product 1', price: 100),
-      RiverpodProductServiceModel(name: 'Product 2', price: 200),
-      RiverpodProductServiceModel(name: 'Product 3', price: 300),
+      RiverpodProductServiceModel(name: 'Apple', price: 100),
+      RiverpodProductServiceModel(name: 'Banana', price: 200),
+      RiverpodProductServiceModel(name: 'Watermelon', price: 300),
     ];
+
+    if(filter == null) return allProducts;
 
     return allProducts
         .where((product) =>

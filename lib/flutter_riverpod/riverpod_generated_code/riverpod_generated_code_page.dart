@@ -5,19 +5,32 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'riverpod_generated_code_state_managements/product_filter_model.dart';
 
-class RiverpodGeneratedCodePage extends ConsumerWidget {
+class RiverpodGeneratedCodePage extends ConsumerStatefulWidget {
   const RiverpodGeneratedCodePage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final products = ref.watch(getProductProvider);
+  ConsumerState createState() => _RiverpodGeneratedCodePageState();
+}
+
+class _RiverpodGeneratedCodePageState extends ConsumerState<RiverpodGeneratedCodePage> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((v) {
+      ref.watch(getProductProvider.notifier).refresh();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final products = ref.watch(getProductProvider.notifier);
     final filter = ref.watch(riverpodProductFilterProvider.notifier);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Products'),
+        title: const Text('Products'),
         actions: [
           IconButton(
-            icon: Icon(Icons.refresh),
+            icon: const Icon(Icons.refresh),
             onPressed: () {
               ref.read(getProductProvider.notifier).refresh();
             },
@@ -29,7 +42,7 @@ class RiverpodGeneratedCodePage extends ConsumerWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Search',
                 border: OutlineInputBorder(),
               ),
@@ -45,18 +58,14 @@ class RiverpodGeneratedCodePage extends ConsumerWidget {
             ),
           ),
           Expanded(
-            child: products.when(
-              data: (data) => ListView.builder(
-                itemCount: data.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(data[index].name),
-                    subtitle: Text('\$${data[index].price}'),
-                  );
-                },
-              ),
-              loading: () => Center(child: CircularProgressIndicator()),
-              error: (error, stack) => Center(child: Text('Error: $error')),
+            child: ListView.builder(
+              itemCount: products.list.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text(products.list[index].name),
+                  subtitle: Text('\$${products.list[index].price}'),
+                );
+              },
             ),
           ),
         ],

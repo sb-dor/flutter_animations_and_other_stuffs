@@ -7,7 +7,7 @@ part of 'riverpod_product_filter.dart';
 // **************************************************************************
 
 String _$riverpodProductFilterHash() =>
-    r'dc3db2b34b8523041f744420bace34a6159dd754';
+    r'84ef73a27829400e84d19b26e73eb38b335212eb';
 
 /// See also [RiverpodProductFilter].
 @ProviderFor(RiverpodProductFilter)
