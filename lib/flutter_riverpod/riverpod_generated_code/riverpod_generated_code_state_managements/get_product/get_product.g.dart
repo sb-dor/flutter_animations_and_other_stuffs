@@ -6,12 +6,12 @@ part of 'get_product.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getProductHash() => r'c782df84fdacc60f13bb1f407802efa4b9c29cd9';
+String _$getProductHash() => r'85f22b0b569dd316ba2deae374630c42847a74bb';
 
 /// See also [GetProduct].
 @ProviderFor(GetProduct)
-final getProductProvider =
-    AutoDisposeNotifierProvider<GetProduct, void>.internal(
+final getProductProvider = AutoDisposeAsyncNotifierProvider<GetProduct,
+    List<RiverpodProductServiceModel>>.internal(
   GetProduct.new,
   name: r'getProductProvider',
   debugGetCreateSourceHash:
@@ -20,6 +20,7 @@ final getProductProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$GetProduct = AutoDisposeNotifier<void>;
+typedef _$GetProduct
+    = AutoDisposeAsyncNotifier<List<RiverpodProductServiceModel>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

@@ -8,19 +8,17 @@ part 'get_product.g.dart';
 
 @riverpod
 class GetProduct extends _$GetProduct {
-  List<RiverpodProductServiceModel> list = [];
-
   @override
-  void build() async {
-    list = await ProductService().getProducts(null);
+  Future<List<RiverpodProductServiceModel>> build() async {
+    return await ProductService().getProducts(null);
   }
 
-  void refresh({ProductFilterModel? filter}) async {
+  void refreshState({ProductFilterModel? filter}) async {
     if (filter == null) {
       build();
       return;
     }
-    list = await ProductService().getProducts(filter);
-    state = list;
+    final list = await ProductService().getProducts(filter);
+    state = AsyncValue.data(list);
   }
 }

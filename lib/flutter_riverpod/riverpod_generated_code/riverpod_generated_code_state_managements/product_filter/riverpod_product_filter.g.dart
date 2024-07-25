@@ -7,12 +7,12 @@ part of 'riverpod_product_filter.dart';
 // **************************************************************************
 
 String _$riverpodProductFilterHash() =>
-    r'84ef73a27829400e84d19b26e73eb38b335212eb';
+    r'd64e16b08132d9ca07d0f6a5f187463118f6c4b7';
 
 /// See also [RiverpodProductFilter].
 @ProviderFor(RiverpodProductFilter)
-final riverpodProductFilterProvider =
-    AutoDisposeNotifierProvider<RiverpodProductFilter, void>.internal(
+final riverpodProductFilterProvider = AutoDisposeNotifierProvider<
+    RiverpodProductFilter, ProductFilterModel>.internal(
   RiverpodProductFilter.new,
   name: r'riverpodProductFilterProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -22,6 +22,6 @@ final riverpodProductFilterProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$RiverpodProductFilter = AutoDisposeNotifier<void>;
+typedef _$RiverpodProductFilter = AutoDisposeNotifier<ProductFilterModel>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

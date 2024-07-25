@@ -19,13 +19,13 @@ class ProductService {
       RiverpodProductServiceModel(name: 'Watermelon', price: 300),
     ];
 
-    if(filter == null) return allProducts;
+    if (filter == null) return allProducts;
 
     return allProducts
         .where((product) =>
-            (filter.query == null || product.name.contains(filter.query!)) &&
-            (filter.minPrice == null || product.price >= filter.minPrice!) &&
-            (filter.maxPrice == null || product.price <= filter.maxPrice!))
+            product.name.trim().toUpperCase().contains((filter.query ?? '').trim().toUpperCase()) ||
+            (product.price >= (filter.minPrice ?? 0.0) &&
+                product.price <= (filter.maxPrice ?? 0.0)))
         .toList();
   }
 }

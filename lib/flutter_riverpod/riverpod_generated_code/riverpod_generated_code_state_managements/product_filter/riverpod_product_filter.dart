@@ -7,17 +7,14 @@ part 'riverpod_product_filter.g.dart';
 
 @riverpod
 class RiverpodProductFilter extends _$RiverpodProductFilter {
-  late ProductFilterModel productFilterModel;
-
   @override
-  void build() {
-    debugPrint("coming here build");
-    productFilterModel = ProductFilterModel.initial();
+  ProductFilterModel build() {
+    return ProductFilterModel.initial();
   }
 
-  void update(ProductFilterModel model) {
+  void updateState(ProductFilterModel model) {
     debugPrint("coming here update");
-    productFilterModel = model;
-    ref.read(getProductProvider.notifier).refresh(filter: productFilterModel);
+    state = model;
+    ref.read(getProductProvider.notifier).refreshState(filter: model);
   }
 }

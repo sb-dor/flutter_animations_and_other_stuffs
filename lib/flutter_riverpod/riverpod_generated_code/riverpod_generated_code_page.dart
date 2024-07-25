@@ -17,14 +17,14 @@ class _RiverpodGeneratedCodePageState extends ConsumerState<RiverpodGeneratedCod
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((v) {
-      ref.watch(getProductProvider.notifier).refresh();
+      ref.watch(getProductProvider.notifier).refreshState();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final products = ref.watch(getProductProvider.notifier);
-    final filter = ref.watch(riverpodProductFilterProvider.notifier);
+    final products = ref.watch(getProductProvider);
+    final filter = ref.watch(riverpodProductFilterProvider);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Products'),
@@ -32,7 +32,7 @@ class _RiverpodGeneratedCodePageState extends ConsumerState<RiverpodGeneratedCod
           IconButton(
             icon: const Icon(Icons.refresh),
             onPressed: () {
-              ref.read(getProductProvider.notifier).refresh();
+              ref.read(getProductProvider.notifier).refreshState();
             },
           ),
         ],
@@ -47,11 +47,11 @@ class _RiverpodGeneratedCodePageState extends ConsumerState<RiverpodGeneratedCod
                 border: OutlineInputBorder(),
               ),
               onChanged: (value) {
-                ref.read(riverpodProductFilterProvider.notifier).update(
+                ref.read(riverpodProductFilterProvider.notifier).updateState(
                       ProductFilterModel(
                         query: value,
-                        minPrice: filter.productFilterModel.minPrice,
-                        maxPrice: filter.productFilterModel.maxPrice,
+                        minPrice: filter.minPrice,
+                        maxPrice: filter.maxPrice,
                       ),
                     );
               },
@@ -59,11 +59,11 @@ class _RiverpodGeneratedCodePageState extends ConsumerState<RiverpodGeneratedCod
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: products.list.length,
+              itemCount: products.value?.length ?? 0,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Text(products.list[index].name),
-                  subtitle: Text('\$${products.list[index].price}'),
+                  title: Text(products.value?[index].name ?? ''),
+                  subtitle: Text('\$${products.value?[index].price}'),
                 );
               },
             ),
