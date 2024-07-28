@@ -6,11 +6,12 @@ part of 'riverpod_function_state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$triviaHash() => r'1ce46a1bff197e23b914e4428ef705b6d5ecde3e';
+String _$triviaHash() => r'2f14875115a02ab94f39a0425dfaaffc2b5173a1';
 
 /// See also [trivia].
 @ProviderFor(trivia)
-final triviaProvider = AutoDisposeFutureProvider<RiverpodNumberTrivia>.internal(
+final triviaProvider =
+    AutoDisposeFutureProvider<RiverpodNumberTriviaModel>.internal(
   trivia,
   name: r'triviaProvider',
   debugGetCreateSourceHash:
@@ -19,6 +20,6 @@ final triviaProvider = AutoDisposeFutureProvider<RiverpodNumberTrivia>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef TriviaRef = AutoDisposeFutureProviderRef<RiverpodNumberTrivia>;
+typedef TriviaRef = AutoDisposeFutureProviderRef<RiverpodNumberTriviaModel>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

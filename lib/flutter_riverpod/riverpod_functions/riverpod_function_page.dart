@@ -18,19 +18,30 @@ class RiverpodFunctionPage extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              "Name: ${riverpodFunction.value?.text}",
-              style: const TextStyle(fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center,
+            riverpodFunction.when(
+              data: (data) => Column(
+                children: [
+                  Text(
+                    "Name: ${data.text}",
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 10),
+                  Text("Number: ${riverpodFunction.value?.number ?? '-'}"),
+                  const SizedBox(height: 20),
+                ],
+              ),
+              error: (error, stacktrace) => const Text("Error occreed, please try again later"),
+              loading: () => const CircularProgressIndicator(),
             ),
-            const SizedBox(height: 10),
-            Text("Number: ${riverpodFunction.value?.number ?? '-'}"),
-            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 // for function "riverpod"
                 // in order recall function
                 // you have to use the code below
+
+                // whenever user try to click button several times
+                // "ref.invalidate(anyProvider)" will work only once
                 ref.invalidate(triviaProvider);
               },
               child: const Text(
