@@ -10,6 +10,7 @@ import 'package:flutter_animations_2/bloc_learning/bloc_to_bloc_comm/first_bloc/
 import 'package:flutter_animations_2/bloc_learning/bloc_to_bloc_comm/second_bloc/second_bloc.dart';
 import 'package:flutter_animations_2/bloc_learning/using_freezed/using_freezed_bloc.dart';
 import 'package:flutter_animations_2/bottom_modal_sheets/bottom_modal_sheets_cubit/bottom_modal_sheet_cubit.dart';
+import 'package:flutter_animations_2/card_animation_from_karteto_app_own_code/own_karteto_app_code_card_animation.dart';
 import 'package:flutter_animations_2/clean_architecture/cubit/day_cubit.dart';
 import 'package:flutter_animations_2/dart_features/dart_enums.dart';
 import 'package:flutter_animations_2/design_templates/mvvm/viewmodel_mvvm.dart';
@@ -240,7 +241,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const RiverpodFunctionPage(),
+        builder: (context, state) => const OwnKartetoAppCodeCardAnimation(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
