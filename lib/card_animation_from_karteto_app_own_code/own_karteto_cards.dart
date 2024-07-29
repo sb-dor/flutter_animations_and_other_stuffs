@@ -1,10 +1,17 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 
 class OwnKartetoCards {
   final String name;
-  final id;
+  final String id;
+  Offset? lastOffset;
 
-  OwnKartetoCards(this.name) : id = Uuid().v4();
+  OwnKartetoCards(this.name, {this.lastOffset}) : id = const Uuid().v4();
+
+  void initOffset({required Offset offset}) {
+    lastOffset = offset;
+  }
 
   static List<OwnKartetoCards> cards = [
     OwnKartetoCards("Hippo"),
