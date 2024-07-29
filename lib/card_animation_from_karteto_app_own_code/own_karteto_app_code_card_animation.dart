@@ -160,6 +160,7 @@ class _CardWidgetState extends State<_CardWidget> {
           child: _DragWidget(
             ownKartetoCards: widget.ownKartetoCards,
             index: widget.index,
+            key: UniqueKey(),
           ),
         ),
       ),
@@ -199,6 +200,8 @@ class _DragWidgetState extends State<_DragWidget> {
     WidgetsBinding.instance.addPostFrameCallback((s) {
       _cardHeight = 500;
       _cardWidth = MediaQuery.of(context).size.width / 1.3;
+      debugPrint("inited widgekey: ${findOffset(widgetKey)} | ${widget.dragStart == null}");
+
       setState(() {});
 
       startAnimation();
@@ -209,6 +212,7 @@ class _DragWidgetState extends State<_DragWidget> {
     if (widget.ownKartetoCards.lastOffset != null && widget.startAnimate) {
       showWidget = false;
       setState(() {});
+      debugPrint("widget key before overlay: ${findOffset(widgetKey)}");
       overlay = OverlayEntry(builder: (context) {
         return _OverlayOfAnimation(
           ownKartetoCards: widget.ownKartetoCards,
@@ -230,6 +234,9 @@ class _DragWidgetState extends State<_DragWidget> {
   @override
   Widget build(BuildContext context) {
     return Visibility(
+      maintainState: true,
+      maintainAnimation: true,
+      maintainSize: true,
       visible: showWidget,
       child: SizedBox(
         key: widgetKey,
@@ -287,6 +294,9 @@ class _OverlayOfAnimationState extends State<_OverlayOfAnimation>
   @override
   void initState() {
     super.initState();
+
+    debugPrint("offset start: ${widget.ownKartetoCards.lastOffset}");
+    debugPrint("offset end: ${findOffset(widget.endPositionOfWidget)}");
 
     _animationController = AnimationController(
       vsync: this,
