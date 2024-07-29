@@ -17,6 +17,9 @@ class OwnKartetoCards {
     OwnKartetoCards("Hippo"),
     OwnKartetoCards("Lion"),
     OwnKartetoCards("Giraffe"),
-    OwnKartetoCards("Crocodile")
+    OwnKartetoCards("Hippo"),
+    OwnKartetoCards("Crocodile"),
+    OwnKartetoCards("Lion"),
+    OwnKartetoCards("Crocodile"),
   ];
 }

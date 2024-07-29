@@ -27,14 +27,9 @@ class _OwnKartetoAppCodeCardAnimationState extends State<OwnKartetoAppCodeCardAn
 
   final List<OwnKartetoCards> _cards = [...OwnKartetoCards.cards];
 
-  List<OwnKartetoCards> get _getOnlyLastThree {
-    if (_cards.length >= 3) return _cards.take(3).toList();
-    return _cards;
-  }
-
   void onTargetTouch() {
     if (_cards.isNotEmpty) {
-      _cards.removeLast();
+      _cards.removeAt(0);
     }
     setState(() {});
   }
@@ -71,19 +66,46 @@ class _OwnKartetoAppCodeCardAnimationState extends State<OwnKartetoAppCodeCardAn
           children: [
             Expanded(
               child: Stack(
-                children: _getOnlyLastThree
-                    .asMap()
-                    .entries
-                    .map(
-                      (e) => _CardWidget(
-                        ownKartetoCards: e.value,
-                        index: e.key,
-                        onDragEnd: () => onTargetTouch(),
-                      ),
-                    )
-                    .toList()
-                    .reversed
-                    .toList(),
+                children: [
+                  GestureDetector(
+                    onTap: () {},
+                    child: Stack(
+                      children: _cards
+                          .asMap()
+                          .entries
+                          .map(
+                            (e) => _CardWidget(
+                              ownKartetoCards: e.value,
+                              index: e.key,
+                              onDragEnd: () => onTargetTouch(),
+                            ),
+                          )
+                          .toList()
+                          .reversed
+                          .toList(),
+                    ),
+                  ),
+                  Positioned.fill(
+                    right: MediaQuery.of(context).size.width / 1.2,
+                    child: DragTarget(
+                      builder: (context, objects, data) {
+                        return Container(
+                          color: Colors.transparent,
+                        );
+                      },
+                    ),
+                  ),
+                  Positioned.fill(
+                    left: MediaQuery.of(context).size.width / 1.2,
+                    child: DragTarget(
+                      builder: (context, objects, data) {
+                        return Container(
+                          color: Colors.transparent,
+                        );
+                      },
+                    ),
+                  ),
+                ],
               ),
             ),
             Row(
@@ -127,7 +149,7 @@ class _CardWidgetState extends State<_CardWidget> {
   void _onDragEnd(DraggableDetails details) {
     if (details.wasAccepted) {
       widget.ownKartetoCards.lastOffset = null;
-      //
+      widget.onDragEnd();
       return;
     }
     widget.ownKartetoCards.initOffset(
@@ -141,10 +163,11 @@ class _CardWidgetState extends State<_CardWidget> {
   Widget build(BuildContext context) {
     return AnimatedPositioned(
       duration: const Duration(seconds: 1),
+      curve: Curves.bounceInOut,
       left: 0,
       right: 0,
-      top: widget.index * 25,
-      bottom: 0,
+      bottom: widget.index >= 3 ? 70 : 0,
+      top: widget.index >= 3 ? 100 : widget.index * 25,
       child: Center(
         child: Draggable<OwnKartetoCards>(
           key: ObjectKey(widget.ownKartetoCards),
@@ -188,8 +211,8 @@ class _DragWidget extends StatefulWidget {
 
 class _DragWidgetState extends State<_DragWidget> {
   bool showWidget = true;
-  double? _cardHeight;
-  double? _cardWidth;
+  final double _cardHeight = 400;
+  final double _cardWidth = 300;
   OverlayEntry? overlay;
   late final GlobalKey widgetKey;
 
@@ -197,22 +220,17 @@ class _DragWidgetState extends State<_DragWidget> {
   void initState() {
     super.initState();
     widgetKey = widget.dragStart ?? GlobalKey();
-    WidgetsBinding.instance.addPostFrameCallback((s) {
-      _cardHeight = 500;
-      _cardWidth = MediaQuery.of(context).size.width / 1.3;
-      debugPrint("inited widgekey: ${findOffset(widgetKey)} | ${widget.dragStart == null}");
-
+    if (widget.ownKartetoCards.lastOffset != null && widget.startAnimate) {
+      showWidget = false;
       setState(() {});
-
+    }
+    WidgetsBinding.instance.addPostFrameCallback((s) {
       startAnimation();
     });
   }
 
   void startAnimation() {
     if (widget.ownKartetoCards.lastOffset != null && widget.startAnimate) {
-      showWidget = false;
-      setState(() {});
-      debugPrint("widget key before overlay: ${findOffset(widgetKey)}");
       overlay = OverlayEntry(builder: (context) {
         return _OverlayOfAnimation(
           ownKartetoCards: widget.ownKartetoCards,
@@ -291,12 +309,12 @@ class _OverlayOfAnimationState extends State<_OverlayOfAnimation>
 
   late final Animation<Offset> _animation;
 
+  final double _cardHeight = 400;
+  final double _cardWidth = 300;
+
   @override
   void initState() {
     super.initState();
-
-    debugPrint("offset start: ${widget.ownKartetoCards.lastOffset}");
-    debugPrint("offset end: ${findOffset(widget.endPositionOfWidget)}");
 
     _animationController = AnimationController(
       vsync: this,
@@ -334,27 +352,24 @@ class _OverlayOfAnimationState extends State<_OverlayOfAnimation>
               Transform.translate(
                 offset: _animation.value,
                 child: SizedBox(
-                  width: MediaQuery.of(context).size.width / 1.3,
-                  height: 500,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(15),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.shade300,
-                            blurRadius: 2,
-                            offset: const Offset(2, 2),
-                          ),
-                          BoxShadow(
-                            color: Colors.grey.shade300,
-                            blurRadius: 2,
-                            offset: const Offset(-2, -2),
-                          ),
-                        ],
-                      ),
+                  width: _cardWidth,
+                  height: _cardHeight,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.shade300,
+                          blurRadius: 2,
+                          offset: const Offset(2, 2),
+                        ),
+                        BoxShadow(
+                          color: Colors.grey.shade300,
+                          blurRadius: 2,
+                          offset: const Offset(-2, -2),
+                        ),
+                      ],
                     ),
                   ),
                 ),
