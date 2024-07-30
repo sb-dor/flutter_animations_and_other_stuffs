@@ -169,7 +169,7 @@ void main() async {
             // return MainGoRouterDecNavigation();
             // return const MainDeclarativeNavigationScreen();
             // return FlutterDeepLinkPage();
-            return GetMaterialApp(
+            return MaterialApp(
               localizationsDelegates: const [
                 S.delegate,
                 GlobalMaterialLocalizations.delegate,
@@ -185,7 +185,7 @@ void main() async {
               scrollBehavior: MyCustomScrollBehavior(),
               //if you want to use flutter deep linking use package "go_router"
               //get global context here
-              scaffoldMessengerKey: GlobalContextHelper.globalNavigatorSContext,
+              navigatorKey: GlobalContextHelper.instance.globalNavigatorContext,
 
               theme: FlexThemeData.light(scheme: FlexScheme.green, useMaterial3: materialUiState),
               darkTheme:

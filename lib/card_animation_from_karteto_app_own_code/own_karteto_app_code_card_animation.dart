@@ -5,8 +5,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_animations_2/drag_and_drop_animation/utils.dart';
+import 'package:flutter_animations_2/global_context/global_context.helper.dart';
 
 import 'own_karteto_cards.dart';
+
+const double _cardHeight = 400;
+const double _cardWidth = 300;
 
 class OwnKartetoAppCodeCardAnimation extends StatefulWidget {
   const OwnKartetoAppCodeCardAnimation({super.key});
@@ -210,9 +214,9 @@ class _DragWidget extends StatefulWidget {
 }
 
 class _DragWidgetState extends State<_DragWidget> {
+  // final globalContext = GlobalContextHelper.instance.globalNavigatorContext.currentContext!;
   bool showWidget = true;
-  final double _cardHeight = 400;
-  final double _cardWidth = 300;
+
   OverlayEntry? overlay;
   late final GlobalKey widgetKey;
 
@@ -224,9 +228,11 @@ class _DragWidgetState extends State<_DragWidget> {
       showWidget = false;
       setState(() {});
     }
-    WidgetsBinding.instance.addPostFrameCallback((s) {
+    Future.delayed(const Duration(milliseconds: 1), () {
       startAnimation();
     });
+    // WidgetsBinding.instance.addPostFrameCallback((s) {
+    // });
   }
 
   void startAnimation() {
@@ -309,9 +315,6 @@ class _OverlayOfAnimationState extends State<_OverlayOfAnimation>
 
   late final Animation<Offset> _animation;
 
-  final double _cardHeight = 400;
-  final double _cardWidth = 300;
-
   @override
   void initState() {
     super.initState();
@@ -345,37 +348,34 @@ class _OverlayOfAnimationState extends State<_OverlayOfAnimation>
     return AnimatedBuilder(
       animation: _animationController,
       builder: (context, child) {
-        return Material(
-          type: MaterialType.transparency,
-          child: Stack(
-            children: [
-              Transform.translate(
-                offset: _animation.value,
-                child: SizedBox(
-                  width: _cardWidth,
-                  height: _cardHeight,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(15),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.shade300,
-                          blurRadius: 2,
-                          offset: const Offset(2, 2),
-                        ),
-                        BoxShadow(
-                          color: Colors.grey.shade300,
-                          blurRadius: 2,
-                          offset: const Offset(-2, -2),
-                        ),
-                      ],
-                    ),
+        return Stack(
+          children: [
+            Transform.translate(
+              offset: _animation.value,
+              child: SizedBox(
+                width: _cardWidth,
+                height: _cardHeight,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(15),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.shade300,
+                        blurRadius: 2,
+                        offset: const Offset(2, 2),
+                      ),
+                      BoxShadow(
+                        color: Colors.grey.shade300,
+                        blurRadius: 2,
+                        offset: const Offset(-2, -2),
+                      ),
+                    ],
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         );
       },
     );

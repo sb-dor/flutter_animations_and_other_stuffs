@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 
 class GlobalContextHelper {
+  static GlobalContextHelper? _instance;
+
+  static GlobalContextHelper get instance => _instance ??= GlobalContextHelper._();
+
+  GlobalContextHelper._();
+
   //use in MaterialApp widget
   //check animated_drag_drop_app.dart -> MaterialApp widget
-  static GlobalKey<NavigatorState> globalNavigatorContext = GlobalKey<NavigatorState>();
+  GlobalKey<NavigatorState> globalNavigatorContext = GlobalKey<NavigatorState>();
 
-  static GlobalKey<ScaffoldMessengerState> globalNavigatorSContext =
-      GlobalKey<ScaffoldMessengerState>();
+  GlobalKey<ScaffoldMessengerState> globalNavigatorSContext = GlobalKey<ScaffoldMessengerState>();
 }

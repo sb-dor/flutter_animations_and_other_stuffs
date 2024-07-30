@@ -321,7 +321,7 @@ class MainMapCubit extends Cubit<MainMapStates> {
       currentState.mapObjects.add(PolylineMapObject(
         mapId: MapObjectId('route_${i}_polyline'),
         polyline: Polyline(points: route.geometry),
-        strokeColor: Theme.of(GlobalContextHelper.globalNavigatorContext.currentContext!)
+        strokeColor: Theme.of(GlobalContextHelper.instance.globalNavigatorContext.currentContext!)
             .colorScheme
             .secondary,
         strokeWidth: 3,
@@ -563,7 +563,7 @@ class MainMapCubit extends Cubit<MainMapStates> {
       final getPos = PolylineMapObject(
         mapId: placeMark,
         polyline: Polyline(points: (result.routes ?? []).first.geometry),
-        strokeColor: Theme.of(GlobalContextHelper.globalNavigatorContext.currentContext!)
+        strokeColor: Theme.of(GlobalContextHelper.instance.globalNavigatorContext.currentContext!)
             .colorScheme
             .secondary,
         strokeWidth: 3,
