@@ -19,13 +19,14 @@ class _BottomSheetWithSliversState extends State<BottomSheetWithSlivers> {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            showModalBottomSheet(
-              context: context,
-              isScrollControlled: true,
-              // backgroundColor: Colors.transparent,
-              builder: (context) => const ClipRRect(child: _MyModalSheet()),
-              // shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
-            );
+            BottomModalSheetDynamicSize.bottomDoubleModalSheet(context: context);
+            // showModalBottomSheet(
+            //   context: context,
+            //   isScrollControlled: true,
+            //   // backgroundColor: Colors.transparent,
+            //   builder: (context) => const ClipRRect(child: _MyModalSheet()),
+            //   // shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+            // );
           },
           child: const Text('Show Modal Bottom Sheet'),
         ),

@@ -126,6 +126,7 @@ class BottomModalSheetDynamicSize {
             return DraggableScrollableSheet(
                 controller: scrollableController,
                 initialChildSize: 0.9,
+                maxChildSize: 0.9,
                 expand: false,
                 builder: (context, controller) {
                   return Container(
