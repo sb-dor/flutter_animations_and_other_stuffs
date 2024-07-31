@@ -9,7 +9,7 @@ class BottomModalSheetCubits extends Cubit<BottomModalSheetStates> {
   void initChangeableHeight({required BuildContext context}) {
     var currentState = state.bottomModalSheetStateModel;
 
-    currentState.changeableHeight = MediaQuery.of(context).size.height;
+    currentState.changeableHeight = MediaQuery.of(context).size.height * 0.9;
 
     emit(InitialModalBottomSheetStates(currentState));
   }
@@ -39,12 +39,12 @@ class BottomModalSheetCubits extends Cubit<BottomModalSheetStates> {
 
     if (pos >= middlePos) {
       double res = pos - middlePos;
-      currentState.changeableHeight = MediaQuery.of(context).size.height - res;
+      currentState.changeableHeight = (MediaQuery.of(context).size.height * 0.9) - res;
       emit(InitialModalBottomSheetStates(currentState));
       return;
     }
-    if (currentState.changeableHeight < MediaQuery.of(context).size.height) {
-      currentState.changeableHeight = MediaQuery.of(context).size.height;
+    if (currentState.changeableHeight < MediaQuery.of(context).size.height * 0.9) {
+      currentState.changeableHeight = MediaQuery.of(context).size.height * 0.9;
     }
     emit(InitialModalBottomSheetStates(currentState));
   }

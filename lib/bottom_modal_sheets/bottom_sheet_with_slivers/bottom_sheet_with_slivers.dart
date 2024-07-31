@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animations_2/bottom_modal_sheets/bottom_modal_sheet_dynamic_size.dart';
 
 class BottomSheetWithSlivers extends StatefulWidget {
   const BottomSheetWithSlivers({super.key});
@@ -55,11 +56,14 @@ class _MyModalSheet extends StatelessWidget {
               scrolledUnderElevation: 0,
               expandedHeight: 200,
               leading: SizedBox(),
+              backgroundColor: Colors.transparent,
               flexibleSpace: FlexibleSpaceBar(
                 collapseMode: CollapseMode.none,
-                background: Image.asset(
-                  'assets/parallax_effect_images/efe-kurnaz.jpg',
-                  fit: BoxFit.none,
+                background: FlexibleSpaceBar(
+                  background: Image.asset(
+                    'assets/parallax_effect_images/efe-kurnaz.jpg',
+                    fit: BoxFit.none,
+                  ),
                 ),
               ),
             ),
@@ -97,20 +101,20 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
           'assets/parallax_effect_images/efe-kurnaz.jpg',
           fit: BoxFit.none,
         ),
-        Positioned(
-          bottom: -0,
-          left: 0,
-          right: 0,
-          child: Container(
-            height: 20,
-            decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                  topRight: Radius.circular(30),
-                )),
-          ),
-        )
+        // Positioned(
+        //   bottom: -0,
+        //   left: 0,
+        //   right: 0,
+        //   child: Container(
+        //     height: 20,
+        //     decoration: const BoxDecoration(
+        //         color: Colors.white,
+        //         borderRadius: BorderRadius.only(
+        //           topLeft: Radius.circular(30),
+        //           topRight: Radius.circular(30),
+        //         )),
+        //   ),
+        // )
         // Positioned(
         //   top: 0,
         //   child: Image.asset('assets/image2.jpg', fit: BoxFit.cover),
