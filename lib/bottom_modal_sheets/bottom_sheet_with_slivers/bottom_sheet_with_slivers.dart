@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animations_2/bottom_modal_sheets/bottom_modal_sheet_dynamic_size.dart';
+import 'package:get/get.dart';
+import 'package:sliver_tools/sliver_tools.dart';
 
 class BottomSheetWithSlivers extends StatefulWidget {
   const BottomSheetWithSlivers({super.key});
@@ -19,8 +22,9 @@ class _BottomSheetWithSliversState extends State<BottomSheetWithSlivers> {
             showModalBottomSheet(
               context: context,
               isScrollControlled: true,
+              // backgroundColor: Colors.transparent,
               builder: (context) => const ClipRRect(child: _MyModalSheet()),
-              shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+              // shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
             );
           },
           child: const Text('Show Modal Bottom Sheet'),
@@ -38,6 +42,7 @@ class _MyModalSheet extends StatelessWidget {
     return DraggableScrollableSheet(
       expand: false,
       maxChildSize: 0.9,
+      initialChildSize: 0.9,
       builder: (context, scrollController) {
         return CustomScrollView(
           controller: scrollController,
@@ -55,27 +60,51 @@ class _MyModalSheet extends StatelessWidget {
             SliverAppBar(
               scrolledUnderElevation: 0,
               expandedHeight: 200,
-              leading: SizedBox(),
+              leading: const SizedBox(),
               backgroundColor: Colors.transparent,
-              flexibleSpace: FlexibleSpaceBar(
-                collapseMode: CollapseMode.none,
-                background: FlexibleSpaceBar(
+              collapsedHeight: 0,
+              toolbarHeight: 0,
+
+              flexibleSpace: ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(25),
+                  topRight: Radius.circular(25),
+                ),
+                child: FlexibleSpaceBar(
+                  collapseMode: CollapseMode.none,
+                  stretchModes: [
+                    StretchMode.zoomBackground,
+                  ],
                   background: Image.asset(
                     'assets/parallax_effect_images/efe-kurnaz.jpg',
-                    fit: BoxFit.none,
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),
             ),
             // SliverList for the scrollable list items
             SliverToBoxAdapter(
-              child: ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: 20,
-                itemBuilder: (context, index) {
-                  return ListTile(title: Text('Item $index'));
-                },
+              child: ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topRight: Radius.circular(25),
+                  topLeft: Radius.circular(25),
+                ),
+                child: Container(
+                  decoration: const BoxDecoration(
+                      // color: Colors.amber,
+                      borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(25),
+                    topLeft: Radius.circular(25),
+                  )),
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: 20,
+                    itemBuilder: (context, index) {
+                      return ListTile(title: Text('Item $index'));
+                    },
+                  ),
+                ),
               ),
             ),
           ],
@@ -93,7 +122,6 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
   @override
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
     return Stack(
-      clipBehavior: Clip.none,
       fit: StackFit.expand,
       children: [
         // Background images
@@ -101,20 +129,21 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
           'assets/parallax_effect_images/efe-kurnaz.jpg',
           fit: BoxFit.none,
         ),
-        // Positioned(
-        //   bottom: -0,
-        //   left: 0,
-        //   right: 0,
-        //   child: Container(
-        //     height: 20,
-        //     decoration: const BoxDecoration(
-        //         color: Colors.white,
-        //         borderRadius: BorderRadius.only(
-        //           topLeft: Radius.circular(30),
-        //           topRight: Radius.circular(30),
-        //         )),
-        //   ),
-        // )
+        Positioned(
+          bottom: 10,
+          left: 0,
+          right: 0,
+          child: Container(
+            height: 20,
+            decoration: const BoxDecoration(
+              color: Colors.amber,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(30),
+                topRight: Radius.circular(30),
+              ),
+            ),
+          ),
+        )
         // Positioned(
         //   top: 0,
         //   child: Image.asset('assets/image2.jpg', fit: BoxFit.cover),
