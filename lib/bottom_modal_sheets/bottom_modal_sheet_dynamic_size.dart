@@ -131,7 +131,9 @@ class BottomModalSheetDynamicSize {
                 builder: (context, controller) {
                   return Container(
                       key: currentState.secondModalSheetKey,
-
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
                       child: ListView(
                           padding: const EdgeInsets.all(10),
                           controller: controller,

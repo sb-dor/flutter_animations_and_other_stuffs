@@ -30,36 +30,71 @@ class _SliverAndScrollPageState extends State<SliverAndScrollPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SliverCubit, SliverStates>(builder: (context, state) {
-      var currentState = state.sliverStateModel;
-      return Scaffold(
-        appBar: AppBar(title: const Text("Sliver and scroll page")),
-        body: CustomScrollView(controller: scrollController, slivers: [
-          SliverPersistentHeader(
-              pinned: true, floating: false, delegate: _SliverPersistentHeaderW()),
-          SliverToBoxAdapter(
-              child: Container(
+    return BlocBuilder<SliverCubit, SliverStates>(
+      builder: (context, state) {
+        var currentState = state.sliverStateModel;
+        return Scaffold(
+          appBar: AppBar(title: const Text("Sliver and scroll page")),
+          body: CustomScrollView(
+            controller: scrollController,
+            slivers: [
+              SliverPersistentHeader(
+                pinned: true,
+                floating: false,
+                delegate: _SliverPersistentHeaderW(),
+              ),
+              SliverToBoxAdapter(
+                child: Container(
                   key: currentState.redKey,
                   height: 1000,
                   color: Colors.red,
                   child: Center(
-                      child: TextButton(
-                          style: const ButtonStyle(
-                              backgroundColor: WidgetStatePropertyAll(Colors.amber)),
-                          onPressed: () => Navigator.pushNamed(context, '/nft_home_screen'),
-                          child: const Text('Go'))))),
-          const SliverToBoxAdapter(child: SizedBox(height: 10)),
-          SliverToBoxAdapter(
-              child: Container(key: currentState.blueKey, height: 1000, color: Colors.blue)),
-          const SliverToBoxAdapter(child: SizedBox(height: 10)),
-          SliverToBoxAdapter(
-              child: Container(key: currentState.yellowKey, height: 1000, color: Colors.yellow)),
-          const SliverToBoxAdapter(child: SizedBox(height: 10)),
-          SliverToBoxAdapter(
-              child: Container(key: currentState.pinkKey, height: 1000, color: Colors.pink))
-        ]),
-      );
-    });
+                    child: TextButton(
+                      style:
+                          const ButtonStyle(backgroundColor: WidgetStatePropertyAll(Colors.amber)),
+                      onPressed: () => Navigator.pushNamed(context, '/nft_home_screen'),
+                      child: const Text('Go'),
+                    ),
+                  ),
+                ),
+              ),
+              const SliverToBoxAdapter(
+                child: SizedBox(
+                  height: 10,
+                ),
+              ),
+              SliverToBoxAdapter(
+                child: Container(
+                  key: currentState.blueKey,
+                  height: 1000,
+                  color: Colors.blue,
+                ),
+              ),
+              const SliverToBoxAdapter(
+                child: SizedBox(
+                  height: 10,
+                ),
+              ),
+              SliverToBoxAdapter(
+                child: Container(
+                  key: currentState.yellowKey,
+                  height: 1000,
+                  color: Colors.yellow,
+                ),
+              ),
+              const SliverToBoxAdapter(child: SizedBox(height: 10)),
+              SliverToBoxAdapter(
+                child: Container(
+                  key: currentState.pinkKey,
+                  height: 1000,
+                  color: Colors.pink,
+                ),
+              )
+            ],
+          ),
+        );
+      },
+    );
   }
 }
 

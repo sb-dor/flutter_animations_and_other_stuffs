@@ -34,50 +34,64 @@ class _SliverAppbarWithTabBar extends State<SliverAppbarWithTabBar>
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-        length: tabs.length,
-        child: Scaffold(
-            body: CustomScrollView(slivers: [
-          SliverAppBar(
+      length: tabs.length,
+      child: Scaffold(
+        body: CustomScrollView(
+          slivers: [
+            SliverAppBar(
               title: const Text("WatsApp"),
               floating: true,
               pinned: true,
               bottom: TabBar(
-                  padding: EdgeInsets.zero,
-                  labelPadding: EdgeInsets.zero,
-                  onTap: (index) {
-                    if (index == 0) tabController.index = 1;
-                  },
-                  controller: tabController,
-                  tabs: tabs)),
-          SliverFillRemaining(
-              child: TabBarView(controller: tabController, children: [
-            Container(),
-            Center(
-                child: InteractiveViewer(
-              maxScale: 3,
-              minScale: 0.5,
-              transformationController: controllerT,
-              onInteractionStart: (d) {
-                initialControllerValue = controllerT.value;
-              },
-              onInteractionEnd: (d) {
-                controllerT.value = initialControllerValue;
-              },
-              child: Container(
-                  color: Colors.red,
-                  width: 200,
-                  height: 200,
-                  child: Image.network(
-                      "https://img.freepik.com/premium-vector/notification-bell-vector-icon-trendy-neumorphism-style-vector-eps-10_532800-472.jpg?w=2000")),
-            )),
-            CustomScrollView(slivers: [
-              SliverFillViewport(delegate: SliverChildListDelegate(
-
-                  []))
-            ]),
-            const Center(child: Text("Tab 3"))
-          ]))
-        ])));
+                padding: EdgeInsets.zero,
+                labelPadding: EdgeInsets.zero,
+                onTap: (index) {
+                  if (index == 0) tabController.index = 1;
+                },
+                controller: tabController,
+                tabs: tabs,
+              ),
+            ),
+            SliverFillRemaining(
+              child: TabBarView(
+                controller: tabController,
+                children: [
+                  Container(),
+                  Center(
+                    child: InteractiveViewer(
+                      maxScale: 3,
+                      minScale: 0.5,
+                      transformationController: controllerT,
+                      onInteractionStart: (d) {
+                        initialControllerValue = controllerT.value;
+                      },
+                      onInteractionEnd: (d) {
+                        controllerT.value = initialControllerValue;
+                      },
+                      child: Container(
+                          color: Colors.red,
+                          width: 200,
+                          height: 200,
+                          child: Image.network(
+                              "https://img.freepik.com/premium-vector/notification-bell-vector-icon-trendy-neumorphism-style-vector-eps-10_532800-472.jpg?w=2000")),
+                    ),
+                  ),
+                  CustomScrollView(
+                    slivers: [
+                      SliverFillViewport(
+                        delegate: SliverChildListDelegate(
+                          [],
+                        ),
+                      ),
+                    ],
+                  ),
+                  const Center(child: Text("Tab 3"))
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
-

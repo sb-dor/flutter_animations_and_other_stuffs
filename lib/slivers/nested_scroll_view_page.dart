@@ -91,7 +91,15 @@ class _HelloWorldDelegate extends SliverPersistentHeaderDelegate {
   @override
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
     return Container(
-        height: 30, color: Colors.red, child: const Text("Hello world", style: TextStyle(fontSize: 20)));
+      height: 30,
+      color: Colors.red,
+      child: const Text(
+        "Hello world",
+        style: TextStyle(
+          fontSize: 20,
+        ),
+      ),
+    );
   }
 
   @override

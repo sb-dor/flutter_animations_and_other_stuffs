@@ -47,6 +47,11 @@ import 'drag_and_drop_animation/animated_drag_drop_app.dart';
 import 'generated/l10n.dart';
 import 'getit/locator.dart';
 import 'google_map/cubit/main_google_map_cubit.dart';
+import 'slivers/nested_scroll_view_page.dart';
+import 'slivers/sliver_and_scrolls/sliver_and_scroll_page.dart';
+import 'slivers/sliver_app_bar_title_animation.dart';
+import 'slivers/sliver_appbar_with_tabbar_page.dart';
+import 'slivers/sliver_stuck_after_each_other/sliver_app_bar_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -242,7 +247,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const BottomSheetWithSlivers(),
+        builder: (context, state) => const SliverAppbarWithTabBar(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
