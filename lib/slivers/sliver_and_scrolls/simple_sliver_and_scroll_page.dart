@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animations_2/slivers/sliver_and_scrolls/sliver_and_scroll_from_diego_dev/widgets/get_box_offset.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 final class _ProductsWithCategory {
@@ -27,9 +28,11 @@ class _SimpleSliverAndScrollPageState extends State<SimpleSliverAndScrollPage> {
 
   List<String> categoriesHeader = [];
 
+  List<double> listOfOffset = [];
+
   ItemScrollController itemScrollController = ItemScrollController();
 
-  ItemScrollController secondItemScrollController = ItemScrollController();
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
@@ -99,11 +102,19 @@ class _SimpleSliverAndScrollPageState extends State<SimpleSliverAndScrollPage> {
     setState(() {});
   }
 
+  void addOffset(double offset) {
+    final double position = (offset - kToolbarHeight) > 0 ? (offset - kToolbarHeight) : offset;
+    listOfOffset.add(position);
+    debugPrint("adding offset: $position");
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: CustomScrollView(
+          controller: _scrollController,
           slivers: [
             const SliverAppBar(
               flexibleSpace: FlexibleSpaceBar(
@@ -120,7 +131,8 @@ class _SimpleSliverAndScrollPageState extends State<SimpleSliverAndScrollPage> {
                   categoriesHeader,
                   currentSliverHeaderPosition,
                   itemScrollController,
-                  secondItemScrollController,
+                  listOfOffset,
+                  _scrollController,
                 ),
               ),
             ),
@@ -129,51 +141,106 @@ class _SimpleSliverAndScrollPageState extends State<SimpleSliverAndScrollPage> {
                 height: 10,
               ),
             ),
-            for (int i = 0; i < sliverForHeaders.length; i++) ...[
-              SliverPadding(
-                padding: const EdgeInsets.only(left: 10, right: 10),
-                sliver: SliverPersistentHeader(
-                  delegate: SliverForHeaderDelegate(
-                    prodWithCateg: sliverForHeaders[i],
-                    itemScrollController: itemScrollController,
-                    // index: i,
-                    onScroll: (value) {
-                      debugPrint("scrolling index: $i | permission: $value");
-                      Future.microtask(() {
-                        setPosition(value, i);
-                        if (hasPermissionForScroll) {
-                          itemScrollController.scrollTo(
-                            index: currentSliverHeaderPosition,
-                            duration: const Duration(
-                              milliseconds: 500,
-                            ),
-                            curve: Curves.bounceInOut,
-                          );
-                        }
-                        setState(() {});
-                      });
-                    },
+            ...sliverForHeaders
+                .asMap()
+                .entries
+                .map(
+                  (e) => SliverMainAxisGroup(
+                    slivers: [
+                      SliverPadding(
+                        padding: const EdgeInsets.only(left: 10, right: 10),
+                        sliver: SliverPersistentHeader(
+                          delegate: SliverForHeaderDelegate(
+                            prodWithCateg: sliverForHeaders[e.key],
+                            itemScrollController: itemScrollController,
+                            // index: i,
+                            setOffset: (offsetDY) => addOffset(offsetDY),
+                            onScroll: (value) {
+                              // debugPrint("scrolling index: $i | permission: $value");
+                              Future.microtask(() {
+                                setPosition(value, e.key);
+                                if (hasPermissionForScroll) {
+                                  itemScrollController.scrollTo(
+                                    index: currentSliverHeaderPosition,
+                                    duration: const Duration(
+                                      milliseconds: 500,
+                                    ),
+                                    curve: Curves.bounceInOut,
+                                  );
+                                }
+                                setState(() {});
+                              });
+                            },
+                          ),
+                        ),
+                      ),
+                      SliverToBoxAdapter(
+                        child: ScrollablePositionedList.separated(
+                          // itemScrollController: secondItemScrollController,
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: sliverForHeaders[e.key].products.length,
+                          itemBuilder: (context, index) {
+                            final item = sliverForHeaders[index].products[index];
+                            return ListTile(
+                              title: Text(item),
+                            );
+                          },
+                          separatorBuilder: (context, index) => const SizedBox(
+                            height: 10,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-              ),
-              SliverToBoxAdapter(
-                child: ScrollablePositionedList.separated(
-                  // itemScrollController: secondItemScrollController,
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: sliverForHeaders.length,
-                  itemBuilder: (context, index) {
-                    final item = sliverForHeaders[index];
-                    return ListTile(
-                      title: Text(item.category),
-                    );
-                  },
-                  separatorBuilder: (context, index) => const SizedBox(
-                    height: 10,
-                  ),
-                ),
-              )
-            ]
+                )
+                .toList(),
+            // for (int i = 0; i < sliverForHeaders.length; i++) ...[
+            //   SliverPadding(
+            //     padding: const EdgeInsets.only(left: 10, right: 10),
+            //     sliver: SliverPersistentHeader(
+            //       delegate: SliverForHeaderDelegate(
+            //         prodWithCateg: sliverForHeaders[i],
+            //         itemScrollController: itemScrollController,
+            //         // index: i,
+            //         setOffset: (offsetDY) => addOffset(offsetDY),
+            //         onScroll: (value) {
+            //           // debugPrint("scrolling index: $i | permission: $value");
+            //           Future.microtask(() {
+            //             setPosition(value, i);
+            //             if (hasPermissionForScroll) {
+            //               itemScrollController.scrollTo(
+            //                 index: currentSliverHeaderPosition,
+            //                 duration: const Duration(
+            //                   milliseconds: 500,
+            //                 ),
+            //                 curve: Curves.bounceInOut,
+            //               );
+            //             }
+            //             setState(() {});
+            //           });
+            //         },
+            //       ),
+            //     ),
+            //   ),
+            //   SliverToBoxAdapter(
+            //     child: ScrollablePositionedList.separated(
+            //       // itemScrollController: secondItemScrollController,
+            //       shrinkWrap: true,
+            //       physics: const NeverScrollableScrollPhysics(),
+            //       itemCount: sliverForHeaders.length,
+            //       itemBuilder: (context, index) {
+            //         final item = sliverForHeaders[index];
+            //         return ListTile(
+            //           title: Text(item.category),
+            //         );
+            //       },
+            //       separatorBuilder: (context, index) => const SizedBox(
+            //         height: 10,
+            //       ),
+            //     ),
+            //   )
+            // ]
           ],
         ),
       ),
@@ -183,16 +250,15 @@ class _SimpleSliverAndScrollPageState extends State<SimpleSliverAndScrollPage> {
 
 class SliverForHeaderDelegate extends SliverPersistentHeaderDelegate {
   final _ProductsWithCategory prodWithCateg;
-  final ValueChanged<bool> onScroll;
   final ItemScrollController itemScrollController;
-
-  // final int index;
+  final ValueChanged<bool> onScroll;
+  final ValueChanged<double> setOffset;
 
   SliverForHeaderDelegate({
     required this.prodWithCateg,
     required this.onScroll,
     required this.itemScrollController,
-    // required this.index,
+    required this.setOffset,
   });
 
   @override
@@ -202,7 +268,10 @@ class SliverForHeaderDelegate extends SliverPersistentHeaderDelegate {
     } else {
       onScroll(false);
     }
-    return Container(
+    return GetBoxOffset(
+      offset: (Offset offset) {
+        setOffset(offset.dy);
+      },
       child: Text(
         "Title: ${prodWithCateg.category}",
         style: const TextStyle(
@@ -231,13 +300,15 @@ class SliverHeaderDelegate extends SliverPersistentHeaderDelegate {
   final List<String> categoriesHeader;
   final int currentIndex;
   final ItemScrollController itemScrollController;
-  final ItemScrollController listItemScrollController;
+  final List<double> listOfPositions;
+  final ScrollController scrollController;
 
   SliverHeaderDelegate(
     this.categoriesHeader,
     this.currentIndex,
     this.itemScrollController,
-    this.listItemScrollController,
+    this.listOfPositions,
+    this.scrollController,
   );
 
   @override
@@ -253,9 +324,10 @@ class SliverHeaderDelegate extends SliverPersistentHeaderDelegate {
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
-              listItemScrollController.scrollTo(
-                index: index,
-                duration: const Duration(milliseconds: 500),
+              scrollController.animateTo(
+                listOfPositions[index],
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.bounceOut,
               );
             },
             child: Container(
