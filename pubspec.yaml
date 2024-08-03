@@ -129,6 +129,7 @@ dependencies:
   dotted_border: ^2.1.0
   riverpod_annotation: ^2.3.5
   uuid: ^4.4.2
+  scrollable_positioned_list: ^0.3.8
 
 
 dev_dependencies:
@@ -174,6 +175,7 @@ flutter:
     - assets/parallax_effect_images/
     - assets/youtube_coffee_anim_pic/
     - assets/drag_and_drop_animation_assets/
+    - assets/sliver_with_scrollable_tabs/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

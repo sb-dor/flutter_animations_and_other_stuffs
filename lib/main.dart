@@ -48,6 +48,8 @@ import 'generated/l10n.dart';
 import 'getit/locator.dart';
 import 'google_map/cubit/main_google_map_cubit.dart';
 import 'slivers/nested_scroll_view_page.dart';
+import 'slivers/sliver_and_scrolls/simple_sliver_and_scroll_page.dart';
+import 'slivers/sliver_and_scrolls/sliver_and_scroll_from_diego_dev/home_sliver_with_scrollable_tabs.dart';
 import 'slivers/sliver_and_scrolls/sliver_and_scroll_page.dart';
 import 'slivers/sliver_app_bar_title_animation.dart';
 import 'slivers/sliver_appbar_with_tabbar_page.dart';
@@ -175,7 +177,7 @@ void main() async {
             // return MainGoRouterDecNavigation();
             // return const MainDeclarativeNavigationScreen();
             // return FlutterDeepLinkPage();
-            return MaterialApp(
+            return GetMaterialApp(
               localizationsDelegates: const [
                 S.delegate,
                 GlobalMaterialLocalizations.delegate,
@@ -247,7 +249,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const SliverAppbarWithTabBar(),
+        builder: (context, state) => const HomeSliverWithTab(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
