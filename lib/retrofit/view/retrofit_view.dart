@@ -54,7 +54,22 @@ class _RetrofitViewHelperState extends State<_RetrofitViewHelper> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              subtitle: Text(item.body ?? ''),
+              subtitle: Text(
+                item.body ?? '',
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+              trailing: IconButton(
+                onPressed: () async {
+                  context.read<RetrofitPostController>().delete(item);
+                },
+                icon: const Icon(
+                  Icons.delete,
+                ),
+              ),
+              onTap: () {
+                context.read<RetrofitPostController>().post(item);
+              },
             );
           },
         ),

@@ -18,7 +18,18 @@ class RetrofitPostController extends ChangeNotifier {
 
   void refresh() async {
     _retrofitPost.clear();
+    notifyListeners();
     _retrofitPost.addAll(await _retrofitPostApiService.getPosts());
     notifyListeners();
+  }
+
+  void delete(RetrofitPost post) async {
+    await _retrofitPostApiService.delete(post.id);
+    _retrofitPost.removeWhere((element) => element.id == post.id);
+    notifyListeners();
+  }
+
+  void post(RetrofitPost post) async {
+    await _retrofitPostApiService.post(post);
   }
 }
