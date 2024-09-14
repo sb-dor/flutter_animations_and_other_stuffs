@@ -158,7 +158,7 @@ class YandexMapScreen extends StatelessWidget {
             mapObjects: currentState.mapObjects,
             zoomGesturesEnabled: true,
             rotateGesturesEnabled: true,
-            mapMode: MapMode.normal,
+            // mapMode: MapMode.normal,
             mapType: currentState.mapType,
             logoAlignment: const MapAlignment(
                 vertical: VerticalAlignment.top, horizontal: HorizontalAlignment.left),

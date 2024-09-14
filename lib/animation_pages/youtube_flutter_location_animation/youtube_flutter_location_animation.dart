@@ -1,4 +1,4 @@
-import 'package:faker/faker.dart';
+import 'package:faker/faker.dart' as faker;
 import 'package:flutter/material.dart';
 import 'package:flutter_animations_2/animation_pages/youtube_flutter_location_animation/models/yt_fl_loc_model.dart';
 import 'package:flutter_animations_2/functions/randoms.dart';
@@ -14,6 +14,7 @@ class YoutubeFlutterAnimationPage extends StatefulWidget {
 class _YoutubeFlutterAnimationPageState extends State<YoutubeFlutterAnimationPage> {
   late PageController _pageController;
   List<YtFlLocModel> list = [];
+  final fake = faker.Faker();
 
   @override
   void initState() {
@@ -24,8 +25,8 @@ class _YoutubeFlutterAnimationPageState extends State<YoutubeFlutterAnimationPag
     for (int i = 0; i < 10; i++) {
       list.add(YtFlLocModel(
           imageUrl: Randoms.randomPictureUrl(),
-          address: Faker().address.streetName(),
-          location: Faker().address.country()));
+          address: fake.address.streetName(),
+          location: fake.address.country()));
     }
   }
 

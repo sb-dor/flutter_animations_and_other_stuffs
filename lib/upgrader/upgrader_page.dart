@@ -18,10 +18,10 @@ class _UpGraderPageState extends State<UpGraderPage> {
       await Upgrader.clearSavedSettings();
       var upGrader = Upgrader.sharedInstance;
       await upGrader.initialize();
-      String? currentVersion = upGrader.currentInstalledVersion();
-      String? storeVersion = upGrader.currentAppStoreVersion();
-      String? message = upGrader.message();
-      String? appStoreLink = upGrader.currentAppStoreListingURL();
+      String? currentVersion = upGrader.currentInstalledVersion;
+      String? storeVersion = upGrader.currentAppStoreVersion;
+      String? message = upGrader.releaseNotes;
+      String? appStoreLink = upGrader.currentAppStoreListingURL;
       bool isUpdateAvailable = upGrader.isUpdateAvailable();
 
       debugPrint("current version : $currentVersion");
@@ -34,15 +34,15 @@ class _UpGraderPageState extends State<UpGraderPage> {
         showDialog(
           barrierDismissible: false,
           context: context,
-          builder: (context) => WillPopScope(
-            onWillPop: () async => false,
+          builder: (context) => PopScope(
+            canPop: false,
             child: AlertDialog(
               title: const Text("Обновить?"),
-              content: Text(message),
+              content: Text(message ?? ''),
               actions: [
                 TextButton(onPressed: () => Navigator.pop(context), child: const Text("ПОЗЖЕ")),
                 TextButton(
-                    onPressed: () => Upgrader.sharedInstance.onUserUpdated(context, false),
+                    onPressed: () => Upgrader.sharedInstance.sendUserToAppStore(),
                     child: const Text("ОБНОВИТЬ")),
               ],
             ),
@@ -54,9 +54,12 @@ class _UpGraderPageState extends State<UpGraderPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Upgrader Checker")),
-      body: const Center(child: Text("Checking")),
+    return UpgradeAlert(
+      showReleaseNotes: false,
+      child: Scaffold(
+        appBar: AppBar(title: const Text("Upgrader Checker")),
+        body: const Center(child: Text("Checking")),
+      ),
     );
   }
 }

@@ -1,4 +1,4 @@
-import 'package:faker/faker.dart';
+import 'package:faker/faker.dart' as faker;
 import 'package:flutter/material.dart';
 import 'package:flutter_animations_2/animation_pages/youtube_flutter_location_animation/models/yt_fl_loc_model.dart';
 
@@ -12,6 +12,7 @@ class YoutubeCoffeeAppAnimationPage extends StatefulWidget {
 class _YoutubeCoffeeAppAnimationPageState extends State<YoutubeCoffeeAppAnimationPage> {
   late PageController _pageController;
   List<YtFlLocModel> list = [];
+  final fake = faker.Faker();
 
   @override
   void initState() {
@@ -21,8 +22,8 @@ class _YoutubeCoffeeAppAnimationPageState extends State<YoutubeCoffeeAppAnimatio
     for (int i = 1; i <= 12; i++) {
       list.add(YtFlLocModel(
           imageUrl: 'assets/youtube_coffee_anim_pic/$i.png',
-          address: Faker().address.streetName(),
-          location: Faker().address.country()));
+          address: fake.address.streetName(),
+          location: fake.address.country()));
     }
   }
 

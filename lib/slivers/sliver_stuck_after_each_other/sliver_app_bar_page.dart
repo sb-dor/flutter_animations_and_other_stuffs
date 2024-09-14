@@ -1,4 +1,4 @@
-import 'package:faker/faker.dart';
+import 'package:faker/faker.dart' as faker;
 import 'package:flutter/material.dart';
 import 'package:flutter_animations_2/slivers/sliver_persistent_header_delegate/sliver_persistent_header_delegate_widget.dart';
 import 'package:flutter_animations_2/slivers/sliver_stuck_after_each_other/multi_sliver/multi_sliver.dart';
@@ -111,16 +111,17 @@ class SliverAppBarPage extends StatelessWidget {
 }
 
 Widget _buildTile() {
+  final fake = faker.Faker();
   return Row(
     children: [
       Container(
         width: 25,
         height: 25,
-        color: Color(Faker().color.hashCode).withOpacity(1),
+        color: Color(fake.color.random.hashCode),
       ),
       const SizedBox(width: 10),
       Text(
-        Faker().lorem.word(),
+        fake.lorem.word(),
         style: const TextStyle(fontWeight: FontWeight.bold),
       ),
     ],

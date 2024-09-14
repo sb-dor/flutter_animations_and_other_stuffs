@@ -62,7 +62,7 @@ dependencies:
   path_provider: ^2.0.15
   pdf: ^3.8.4
   open_file:
-  pdfx: 2.5.0
+  pdfx: ^2.7.0
   conditional_builder_null_safety: ^0.0.6
   flutter_scan_bluetooth: ^2.1.4
   # The following adds the Cupertino Icons font to your application.
@@ -110,7 +110,7 @@ dependencies:
 
   floor: ^1.4.2
 
-  device_info_plus: ^9.1.2
+  device_info_plus: ^10.1.2
   network_info_plus: ^4.1.0+1
   network_discovery: ^1.0.0
   mime: ^1.0.5
@@ -130,13 +130,16 @@ dependencies:
   riverpod_annotation: ^2.3.5
   uuid: ^4.4.2
   scrollable_positioned_list: ^0.3.8
+  retrofit: ^4.4.1
+  json_annotation: ^4.9.0
+
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   floor_generator: ^1.4.2
-  build_runner: ^2.4.11
+  build_runner: ^2.4.12
   auto_route_generator: 8.0.0
 
 
@@ -150,6 +153,8 @@ dev_dependencies:
   riverpod_generator: ^2.4.0
   custom_lint: ^0.6.4
   riverpod_lint: ^2.3.10
+  json_serializable: ^6.8.0
+  retrofit_generator: ^9.1.2
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

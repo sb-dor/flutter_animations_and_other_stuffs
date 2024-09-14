@@ -397,8 +397,11 @@ class MainMapCubit extends Cubit<MainMapStates> {
     // debugPrint("object geometry[1]: ${geoObject.geometry[1]}");
 
     if (geoObject.selectionMetadata != null) {
-      currentState.controller
-          .selectGeoObject(geoObject.selectionMetadata!.id, geoObject.selectionMetadata!.layerId);
+      currentState.controller.selectGeoObject(
+        objectId: geoObject.selectionMetadata!.objectId,
+        layerId: geoObject.selectionMetadata!.layerId,
+        dataSourceName: geoObject.selectionMetadata!.dataSourceName,
+      );
 
       // for deselecting object on map
       // currentState.controller.deselectGeoObject();

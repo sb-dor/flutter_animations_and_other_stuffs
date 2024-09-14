@@ -72,6 +72,9 @@ class _$UsingFreezedEventsCopyWithImpl<$Res, $Val extends UsingFreezedEvents>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of UsingFreezedEvents
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -88,6 +91,9 @@ class __$$DecrementEventImplCopyWithImpl<$Res>
   __$$DecrementEventImplCopyWithImpl(
       _$DecrementEventImpl _value, $Res Function(_$DecrementEventImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of UsingFreezedEvents
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -190,6 +196,9 @@ class __$$IncrementEventImplCopyWithImpl<$Res>
   __$$IncrementEventImplCopyWithImpl(
       _$IncrementEventImpl _value, $Res Function(_$IncrementEventImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of UsingFreezedEvents
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -282,7 +291,9 @@ abstract class IncrementEvent implements UsingFreezedEvents {
 mixin _$UsingFreezedState {
   UsingFreezedStateModel get stateModel => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UsingFreezedState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $UsingFreezedStateCopyWith<UsingFreezedState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -306,6 +317,8 @@ class _$UsingFreezedStateCopyWithImpl<$Res, $Val extends UsingFreezedState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of UsingFreezedState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -339,6 +352,8 @@ class __$$UsingFreezedStateImplCopyWithImpl<$Res>
       $Res Function(_$UsingFreezedStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of UsingFreezedState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -378,7 +393,9 @@ class _$UsingFreezedStateImpl implements _UsingFreezedState {
   @override
   int get hashCode => Object.hash(runtimeType, stateModel);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UsingFreezedState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UsingFreezedStateImplCopyWith<_$UsingFreezedStateImpl> get copyWith =>
@@ -392,8 +409,11 @@ abstract class _UsingFreezedState implements UsingFreezedState {
 
   @override
   UsingFreezedStateModel get stateModel;
+
+  /// Create a copy of UsingFreezedState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UsingFreezedStateImplCopyWith<_$UsingFreezedStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

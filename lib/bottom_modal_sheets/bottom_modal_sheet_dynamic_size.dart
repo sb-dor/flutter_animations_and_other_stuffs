@@ -1,4 +1,4 @@
-import 'package:faker/faker.dart';
+import 'package:faker/faker.dart' as faker;
 import 'package:flutter/material.dart';
 import 'package:flutter_animations_2/animations/blur_container.dart';
 import 'package:flutter_animations_2/bottom_modal_sheets/bottom_modal_sheets_cubit/bottom_modal_sheet_cubit.dart';
@@ -6,6 +6,7 @@ import 'package:flutter_animations_2/bottom_modal_sheets/bottom_modal_sheets_cub
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BottomModalSheetDynamicSize {
+  static final fake = faker.Faker();
   //
   static bottomSheetWithSizeOfContent({required BuildContext context}) {
     showModalBottomSheet(
@@ -39,7 +40,7 @@ class BottomModalSheetDynamicSize {
                                           color: Theme.of(context).textTheme.displayLarge?.color,
                                           fontWeight: FontWeight.bold)),
                                   TextSpan(
-                                      text: " ${Faker().lorem.sentence()} ",
+                                      text: " ${fake.lorem.sentence()} ",
                                       style: TextStyle(
                                           fontSize: 20,
                                           color: Theme.of(context).textTheme.displayLarge?.color,
@@ -52,7 +53,7 @@ class BottomModalSheetDynamicSize {
                                           fontWeight: FontWeight.bold))
                                 ])),
                                 const SizedBox(height: 10),
-                                Text(Faker().lorem.sentence(),
+                                Text(fake.lorem.sentence(),
                                     style: const TextStyle(fontSize: 16), maxLines: 11),
                                 const SizedBox(height: 15)
                               ]))))
