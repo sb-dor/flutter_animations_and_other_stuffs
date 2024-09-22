@@ -135,6 +135,14 @@ dependencies:
   pretty_dio_logger: ^1.4.0
 
 
+  geolocator: ^13.0.1 # for android 10 permission for bluetooth feature
+  flutter_blue_plus: ^1.32.12
+  flutter_reactive_ble: ^5.3.1
+  flutter_pos_printer_platform_image_3: ^1.2.0
+  flutter_esc_pos_utils: ^1.0.1
+  printing: ^5.13.2
+
+
 
 dev_dependencies:
   flutter_test:
@@ -155,7 +163,7 @@ dev_dependencies:
   custom_lint: ^0.6.4
   riverpod_lint: ^2.3.10
   json_serializable: ^6.8.0
-  retrofit_generator: ^9.1.2
+  retrofit_generator: ^7.0.2
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

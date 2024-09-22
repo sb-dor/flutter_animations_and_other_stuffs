@@ -45,6 +45,8 @@ import 'package:provider/provider.dart' as provider;
 import 'package:url_strategy/url_strategy.dart';
 
 import 'drag_and_drop_animation/animated_drag_drop_app.dart';
+import 'flutter_bluetooth_thermal_printer/view/bloc/flutter_bluetooth_thermal_printer_bloc.dart';
+import 'flutter_bluetooth_thermal_printer/view/page/flutter_bluetooth_thermal_printer_page.dart';
 import 'generated/l10n.dart';
 import 'getit/locator.dart';
 import 'google_map/cubit/main_google_map_cubit.dart';
@@ -163,6 +165,8 @@ void main() async {
 
         //
         BlocProvider(create: (_) => UsingFreezedBloc()),
+
+        BlocProvider(create: (_) => FlutterBluetoothThermalPrinterBloc()),
       ],
       child: provider.MultiProvider(
         providers: [
@@ -251,7 +255,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const FlutterShortcuts(),
+        builder: (context, state) => const EscPosPrinterBluetoothPage(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
