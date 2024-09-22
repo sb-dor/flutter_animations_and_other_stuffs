@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -6,8 +7,8 @@ import 'package:flutter/services.dart';
 
 // name whatever you want
 @immutable
-class ShortCutHelper extends Intent {
-  const ShortCutHelper();
+class LeftShiftAndKeyS extends Intent {
+  const LeftShiftAndKeyS();
 }
 
 @immutable
@@ -25,6 +26,16 @@ class FlutterShortcuts extends StatefulWidget {
 class _FlutterShortcutsState extends State<FlutterShortcuts> {
   String shortcut = '';
 
+  // for test
+  void focusNode() async {
+    // 1. Don't allocate a new FocusNode for each build. This can cause memory leaks, and
+    // occasionally causes a loss of focus when the widget rebuilds while the node has focus
+
+    // 2. Don't use the same FocusNode for multiple widgets. If you do, the widgets will fight over
+    // managing the attributes of the node, and you probably won't get what you expect.
+    FocusNode focusNode = FocusNode();
+    focusNode.dispose();
+  }
 
   // you can add listener for shortcut in a top widget of widget tree
   // it will as a global listener until the dispose function works
@@ -55,7 +66,7 @@ class _FlutterShortcutsState extends State<FlutterShortcuts> {
           LogicalKeySet(
             LogicalKeyboardKey.shiftLeft,
             LogicalKeyboardKey.keyS,
-          ): const ShortCutHelper(),
+          ): const LeftShiftAndKeyS(),
 
           // single key activator
           const SingleActivator(LogicalKeyboardKey.arrowUp): const ArrowUpButton(),
@@ -64,8 +75,8 @@ class _FlutterShortcutsState extends State<FlutterShortcuts> {
           // this actions parameter will handle the shortcuts
           actions: <Type, Action<Intent>>{
             // there can be a lot of shortcuts actions
-            ShortCutHelper: CallbackAction<ShortCutHelper>(
-              onInvoke: (ShortCutHelper intent) {
+            LeftShiftAndKeyS: CallbackAction<LeftShiftAndKeyS>(
+              onInvoke: (LeftShiftAndKeyS intent) {
                 setState(() {
                   shortcut = "Left shift + button S";
                 });
@@ -99,6 +110,15 @@ class _FlutterShortcutsState extends State<FlutterShortcuts> {
                   ),
                   const SizedBox(height: 100),
                   TextButton(
+                    onPressed: () => Actions.of(context).invokeAction(
+                      Actions.find<LeftShiftAndKeyS>(context),
+                      const LeftShiftAndKeyS(),
+                    ),
+                    child: const Text(
+                      "Set shortcut with the button",
+                    ),
+                  ),
+                  TextButton(
                     onPressed: () => Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -118,7 +138,6 @@ class _FlutterShortcutsState extends State<FlutterShortcuts> {
     );
   }
 }
-
 
 // all shortcut will work in there specific widget
 // it's awesome
@@ -146,7 +165,7 @@ class _SameShortcutsWidgetState extends State<_SameShortcutsWidget> {
           LogicalKeySet(
             LogicalKeyboardKey.shiftLeft,
             LogicalKeyboardKey.keyS,
-          ): const ShortCutHelper(),
+          ): const LeftShiftAndKeyS(),
 
           // single key activator
           const SingleActivator(LogicalKeyboardKey.arrowUp): const ArrowUpButton(),
@@ -155,8 +174,8 @@ class _SameShortcutsWidgetState extends State<_SameShortcutsWidget> {
           // this actions parameter will handle the shortcuts
           actions: <Type, Action<Intent>>{
             // there can be a lot of shortcuts actions
-            ShortCutHelper: CallbackAction<ShortCutHelper>(
-              onInvoke: (ShortCutHelper intent) {
+            LeftShiftAndKeyS: CallbackAction<LeftShiftAndKeyS>(
+              onInvoke: (LeftShiftAndKeyS intent) {
                 setState(() {
                   shortcut = "Left shift + button S";
                 });
