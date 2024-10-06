@@ -1,6 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animations_2/platform_widgets/platform_bottom_navbar.dart';
 import 'package:flutter_animations_2/platform_widgets/platform_radio.dart';
 
 import 'cupertino_context_menu.dart';
@@ -49,7 +50,7 @@ class _CupertinoApp extends StatelessWidget {
       ),
       child: const Center(
         child: SizedBox.expand(
-          child: CupertinoTextFields(),
+          child: PlatformBottomNavbar(),
         ),
       ),
     );
@@ -84,7 +85,7 @@ class _MaterialApp extends StatelessWidget {
       ),
       body: const SizedBox.expand(
         child: Center(
-          child: CupertinoTextFields(),
+          child: PlatformBottomNavbar(),
         ),
       ),
     );
