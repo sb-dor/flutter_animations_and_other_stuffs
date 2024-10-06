@@ -28,9 +28,11 @@ class _CupertinoTextFieldsState extends State<CupertinoTextFields> {
             prefix: Text("Any other data"),
             child: Text("Any text"),
           ),
+          const SizedBox(height: 10),
           CupertinoSearchTextField(
             controller: _textEditingController,
           ),
+          const SizedBox(height: 10),
           Container(
             decoration: BoxDecoration(
               border: Border.all(color: CupertinoColors.inactiveGray),
@@ -39,9 +41,13 @@ class _CupertinoTextFieldsState extends State<CupertinoTextFields> {
               prefix: const Text("Any text"),
               controller: _textEditingController,
               placeholder: "Enter text",
-              decoration: BoxDecoration(
-              ),
+              decoration: const BoxDecoration(),
             ),
+          ),
+          const SizedBox(height: 10),
+          CupertinoTextField(
+            controller: _textEditingController,
+            placeholder: "Enter text",
           )
         ],
       ),

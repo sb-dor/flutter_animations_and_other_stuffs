@@ -50,7 +50,7 @@ class _CupertinoApp extends StatelessWidget {
       ),
       child: const Center(
         child: SizedBox.expand(
-          child: PlatformBottomNavbar(),
+          child: CupertinoTextFields(),
         ),
       ),
     );
@@ -85,7 +85,7 @@ class _MaterialApp extends StatelessWidget {
       ),
       body: const SizedBox.expand(
         child: Center(
-          child: PlatformBottomNavbar(),
+          child: CupertinoTextFields(),
         ),
       ),
     );
