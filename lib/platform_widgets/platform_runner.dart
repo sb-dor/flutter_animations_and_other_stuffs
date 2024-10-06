@@ -1,6 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animations_2/platform_widgets/platform_radio.dart';
 
 import 'cupertino_context_menu.dart';
 import 'cupertino_picker_widget.dart';
@@ -47,7 +48,7 @@ class _CupertinoApp extends StatelessWidget {
       ),
       child: const Center(
         child: SizedBox.expand(
-          child: CupertinoPickerWidget(),
+          child: PlatformRadio(),
         ),
       ),
     );
@@ -82,7 +83,7 @@ class _MaterialApp extends StatelessWidget {
       ),
       body: const SizedBox.expand(
         child: Center(
-          child: CupertinoPickerWidget(),
+          child: PlatformRadio(),
         ),
       ),
     );
