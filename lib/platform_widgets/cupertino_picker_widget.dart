@@ -21,59 +21,54 @@ class _CupertinoPickerWidgetState extends State<CupertinoPickerWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-      navigationBar: const CupertinoNavigationBar(
-        middle: Text('CupertinoPicker Sample'),
+    return DefaultTextStyle(
+      style: TextStyle(
+        color: CupertinoColors.label.resolveFrom(context),
+        fontSize: 22.0,
       ),
-      child: DefaultTextStyle(
-        style: TextStyle(
-          color: CupertinoColors.label.resolveFrom(context),
-          fontSize: 22.0,
-        ),
-        child: Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const Text('Selected fruit: '),
-              CupertinoButton(
-                padding: EdgeInsets.zero,
-                // Display a CupertinoPicker with list of fruits.
-                onPressed: () => showCupertinoModalPopup(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return _CupertinoPickerPopupHelper(
-                      child: CupertinoPicker(
-                        magnification: 1.22,
-                        squeeze: 1.2,
-                        useMagnifier: true,
-                        itemExtent: _kItemExtent,
-                        // This sets the initial item.
-                        scrollController: FixedExtentScrollController(
-                          initialItem: _selectedFruit,
-                        ),
-                        // This is called when selected item is changed.
-                        onSelectedItemChanged: (int selectedItem) {
-                          setState(() {
-                            _selectedFruit = selectedItem;
-                          });
-                        },
-                        children: List<Widget>.generate(_fruitNames.length, (int index) {
-                          return Center(child: Text(_fruitNames[index]));
-                        }),
+      child: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const Text('Selected fruit: '),
+            CupertinoButton(
+              padding: EdgeInsets.zero,
+              // Display a CupertinoPicker with list of fruits.
+              onPressed: () => showCupertinoModalPopup(
+                context: context,
+                builder: (BuildContext context) {
+                  return _CupertinoPickerPopupHelper(
+                    child: CupertinoPicker(
+                      magnification: 1.22,
+                      squeeze: 1.2,
+                      useMagnifier: true,
+                      itemExtent: _kItemExtent,
+                      // This sets the initial item.
+                      scrollController: FixedExtentScrollController(
+                        initialItem: _selectedFruit,
                       ),
-                    );
-                  },
-                ),
-                // This displays the selected fruit name.
-                child: Text(
-                  _fruitNames[_selectedFruit],
-                  style: const TextStyle(
-                    fontSize: 22.0,
-                  ),
+                      // This is called when selected item is changed.
+                      onSelectedItemChanged: (int selectedItem) {
+                        setState(() {
+                          _selectedFruit = selectedItem;
+                        });
+                      },
+                      children: List<Widget>.generate(_fruitNames.length, (int index) {
+                        return Center(child: Text(_fruitNames[index]));
+                      }),
+                    ),
+                  );
+                },
+              ),
+              // This displays the selected fruit name.
+              child: Text(
+                _fruitNames[_selectedFruit],
+                style: const TextStyle(
+                  fontSize: 22.0,
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

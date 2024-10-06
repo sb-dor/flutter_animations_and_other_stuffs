@@ -34,11 +34,18 @@
     <!--uncomment post notification permission if you want take permission of user in running of the app    -->
     <!--<uses-permission android:name="android.permission.POST_NOTIFICATIONS" />-->
 
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_REMOTE_MESSAGING" />
+
+
     <application
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:label="flutter_animations_2"
         android:requestLegacyExternalStorage="true">
+
+        <service
+            android:name="id.flutter.flutter_background_service.BackgroundService"
+            android:foregroundServiceType="remoteMessaging" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
