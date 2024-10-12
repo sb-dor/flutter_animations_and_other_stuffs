@@ -34,12 +34,12 @@ class _TodoMvvmViewHelperState extends State<_TodoMvvmViewHelper> {
   @override
   void initState() {
     super.initState();
-    Provider.of<TodoMvvmViewModel>(context, listen: false).initTodos();
+    context.read<TodoMvvmViewModel>().initTodos();
   }
 
   @override
   Widget build(BuildContext context) {
-    final todoMVVMViewModel = Provider.of<TodoMvvmViewModel>(context);
+    final todoMVVMViewModel = context.watch<TodoMvvmViewModel>();
     return Scaffold(
       body: CustomScrollView(
         slivers: [

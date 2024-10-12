@@ -1,17 +1,13 @@
-import 'dart:collection';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter_animations_2/design_templates/todo_mvvm/models/todo_mvvm.dart';
-import 'package:flutter_animations_2/design_templates/todo_mvvm/repository/todo_mvvm_service.dart';
-import 'package:flutter_animations_2/design_templates/todo_mvvm/view_model/state_services/todo_list_mvvm_state_service.dart';
+
+import 'state_models/todo_list_mvvm_state_model.dart';
 
 class TodoMvvmViewModel extends ChangeNotifier {
-  final TodoListMVVMStateService todoListMVVMStateService = TodoListMVVMStateService();
-  final TodoMVVMService _todoMVVMService = TodoMVVMService();
+  final TodoListMVVMStateModel todoListMVVMStateService = TodoListMVVMStateModel();
 
   Future<void> initTodos() async {
-    todoListMVVMStateService.clearAllTodos();
-    todoListMVVMStateService.addTodos(await _todoMVVMService.getTodos());
+    await todoListMVVMStateService.initTodos();
     notifyListeners();
   }
 
