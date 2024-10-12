@@ -1,8 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_animations_2/design_templates/clean_architecture/data/models/day_model.dart';
 
-import '../models/api_day.dart';
-
 class SunriseService {
   static const String _baseUrl = "https://api.sunrise-sunset.org";
 
