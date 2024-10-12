@@ -1,14 +1,9 @@
 import 'package:faker/faker.dart';
 import 'package:flutter_animations_2/design_templates/todo_mvvm/models/todo_mvvm.dart';
+import 'package:flutter_animations_2/design_templates/todo_mvvm/repository/todo_mvvm_service.dart';
 
 class TodoMVVMRepository {
-  Future<List<TodoMVVM>> getTodos() async {
-    final faker = Faker();
-    return List.generate(
-      30,
-      (index) => TodoMVVM(
-        todo: faker.lorem.sentence(),
-      ),
-    );
-  }
+  final TodoMVVMService _todoMVVMService = TodoMVVMService();
+
+  Future<List<TodoMVVM>> getTodos() => _todoMVVMService.getTodos();
 }
