@@ -7,6 +7,10 @@ class TodoListMVVMStateService {
 
   UnmodifiableListView<TodoMVVM> get todoMVVM => UnmodifiableListView(_todoMVVM);
 
+  void clearAllTodos() => _todoMVVM.clear();
+
+  void addTodos(List<TodoMVVM> todos) => _todoMVVM.addAll(todos);
+
   void addTodo(String todo) {
     _todoMVVM.add(
       TodoMVVM(todo: todo),

@@ -32,6 +32,12 @@ class _TodoMvvmViewHelperState extends State<_TodoMvvmViewHelper> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    Provider.of<TodoMvvmViewModel>(context, listen: false).initTodos();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final todoMVVMViewModel = Provider.of<TodoMvvmViewModel>(context);
     return Scaffold(
