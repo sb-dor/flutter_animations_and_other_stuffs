@@ -46,6 +46,28 @@ class _TodoMvvmViewHelperState extends State<_TodoMvvmViewHelper> {
           const CupertinoSliverNavigationBar(
             largeTitle: Text("Todo with MVVM"),
           ),
+
+          // for test one
+          SliverToBoxAdapter(
+            child: ChangeNotifierProvider<TodoMvvmViewModel>(
+              create: (context) => TodoMvvmViewModel(),
+              builder: (context, child) {
+                return child!;
+              },
+              child: Builder(
+                builder: (context) {
+                  final intValue = context.watch<TodoMvvmViewModel>();
+                  return TextButton(
+                    onPressed: () {
+                      if (_todoTextController.text.trim().isEmpty) return;
+                      context.read<TodoMvvmViewModel>().addTodo(_todoTextController.text.trim());
+                    },
+                    child: Text("${intValue.todoListMVVMStateService.todoMVVM.length}"),
+                  );
+                },
+              ),
+            ),
+          ),
           SliverToBoxAdapter(
             child: Row(
               children: [
