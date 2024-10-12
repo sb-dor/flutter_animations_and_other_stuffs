@@ -1,6 +1,7 @@
-import 'package:flutter_animations_2/clean_architecture/cubit/day_states.dart';
-import 'package:flutter_animations_2/clean_architecture/domain/repository/day_repository.dart';
+import 'package:flutter_animations_2/design_templates/clean_architecture/domain/repository/day_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'day_states.dart';
 
 class DayCubit extends Cubit<DayStates> {
   DayCubit() : super(LoadingDayState(null));

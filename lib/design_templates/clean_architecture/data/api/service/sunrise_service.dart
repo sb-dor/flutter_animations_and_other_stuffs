@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_animations_2/clean_architecture/data/api/models/api_day.dart';
+import 'package:flutter_animations_2/design_templates/clean_architecture/data/models/day_model.dart';
+
+import '../models/api_day.dart';
 
 class SunriseService {
   static const String _baseUrl = "https://api.sunrise-sunset.org";
@@ -8,7 +10,7 @@ class SunriseService {
     BaseOptions(baseUrl: _baseUrl),
   );
 
-  Future<ApiDay> getDay({required double lat, required double lng}) async {
+  Future<DayModel> getDay({required double lat, required double lng}) async {
     final query = {
       "lat": lat,
       "lng": lng,
@@ -19,6 +21,6 @@ class SunriseService {
       '/json',
       queryParameters: query,
     );
-    return ApiDay.fromJson(response.data);
+    return DayModel.fromJson(response.data);
   }
 }

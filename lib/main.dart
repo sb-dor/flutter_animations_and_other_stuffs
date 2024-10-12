@@ -12,8 +12,8 @@ import 'package:flutter_animations_2/bloc_learning/using_freezed/using_freezed_b
 import 'package:flutter_animations_2/bottom_modal_sheets/bottom_modal_sheets_cubit/bottom_modal_sheet_cubit.dart';
 import 'package:flutter_animations_2/bottom_modal_sheets/bottom_sheet_with_slivers/bottom_sheet_with_slivers.dart';
 import 'package:flutter_animations_2/card_animation_from_karteto_app_own_code/own_karteto_app_code_card_animation.dart';
-import 'package:flutter_animations_2/clean_architecture/cubit/day_cubit.dart';
 import 'package:flutter_animations_2/dart_features/dart_enums.dart';
+import 'package:flutter_animations_2/design_templates/clean_architecture/presentation/cubit/day_cubit.dart';
 import 'package:flutter_animations_2/design_templates/mvvm/viewmodel_mvvm.dart';
 import 'package:flutter_animations_2/drag_and_drop_own_animation/drag_and_drop_own_animation.dart';
 import 'package:flutter_animations_2/drag_and_drop_own_animation/provider/drag_and_drop_provider.dart';
@@ -256,7 +256,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const PlatformRunner(),
+        builder: (context, state) => const DragAndDropOwnAnimation(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {

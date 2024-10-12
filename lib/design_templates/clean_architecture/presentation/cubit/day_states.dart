@@ -1,4 +1,4 @@
-import 'package:flutter_animations_2/clean_architecture/domain/models/day.dart';
+import 'package:flutter_animations_2/design_templates/clean_architecture/domain/entities/day.dart';
 
 abstract class DayStates {
   Day? day;
