@@ -14,12 +14,15 @@ class UsersTodoHiveDatabase {
     await Hive.initFlutter();
     Hive.registerAdapter(UsersTestAdapter());
     Hive.registerAdapter(UsersTestTodoAdapter());
+
+    await Hive.openBox<UsersTest>('users_box_test');
+    await Hive.openBox<UsersTestTodo>("users_todo_box_test");
   }
 
   Future<List<UsersTest>> usersList() async {
-    final usersBox = Hive.openBox<UsersTest>('users_box_test');
+    final usersBox = await Hive.openBox<UsersTest>('users_box_test');
 
-    return (await usersBox).values.toList();
+    return usersBox.values.toList();
   }
 
   Future<void> addUser(UsersTest user) async {
@@ -39,6 +42,7 @@ class UsersTodoHiveDatabase {
     );
 
     user.usersTestTodo = hiveList;
+
     await user.save();
   }
 }

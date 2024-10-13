@@ -38,6 +38,12 @@ class _UsersTodoPageTestState extends State<UsersTodoPageTest> {
             todoText: _todoController.text.trim(),
           );
           Navigator.pop(context);
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text("Todo was saved try to refresh screen"),
+              duration: Duration(seconds: 3),
+            ),
+          );
         },
         child: const Icon(Icons.save),
       ),
