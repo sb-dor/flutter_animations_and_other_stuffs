@@ -27,14 +27,14 @@ class _LazyLoadHiveState extends State<LazyLoadHive> {
               child: Text("Do some"),
             ),
           ),
-          // Center(
-          //   child: ElevatedButton(
-          //     onPressed: () {
-          //       _hiveSettings.saveSome();
-          //     },
-          //     child: Text("Save some"),
-          //   ),
-          // ),
+          Center(
+            child: ElevatedButton(
+              onPressed: () {
+                _hiveSettings.saveTodos();
+              },
+              child: Text("Save todos"),
+            ),
+          ),
         ],
       ),
     );
