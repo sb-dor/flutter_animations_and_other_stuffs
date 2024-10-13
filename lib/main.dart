@@ -54,6 +54,7 @@ import 'generated/l10n.dart';
 import 'getit/locator.dart';
 import 'google_map/cubit/main_google_map_cubit.dart';
 import 'hive/lazy_load/pages/lazy_load_hive.dart';
+import 'hive/users_todo_test/pages/users_page_test.dart';
 import 'platform_widgets/platform_runner.dart';
 import 'retrofit/view/retrofit_view.dart';
 import 'slivers/nested_scroll_view_page.dart';
@@ -261,7 +262,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const LazyLoadHive(),
+        builder: (context, state) => const UsersPageTest(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
