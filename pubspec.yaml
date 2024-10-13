@@ -97,6 +97,7 @@ dependencies:
   shimmer: ^3.0.0
   hive: ^2.2.3
   hive_flutter: ^1.1.0
+  hive_generator: ^2.0.1
   camera: ^0.10.5+5
   gal: ^2.1.3
   youtube_explode_dart: ^2.0.2
@@ -149,7 +150,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   floor_generator: ^1.4.2
-  build_runner: ^2.4.12
+  build_runner: ^2.4.13
   auto_route_generator: 8.0.0
 
 

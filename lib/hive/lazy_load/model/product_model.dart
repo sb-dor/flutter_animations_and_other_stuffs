@@ -3,8 +3,12 @@ import 'package:uuid/uuid.dart';
 
 // about adapters:
 // https://youtu.be/2caSU_2kGc4?list=PLrnbjo4fMQwYxZMrbyweTFaOTmMbZEx1z&t=1702
+// https://youtu.be/2caSU_2kGc4?list=PLrnbjo4fMQwYxZMrbyweTFaOTmMbZEx1z&t=4210
 
-class TodoHive {
+// HiveObject will provide methods like:
+// save(), delete(),
+
+class TodoHive extends HiveObject {
   final String? id;
   final String? todo;
 

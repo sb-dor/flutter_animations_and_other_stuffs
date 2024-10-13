@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:flutter_animations_2/hive/lazy_load/generated_model/generated_hive_model.dart';
 import 'package:flutter_animations_2/hive/lazy_load/model/product_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:http/http.dart';
@@ -14,6 +17,7 @@ class HiveSettings {
     await Hive.initFlutter();
     // register adapters
     Hive.registerAdapter(TodoHiveAdapter());
+    Hive.registerAdapter(GeneratedHiveModelAdapter());
   }
 
   void doSome() async {
@@ -86,6 +90,26 @@ class HiveSettings {
 
     final todoHive = box.getAt(index);
 
+
     print("${box.values.length} | ${box.values}");
+  }
+
+  void saveGeneratedModel() async {
+    // in order to put object of your own class you have to
+    // register them as adapter
+
+    final box = await Hive.openBox<GeneratedHiveModel>('generated_hive_model_box');
+
+    final generatedModel = GeneratedHiveModel(id: const Uuid().v4(), age: 20, changeName: 'Avaz');
+
+    final index = await box.add(generatedModel);
+
+    box.toMap().entries.map((element) {
+      print("key is: ${element.key} | value: ${element.value}");
+    });
+
+    final generated = box.getAt(index);
+
+    log("${box.values.length} | ${box.values}");
   }
 }

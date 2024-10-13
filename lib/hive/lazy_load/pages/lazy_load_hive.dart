@@ -24,7 +24,7 @@ class _LazyLoadHiveState extends State<LazyLoadHive> {
               onPressed: () {
                 _hiveSettings.doSome();
               },
-              child: Text("Do some"),
+              child: const Text("Do some"),
             ),
           ),
           Center(
@@ -32,7 +32,15 @@ class _LazyLoadHiveState extends State<LazyLoadHive> {
               onPressed: () {
                 _hiveSettings.saveTodos();
               },
-              child: Text("Save todos"),
+              child: const Text("Save todos"),
+            ),
+          ),
+          Center(
+            child: ElevatedButton(
+              onPressed: () {
+                _hiveSettings.saveGeneratedModel();
+              },
+              child: const Text("Save generated model"),
             ),
           ),
         ],
