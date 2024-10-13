@@ -59,7 +59,7 @@ dependencies:
   firebase_crashlytics: ^3.3.3
 
   # for pos printer:
-  path_provider: ^2.0.15
+  path_provider: ^2.1.4
   pdf: ^3.8.4
   open_file:
   pdfx: ^2.7.0

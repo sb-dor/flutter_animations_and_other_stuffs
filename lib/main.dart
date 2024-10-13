@@ -46,6 +46,7 @@ import 'package:url_strategy/url_strategy.dart';
 
 import 'design_templates/todo_mvvm/view/todo_mvvm_view.dart';
 import 'drag_and_drop_animation/animated_drag_drop_app.dart';
+import 'files/files_page.dart';
 import 'flutter_bluetooth_thermal_printer/view/bloc/flutter_bluetooth_thermal_printer_bloc.dart';
 import 'flutter_bluetooth_thermal_printer/view/page/flutter_bluetooth_thermal_printer_page.dart';
 import 'generated/l10n.dart';
@@ -257,7 +258,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const TodoMvvmView(),
+        builder: (context, state) => const FilesPage(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
