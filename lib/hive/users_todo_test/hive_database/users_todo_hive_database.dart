@@ -19,20 +19,34 @@ class UsersTodoHiveDatabase {
     await Hive.openBox<UsersTestTodo>("users_todo_box_test");
   }
 
-  Future<List<UsersTest>> usersList() async {
-    final usersBox = await Hive.openBox<UsersTest>('users_box_test');
+  List<UsersTest> usersList() {
+    // openBox - does exactly same thing but first sees if box prev was opened it will return
+    // instance of that box
+    //
+    // box return a previously opened box
+    // that is why you have to open box before calling just .box()
+    final usersBox = Hive.box<UsersTest>('users_box_test');
 
     return usersBox.values.toList();
   }
 
   Future<void> addUser(UsersTest user) async {
+    // openBox - does exactly same thing but first sees if box prev was opened it will return
+    // instance of that box
+    //
+    // box return a previously opened box
+    // that is why you have to open box before calling just .box()
     final usersBox = await Hive.openBox<UsersTest>('users_box_test');
 
     usersBox.add(user);
   }
 
   Future<void> putTodoIntoUsers(UsersTest user, UsersTestTodo todo) async {
-    // final usersBox = await Hive.openBox<UsersTest>('users_box_test');
+    // openBox - does exactly same thing but first sees if box prev was opened it will return
+    // instance of that box
+    //
+    // box return a previously opened box
+    // that is why you have to open box before calling just .box()
     final todoBox = await Hive.openBox<UsersTestTodo>("users_todo_box_test");
 
     todoBox.add(todo);

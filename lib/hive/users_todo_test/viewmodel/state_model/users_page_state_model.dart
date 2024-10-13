@@ -12,7 +12,7 @@ class UsersPageStateModel {
 
   void addAll(List<UsersTest> list) => usersTest.addAll(usersTest);
 
-  Future<void> init() async => usersTest.addAll(await _usersTodoHiveDatabase.usersList());
+  Future<void> init() async => usersTest.addAll(_usersTodoHiveDatabase.usersList());
 
   Future<void> addUser({required String name, required int age}) async {
     final user = UsersTest(
