@@ -32,13 +32,38 @@ class _FilesPageHelper extends StatefulWidget {
 class _FilesPageHelperState extends State<_FilesPageHelper> {
   @override
   Widget build(BuildContext context) {
+    final changeNot = ChangeNotProvider.watch<FilePageProvider>(context);
     return Scaffold(
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            ChangeNotProvider.read<FilePageProvider>(context)?.readFile();
-          },
-          child: const Text("Прочитать файл"),
+      body: SizedBox.expand(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                ChangeNotProvider.read<FilePageProvider>(context)?.readFile();
+              },
+              child: const Text("Read file"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                ChangeNotProvider.read<FilePageProvider>(context)?.downloadImageIntoDownloads();
+              },
+              child: const Text("Download файл"),
+            ),
+            Expanded(
+              child: RefreshIndicator(
+                onRefresh: () async =>
+                    ChangeNotProvider.read<FilePageProvider>(context)?.getFiles(),
+                child: ListView.builder(
+                  itemCount: changeNot!.files.length,
+                  itemBuilder: (context, index) {
+                    return Image.file(changeNot.files[index]);
+                  },
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
