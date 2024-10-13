@@ -28,6 +28,7 @@ import 'package:flutter_animations_2/flutter_riverpod/riverpod_generated_code/ri
 import 'package:flutter_animations_2/flutter_shortcuts/flutter_shortcuts.dart';
 import 'package:flutter_animations_2/global_context/global_context.helper.dart';
 import 'package:flutter_animations_2/hive/hive_database_helper.dart';
+import 'package:flutter_animations_2/hive/lazy_load/hive_settings.dart';
 import 'package:flutter_animations_2/internet_controller/cubit/internet_conn_checker_cubit.dart';
 import 'package:flutter_animations_2/local_notification/awesome_notification_helper.dart';
 import 'package:flutter_animations_2/local_notification/local_notification.dart';
@@ -52,6 +53,7 @@ import 'flutter_bluetooth_thermal_printer/view/page/flutter_bluetooth_thermal_pr
 import 'generated/l10n.dart';
 import 'getit/locator.dart';
 import 'google_map/cubit/main_google_map_cubit.dart';
+import 'hive/lazy_load/pages/lazy_load_hive.dart';
 import 'platform_widgets/platform_runner.dart';
 import 'retrofit/view/retrofit_view.dart';
 import 'slivers/nested_scroll_view_page.dart';
@@ -82,6 +84,7 @@ void main() async {
       await PdfGenerator.init();
       await HiveDatabaseHelper.instance.initHive();
       await FlutterCameraHelper.instance.initCameras();
+      await HiveSettings.internal.initHive();
 
       FlutterError.onError = (errorDetails) {
         FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
@@ -258,7 +261,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const FilesPage(),
+        builder: (context, state) => const LazyLoadHive(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
