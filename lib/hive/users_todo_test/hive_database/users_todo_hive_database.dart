@@ -27,4 +27,18 @@ class UsersTodoHiveDatabase {
 
     usersBox.add(user);
   }
+
+  Future<void> putTodoIntoUsers(UsersTest user, UsersTestTodo todo) async {
+    // final usersBox = await Hive.openBox<UsersTest>('users_box_test');
+    final todoBox = await Hive.openBox<UsersTestTodo>("users_todo_box_test");
+
+    todoBox.add(todo);
+    final hiveList = HiveList<UsersTestTodo>(
+      todoBox,
+      objects: [...user.usersTestTodo?.toList() ?? [], todo],
+    );
+
+    user.usersTestTodo = hiveList;
+    await user.save();
+  }
 }

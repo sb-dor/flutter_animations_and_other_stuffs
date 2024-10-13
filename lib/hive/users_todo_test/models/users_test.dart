@@ -5,7 +5,7 @@ import 'users_todo_test.dart';
 part 'users_test.g.dart';
 
 @HiveType(typeId: 3)
-class UsersTest {
+class UsersTest extends HiveObject {
   @HiveField(0)
   final String? id;
   @HiveField(1)

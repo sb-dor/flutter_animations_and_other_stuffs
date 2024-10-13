@@ -1,5 +1,6 @@
 import 'package:flutter_animations_2/hive/users_todo_test/hive_database/users_todo_hive_database.dart';
 import 'package:flutter_animations_2/hive/users_todo_test/models/users_test.dart';
+import 'package:flutter_animations_2/hive/users_todo_test/models/users_todo_test.dart';
 import 'package:uuid/uuid.dart';
 
 class UsersPageStateModel {
@@ -20,5 +21,16 @@ class UsersPageStateModel {
       age: age,
     );
     await _usersTodoHiveDatabase.addUser(user);
+  }
+
+  Future<void> addTodoToUser({
+    required UsersTest user,
+    required String todoText,
+  }) async {
+    final todo = UsersTestTodo(
+      id: const Uuid().v4(),
+      todo: todoText,
+    );
+    await _usersTodoHiveDatabase.putTodoIntoUsers(user, todo);
   }
 }

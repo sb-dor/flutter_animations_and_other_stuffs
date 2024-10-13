@@ -60,7 +60,9 @@ class _UsersPageTestState extends State<UsersPageTest> {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return const UsersTodoPageTest();
+                      return UsersTodoPageTest(
+                        usersTest: item!,
+                      );
                     },
                   ),
                 );
