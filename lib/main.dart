@@ -29,6 +29,9 @@ import 'package:flutter_animations_2/flutter_shortcuts/flutter_shortcuts.dart';
 import 'package:flutter_animations_2/global_context/global_context.helper.dart';
 import 'package:flutter_animations_2/hive/hive_database_helper.dart';
 import 'package:flutter_animations_2/hive/lazy_load/hive_settings.dart';
+import 'package:flutter_animations_2/hive/users_todo_test/hive_database/users_todo_hive_database.dart';
+import 'package:flutter_animations_2/hive/users_todo_test/user_test_change_notifier_provider.dart';
+import 'package:flutter_animations_2/hive/users_todo_test/viewmodel/users_todo_vm.dart';
 import 'package:flutter_animations_2/internet_controller/cubit/internet_conn_checker_cubit.dart';
 import 'package:flutter_animations_2/local_notification/awesome_notification_helper.dart';
 import 'package:flutter_animations_2/local_notification/local_notification.dart';
@@ -85,7 +88,8 @@ void main() async {
       await PdfGenerator.init();
       await HiveDatabaseHelper.instance.initHive();
       await FlutterCameraHelper.instance.initCameras();
-      await HiveSettings.internal.initHive();
+      // await HiveSettings.internal.initHive();
+      await UsersTodoHiveDatabase.internal.initDatabase();
 
       FlutterError.onError = (errorDetails) {
         FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
@@ -190,38 +194,41 @@ void main() async {
             // return MainGoRouterDecNavigation();
             // return const MainDeclarativeNavigationScreen();
             // return FlutterDeepLinkPage();
-            return GetMaterialApp(
-              localizationsDelegates: const [
-                S.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-              // to use only en otherwise app will understand the language by your phone language
-              // - optional remove if you want
-              locale: const Locale("ru"),
-              // supported locales that will be used in app
-              supportedLocales: S.delegate.supportedLocales,
-              // routerConfig: webRouter,
-              scrollBehavior: MyCustomScrollBehavior(),
-              //if you want to use flutter deep linking use package "go_router"
-              //get global context here
-              navigatorKey: GlobalContextHelper.instance.globalNavigatorContext,
+            return UserTestChangeNotifierProvider(
+              provider: UsersTodoVm(),
+              child: GetMaterialApp(
+                localizationsDelegates: const [
+                  S.delegate,
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                ],
+                // to use only en otherwise app will understand the language by your phone language
+                // - optional remove if you want
+                locale: const Locale("ru"),
+                // supported locales that will be used in app
+                supportedLocales: S.delegate.supportedLocales,
+                // routerConfig: webRouter,
+                scrollBehavior: MyCustomScrollBehavior(),
+                //if you want to use flutter deep linking use package "go_router"
+                //get global context here
+                navigatorKey: GlobalContextHelper.instance.globalNavigatorContext,
 
-              theme: FlexThemeData.light(scheme: FlexScheme.green, useMaterial3: materialUiState),
-              darkTheme:
-                  FlexThemeData.dark(scheme: FlexScheme.green, useMaterial3: materialUiState),
-              themeMode: ThemeMode.light,
-              debugShowCheckedModeBanner: false,
-              //for adding named routes use like this
-              //do not forget to write main route in your routes like this:
-              //
-              //->          "/" : (context) => YourHomeWidget()
-              //
-              //and do not forget to remove "home" parameter from MaterialApp widget, otherwise it will not work
-              initialRoute: '/',
-              routes: RoutingWithName.routes(),
-              // initialRoute: "/"
+                theme: FlexThemeData.light(scheme: FlexScheme.green, useMaterial3: materialUiState),
+                darkTheme:
+                    FlexThemeData.dark(scheme: FlexScheme.green, useMaterial3: materialUiState),
+                themeMode: ThemeMode.light,
+                debugShowCheckedModeBanner: false,
+                //for adding named routes use like this
+                //do not forget to write main route in your routes like this:
+                //
+                //->          "/" : (context) => YourHomeWidget()
+                //
+                //and do not forget to remove "home" parameter from MaterialApp widget, otherwise it will not work
+                initialRoute: '/',
+                routes: RoutingWithName.routes(),
+                // initialRoute: "/"
+              ),
             );
           }),
         ),

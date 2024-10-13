@@ -10,6 +10,10 @@ class UsersTodoPageTest extends StatefulWidget {
 class _UsersTodoPageTestState extends State<UsersTodoPageTest> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Users todo"),
+      ),
+    );
   }
 }
