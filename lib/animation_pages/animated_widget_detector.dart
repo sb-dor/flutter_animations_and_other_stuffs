@@ -12,6 +12,15 @@ class AnimatedWidgetDetector extends StatefulWidget {
 class _AnimatedWidgetDetectorState extends State<AnimatedWidgetDetector> {
   late final List<Widget> _widgets;
 
+  List<Widget> get createdWidgets => _widgets;
+
+  int index = 0;
+
+  void increment() {
+    index++;
+    setState(() {});
+  }
+
   @override
   void initState() {
     super.initState();
@@ -60,6 +69,7 @@ class _VisibilityAnimatedWidgetState extends State<_VisibilityAnimatedWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final findAncestor = context.findRootAncestorStateOfType<_AnimatedWidgetDetectorState>();
     return VisibilityDetector(
       key: ValueKey(_widgetId),
       onVisibilityChanged: (visibilityInfo) {
@@ -67,12 +77,47 @@ class _VisibilityAnimatedWidgetState extends State<_VisibilityAnimatedWidget> {
         if (visiblePercentage > 20) {
           debugPrint('Widget ${visibilityInfo.key} is ${visiblePercentage}% visible $_widgetId');
         }
+
+        //// gets first found type of <_AnimatedWidgetDetectorState>
+        final a = context.findAncestorStateOfType<_AnimatedWidgetDetectorState>();
+
+        // from above created widget
+        a?.createdWidgets;
+
+        // gets last found type of <get first type of <_AnimatedWidgetDetectorState>>
+        final b = context.findRootAncestorStateOfType<_AnimatedWidgetDetectorState>();
+
+        // from above createdWidget
+        b?.createdWidgets;
       },
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: 200,
-        color: Colors.red,
+      child: GestureDetector(
+        onTap: () {
+          findAncestor?.increment();
+        },
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          height: 200,
+          color: Colors.red,
+          child: Center(
+            child: Text((findAncestor?.index ?? '').toString()),
+          ),
+        ),
       ),
     );
   }
 }
+//
+// extension on BuildContext {
+//   T? findNumberAncestorStateOfType<T extends State<StatefulWidget>>(int which) {
+//     // assert(_debugCheckStateIsActiveForAncestorLookup());
+//     Element? ancestor;
+//     StatefulElement? statefulAncestor;
+//     while (ancestor != null) {
+//       if (ancestor is StatefulElement && ancestor.state is T) {
+//         statefulAncestor = ancestor;
+//       }
+//       ancestor = ancestor;
+//     }
+//     return statefulAncestor?.state as T?;
+//   }
+// }
