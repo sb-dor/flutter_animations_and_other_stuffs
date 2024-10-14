@@ -135,6 +135,7 @@ dependencies:
   retrofit: ^4.4.1
   json_annotation: ^4.9.0
   pretty_dio_logger: ^1.4.0
+  visibility_detector: ^0.4.0+2
 
 
   geolocator: ^13.0.1 # for android 10 permission for bluetooth feature

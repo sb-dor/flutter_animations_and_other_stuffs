@@ -48,6 +48,7 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart' as provider;
 import 'package:url_strategy/url_strategy.dart';
 
+import 'animation_pages/animated_widget_detector.dart';
 import 'design_templates/todo_mvvm/view/todo_mvvm_view.dart';
 import 'drag_and_drop_animation/animated_drag_drop_app.dart';
 import 'files/files_page.dart';
@@ -269,7 +270,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const UsersPageTest(),
+        builder: (context, state) => const AnimatedWidgetDetector(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
