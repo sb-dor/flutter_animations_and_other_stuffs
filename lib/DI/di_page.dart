@@ -1,43 +1,35 @@
 import 'package:flutter/material.dart';
-
-abstract class ExampleViewModel {
-  void onPressMe1();
-
-  void onPressMe2();
-}
-
-class ExampleCalcModel implements ExampleViewModel {
-  @override
-  void onPressMe1() {
-    print(1 + 3);
-  }
-
-  @override
-  void onPressMe2() {
-    print(4);
-  }
-}
-
-class ExamplePetModel implements ExampleViewModel {
-  @override
-  void onPressMe1() {
-    print("barking");
-  }
-
-  @override
-  void onPressMe2() {
-    print("miyayu miyayu");
-  }
-}
+import 'package:flutter_animations_2/DI/di_container.dart';
+import 'package:flutter_animations_2/DI/example_view_model.dart';
 
 //
+
+class MainDIPage extends StatefulWidget {
+  const MainDIPage({super.key});
+
+  @override
+  State<MainDIPage> createState() => _MainDIPageState();
+}
+
+class _MainDIPageState extends State<MainDIPage> {
+  // DI container
+  // get DI container without passing data through container
+  // you have already set all necessary dependencies in DI container
+  // now you can use that without writing bunch of code
+  final _diContainer = DIContainer();
+
+  @override
+  Widget build(BuildContext context) {
+    return _diContainer.exampleWidget();
+  }
+}
 
 class DiPage extends StatefulWidget {
   final ExampleViewModel model;
 
   const DiPage({
     super.key,
-    required this.model,
+    required this.model, // dependency injection
   });
 
   @override
