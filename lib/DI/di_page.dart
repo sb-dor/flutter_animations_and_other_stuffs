@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animations_2/DI/di_container.dart';
 import 'package:flutter_animations_2/DI/example_view_model.dart';
 
+import 'service_locator.dart';
+
 //
 
 class MainDIPage extends StatefulWidget {
@@ -38,13 +40,25 @@ class DiPage extends StatefulWidget {
 
 class _DiPageState extends State<DiPage> {
   @override
+  void initState() {
+    super.initState();
+    debugPrint("hashcode of dI container: ${ServiceLocator.instance.diContainer.hashCode}");
+    debugPrint("hashcode of dI container: ${ServiceLocator.instance.diContainer.hashCode}");
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("DI Page"),
       ),
       body: Column(
-        children: [],
+        children: [
+          ElevatedButton(onPressed: () {
+
+          }, child: Text("Click")),
+          ElevatedButton(onPressed: () {}, child: Text("Click 2")),
+        ],
       ),
     );
   }

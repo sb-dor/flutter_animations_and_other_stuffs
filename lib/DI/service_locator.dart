@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_animations_2/DI/calc_service.dart';
-import 'package:flutter_animations_2/DI/di_page.dart';
-import 'package:flutter_animations_2/DI/example_view_model.dart';
+import 'package:flutter_animations_2/DI/di_container.dart';
 
 /*
 IoC Инверсия управления. Позволяет изменить направление зависмостей.
@@ -27,8 +24,8 @@ Service locator - это класс которые создает зависмо
  * Позволяет использовать инверсию зависмостей
 */
 
-//
-/* translation:
+/*
+ translation:
 
 // IoC - Inversion of Control. It allows changing the direction of dependencies.
 
@@ -53,14 +50,15 @@ Advantages:
 * Less code
 * Allows for the use of dependency inversion
 
-*/
+ */
 
-// DI container is something that has every necessary dependency in it
-// and you don't have init every of them separately. Just get DIContainer and use it with it's dependencies
-class DIContainer {
-  CalcService calcService() => FirstCalc();
+// every access to ServiceLocator.instance.diContainer will return the same diContainer instance.
+class ServiceLocator {
+  final diContainer = DIContainer();
 
-  ExampleViewModel exampleCalcModel() => ExampleCalcModel(calcService());
+  static ServiceLocator? _instance;
 
-  Widget exampleWidget() => DiPage(model: exampleCalcModel());
+  static ServiceLocator get instance => _instance ??= ServiceLocator._();
+
+  ServiceLocator._();
 }
