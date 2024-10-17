@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animations_2/DI/di_container.dart';
-import 'package:flutter_animations_2/DI/example_view_model.dart';
-
+import 'package:flutter_animations_2/DI/example/example_view_model.dart';
+import 'di_container.dart';
 import 'service_locator.dart';
 
 //

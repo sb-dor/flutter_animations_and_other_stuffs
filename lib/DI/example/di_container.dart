@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animations_2/DI/calc_service.dart';
-import 'package:flutter_animations_2/DI/di_page.dart';
-import 'package:flutter_animations_2/DI/example_view_model.dart';
+import 'package:flutter_animations_2/DI/example/calc_service.dart';
+import 'package:flutter_animations_2/DI/example/example_view_model.dart';
+
+import 'di_page.dart';
 
 /*
 IoC Инверсия управления. Позволяет изменить направление зависмостей.
