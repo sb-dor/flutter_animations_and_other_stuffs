@@ -5,6 +5,7 @@ import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animations_2/DI/example/di_page.dart';
 import 'package:flutter_animations_2/bloc_learning/bloc_concurrency/main_bloc_concurrency.dart';
 import 'package:flutter_animations_2/bloc_learning/bloc_to_bloc_comm/first_bloc/first_bloc.dart';
 import 'package:flutter_animations_2/bloc_learning/bloc_to_bloc_comm/second_bloc/second_bloc.dart';
@@ -48,8 +49,8 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart' as provider;
 import 'package:url_strategy/url_strategy.dart';
 
-import 'DI/di_page.dart';
 import 'animation_pages/animated_widget_detector.dart';
+import 'bloc_learning/bloc_concurrency/main_bloc_concurrency_page.dart';
 import 'design_templates/todo_mvvm/view/todo_mvvm_view.dart';
 import 'drag_and_drop_animation/animated_drag_drop_app.dart';
 import 'files/files_page.dart';
@@ -271,7 +272,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const MainDIPage(),
+        builder: (context, state) => const MaiNBlocConcurrencyPage(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {

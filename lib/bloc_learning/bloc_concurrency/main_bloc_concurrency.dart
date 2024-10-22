@@ -39,28 +39,30 @@ class MainBlocConcurrency extends Bloc<MainConcurrencyEvent, MainConcurrencyStat
 
     /// [ restartable() -> process only the latest event and cancel previous event handlers |  обрабатывает только последнее событие и отменять предыдущие обработчики событий]
 
-    on<CounterIncrement>((event, emit) async {
-      await counterIncrement(emit);
-    }, transformer: restartable());
+    on<CounterIncrement>(counterIncrement, transformer: concurrent());
 
-    on<CounterDecrement>((event, emit) async {
-      await secondEventVoid(emit);
-    }, transformer: droppable());
+    on<CounterDecrement>(secondEventVoid, transformer: droppable());
   }
 
 // also you can create function sending there "emit" and do your work out of bloc
 // and call you functions in "on" events
 // the benefit of this is that you can change your code and do not hot-reload each time when you change your code
-  Future<void> counterIncrement(Emitter<MainConcurrencyState> emit) async {
-    await Future.delayed(const Duration(seconds: 3));
+  Future<void> counterIncrement(
+    CounterIncrement event,
+    Emitter<MainConcurrencyState> emit,
+  ) async {
+    await Future.delayed(const Duration(seconds: 5));
     var currentState = state.coutner;
     currentState++;
     emit(InitialMainConState(counter: currentState));
   }
 
-  Future<void> secondEventVoid(Emitter<MainConcurrencyState> emit) async {
+  Future<void> secondEventVoid(
+    CounterDecrement event,
+    Emitter<MainConcurrencyState> emit,
+  ) async {
+    // await Future.delayed(const Duration(seconds: 5));
     var currentState = state.coutner;
-    if(currentState <= 0) return;
     currentState--;
     emit(InitialMainConState(counter: currentState));
   }
