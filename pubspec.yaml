@@ -145,6 +145,10 @@ dependencies:
   flutter_esc_pos_utils: ^1.0.1
   printing: ^5.13.2
 
+  #
+  flutter_secure_storage: ^9.2.2
+  flutter_secure_storage_platform_interface: ^1.1.2
+
 
 
 dev_dependencies:

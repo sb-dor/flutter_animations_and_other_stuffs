@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:flutter_animations_2/handling_errors/log_model.dart';
 import 'package:flutter_animations_2/hive/lazy_load/generated_model/generated_hive_model.dart';
 import 'package:flutter_animations_2/hive/lazy_load/model/product_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -18,6 +19,7 @@ class HiveSettings {
     // register adapters
     Hive.registerAdapter(TodoHiveAdapter());
     Hive.registerAdapter(GeneratedHiveModelAdapter());
+    Hive.registerAdapter(LogAdapter());
   }
 
   void doSome() async {
@@ -90,7 +92,6 @@ class HiveSettings {
 
     final todoHive = box.getAt(index);
 
-
     print("${box.values.length} | ${box.values}");
   }
 
@@ -111,5 +112,13 @@ class HiveSettings {
     final generated = box.getAt(index);
 
     log("${box.values.length} | ${box.values}");
+  }
+
+  Future<void> saveLogs(List<LogModel> logs) async {
+    final box = await Hive.openBox<LogModel>('logs');
+
+    for (final log in logs) {
+      await box.add(log);
+    }
   }
 }
