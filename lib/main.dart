@@ -59,6 +59,7 @@ import 'flutter_bluetooth_thermal_printer/view/page/flutter_bluetooth_thermal_pr
 import 'generated/l10n.dart';
 import 'getit/locator.dart';
 import 'google_map/cubit/main_google_map_cubit.dart';
+import 'handling_errors/handling_error_page.dart';
 import 'hive/lazy_load/pages/lazy_load_hive.dart';
 import 'hive/users_todo_test/pages/users_page_test.dart';
 import 'platform_widgets/platform_runner.dart';
@@ -89,19 +90,20 @@ void main() async {
       await SqfLiteDatabaseHelper.initSqfLiteDatabase();
       await FlutterBackgroundServiceHelper.initService();
       await PdfGenerator.init();
-      await HiveDatabaseHelper.instance.initHive();
+      // await HiveDatabaseHelper.instance.initHive();
       await FlutterCameraHelper.instance.initCameras();
-      // await HiveSettings.internal.initHive();
-      await UsersTodoHiveDatabase.internal.initDatabase();
+      await HiveSettings.internal.initHive();
+      // await UsersTodoHiveDatabase.internal.initDatabase();
 
-      FlutterError.onError = (errorDetails) {
-        FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
-      };
-      // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
-      PlatformDispatcher.instance.onError = (error, stack) {
-        FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
-        return true;
-      };
+      // ERROR HANDLER
+      // FlutterError.onError = (errorDetails) {
+      //   FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+      // };
+      // // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
+      // PlatformDispatcher.instance.onError = (error, stack) {
+      //   FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+      //   return true;
+      // };
     } catch (_) {}
   }
 
@@ -272,7 +274,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const MaiNBlocConcurrencyPage(),
+        builder: (context, state) => const HandlingErrorPage(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
@@ -281,8 +283,9 @@ class _MainAppState extends State<MainApp> {
             }
           } else {
             Get.rawSnackbar(
-                messageText: const Text("No Internet", style: TextStyle(color: Colors.white)),
-                duration: const Duration(days: 1));
+              messageText: const Text("No Internet", style: TextStyle(color: Colors.white)),
+              duration: const Duration(days: 1),
+            );
           }
         });
   }

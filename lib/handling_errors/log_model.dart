@@ -36,7 +36,7 @@ class LogAdapter extends TypeAdapter<LogModel> {
   }
 
   @override
-  int get typeId => 4;
+  int get typeId => 5;
 
   @override
   void write(BinaryWriter writer, LogModel obj) {

@@ -171,6 +171,8 @@ PODS:
     - Flutter
   - flutter_scan_bluetooth (0.0.1):
     - Flutter
+  - flutter_secure_storage (6.0.0):
+    - Flutter
   - gal (1.0.0):
     - Flutter
     - FlutterMacOS
@@ -318,6 +320,7 @@ DEPENDENCIES:
   - flutter_inappwebview (from `.symlinks/plugins/flutter_inappwebview/ios`)
   - flutter_pos_printer_platform_image_3 (from `.symlinks/plugins/flutter_pos_printer_platform_image_3/ios`)
   - flutter_scan_bluetooth (from `.symlinks/plugins/flutter_scan_bluetooth/ios`)
+  - flutter_secure_storage (from `.symlinks/plugins/flutter_secure_storage/ios`)
   - gal (from `.symlinks/plugins/gal/darwin`)
   - geocoding_ios (from `.symlinks/plugins/geocoding_ios/ios`)
   - geolocator_apple (from `.symlinks/plugins/geolocator_apple/ios`)
@@ -416,6 +419,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_pos_printer_platform_image_3/ios"
   flutter_scan_bluetooth:
     :path: ".symlinks/plugins/flutter_scan_bluetooth/ios"
+  flutter_secure_storage:
+    :path: ".symlinks/plugins/flutter_secure_storage/ios"
   gal:
     :path: ".symlinks/plugins/gal/darwin"
   geocoding_ios:
@@ -498,6 +503,7 @@ SPEC CHECKSUMS:
   flutter_inappwebview: 3d32228f1304635e7c028b0d4252937730bbc6cf
   flutter_pos_printer_platform_image_3: 00c882895b89c55a6d369a4203dbd6eebd5c6f9a
   flutter_scan_bluetooth: b67b0b1bc37f79f2f2ed46463ad49bf74cfd5975
+  flutter_secure_storage: d33dac7ae2ea08509be337e775f6b59f1ff45f12
   gal: 61e868295d28fe67ffa297fae6dacebf56fd53e1
   geocoding_ios: a389ea40f6f548de6e63006a2e31bf66ff80769a
   geolocator_apple: 6cbaf322953988e009e5ecb481f07efece75c450

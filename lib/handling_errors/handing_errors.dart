@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'dart:math';
 
+import 'package:faker/faker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_animations_2/handling_errors/log_model.dart';
 import 'package:flutter_animations_2/hive/lazy_load/hive_settings.dart';
@@ -75,6 +77,11 @@ class SecureStorageHelper {
 
 class HandlingErrorsModule {
   // final _secureStorage = SecureStorageHelper.internal;
+  static HandlingErrorsModule? _internal;
+
+  static HandlingErrorsModule get internal => _internal ??= HandlingErrorsModule._();
+
+  HandlingErrorsModule._();
 
   final StreamController<LogModel> _logSteamController = StreamController<LogModel>.broadcast();
 
@@ -109,7 +116,33 @@ class HandlingErrorsModule {
       );
 
       // Optionally, print the error to the console
-      FlutterError.dumpErrorToConsole(errorDetails);
+      // FlutterError.dumpErrorToConsole(errorDetails);
     };
+  }
+
+  int numberForMocks = 0;
+
+  void mockErrors() {
+    numberForMocks = 0; // Reset the counter each time you start mocking
+
+    void throwMockError() {
+      try {
+        // This will throw a FormatException
+        int.parse("fake");
+      } catch (error, stackTrace) {
+        FlutterError.reportError(FlutterErrorDetails(
+          exception: error,
+          stack: stackTrace,
+        ));
+
+        numberForMocks++;
+        if (numberForMocks < 100) {
+          Future.delayed(
+              Duration.zero, throwMockError); // Avoid stack overflow by scheduling the next call
+        }
+      }
+    }
+
+    throwMockError();
   }
 }

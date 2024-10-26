@@ -121,4 +121,9 @@ class HiveSettings {
       await box.add(log);
     }
   }
+
+  Future<List<LogModel>> getLogs() async {
+    final box = await Hive.openBox<LogModel>('logs');
+    return box.values.toList();
+  }
 }
