@@ -3,6 +3,8 @@ import 'package:flutter_animations_2/handling_errors/handing_errors.dart';
 import 'package:flutter_animations_2/handling_errors/log_model.dart';
 import 'package:flutter_animations_2/hive/lazy_load/hive_settings.dart';
 
+import 'mock_handling_errors.dart';
+
 class HandlingErrorPage extends StatefulWidget {
   const HandlingErrorPage({super.key});
 
@@ -21,7 +23,7 @@ class _HandlingErrorPageState extends State<HandlingErrorPage> {
     super.initState();
     _handlingError.setUpLogging();
     _handlingError.handlingError();
-    _handlingError.mockErrors();
+    MockHandlingErrors().mockErrors();
     getLogs();
   }
 

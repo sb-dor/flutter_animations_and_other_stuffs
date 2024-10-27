@@ -26,6 +26,7 @@ import 'package:flutter_animations_2/flutter_nearby_connectivity/yt_nearby_p2p_c
 import 'package:flutter_animations_2/flutter_permissions/cubit/flutter_permissions_cubit.dart';
 import 'package:flutter_animations_2/flutter_riverpod/riverpod_functions/riverpod_function_page.dart';
 import 'package:flutter_animations_2/flutter_riverpod/riverpod_generated_code/riverpod_generated_code_page.dart';
+import 'package:flutter_animations_2/flutter_secure_storage/flutter_secure_storage_page.dart';
 import 'package:flutter_animations_2/flutter_shortcuts/flutter_shortcuts.dart';
 import 'package:flutter_animations_2/global_context/global_context.helper.dart';
 import 'package:flutter_animations_2/hive/hive_database_helper.dart';
@@ -276,7 +277,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const HandlingErrorPage(),
+        builder: (context, state) => const FlutterSecureStoragePage(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {

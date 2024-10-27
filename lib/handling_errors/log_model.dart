@@ -28,7 +28,7 @@ class LogModel extends HiveObject {
   }
 }
 
-// adapter is saved inside - lib/hive/lazy_load/hive_settings.dart
+// adapter setting is saved inside - lib/hive/lazy_load/hive_settings.dart
 class LogAdapter extends TypeAdapter<LogModel> {
   @override
   LogModel read(BinaryReader reader) {
