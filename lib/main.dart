@@ -81,9 +81,9 @@ void main() async {
 
     try {
       await Firebase.initializeApp();
-      await FirebasePushNot.initTopic();
-      await FirebasePushNot.initBackGroundNotification();
-      await FirebasePushNot.initForeGroundNotification();
+      // await FirebasePushNot.initTopic();
+      // await FirebasePushNot.initBackGroundNotification();
+      // await FirebasePushNot.initForeGroundNotification();
       await LocalNotification.initLocalNotification();
       await EscPosPrinterUIHelper.init();
       await AwesomeNotificationsHelper.initAwesomeNotifications();
@@ -104,7 +104,9 @@ void main() async {
       //   FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
       //   return true;
       // };
-    } catch (_) {}
+    } catch (_) {
+      // debugPrint("main setup failed: ");
+    }
   }
 
   const user = AccountStatus.admin;

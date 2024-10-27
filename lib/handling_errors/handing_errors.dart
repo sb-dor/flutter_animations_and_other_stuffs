@@ -75,6 +75,12 @@ class SecureStorageHelper {
   }
 }
 
+// you may ask why this kinda logic is necessary :
+// because just let's think hypothetically that if the app throws an error or maybe
+// the data from server is not compatible for parsing or maybe any error happens in app
+// that continues for a while without stopping, then this stream handler will handle all error
+// and only after 10 seconds will send data to the server or maybe save in local storage (looking to  the circumstances)
+// NOTE: all error will be saved in a list withing 10 seconds and will be sent to the storage
 class HandlingErrorsModule {
   // final _secureStorage = SecureStorageHelper.internal;
   static HandlingErrorsModule? _internal;
@@ -87,22 +93,15 @@ class HandlingErrorsModule {
 
   void setUpLogging() {
     _logSteamController.stream
-        .map<LogModel>(
-          (log) {
-            return LogModel(
-              message: log.message,
-              timeOfError: log.timeOfError,
-              stack: log.stack,
-            );
-          },
-        )
+        // .map<LogModel>((log) => log)
         .bufferTime(const Duration(seconds: 10))
         .where((log) => log.isNotEmpty)
         .listen(
-          (logs) async {
-            await HiveSettings.internal.saveLogs(logs);
-          },
-        );
+      (logs) async {
+        debugPrint("saving logs after a while: ${logs.length}");
+        await HiveSettings.internal.saveLogs(logs);
+      },
+    );
   }
 
   void handlingError() {

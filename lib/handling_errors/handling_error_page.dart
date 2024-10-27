@@ -34,7 +34,7 @@ class _HandlingErrorPageState extends State<HandlingErrorPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("data"),
+        title: Text("Handling errors: ${logs.length}"),
       ),
       body: RefreshIndicator(
         onRefresh: () async {
