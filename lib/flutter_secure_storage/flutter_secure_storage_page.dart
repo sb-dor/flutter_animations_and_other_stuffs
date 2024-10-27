@@ -21,12 +21,12 @@ class _FlutterSecureStoragePageState extends State<FlutterSecureStoragePage> {
   }
 
   void _getValue() async {
-    value = int.tryParse("${await _secureStorage.getByKey('int_ss')}") ?? 0;
+    value = await _secureStorage.getIntByKey(key: 'int_ss') ?? 0;
     setState(() {});
   }
 
   Future<void> _saveInStorage() async {
-    await _secureStorage.saveByKey('int_ss', value.toString());
+    await _secureStorage.setValueByKey(key: 'int_ss', value: value);
   }
 
   @override

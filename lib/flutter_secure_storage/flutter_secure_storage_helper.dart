@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class SecureStorageHelper {
@@ -65,11 +66,26 @@ class SecureStorageHelper {
     );
   }
 
-  Future<void> saveByKey(String key, String? value) async {
-    await _storage.write(key: key, value: value);
+  Future<void> setValueByKey({required String key, required dynamic value}) async {
+    if (value == null) return;
+    await _storage.write(key: key, value: value.toString());
   }
 
-  Future<String?> getByKey(String key) async {
+  //
+  //
+  Future<String?> getStringByKey({required String key}) async {
     return _storage.read(key: key);
+  }
+
+  Future<int?> getIntByKey({required String key}) async {
+    return int.tryParse("${await _storage.read(key: key)}");
+  }
+
+  Future<double?> getDoubleByKey({required String key}) async {
+    return double.tryParse("${await _storage.read(key: key)}");
+  }
+
+  Future<bool?> getBoolByKey({required String key}) async {
+    return bool.tryParse("${await _storage.read(key: key)}");
   }
 }
