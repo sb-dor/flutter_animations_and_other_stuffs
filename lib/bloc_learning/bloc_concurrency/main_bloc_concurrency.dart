@@ -39,7 +39,7 @@ class MainBlocConcurrency extends Bloc<MainConcurrencyEvent, MainConcurrencyStat
 
     /// [ restartable() -> process only the latest event and cancel previous event handlers |  обрабатывает только последнее событие и отменять предыдущие обработчики событий]
 
-    on<CounterIncrement>(counterIncrement, transformer: concurrent());
+    on<CounterIncrement>(counterIncrement, transformer: sequential());
 
     on<CounterDecrement>(secondEventVoid, transformer: droppable());
   }
