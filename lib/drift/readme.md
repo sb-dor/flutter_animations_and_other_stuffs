@@ -11,5 +11,5 @@ dev_dependencies:
 
 about migrations:
 
-https://drift.simonbinder.eu/Migrations/
-https://drift.simonbinder.eu/Migrations/step_by_step/
+1. https://drift.simonbinder.eu/Migrations/
+2. https://drift.simonbinder.eu/Migrations/step_by_step/
