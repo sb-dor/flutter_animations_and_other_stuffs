@@ -24,7 +24,7 @@ Future<void> setup() async {
   // locator.registerLazySingleton<MemeDomainController>(() => MemeDomainController());
 
   // floor database registration:
-  final database = await $FloorFloorAppDatabase.databaseBuilder('floor_app_database.db').build();
-
-  locator.registerLazySingleton<FloorAppDatabase>(() => database);
+  // final database = await $FloorFloorAppDatabase.databaseBuilder('floor_app_database.db').build();
+  //
+  // locator.registerLazySingleton<FloorAppDatabase>(() => database);
 }
