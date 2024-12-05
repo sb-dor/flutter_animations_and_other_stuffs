@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animations_2/bottom_modal_sheets/bottom_sheet_with_slivers/bottom_sheet_with_slivers.dart';
 import 'package:flutter_animations_2/drift/database/app_database.dart';
+import 'package:flutter_animations_2/drift/database/database_helpers/todo_drift_database_helper.dart';
 import 'package:flutter_animations_2/drift/database/tables/todo_drift_db_table.dart';
 import 'package:provider/provider.dart';
-
-import 'database/database_helper.dart';
 
 // all app dependencies
 //
@@ -45,7 +43,7 @@ class DriftPage extends StatefulWidget {
 }
 
 class _DriftPageState extends State<DriftPage> {
-  late final DealWithDatabase _dealWithDatabase;
+  late final TodoDriftDatabaseHelper _todoDriftDatabaseHelper;
 
   final TextEditingController _textEditingController = TextEditingController();
   final TextEditingController _contextEditingController = TextEditingController();
@@ -56,7 +54,7 @@ class _DriftPageState extends State<DriftPage> {
   @override
   void initState() {
     super.initState();
-    _dealWithDatabase = DealWithDatabase(
+    _todoDriftDatabaseHelper = TodoDriftDatabaseHelper(
       Provider.of<Dependencies>(context, listen: false).appDatabase,
     );
     _getTodos();
@@ -76,14 +74,14 @@ class _DriftPageState extends State<DriftPage> {
       name: _textEditingController.text.trim(),
       content: _contextEditingController.text.trim(),
       author: _authorEditingController.text.trim(),
-      createdAt: DateTime.now(),
+      createdAt: DateTime.now().toString(),
     );
-    await _dealWithDatabase.saveTodo(todo);
+    await _todoDriftDatabaseHelper.saveTodo(todo);
   }
 
   void _getTodos() async {
     _todos.clear();
-    _todos.addAll(await _dealWithDatabase.todos);
+    _todos.addAll(await _todoDriftDatabaseHelper.todos);
     setState(() {});
   }
 

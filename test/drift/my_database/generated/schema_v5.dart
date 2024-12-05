@@ -1,0 +1,272 @@
+// dart format width=80
+// GENERATED CODE, DO NOT EDIT BY HAND.
+// ignore_for_file: type=lint
+import 'package:drift/drift.dart';
+
+class TodoDriftDbTable extends Table
+    with TableInfo<TodoDriftDbTable, TodoDriftDbTableData> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  TodoDriftDbTable(this.attachedDatabase, [this._alias]);
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+      'id', aliasedName, false,
+      hasAutoIncrement: true,
+      type: DriftSqlType.int,
+      requiredDuringInsert: false,
+      defaultConstraints:
+          GeneratedColumn.constraintIsAlways('PRIMARY KEY AUTOINCREMENT'));
+  late final GeneratedColumn<String> name = GeneratedColumn<String>(
+      'name', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
+  late final GeneratedColumn<String> content = GeneratedColumn<String>(
+      'content', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
+  late final GeneratedColumn<String> author = GeneratedColumn<String>(
+      'author', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
+  late final GeneratedColumn<String> createdAt = GeneratedColumn<String>(
+      'created_at', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
+  @override
+  List<GeneratedColumn> get $columns => [id, name, content, author, createdAt];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'todo_drift_db_table';
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  TodoDriftDbTableData map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return TodoDriftDbTableData(
+      id: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
+      name: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}name']),
+      content: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}content']),
+      author: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}author']),
+      createdAt: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}created_at']),
+    );
+  }
+
+  @override
+  TodoDriftDbTable createAlias(String alias) {
+    return TodoDriftDbTable(attachedDatabase, alias);
+  }
+}
+
+class TodoDriftDbTableData extends DataClass
+    implements Insertable<TodoDriftDbTableData> {
+  final int id;
+  final String? name;
+  final String? content;
+  final String? author;
+  final String? createdAt;
+  const TodoDriftDbTableData(
+      {required this.id, this.name, this.content, this.author, this.createdAt});
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<int>(id);
+    if (!nullToAbsent || name != null) {
+      map['name'] = Variable<String>(name);
+    }
+    if (!nullToAbsent || content != null) {
+      map['content'] = Variable<String>(content);
+    }
+    if (!nullToAbsent || author != null) {
+      map['author'] = Variable<String>(author);
+    }
+    if (!nullToAbsent || createdAt != null) {
+      map['created_at'] = Variable<String>(createdAt);
+    }
+    return map;
+  }
+
+  TodoDriftDbTableCompanion toCompanion(bool nullToAbsent) {
+    return TodoDriftDbTableCompanion(
+      id: Value(id),
+      name: name == null && nullToAbsent ? const Value.absent() : Value(name),
+      content: content == null && nullToAbsent
+          ? const Value.absent()
+          : Value(content),
+      author:
+          author == null && nullToAbsent ? const Value.absent() : Value(author),
+      createdAt: createdAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(createdAt),
+    );
+  }
+
+  factory TodoDriftDbTableData.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return TodoDriftDbTableData(
+      id: serializer.fromJson<int>(json['id']),
+      name: serializer.fromJson<String?>(json['name']),
+      content: serializer.fromJson<String?>(json['content']),
+      author: serializer.fromJson<String?>(json['author']),
+      createdAt: serializer.fromJson<String?>(json['createdAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<int>(id),
+      'name': serializer.toJson<String?>(name),
+      'content': serializer.toJson<String?>(content),
+      'author': serializer.toJson<String?>(author),
+      'createdAt': serializer.toJson<String?>(createdAt),
+    };
+  }
+
+  TodoDriftDbTableData copyWith(
+          {int? id,
+          Value<String?> name = const Value.absent(),
+          Value<String?> content = const Value.absent(),
+          Value<String?> author = const Value.absent(),
+          Value<String?> createdAt = const Value.absent()}) =>
+      TodoDriftDbTableData(
+        id: id ?? this.id,
+        name: name.present ? name.value : this.name,
+        content: content.present ? content.value : this.content,
+        author: author.present ? author.value : this.author,
+        createdAt: createdAt.present ? createdAt.value : this.createdAt,
+      );
+  TodoDriftDbTableData copyWithCompanion(TodoDriftDbTableCompanion data) {
+    return TodoDriftDbTableData(
+      id: data.id.present ? data.id.value : this.id,
+      name: data.name.present ? data.name.value : this.name,
+      content: data.content.present ? data.content.value : this.content,
+      author: data.author.present ? data.author.value : this.author,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('TodoDriftDbTableData(')
+          ..write('id: $id, ')
+          ..write('name: $name, ')
+          ..write('content: $content, ')
+          ..write('author: $author, ')
+          ..write('createdAt: $createdAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(id, name, content, author, createdAt);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is TodoDriftDbTableData &&
+          other.id == this.id &&
+          other.name == this.name &&
+          other.content == this.content &&
+          other.author == this.author &&
+          other.createdAt == this.createdAt);
+}
+
+class TodoDriftDbTableCompanion extends UpdateCompanion<TodoDriftDbTableData> {
+  final Value<int> id;
+  final Value<String?> name;
+  final Value<String?> content;
+  final Value<String?> author;
+  final Value<String?> createdAt;
+  const TodoDriftDbTableCompanion({
+    this.id = const Value.absent(),
+    this.name = const Value.absent(),
+    this.content = const Value.absent(),
+    this.author = const Value.absent(),
+    this.createdAt = const Value.absent(),
+  });
+  TodoDriftDbTableCompanion.insert({
+    this.id = const Value.absent(),
+    this.name = const Value.absent(),
+    this.content = const Value.absent(),
+    this.author = const Value.absent(),
+    this.createdAt = const Value.absent(),
+  });
+  static Insertable<TodoDriftDbTableData> custom({
+    Expression<int>? id,
+    Expression<String>? name,
+    Expression<String>? content,
+    Expression<String>? author,
+    Expression<String>? createdAt,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (name != null) 'name': name,
+      if (content != null) 'content': content,
+      if (author != null) 'author': author,
+      if (createdAt != null) 'created_at': createdAt,
+    });
+  }
+
+  TodoDriftDbTableCompanion copyWith(
+      {Value<int>? id,
+      Value<String?>? name,
+      Value<String?>? content,
+      Value<String?>? author,
+      Value<String?>? createdAt}) {
+    return TodoDriftDbTableCompanion(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      content: content ?? this.content,
+      author: author ?? this.author,
+      createdAt: createdAt ?? this.createdAt,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (name.present) {
+      map['name'] = Variable<String>(name.value);
+    }
+    if (content.present) {
+      map['content'] = Variable<String>(content.value);
+    }
+    if (author.present) {
+      map['author'] = Variable<String>(author.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<String>(createdAt.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('TodoDriftDbTableCompanion(')
+          ..write('id: $id, ')
+          ..write('name: $name, ')
+          ..write('content: $content, ')
+          ..write('author: $author, ')
+          ..write('createdAt: $createdAt')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class DatabaseAtV5 extends GeneratedDatabase {
+  DatabaseAtV5(QueryExecutor e) : super(e);
+  late final TodoDriftDbTable todoDriftDbTable = TodoDriftDbTable(this);
+  @override
+  Iterable<TableInfo<Table, Object?>> get allTables =>
+      allSchemaEntities.whereType<TableInfo<Table, Object?>>();
+  @override
+  List<DatabaseSchemaEntity> get allSchemaEntities => [todoDriftDbTable];
+  @override
+  int get schemaVersion => 5;
+}

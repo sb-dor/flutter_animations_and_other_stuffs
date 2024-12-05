@@ -23,7 +23,6 @@ class AppDatabase extends _$AppDatabase {
         );
 
   @override
-  // TODO: implement migration
   MigrationStrategy get migration => MigrationStrategy(
         onCreate: (Migrator m) async {
           await m.createAll();
@@ -46,11 +45,21 @@ class AppDatabase extends _$AppDatabase {
               from3To4: (Migrator m, Schema4 schema) async {
                 await m.addColumn(todoDriftDbTable, todoDriftDbTable.author);
               },
+              from4To5: (Migrator m, Schema5 schema) async {
+                await m.alterTable(
+                  TableMigration(
+                    todoDriftDbTable,
+                    columnTransformer: {
+                      todoDriftDbTable.createdAt: todoDriftDbTable.createdAt.cast<String>(),
+                    },
+                  ),
+                );
+              },
             ),
           );
         },
       );
 
   @override
-  int get schemaVersion => 4;
+  int get schemaVersion => 5;
 }
