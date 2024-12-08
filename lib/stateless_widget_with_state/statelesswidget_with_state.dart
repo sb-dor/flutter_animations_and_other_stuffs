@@ -15,17 +15,20 @@ class MyStatelessElement extends StatelessElement {
 
   MyStatelessElement(super.widget);
 
+  // initState
   @override
   void mount(Element? parent, Object? newSlot) {
     number = 1;
     super.mount(parent, newSlot);
   }
 
+  // dispose
   @override
   void unmount() {
     super.unmount();
   }
 
+  // didUpdateWidget
   @override
   void update(covariant StatelessWidget newWidget) {
     super.update(newWidget);
