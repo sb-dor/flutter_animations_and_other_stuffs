@@ -55,9 +55,9 @@ final class TodoDriftDatabaseHelper {
   Future<List<TodoDrift>> get todosGrouped async {
     final data = await (_database.select(_database.todoDriftDbTable)
           ..where(
-            (element) => element.name.length.isBiggerThan(
-              const Variable(10) || element.author.length.isSmallerThan(other),
-            ),
+            (element) =>
+                element.name.length.isBiggerThan(const Variable(10)) |
+                element.author.length.isSmallerThan(const Variable(20)),
           ))
         .get();
 

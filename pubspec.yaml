@@ -150,6 +150,7 @@ dependencies:
   flutter_secure_storage_platform_interface: ^1.1.2
   drift: ^2.22.1
   drift_flutter: ^0.2.2
+  logger: ^2.5.0
 
 
 

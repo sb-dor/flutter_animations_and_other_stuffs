@@ -72,6 +72,7 @@ import 'slivers/sliver_and_scrolls/sliver_and_scroll_page.dart';
 import 'slivers/sliver_app_bar_title_animation.dart';
 import 'slivers/sliver_appbar_with_tabbar_page.dart';
 import 'slivers/sliver_stuck_after_each_other/sliver_app_bar_page.dart';
+import 'stateless_widget_with_state/statelesswidget_with_state.dart';
 import 'widget_ket_test/widget_key_test_page.dart';
 
 void main() async {
@@ -278,7 +279,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const WidgetKeyTestPage(),
+        builder: (context, state) => const StatelessWidgetWithState(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
