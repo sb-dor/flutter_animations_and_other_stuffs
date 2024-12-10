@@ -13,7 +13,7 @@ class ServerErrorException implements Exception {
 
   @override
   String toString() {
-    return "First exception message: $message";
+    return "server error exception message: $message";
   }
 }
 
@@ -24,7 +24,7 @@ class ClientErrorException implements Exception {
 
   @override
   String toString() {
-    return "Second exception message: $message";
+    return "client error exception message: $message";
   }
 }
 
@@ -39,7 +39,7 @@ class StructuredBackendException implements Exception {
 
   @override
   String toString() {
-    return "Structured exception message: $message";
+    return "Structured error exception message: $message";
   }
 }
 
@@ -52,12 +52,17 @@ class SomethingHappenedInsideException implements Exception {
 
   @override
   String toString() {
-    return "something inside exception message: $message";
+    return "something happened inside error exception message: $message";
   }
 }
 
 class MasteringErrorHandlingInDart {
-  final Logger _logger = Logger();
+  final Logger _logger;
+  final http.Client _client;
+
+  MasteringErrorHandlingInDart({required Logger logger, required http.Client client})
+      : _logger = logger,
+        _client = client;
 
   //
   //
@@ -71,14 +76,17 @@ class MasteringErrorHandlingInDart {
     } on StructuredBackendException catch (error, stackTrace) {
       debugPrint("getting structured error from server: ${error.message} | stack: $stackTrace");
     } catch (error, stackTrace) {
-      debugPrint("other exceptions: $error | stack: $stackTrace");
+      Error.throwWithStackTrace(
+        error,
+        stackTrace,
+      );
     }
   }
 
   Future<Map<String, dynamic>> _response() async {
     try {
       const url = "http://192.168.100.3:8000/api/test/url";
-      final response = await http.Client().get(
+      final response = await _client.get(
         Uri.parse(url),
       );
 
@@ -173,7 +181,10 @@ class MasteringErrorHandlingInDart {
 }
 
 void main() {
-  final object = MasteringErrorHandlingInDart();
+  final object = MasteringErrorHandlingInDart(
+    logger: Logger(),
+    client: http.Client(),
+  );
 
   object.exceptionCatcher();
 }
