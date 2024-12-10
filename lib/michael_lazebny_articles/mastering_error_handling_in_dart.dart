@@ -43,6 +43,19 @@ class StructuredBackendException implements Exception {
   }
 }
 
+class SomethingHappenedInsideException implements Exception {
+  final String message;
+
+  SomethingHappenedInsideException(
+    this.message,
+  );
+
+  @override
+  String toString() {
+    return "something inside exception message: $message";
+  }
+}
+
 class MasteringErrorHandlingInDart {
   final Logger _logger = Logger();
 
@@ -57,30 +70,43 @@ class MasteringErrorHandlingInDart {
       debugPrint("getting client error from server: ${error.message} | stack: $stackTrace");
     } on StructuredBackendException catch (error, stackTrace) {
       debugPrint("getting structured error from server: ${error.message} | stack: $stackTrace");
-    } catch (error, stackTrace) {}
+    } catch (error, stackTrace) {
+      debugPrint("other exceptions: $error | stack: $stackTrace");
+    }
   }
 
   Future<Map<String, dynamic>> _response() async {
-    const url = "http://192.168.100.3:8000/api/test/url";
-    final response = await http.Client().get(
-      Uri.parse(url),
-    );
+    try {
+      const url = "http://192.168.100.3:8000/api/test/url";
+      final response = await http.Client().get(
+        Uri.parse(url),
+      );
 
-    if (response.statusCode >= 400 && response.statusCode < 500) {
-      throw ClientErrorException("Client error occurred");
+      if (response.statusCode >= 400 && response.statusCode < 500) {
+        throw ClientErrorException("Client error occurred");
+      }
+
+      if (response.statusCode >= 500) {
+        throw ServerErrorException("Server error occurred");
+      }
+
+      final Map<String, dynamic> json = jsonDecode(response.body);
+
+      if (json case {"success": false, "message": final message}) {
+        throw StructuredBackendException(message, response.statusCode);
+      }
+
+      dynamic data = "1";
+
+      data = data / 10;
+
+      return {};
+    } catch (e, s) {
+      Error.throwWithStackTrace(
+        SomethingHappenedInsideException("Error occurred during handling response"),
+        s,
+      );
     }
-
-    if (response.statusCode >= 500) {
-      throw ServerErrorException("Server error occurred");
-    }
-
-    final Map<String, dynamic> json = jsonDecode(response.body);
-
-    if (json case {"success": final result, "message": final message}) {
-      throw StructuredBackendException(message, response.statusCode);
-    }
-
-    return {};
     //
   }
 
