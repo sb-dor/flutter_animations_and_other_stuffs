@@ -95,17 +95,27 @@ class MasteringErrorHandlingInDart {
     }
   }
 
-  /// ["catch"] statement of this ["_response()"] function will
+  /// [catch] statement of this [_response()] function will
   /// catch all exceptions, throws that may happen in the future.
-  /// BUT! most important thing is that when you use this ["_response()"] function
-  /// inside ["another"] function and when you use try-catch inside that ["another"] function
-  /// it will catch nothing (if ["_response()"] function has try-catch inside)
-  /// that is if you want that ["another"] function can catch throws from ["_response()"] function
-  /// 1. you should not use try-catch inside ["_response()"] and catch errors inside ["another"] function
-  /// 2. using try-catch inside ["_response()"] use Error.throwWithStackTrace
+  /// BUT! most important thing is that when you use this [_response()] function
+  /// inside [another] function and when you use try-catch inside that [another] function
+  /// it will catch nothing (if [_response()] function has try-catch inside)
+  /// that is if you want that [another] function can catch throws from [_response()] function
+  /// 1. you should not use try-catch inside [_response()] and catch errors inside [another] function
+  /// 2. using try-catch inside [_response()] use Error.throwWithStackTrace
   /// BUT! second variant is better, because all caught exceptions will be throw again with stackTrace
-  /// and you can catch this ["Error.throwWithStackTrace"] from ["another"] function only inside
-  /// ["catch"] statement
+  /// and you can catch this [Error.throwWithStackTrace] from [another] function only inside
+  /// [catch] statement
+  ///
+  ///
+  ///
+  /// [Error.throwWithStackTrace] that is using below will throw ExceptionHandler.
+  /// you can use just [error] value of [catch] statement itself and it will throw whatever that you wanted to threw
+  ///
+  /// Error.throwWithStackTrace(
+  ///     ExceptionHandler("response() -> Error occurred during handling response", cause: error),
+  ///     stackTrace,
+  /// );
   Future<Map<String, dynamic>> _response() async {
     try {
       const url = "http://192.168.100.3:8000/api/test/url";
@@ -136,6 +146,8 @@ class MasteringErrorHandlingInDart {
       /// use [Error.throwWithStackTrace] for throwing errors.
       /// Unlike the standard 'throw', this method retains the original stack trace.
       Error.throwWithStackTrace(
+        /// use just error instead of [ExceptionHandler] if you want
+        /// but whether [ExceptionHandler] has cause it would be better to use it
         ExceptionHandler("response() -> Error occurred during handling response", cause: error),
         stackTrace,
       );
