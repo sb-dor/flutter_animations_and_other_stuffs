@@ -75,7 +75,7 @@ class MasteringErrorHandlingInDart {
   void exceptionCatcher() async {
     /// you can handle your exceptions
     /// calling "on" in order to handle only one specific
-    /// exception or you can just use "catch" all of them
+    /// exception or you can just use "catch" to catch all of them
     /// remember to do [Error.throwWithStackTrace]
     try {
       await _response();
@@ -89,12 +89,23 @@ class MasteringErrorHandlingInDart {
       /// use [Error.throwWithStackTrace] for throwing errors.
       /// Unlike the standard 'throw', this method retains the original stack trace.
       Error.throwWithStackTrace(
-        error,
+        ExceptionHandler("Error exceptionCatcher() -> ", cause: error),
         stackTrace,
       );
     }
   }
 
+  /// ["catch"] statement of this ["_response()"] function will
+  /// catch all exceptions, throws that may happen in the future.
+  /// BUT! most important thing is that when you use this ["_response()"] function
+  /// inside ["another"] function and when you use try-catch inside that ["another"] function
+  /// it will catch nothing (if ["_response()"] function has try-catch inside)
+  /// that is if you want that ["another"] function can catch throws from ["_response()"] function
+  /// 1. you should not use try-catch inside ["_response()"] and catch errors inside ["another"] function
+  /// 2. using try-catch inside ["_response()"] use Error.throwWithStackTrace
+  /// BUT! second variant is better, because all caught exceptions will be throw again with stackTrace
+  /// and you can catch this ["Error.throwWithStackTrace"] from ["another"] function only inside
+  /// ["catch"] statement
   Future<Map<String, dynamic>> _response() async {
     try {
       const url = "http://192.168.100.3:8000/api/test/url";
@@ -125,7 +136,7 @@ class MasteringErrorHandlingInDart {
       /// use [Error.throwWithStackTrace] for throwing errors.
       /// Unlike the standard 'throw', this method retains the original stack trace.
       Error.throwWithStackTrace(
-        ExceptionHandler("Error occurred during handling response", cause: error),
+        ExceptionHandler("response() -> Error occurred during handling response", cause: error),
         stackTrace,
       );
     }
