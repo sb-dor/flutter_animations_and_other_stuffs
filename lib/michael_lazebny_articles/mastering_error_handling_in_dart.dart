@@ -43,17 +43,23 @@ class StructuredBackendException implements Exception {
   }
 }
 
-class SomethingHappenedInsideException implements Exception {
+class ExceptionHandler implements Exception {
   final String message;
+  final int? statusCode;
+  final Object? cause;
 
-  SomethingHappenedInsideException(
-    this.message,
-  );
+  ExceptionHandler(
+    this.message, {
+    this.statusCode,
+    this.cause,
+  });
 
   @override
-  String toString() {
-    return "something happened inside error exception message: $message";
-  }
+  String toString() => 'ExceptionHandler('
+      'message: $message, '
+      'statusCode: $statusCode, '
+      'cause: $cause'
+      ')';
 }
 
 class MasteringErrorHandlingInDart {
@@ -67,6 +73,10 @@ class MasteringErrorHandlingInDart {
   //
   //
   void exceptionCatcher() async {
+    /// you can handle your exceptions
+    /// calling "on" in order to handle only one specific
+    /// exception or you can just use "catch" all of them
+    /// remember to do [Error.throwWithStackTrace]
     try {
       await _response();
     } on ServerErrorException catch (error, stackTrace) {
@@ -76,6 +86,8 @@ class MasteringErrorHandlingInDart {
     } on StructuredBackendException catch (error, stackTrace) {
       debugPrint("getting structured error from server: ${error.message} | stack: $stackTrace");
     } catch (error, stackTrace) {
+      /// use [Error.throwWithStackTrace] for throwing errors.
+      /// Unlike the standard 'throw', this method retains the original stack trace.
       Error.throwWithStackTrace(
         error,
         stackTrace,
@@ -109,10 +121,12 @@ class MasteringErrorHandlingInDart {
       data = data / 10;
 
       return {};
-    } catch (e, s) {
+    } catch (error, stackTrace) {
+      /// use [Error.throwWithStackTrace] for throwing errors.
+      /// Unlike the standard 'throw', this method retains the original stack trace.
       Error.throwWithStackTrace(
-        SomethingHappenedInsideException("Error occurred during handling response"),
-        s,
+        ExceptionHandler("Error occurred during handling response", cause: error),
+        stackTrace,
       );
     }
     //
