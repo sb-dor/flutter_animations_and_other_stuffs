@@ -88,6 +88,9 @@ class MasteringErrorHandlingInDart {
     } catch (error, stackTrace) {
       /// use [Error.throwWithStackTrace] for throwing errors.
       /// Unlike the standard 'throw', this method retains the original stack trace.
+      ///
+      /// you can use just [error] of [catch] statement.
+      /// because [_response()] function that you are using, it's using [ExceptionHandler] inside
       Error.throwWithStackTrace(
         ExceptionHandler("Error exceptionCatcher() -> ", cause: error),
         stackTrace,
@@ -101,9 +104,9 @@ class MasteringErrorHandlingInDart {
   /// inside [another] function and when you use try-catch inside that [another] function
   /// it will catch nothing (if [_response()] function has try-catch inside)
   /// that is if you want that [another] function can catch throws from [_response()] function
-  /// 1. you should not use try-catch inside [_response()] and catch errors inside [another] function
+  /// 1. you should not use try-catch inside [_response()] and catch errors from [another] function
   /// 2. using try-catch inside [_response()] use Error.throwWithStackTrace
-  /// BUT! second variant is better, because all caught exceptions will be throw again with stackTrace
+  /// BUT! second variant is better, because all caught exceptions will be thrown again with stackTrace
   /// and you can catch this [Error.throwWithStackTrace] from [another] function only inside
   /// [catch] statement
   ///
@@ -148,7 +151,7 @@ class MasteringErrorHandlingInDart {
       Error.throwWithStackTrace(
         /// use just error instead of [ExceptionHandler] if you want
         /// but whether [ExceptionHandler] has cause it would be better to use it
-        ExceptionHandler("response() -> Error occurred during handling response", cause: error),
+        ExceptionHandler("Catching errors from response function", cause: error),
         stackTrace,
       );
     }
