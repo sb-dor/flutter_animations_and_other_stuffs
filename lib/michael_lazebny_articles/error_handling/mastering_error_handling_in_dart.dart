@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animations_2/michael_lazebny_articles/error_handling/own_either_class.dart';
 import 'package:logger/logger.dart';
 import 'package:http/http.dart' as http;
 
@@ -221,6 +222,10 @@ class MasteringErrorHandlingInDart {
 }
 
 void main() {
+  final ownEitherClass = MockHttpResponse();
+
+  ownEitherClass.getSomethingFromResponse('');
+
   final object = MasteringErrorHandlingInDart(
     logger: Logger(),
     client: http.Client(),

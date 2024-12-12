@@ -3,9 +3,8 @@
 import 'package:drift/drift.dart';
 import 'package:drift_dev/api/migrations_native.dart';
 import 'package:flutter_animations_2/drift/database/app_database.dart';
-import 'package:test/test.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'generated/schema.dart';
-
 import 'generated/schema_v1.dart' as v1;
 import 'generated/schema_v2.dart' as v2;
 
@@ -21,7 +20,7 @@ void main() {
     // These simple tests verify all possible schema updates with a simple (no
     // data) migration. This is a quick way to ensure that written database
     // migrations properly alter the schema.
-    final versions = GeneratedHelper.versions;
+    const versions = GeneratedHelper.versions;
     for (final (i, fromVersion) in versions.indexed) {
       group('from $fromVersion', () {
         for (final toVersion in versions.skip(i + 1)) {

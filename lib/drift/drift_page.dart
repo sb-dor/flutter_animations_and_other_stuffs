@@ -20,7 +20,7 @@ class Dependencies {
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
-  final appDatabase = AppDatabase();
+  final appDatabase = AppDatabase.defaults();
 
   runApp(
     Provider(

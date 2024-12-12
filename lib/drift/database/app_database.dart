@@ -7,8 +7,10 @@ part 'app_database.g.dart';
 
 @DriftDatabase(tables: [TodoDriftDbTable])
 class AppDatabase extends _$AppDatabase {
+
+  AppDatabase(super.e);
   //
-  AppDatabase()
+  AppDatabase.defaults()
       : super(
           driftDatabase(
             name: 'app_database',
