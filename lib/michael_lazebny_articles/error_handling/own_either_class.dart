@@ -2,7 +2,10 @@ import 'package:flutter/cupertino.dart';
 
 abstract class Either<L, R> {
   //
-  T when<T>({required T Function(L left) left, required T Function(R right) right});
+  T when<T extends Object?>({
+    required T Function(L left) left,
+    required T Function(R right) right,
+  });
 }
 
 class Left<L, R> extends Either<L, R> {
@@ -11,7 +14,10 @@ class Left<L, R> extends Either<L, R> {
   Left(this.left);
 
   @override
-  T when<T>({required T Function(L left) left, required T Function(R right) right}) {
+  T when<T extends Object?>({
+    required T Function(L left) left,
+    required T Function(R right) right,
+  }) {
     return left(this.left);
   }
 }
@@ -22,7 +28,10 @@ class Right<L, R> extends Either<L, R> {
   Right(this.right);
 
   @override
-  T when<T>({required T Function(L left) left, required T Function(R right) right}) {
+  T when<T extends Object?>({
+    required T Function(L left) left,
+    required T Function(R right) right,
+  }) {
     return right(this.right);
   }
 }
