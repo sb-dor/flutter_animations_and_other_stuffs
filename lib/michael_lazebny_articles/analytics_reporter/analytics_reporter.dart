@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_animations_2/michael_lazebny_articles/analytics_reporter/analytics_builder.dart';
 import 'package:flutter_animations_2/michael_lazebny_articles/analytics_reporter/analytics_event.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -16,7 +17,7 @@ abstract base class AnalyticsReporter {
 
     event.buildProperties(builder);
 
-    // await _reportEvent(event.name, builder.toMap());
+    await _reportEvent(event.name, builder.toMap());
 
     for (final each in _interceptors) {
       await each.report(event: event, properties: builder.properties);

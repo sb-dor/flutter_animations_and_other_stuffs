@@ -19,6 +19,7 @@ import 'package:flutter_animations_2/design_templates/mvvm/viewmodel_mvvm.dart';
 import 'package:flutter_animations_2/drag_and_drop_own_animation/drag_and_drop_own_animation.dart';
 import 'package:flutter_animations_2/drag_and_drop_own_animation/provider/drag_and_drop_provider.dart';
 import 'package:flutter_animations_2/esc_pos_printer_with_bluetooth/esc_pos_printer_ui_helper.dart';
+import 'package:flutter_animations_2/firebase_options.dart';
 import 'package:flutter_animations_2/firebase_push_notification/firebase_push_not.dart';
 import 'package:flutter_animations_2/flutter_background_service/flutter_background_service_helper.dart';
 import 'package:flutter_animations_2/flutter_camera/flutter_camera_helper.dart';
@@ -74,6 +75,7 @@ import 'slivers/sliver_appbar_with_tabbar_page.dart';
 import 'slivers/sliver_stuck_after_each_other/sliver_app_bar_page.dart';
 import 'stateless_widget_with_state/statelesswidget_with_state.dart';
 import 'widget_ket_test/widget_key_test_page.dart';
+import 'michael_lazebny_articles/ml_main.dart' as mldart;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -83,7 +85,8 @@ void main() async {
     await setup();
 
     try {
-      await Firebase.initializeApp();
+      await Firebase.initializeApp(
+      );
       // await FirebasePushNot.initTopic();
       // await FirebasePushNot.initBackGroundNotification();
       // await FirebasePushNot.initForeGroundNotification();
@@ -111,6 +114,9 @@ void main() async {
       // debugPrint("main setup failed: ");
     }
   }
+
+  mldart.main();
+  return;
 
   const user = AccountStatus.admin;
 

@@ -1,7 +1,7 @@
 import 'package:flutter_animations_2/michael_lazebny_articles/analytics_reporter/analytics_property.dart';
 
 final class AnalyticsBuilder {
-  AnalyticsBuilder() : properties = const [];
+  AnalyticsBuilder() : properties = [];
 
   final List<AnalyticsProperty> properties;
 
@@ -10,10 +10,11 @@ final class AnalyticsBuilder {
   /// Returns the properties as a map.
   ///
   /// This method should be called after all properties have been added.
-  Map<String, Object?> toMap() {
-    final result = <String, Object?>{};
+  Map<String, Object> toMap() {
+    final result = <String, Object>{};
     for (final each in properties) {
-      result[each.name] = each.valueSerializable;
+      if (each.valueSerializable == null) continue;
+      result[each.name] = each.valueSerializable!;
     }
     return result;
   }
