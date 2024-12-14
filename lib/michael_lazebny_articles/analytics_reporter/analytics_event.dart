@@ -11,7 +11,7 @@ abstract interface class AnalyticsEvent {
 //
 //
 final class ProductsViewed extends AnalyticsEvent {
-  final String id;
+  final int id;
   final String from;
 
   ProductsViewed({
@@ -23,8 +23,29 @@ final class ProductsViewed extends AnalyticsEvent {
   String get name => 'products_viewed';
 
   @override
-  void buildProperties(builder) {
-    builder.add(StringAnalyticsReporter(name: 'product_id', value: id));
+  void buildProperties(AnalyticsBuilder builder) {
+    builder.add(IntAnalyticsReporter(name: 'product_id', value: id));
     builder.add(StringAnalyticsReporter(name: 'from', value: from));
+  }
+}
+
+//
+
+final class UserLoggedEvent extends AnalyticsEvent {
+  final int userId;
+  final bool isPaid;
+
+  UserLoggedEvent({
+    required this.userId,
+    required this.isPaid,
+  });
+
+  @override
+  String get name => "user_logged";
+
+  @override
+  void buildProperties(AnalyticsBuilder builder) {
+    builder.add(IntAnalyticsReporter(name: "user_id", value: userId));
+    builder.add(FlagAnalyticsProperty(name: "is_paid", value: isPaid));
   }
 }

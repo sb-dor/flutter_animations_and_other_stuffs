@@ -150,6 +150,7 @@ class MasteringErrorHandlingInDart {
       /// use [Error.throwWithStackTrace] for throwing errors.
       /// Unlike the standard 'throw', this method retains the original stack trace.
       Error.throwWithStackTrace(
+
         /// use just error instead of [ExceptionHandler] if you want
         /// but whether [ExceptionHandler] has cause it would be better to use it
         ExceptionHandler("Catching errors from response function", cause: error),
@@ -163,7 +164,7 @@ class MasteringErrorHandlingInDart {
   //
   void mainFunction() {
     runZonedGuarded(
-      () {
+          () {
         // here you can handle errors that may happen in widget side
         // or send to the server
         // send to the firebase crashlytics
@@ -210,7 +211,7 @@ class MasteringErrorHandlingInDart {
           };
         };
       },
-      (error, stackTrace) async {
+          (error, stackTrace) async {
         // or maybe any other server
         await FirebaseCrashlytics.instance.recordError(
           error,
@@ -219,17 +220,4 @@ class MasteringErrorHandlingInDart {
       },
     );
   }
-}
-
-void main() {
-  final ownEitherClass = MockHttpResponse();
-
-  ownEitherClass.getSomethingFromResponse('');
-
-  final object = MasteringErrorHandlingInDart(
-    logger: Logger(),
-    client: http.Client(),
-  );
-
-  object.exceptionCatcher();
 }

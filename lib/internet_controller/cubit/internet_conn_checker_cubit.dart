@@ -14,8 +14,8 @@ class InternetConnCubit extends Cubit<bool> {
     connectivity.onConnectivityChanged.listen(connActivityRes);
   }
 
-  void connActivityRes(ConnectivityResult connectivityResult) {
-    if (connectivityResult == ConnectivityResult.none) {
+  void connActivityRes(List<ConnectivityResult> connectivityResult) {
+    if (connectivityResult.contains(ConnectivityResult.none)) {
       emit(false);
       debugPrint("No internet conn");
     } else {

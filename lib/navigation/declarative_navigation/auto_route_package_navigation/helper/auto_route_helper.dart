@@ -6,7 +6,7 @@ import 'package:flutter_animations_2/navigation/declarative_navigation/auto_rout
 part 'auto_route_helper.gr.dart';
 
 @AutoRouterConfig()
-class AppRouter extends _$AppRouter {
+class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
         AutoRoute(

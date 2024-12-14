@@ -9,33 +9,6 @@
 
 part of 'auto_route_helper.dart';
 
-abstract class _$AppRouter extends RootStackRouter {
-  // ignore: unused_element
-  _$AppRouter({super.navigatorKey});
-
-  @override
-  final Map<String, PageFactory> pagesMap = {
-    AutoRouteFirstRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const AutoRouteFirstScreen(),
-      );
-    },
-    AutoRouteSecondRoute.name: (routeData) {
-      final pathParams = routeData.inheritedPathParams;
-      final args = routeData.argsAs<AutoRouteSecondRouteArgs>(
-          orElse: () => AutoRouteSecondRouteArgs(id: pathParams.getInt('id')));
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: AutoRouteSecondScreen(
-          key: args.key,
-          id: args.id,
-        ),
-      );
-    },
-  };
-}
-
 /// generated route for
 /// [AutoRouteFirstScreen]
 class AutoRouteFirstRoute extends PageRouteInfo<void> {
@@ -47,7 +20,12 @@ class AutoRouteFirstRoute extends PageRouteInfo<void> {
 
   static const String name = 'AutoRouteFirstRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const AutoRouteFirstScreen();
+    },
+  );
 }
 
 /// generated route for
@@ -69,8 +47,18 @@ class AutoRouteSecondRoute extends PageRouteInfo<AutoRouteSecondRouteArgs> {
 
   static const String name = 'AutoRouteSecondRoute';
 
-  static const PageInfo<AutoRouteSecondRouteArgs> page =
-      PageInfo<AutoRouteSecondRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final pathParams = data.inheritedPathParams;
+      final args = data.argsAs<AutoRouteSecondRouteArgs>(
+          orElse: () => AutoRouteSecondRouteArgs(id: pathParams.getInt('id')));
+      return AutoRouteSecondScreen(
+        key: args.key,
+        id: args.id,
+      );
+    },
+  );
 }
 
 class AutoRouteSecondRouteArgs {
