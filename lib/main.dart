@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_core/firebase_core.dart' show Firebase;
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
@@ -14,6 +16,7 @@ import 'package:flutter_animations_2/bottom_modal_sheets/bottom_modal_sheets_cub
 import 'package:flutter_animations_2/bottom_modal_sheets/bottom_sheet_with_slivers/bottom_sheet_with_slivers.dart';
 import 'package:flutter_animations_2/card_animation_from_karteto_app_own_code/own_karteto_app_code_card_animation.dart';
 import 'package:flutter_animations_2/dart_features/dart_enums.dart';
+import 'package:flutter_animations_2/dart_sync_async_isolates/stream_transformers/stream_transformers.dart';
 import 'package:flutter_animations_2/design_templates/clean_architecture/presentation/cubit/day_cubit.dart';
 import 'package:flutter_animations_2/design_templates/mvvm/viewmodel_mvvm.dart';
 import 'package:flutter_animations_2/drag_and_drop_own_animation/drag_and_drop_own_animation.dart';
@@ -78,6 +81,10 @@ import 'widget_ket_test/widget_key_test_page.dart';
 import 'michael_lazebny_articles/ml_main.dart' as mldart;
 
 void main() async {
+  final streamTransformers = StreamTransformers();
+  streamTransformers.steamTransformerWithFromHandlers();
+  return;
+
   WidgetsFlutterBinding.ensureInitialized();
   setPathUrlStrategy();
   //get material app just for showing get's snackBar
