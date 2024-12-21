@@ -1,7 +1,6 @@
 // ignore_for_file: avoid_print
 
 import 'dart:async';
-import 'dart:math';
 
 final class StreamTransformers {
   Stream<int> get _streamSource {
@@ -42,6 +41,11 @@ final class StreamTransformers {
     showStream(newStream);
   }
 
+  void streamTransformerWithFromHandlersUsingClass() {
+    final newStream = MyBaseTransformer().bind(_streamSource);
+    showStream(newStream);
+  }
+
   void simpleStreamTransformerAsyncExpand() {
     final asyncExpand = _streamSource.asyncExpand(
       (element) async* {
@@ -58,6 +62,8 @@ final class StreamTransformers {
     // if you use "asyncMap" instead of "map" it means that you will be dealing with futures (asynchronously)
     // example;
 
+    // any async code that you want to do do here inside "asyncMap"
+    // do not use async code inside "listen" of stream
     final asyncTransformedStream = _streamSource.asyncMap<String>((element) async {
       await Future.delayed(const Duration(seconds: 1));
       return "element: is: $element";
@@ -84,5 +90,32 @@ final class StreamTransformers {
     while (iterate.moveNext()) {
       print(iterate.current);
     }
+  }
+}
+
+class MyBaseTransformer extends StreamTransformerBase<int, String> {
+  @override
+  Stream<String> bind(Stream<int> stream) async* {
+    // StreamTransformer.fromHandlers is useful
+    // when you know that in stream will be errors
+    // or something unusual that you want to now add in stream
+    yield* stream.transform(
+      StreamTransformer.fromHandlers(
+        handleData: (int data, sink) {
+          if (data % 2 == 0) {
+            sink.add("value of data hey is: $data");
+          }
+        },
+        handleError: (error, stackTrace, sink) {
+          // errors will be handled here
+          // 1. send error to your selver
+          // 2. you can transform error or add something else in sink if error occurs
+          sink.add("value of data hey is: -100");
+          // if you use this error handler
+          // stream will be stopped
+          Error.throwWithStackTrace(error, stackTrace);
+        },
+      ),
+    );
   }
 }
