@@ -2,6 +2,8 @@
 
 import 'dart:async';
 
+import 'package:rxdart/rxdart.dart';
+
 final class StreamTransformers {
   Stream<int> get _streamSource {
     final controller = StreamController<int>();
@@ -9,11 +11,79 @@ final class StreamTransformers {
     controller
       ..add(5)
       ..add(2)
-      ..addError(Exception("My error")) // when error appears / streamTransformer will handle that
+      // ..addError(Exception("My error")) // when error appears / streamTransformer will handle that
       ..add(3)
       ..add(4)
       ..close();
     return controller.stream;
+  }
+
+  // https://rxmarbles.com/#throttleTime
+  void throttleTime() async {
+    // throttle will emit the first event then
+    // will wait specific duration of time until other events should be emitted
+
+    //
+    // it means that it will run first event that is coming to the stream
+    // and other events that are coming will be throw away until specific Duration of time ends
+    final controller = StreamController<String>();
+
+    final throttleTime = controller.stream.throttleTime(
+      const Duration(seconds: 1),
+    );
+
+    throttleTime.listen(
+      (data) {
+        print("hello each data is coming: $data");
+      },
+    );
+
+    controller.add("Searching 1"); // will take this one
+    controller.add("Searching 1");
+    controller.add("Searching 3");
+    await Future.delayed(const Duration(seconds: 2));
+    controller.add("Searching 4"); // will take this one
+    await Future.delayed(const Duration(seconds: 3));
+    controller.add("Searching 5"); // will take this one
+    controller.add("Searching 6");
+    controller.add("Searching 7");
+    await Future.delayed(const Duration(milliseconds: 900));
+    controller.add("Searching 8");
+
+
+    print("hello buddy");
+  }
+
+  // https://rxmarbles.com/#debounceTime
+  void debounceTime() async {
+    // debounceTime will emit event only after specific duration of time ends
+    // it is very helpful when you writing a code for searching something from the back-end
+    // in order to not overload the backend you can use this stream transformer
+    final controller = StreamController<String>();
+
+    final debounceTime = controller.stream.debounceTime(
+      const Duration(seconds: 1),
+    );
+
+    debounceTime.listen(
+      (data) {
+        print("hello each data is coming: $data");
+      },
+    );
+
+    controller.add("Searching 1");
+    controller.add("Searching 1");
+    controller.add("Searching 3");
+    await Future.delayed(const Duration(milliseconds: 500));
+    controller.add("Searching 4"); // will take this one
+    await Future.delayed(const Duration(seconds: 3));
+    controller.add("Searching 5");
+    controller.add("Searching 6");
+    controller.add("Searching 7");
+    await Future.delayed(const Duration(milliseconds: 900));
+    controller.add("Searching 8"); // will take this one
+
+    print("hello buddy");
   }
 
   void steamTransformerWithFromHandlers() {

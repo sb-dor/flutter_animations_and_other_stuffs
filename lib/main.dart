@@ -82,7 +82,7 @@ import 'michael_lazebny_articles/ml_main.dart' as mldart;
 
 void main() async {
   final streamTransformers = StreamTransformers();
-  streamTransformers.streamTransformerWithFromHandlersUsingClass();
+  streamTransformers.throttleTime();
   return;
 
   WidgetsFlutterBinding.ensureInitialized();
