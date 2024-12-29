@@ -8,6 +8,7 @@ import 'package:flutter_animations_2/michael_lazebny_articles/popups/popup_widge
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 import 'error_handling/mastering_error_handling_in_dart.dart';
+import 'popups/custom_dropdown.dart';
 import 'popups/popup_follower_impl.dart';
 import 'popups/popup_widgets_with_shortcuts.dart';
 
@@ -42,6 +43,6 @@ void main() async {
 void _appRunner() => runApp(
       MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: PopupWidgetsWithShortcuts(),
+        home: CustomDropdownImpl(),
       ),
     );
