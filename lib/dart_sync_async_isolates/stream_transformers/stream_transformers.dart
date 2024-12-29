@@ -57,6 +57,8 @@ final class StreamTransformers {
   // https://rxmarbles.com/#debounceTime
   void debounceTime() async {
     // debounceTime will emit event only after specific duration of time ends
+    // (every time when event comes to the queue it will refresh the duration and gets the last one after duration ends)
+
     // it is very helpful when you writing a code for searching something from the back-end
     // in order to not overload the backend you can use this stream transformer
     final controller = StreamController<String>();
@@ -90,7 +92,7 @@ final class StreamTransformers {
     final newStream = _streamSource.transform<String>(
       // StreamTransformer.fromHandlers is useful
       // when you know that in stream will be errors
-      // or something unusual that you want to now add in stream
+      // or something unusual that you want to know is adding inside stream
       StreamTransformer.fromHandlers(
         handleData: (int data, sink) {
           if (data % 2 == 0) {
@@ -99,7 +101,7 @@ final class StreamTransformers {
         },
         handleError: (error, stackTrace, sink) {
           // errors will be handled here
-          // 1. send error to your selver
+          // 1. send error to your server
           // 2. you can transform error or add something else in sink if error occurs
           sink.add("value of data hey is: -100");
           // if you use this error handler
@@ -153,6 +155,7 @@ final class StreamTransformers {
     }
   }
 
+  // other way to iterate lists (not so popular and necessary, just for knowing)
   void syncIterator() {
     // iterating list using iterator
     List<int> numbers = [3, 5, 6, 7];
@@ -163,12 +166,13 @@ final class StreamTransformers {
   }
 }
 
+// create transformer for stream using classes (much more readable)
 class MyBaseTransformer extends StreamTransformerBase<int, String> {
   @override
   Stream<String> bind(Stream<int> stream) async* {
     // StreamTransformer.fromHandlers is useful
     // when you know that in stream will be errors
-    // or something unusual that you want to now add in stream
+    // or something unusual that you want to know is adding inside stream
     yield* stream.transform(
       StreamTransformer.fromHandlers(
         handleData: (int data, sink) {
