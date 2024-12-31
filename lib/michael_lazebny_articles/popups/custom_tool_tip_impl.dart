@@ -16,6 +16,13 @@ class _CustomToolTipImplState extends State<CustomToolTipImpl> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Custom tooltip impl"),
+        actions: [
+          CustomerTooltip(
+            content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit "
+                "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            child: Icon(Icons.info),
+          ),
+        ],
       ),
       body: SizedBox.expand(
         child: Column(
@@ -23,10 +30,15 @@ class _CustomToolTipImplState extends State<CustomToolTipImpl> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CustomerTooltip(
-              content: "Hello brother",
-              animationDuration: const Duration(seconds: 1),
+              content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit "
+                  "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
               child: Icon(Icons.info),
             ),
+            Semantics(
+              label: 'Add to cart',
+              button: true,
+              child: Icon(Icons.add_shopping_cart),
+            )
           ],
         ),
       ),
@@ -43,7 +55,7 @@ class CustomerTooltip extends StatefulWidget {
     super.key,
     required this.content,
     required this.child,
-    required this.animationDuration,
+     this.animationDuration,
   });
 
   @override
@@ -54,7 +66,7 @@ class _CustomerTooltipState extends State<CustomerTooltip> with SingleTickerProv
   final overlayController = OverlayPortalController(debugLabel: 'CustomTooltip');
   late final AnimationController _animationController;
 
-  Duration get _animationDuration => widget.animationDuration ?? Duration(seconds: 1);
+  Duration get _animationDuration => widget.animationDuration ?? Duration(milliseconds: 300);
 
   @override
   void initState() {
@@ -79,6 +91,11 @@ class _CustomerTooltipState extends State<CustomerTooltip> with SingleTickerProv
   void _showPopup([Duration? duration]) {
     overlayController.show();
     _animationController.forward();
+    // semantic service is useful to debug and check the widgets
+    // more info you can find here:
+    // 1. https://api.flutter.dev/flutter/widgets/Semantics-class.html
+    // 2. https://stackoverflow.com/questions/51465328/flutter-semantics-explanation
+    // and check MaterialApp for semantic debugging application
     SemanticsService.tooltip(widget.content);
 
     if (duration != null) {
@@ -95,7 +112,7 @@ class _CustomerTooltipState extends State<CustomerTooltip> with SingleTickerProv
   }
 
   Widget _buildMobileTooltip(Widget child) => GestureDetector(
-        onTap: () => _togglePopup(_animationDuration + const Duration(seconds: 5)),
+        onTap: () => _togglePopup(_animationDuration + const Duration(milliseconds: 5000)),
         child: child,
       );
 
@@ -108,6 +125,7 @@ class _CustomerTooltipState extends State<CustomerTooltip> with SingleTickerProv
   @override
   Widget build(BuildContext context) {
     return Popup(
+      controller: overlayController,
       follower: (context, controller) => PopupFollower(
         tapRegionGroupId: controller,
         onDismiss: _hidePopup,

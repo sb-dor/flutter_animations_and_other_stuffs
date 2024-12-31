@@ -44,6 +44,7 @@ void main() async {
 void _appRunner() => runApp(
       MaterialApp(
         debugShowCheckedModeBanner: false,
+        // showSemanticsDebugger: true,
         home: CustomToolTipImpl(),
       ),
     );
