@@ -130,9 +130,9 @@ class _SliverSectionScrollWithPersistentTabBarWidgetState
                         padding: const EdgeInsets.all(8.0),
                         sliver: SliverToBoxAdapter(
                           child: ListView.separated(
+                            primary: false,
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
-                            primary: false,
                             separatorBuilder: (context, index) => SizedBox(height: 30),
                             itemCount: currentStateModel.categories.length,
                             itemBuilder: (context, index) {
