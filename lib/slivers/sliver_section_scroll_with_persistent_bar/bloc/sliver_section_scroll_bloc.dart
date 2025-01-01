@@ -76,9 +76,9 @@ class SliverSectionScrollBloc extends Bloc<SliverSectionScrollEvent, SliverSecti
     List<SliverCategoryModel> categories = [];
 
     // create test categories
-    for (int i = 1; i <= 30; i++) {
+    for (int i = 1; i <= 15; i++) {
       List<SliverProductModel> products = [];
-      for (int j = 1; j <= 20; j++) {
+      for (int j = 1; j <= 10; j++) {
         products.add(SliverProductModel(
           id: j,
           name: "Product $j of Category $i",

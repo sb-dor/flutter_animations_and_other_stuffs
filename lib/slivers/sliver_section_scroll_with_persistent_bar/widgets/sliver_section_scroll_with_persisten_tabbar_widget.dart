@@ -160,6 +160,7 @@ class _SliverSectionScrollWithPersistentTabBarWidgetState
                                     ),
                                     GridView.builder(
                                       padding: const EdgeInsets.all(8.0),
+                                      primary: false,
                                       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                                         crossAxisCount: 2, // Number of columns
                                         crossAxisSpacing: 8.0, // Space between columns
