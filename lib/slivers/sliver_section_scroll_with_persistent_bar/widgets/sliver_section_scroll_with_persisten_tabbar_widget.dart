@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animations_2/slivers/sliver_section_scroll_with_persistent_bar/bloc/sliver_section_scroll_bloc.dart';
 import 'package:flutter_animations_2/widgets/shimmer_container.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 import 'tabbar/sliver_section_scroll_tabbar_loaded_widget.dart';
 
@@ -28,7 +29,7 @@ class _SliverSectionScrollWithPersistentTabBarUI extends StatefulWidget {
 class _SliverSectionScrollWithPersistentTabBarWidgetState
     extends State<_SliverSectionScrollWithPersistentTabBarUI> {
   final ScrollController _listScrollController = ScrollController();
-  final ScrollController _tabBarScrollController = ScrollController();
+  final ItemScrollController _tabBarScrollController = ItemScrollController();
   double _middleOfTheScreen = 0.0;
 
   @override
@@ -40,7 +41,7 @@ class _SliverSectionScrollWithPersistentTabBarWidgetState
   @override
   void dispose() {
     _listScrollController.dispose();
-    _tabBarScrollController.dispose();
+    // _tabBarScrollController.dispose();
     super.dispose();
   }
 
@@ -54,7 +55,7 @@ class _SliverSectionScrollWithPersistentTabBarWidgetState
     _middleOfTheScreen = MediaQuery.of(context).size.height / 2.5;
     final currentPosition = _listScrollController.position.pixels;
     _listScrollController.jumpTo(0.0);
-    await Future.delayed(const Duration(milliseconds: 100));
+    await Future.delayed(const Duration(milliseconds: 1000));
     if (!mounted) return;
     context.read<SliverSectionScrollBloc>().add(
       SliverSectionScrollEvent.initPosition(

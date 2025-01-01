@@ -1,5 +1,5 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:flutter_app_badger/flutter_app_badger.dart';
+// import 'package:flutter_app_badger/flutter_app_badger.dart';
 
 class AwesomeNotificationsHelper {
   //main init. you should add this line in animated_drag_drop_app.dart
@@ -80,7 +80,7 @@ class AwesomeNotificationsHelper {
   }
 
   static Future<void> _updateNotificationBadge() async {
-    await FlutterAppBadger.removeBadge();
-    await FlutterAppBadger.updateBadgeCount(0);
+    // await FlutterAppBadger.removeBadge();
+    // await FlutterAppBadger.updateBadgeCount(0);
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animations_2/slivers/sliver_section_scroll_with_persistent_bar/bloc/sliver_section_scroll_bloc.dart';
 import 'package:flutter_animations_2/slivers/sliver_section_scroll_with_persistent_bar/widgets/tabbar/sliver_section_scroll_tabbar_loading.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 const double sliverTabBarHeight = 55;
 
@@ -13,7 +14,7 @@ extension StringEx on String {
 }
 
 class SliverSectionScrollTabBarLoadedWidget extends StatelessWidget {
-  final ScrollController scrollController;
+  final ItemScrollController scrollController;
 
   const SliverSectionScrollTabBarLoadedWidget({
     super.key,
@@ -31,7 +32,7 @@ class SliverSectionScrollTabBarLoadedWidget extends StatelessWidget {
 }
 
 class Delegate extends SliverPersistentHeaderDelegate {
-  final ScrollController scrollController;
+  final ItemScrollController scrollController;
 
   const Delegate({required this.scrollController}) : super();
 
@@ -62,38 +63,45 @@ class Delegate extends SliverPersistentHeaderDelegate {
                         ),
                       ],
               ),
-              child: ListView.separated(
-                controller: scrollController,
+              child: ScrollablePositionedList.separated(
+                itemScrollController: scrollController,
                 separatorBuilder: (context, index) => SizedBox(width: 10),
                 scrollDirection: Axis.horizontal,
                 itemCount: currentState.sliverTitles.length,
                 physics: const AlwaysScrollableScrollPhysics(parent: ClampingScrollPhysics()),
+                shrinkWrap: true,
                 itemBuilder: (context, index) {
-                  return InkWell(
-                    onTap: () {
-                      // context
-                      //     .read<MainPageBloc>()
-                      //     .add(ChangeSliverPersistentState(index: index, context: context))
-                    },
-                    child: Container(
-                      key: currentState.sliverGlobalKeys[index],
-                      padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
-                      decoration: BoxDecoration(
-                          color: currentState.scrollIndexPositionAt == index
-                              ? Theme.of(context).primaryColor.withValues(alpha: 0.3)
-                              : Theme.of(context).dividerColor,
-                          borderRadius: BorderRadius.circular(30)),
-                      child: Center(
-                        child: Text(
-                          currentState.sliverTitles[index].capitalize(),
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            color: currentState.scrollIndexPositionAt == index
-                                ? Theme.of(context).primaryColor.withValues(alpha: 0.7)
-                                : Theme.of(context).textTheme.titleLarge?.color,
+                  return Container(
+                    key: currentState.sliverGlobalKeys[index],
+                    child: Column(
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            // context
+                            //     .read<MainPageBloc>()
+                            //     .add(ChangeSliverPersistentState(index: index, context: context))
+                          },
+                          child: Container(
+                            padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
+                            decoration: BoxDecoration(
+                                color: currentState.scrollIndexPositionAt == index
+                                    ? Theme.of(context).primaryColor.withValues(alpha: 0.3)
+                                    : Theme.of(context).dividerColor,
+                                borderRadius: BorderRadius.circular(30)),
+                            child: Center(
+                              child: Text(
+                                currentState.sliverTitles[index].capitalize(),
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  color: currentState.scrollIndexPositionAt == index
+                                      ? Theme.of(context).primaryColor.withValues(alpha: 0.7)
+                                      : Theme.of(context).textTheme.titleLarge?.color,
+                                ),
+                              ),
+                            ),
                           ),
                         ),
-                      ),
+                      ],
                     ),
                   );
                 },
@@ -111,5 +119,5 @@ class Delegate extends SliverPersistentHeaderDelegate {
   double get minExtent => sliverTabBarHeight;
 
   @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) => true;
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) => false;
 }

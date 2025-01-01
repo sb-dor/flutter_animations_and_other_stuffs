@@ -6,6 +6,7 @@ import 'package:flutter_animations_2/slivers/sliver_section_scroll_with_persiste
 import 'package:flutter_animations_2/slivers/sliver_section_scroll_with_persistent_bar/widgets/tabbar/sliver_section_scroll_tabbar_loaded_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 part 'sliver_section_scroll_bloc.freezed.dart';
 
@@ -19,13 +20,13 @@ class SliverSectionScrollEvent with _$SliverSectionScrollEvent {
 
   const factory SliverSectionScrollEvent.scrollListener({
     required final ScrollController listScrollController,
-    required final ScrollController tabBarScrollController,
+    required final ItemScrollController tabBarScrollController,
     required final double middleOfTheScreen,
   }) = _ScrollListenerOnSliverSectionScrollEvent;
 
   const factory SliverSectionScrollEvent.animateTabBarOnScroll({
     required final int position,
-    required final ScrollController tabBarScrollController,
+    required final ItemScrollController tabBarScrollController,
   }) = _AnimateTabBarOnScrollEventonSliverSectionScrollEvent;
 }
 
@@ -122,10 +123,6 @@ class SliverSectionScrollBloc extends Bloc<SliverSectionScrollEvent, SliverSecti
 
     var currentStateModel = state.stateModel.copyWith();
 
-    for(final each in currentStateModel.globalKeys){
-      debugPrint("each global key: ${each.currentContext?.findRenderObject()}");
-    }
-
     for (final each in currentStateModel.globalKeys) {
       final RenderBox renderBox = each.currentContext?.findRenderObject() as RenderBox;
 
@@ -188,15 +185,30 @@ class SliverSectionScrollBloc extends Bloc<SliverSectionScrollEvent, SliverSecti
 
     await Future.delayed(const Duration(milliseconds: 100));
 
+    // final checkWhetherAnySliverGlobalKeysIsNull = currentStateModel.sliverGlobalKeys
+    //     .any((element) => element.currentContext?.findRenderObject() == null);
+    //
+    // if (checkWhetherAnySliverGlobalKeysIsNull) {
+    //   for (final each in currentStateModel.sliverGlobalKeys) {
+    //     RenderBox? renderBox = each.currentContext?.findRenderObject() as RenderBox?;
+    //     if (renderBox == null) {
+    //
+    //     }
+    //   }
+    // }
+    //
+    // for (final each in currentStateModel.sliverGlobalKeys) {
+    //   debugPrint("each has something: ${each.currentContext?.findRenderObject()}");
+    // }
+
     RenderBox? box = currentStateModel.sliverGlobalKeys[event.position].currentContext
         ?.findRenderObject() as RenderBox?;
 
     Offset offset = box?.localToGlobal(Offset.zero) ?? Offset(0, 0);
 
-    await event.tabBarScrollController.animateTo(
-      offset.dx,
-      duration: const Duration(milliseconds: 300),
-      curve: Curves.linear,
+    await event.tabBarScrollController.scrollTo(
+      index: event.position,
+      duration: Duration(milliseconds: 400),
     );
   }
 }
