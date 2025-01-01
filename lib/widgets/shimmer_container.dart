@@ -10,24 +10,23 @@ class ShimmerContainer extends StatelessWidget {
   final Duration? duration;
 
   const ShimmerContainer(
-      {Key? key,
+      {super.key,
       this.width,
       this.height,
       this.child,
       this.backgroundColor,
       this.borderRadius,
-      this.duration})
-      : super(key: key);
+      this.duration});
 
   const ShimmerContainer.withChild({
-    Key? key,
+    super.key,
     required this.child,
     this.width,
     this.height,
     this.backgroundColor,
     this.borderRadius,
     this.duration,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

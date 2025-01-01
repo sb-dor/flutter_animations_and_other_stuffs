@@ -75,15 +75,16 @@ import 'slivers/sliver_and_scrolls/sliver_and_scroll_from_diego_dev/home_sliver_
 import 'slivers/sliver_and_scrolls/sliver_and_scroll_page.dart';
 import 'slivers/sliver_app_bar_title_animation.dart';
 import 'slivers/sliver_appbar_with_tabbar_page.dart';
+import 'slivers/sliver_section_scroll_with_persistent_bar/widgets/sliver_section_scroll_with_persisten_tabbar_widget.dart';
 import 'slivers/sliver_stuck_after_each_other/sliver_app_bar_page.dart';
 import 'stateless_widget_with_state/statelesswidget_with_state.dart';
 import 'widget_ket_test/widget_key_test_page.dart';
 import 'michael_lazebny_articles/ml_main.dart' as mldart;
 
 void main() async {
-  final streamTransformers = StreamTransformers();
-  streamTransformers.throttleTime();
-  return;
+  // final streamTransformers = StreamTransformers();
+  // streamTransformers.throttleTime();
+  // return;
 
   WidgetsFlutterBinding.ensureInitialized();
   setPathUrlStrategy();
@@ -122,8 +123,8 @@ void main() async {
     }
   }
 
-  mldart.main();
-  return;
+  // mldart.main();
+  // return;
 
   const user = AccountStatus.admin;
 
@@ -292,7 +293,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const StatelessWidgetWithState(),
+        builder: (context, state) => const SliverSectionScrollWithPersistentTabBarWidget(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
