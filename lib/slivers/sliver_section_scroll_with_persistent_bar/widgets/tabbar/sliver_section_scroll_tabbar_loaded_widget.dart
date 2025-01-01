@@ -71,37 +71,30 @@ class Delegate extends SliverPersistentHeaderDelegate {
                 physics: const AlwaysScrollableScrollPhysics(parent: ClampingScrollPhysics()),
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
-                  return Container(
-                    key: currentState.sliverGlobalKeys[index],
-                    child: Column(
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            // context
-                            //     .read<MainPageBloc>()
-                            //     .add(ChangeSliverPersistentState(index: index, context: context))
-                          },
-                          child: Container(
-                            padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
-                            decoration: BoxDecoration(
-                                color: currentState.scrollIndexPositionAt == index
-                                    ? Theme.of(context).primaryColor.withValues(alpha: 0.3)
-                                    : Theme.of(context).dividerColor,
-                                borderRadius: BorderRadius.circular(30)),
-                            child: Center(
-                              child: Text(
-                                currentState.sliverTitles[index].capitalize(),
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  color: currentState.scrollIndexPositionAt == index
-                                      ? Theme.of(context).primaryColor.withValues(alpha: 0.7)
-                                      : Theme.of(context).textTheme.titleLarge?.color,
-                                ),
-                              ),
-                            ),
+                  return InkWell(
+                    onTap: () {
+                      // context
+                      //     .read<MainPageBloc>()
+                      //     .add(ChangeSliverPersistentState(index: index, context: context))
+                    },
+                    child: Container(
+                      padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
+                      decoration: BoxDecoration(
+                          color: currentState.scrollIndexPositionAt == index
+                              ? Theme.of(context).primaryColor.withValues(alpha: 0.3)
+                              : Theme.of(context).dividerColor,
+                          borderRadius: BorderRadius.circular(30)),
+                      child: Center(
+                        child: Text(
+                          currentState.sliverTitles[index].capitalize(),
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            color: currentState.scrollIndexPositionAt == index
+                                ? Theme.of(context).primaryColor.withValues(alpha: 0.7)
+                                : Theme.of(context).textTheme.titleLarge?.color,
                           ),
                         ),
-                      ],
+                      ),
                     ),
                   );
                 },

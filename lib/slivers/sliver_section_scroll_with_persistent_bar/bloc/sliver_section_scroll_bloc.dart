@@ -99,15 +99,12 @@ class SliverSectionScrollBloc extends Bloc<SliverSectionScrollEvent, SliverSecti
 
     for (final each in currentStateModel.categories) {
       List<GlobalKey> globalKeys = List<GlobalKey>.from(currentStateModel.globalKeys);
-      List<GlobalKey> sliverGlobalKeys = List<GlobalKey>.from(currentStateModel.sliverGlobalKeys);
       List<String> sliverTitles = List<String>.from(currentStateModel.sliverTitles);
 
       globalKeys.add(GlobalKey());
-      sliverGlobalKeys.add(GlobalKey());
       sliverTitles.add(each.name ?? '-');
       currentStateModel = currentStateModel.copyWith(
         globalKeys: globalKeys,
-        sliverGlobalKeys: sliverGlobalKeys,
         sliverTitles: sliverTitles,
       );
     }
@@ -185,30 +182,10 @@ class SliverSectionScrollBloc extends Bloc<SliverSectionScrollEvent, SliverSecti
 
     await Future.delayed(const Duration(milliseconds: 100));
 
-    // final checkWhetherAnySliverGlobalKeysIsNull = currentStateModel.sliverGlobalKeys
-    //     .any((element) => element.currentContext?.findRenderObject() == null);
-    //
-    // if (checkWhetherAnySliverGlobalKeysIsNull) {
-    //   for (final each in currentStateModel.sliverGlobalKeys) {
-    //     RenderBox? renderBox = each.currentContext?.findRenderObject() as RenderBox?;
-    //     if (renderBox == null) {
-    //
-    //     }
-    //   }
-    // }
-    //
-    // for (final each in currentStateModel.sliverGlobalKeys) {
-    //   debugPrint("each has something: ${each.currentContext?.findRenderObject()}");
-    // }
-
-    RenderBox? box = currentStateModel.sliverGlobalKeys[event.position].currentContext
-        ?.findRenderObject() as RenderBox?;
-
-    Offset offset = box?.localToGlobal(Offset.zero) ?? Offset(0, 0);
-
     await event.tabBarScrollController.scrollTo(
       index: event.position,
       duration: Duration(milliseconds: 400),
+      // alignment: -0.5,
     );
   }
 }

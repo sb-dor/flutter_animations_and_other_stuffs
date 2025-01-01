@@ -4,7 +4,6 @@ import 'package:flutter_animations_2/slivers/sliver_section_scroll_with_persiste
 class SliverSectionScrollStateModel {
   final List<SliverCategoryModel> categories;
   final List<GlobalKey> globalKeys;
-  final List<GlobalKey> sliverGlobalKeys;
   final List<String> sliverTitles;
   final List<double> eachSectionPosition;
   final int scrollIndexPositionAt;
@@ -12,7 +11,6 @@ class SliverSectionScrollStateModel {
   const SliverSectionScrollStateModel({
     required this.categories,
     required this.globalKeys,
-    required this.sliverGlobalKeys,
     this.sliverTitles = const [],
     this.eachSectionPosition = const [],
     this.scrollIndexPositionAt = 0,
@@ -21,7 +19,6 @@ class SliverSectionScrollStateModel {
   factory SliverSectionScrollStateModel.idle() => SliverSectionScrollStateModel(
         categories: <SliverCategoryModel>[],
         globalKeys: <GlobalKey>[],
-        sliverGlobalKeys: <GlobalKey>[],
       );
 
   @override
@@ -31,7 +28,6 @@ class SliverSectionScrollStateModel {
           runtimeType == other.runtimeType &&
           categories == other.categories &&
           globalKeys == other.globalKeys &&
-          sliverGlobalKeys == other.sliverGlobalKeys &&
           sliverTitles == other.sliverTitles &&
           eachSectionPosition == other.eachSectionPosition &&
           scrollIndexPositionAt == other.scrollIndexPositionAt);
@@ -40,7 +36,6 @@ class SliverSectionScrollStateModel {
   int get hashCode =>
       categories.hashCode ^
       globalKeys.hashCode ^
-      sliverGlobalKeys.hashCode ^
       sliverTitles.hashCode ^
       eachSectionPosition.hashCode ^
       scrollIndexPositionAt.hashCode;
@@ -50,7 +45,6 @@ class SliverSectionScrollStateModel {
     return 'SliverSectionScrollStateModel{' +
         ' categories: $categories,' +
         ' globalKeys: $globalKeys,' +
-        ' sliverGlobalKeys: $sliverGlobalKeys,' +
         ' sliverTitles: $sliverTitles,' +
         ' eachSectionPosition: $eachSectionPosition,' +
         ' scrollIndexPositionAt: $scrollIndexPositionAt,' +
@@ -68,7 +62,6 @@ class SliverSectionScrollStateModel {
     return SliverSectionScrollStateModel(
       categories: categories ?? this.categories,
       globalKeys: globalKeys ?? this.globalKeys,
-      sliverGlobalKeys: sliverGlobalKeys ?? this.sliverGlobalKeys,
       sliverTitles: sliverTitles ?? this.sliverTitles,
       eachSectionPosition: eachSectionPosition ?? this.eachSectionPosition,
       scrollIndexPositionAt: scrollIndexPositionAt ?? this.scrollIndexPositionAt,
