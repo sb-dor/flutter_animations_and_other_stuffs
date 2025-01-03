@@ -29,8 +29,8 @@ class MainActivity : FlutterActivity() {
 
         // the key is already locked and you cannot use it
         try {
-            MapKitFactory.setLocale("ru_RU"); // Your preferred language. Not required, defaults to system language
-            MapKitFactory.setApiKey(MAP_YANDEX_ID); // Your generated API key
+//            MapKitFactory.setLocale("ru_RU"); // Your preferred language. Not required, defaults to system language
+//            MapKitFactory.setApiKey(MAP_YANDEX_ID); // Your generated API key
         } catch (_: AssertionError) {
 
         }

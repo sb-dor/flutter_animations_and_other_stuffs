@@ -83,24 +83,27 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.10"
+
+    implementation 'androidx.appcompat:appcompat:1.6.1' // Use a stable version
+
+    implementation 'androidx.appcompat:appcompat-resources:1.6.1'
     // Import the Firebase BoM
-    implementation(platform("com.google.firebase:firebase-bom:32.1.1"))
+//    implementation(platform("com.google.firebase:firebase-bom:32.1.1"))
 
-    implementation("com.google.firebase:firebase-analytics-ktx")
+//    implementation 'com.google.firebase:firebase-analytics-ktx'
+//    implementation 'com.google.firebase:firebase-messaging-ktx'
+//
+//    implementation 'com.pusher:push-notifications-android:1.9.0'
 
-    implementation 'com.google.firebase:firebase-messaging:23.1.2'
-
-    implementation 'com.pusher:push-notifications-android:1.9.0'
-
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
-
-    implementation 'androidx.window:window:1.1.0'
-
-    implementation 'androidx.window:window-java:1.1.0'
+//    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
+//
+//    implementation 'androidx.window:window:1.1.0'
+//
+//    implementation 'androidx.window:window-java:1.1.0'
 
     // implementation 'me.carda:AndroidAwnCore:0.7.5'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.2.2'
 
-
-    implementation 'com.yandex.android:maps.mobile:4.3.2-full'
+    implementation 'com.yandex.android:maps.mobile:4.6.1-full'
 }
 

@@ -19,7 +19,7 @@ import FirebaseCore
     //the key is already locked and you cannot use it
     do{
         YMKMapKit.setLocale("ru_RU") // Your preferred language. Not required, defaults to system language
-        YMKMapKit.setApiKey("XXXXXXXXXXXXXXXXXXXX") // Your generated API key
+        YMKMapKit.setApiKey(Secrets.apiYandexKey) // class name and static getter
     } catch {
 
     }
