@@ -12,7 +12,7 @@ class MapStateModel {
   final MapObjectId cameraMapObjectId = const MapObjectId('camera_placeMark');
   final MapObjectId secondPlaceMarkId = const MapObjectId('second_place_mark_id');
 
-  DrivingResultWithSession? drivingResultWithSession;
+  DrivingSessionResult? drivingResultWithSession;
 
   final List<DrivingSessionResult> results = [];
 

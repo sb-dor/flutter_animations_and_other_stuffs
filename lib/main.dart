@@ -80,6 +80,7 @@ import 'slivers/sliver_stuck_after_each_other/sliver_app_bar_page.dart';
 import 'stateless_widget_with_state/statelesswidget_with_state.dart';
 import 'widget_ket_test/widget_key_test_page.dart';
 import 'michael_lazebny_articles/ml_main.dart' as mldart;
+import 'yandex_mapkit/yandex_map_screen.dart';
 
 void main() async {
   // final streamTransformers = StreamTransformers();
@@ -293,7 +294,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const SliverSectionScrollWithPersistentTabBarWidget(),
+        builder: (context, state) => const YandexMapScreen(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {

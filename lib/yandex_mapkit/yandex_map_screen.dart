@@ -8,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 class YandexMapScreen extends StatelessWidget {
-  const YandexMapScreen({Key? key}) : super(key: key);
+  const YandexMapScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

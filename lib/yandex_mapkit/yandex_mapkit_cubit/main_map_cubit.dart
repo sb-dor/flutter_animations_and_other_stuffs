@@ -18,14 +18,17 @@ class MainMapCubit extends Cubit<MainMapStates> {
 
     for (var each in currentState.listOfCoordinates) {
       MapObjectId mapId = MapObjectId('map_id_${each.lat}${each.lon}');
-      placeMarks.add(PlacemarkMapObject(
+      placeMarks.add(
+        PlacemarkMapObject(
           mapId: mapId,
           point: Point(latitude: each.lat, longitude: each.lon),
           icon: PlacemarkIcon.single(PlacemarkIconStyle(
               anchor: const Offset(0.5, 1),
               image: BitmapDescriptor.fromAssetImage("assets/icons/map_icon.png"),
               scale: 0.100)),
-          opacity: 0.5));
+          opacity: 0.5,
+        ),
+      );
     }
 
     var cluster = ClusterizedPlacemarkCollection(
@@ -65,14 +68,17 @@ class MainMapCubit extends Cubit<MainMapStates> {
 
     for (var each in currentState.listOfCoordinates) {
       MapObjectId mapId = MapObjectId('map_id_${each.lat}${each.lon}');
-      currentState.placeMarks.add(PlacemarkMapObject(
+      currentState.placeMarks.add(
+        PlacemarkMapObject(
           mapId: mapId,
           point: Point(latitude: each.lat, longitude: each.lon),
           icon: PlacemarkIcon.single(PlacemarkIconStyle(
               anchor: const Offset(0.5, 1),
               image: BitmapDescriptor.fromAssetImage("assets/icons/map_icon.png"),
               scale: 0.100)),
-          opacity: 0.5));
+          opacity: 0.5,
+        ),
+      );
     }
 
     currentState.mapObjects.addAll(currentState.placeMarks);
@@ -87,56 +93,81 @@ class MainMapCubit extends Cubit<MainMapStates> {
 
     //main camera placeMark object that will pursue after moving camera
     currentState.cameraMapObject = PlacemarkMapObject(
-        mapId: currentState.cameraMapObjectId,
-        point: const Point(latitude: 38.576271, longitude: 68.779716),
-        icon: PlacemarkIcon.single(PlacemarkIconStyle(
-            anchor: const Offset(0.5, 1),
-            image: BitmapDescriptor.fromAssetImage("assets/icons/map_icon.png"),
-            scale: 0.170)),
-        opacity: 0.5);
+      mapId: currentState.cameraMapObjectId,
+      point: const Point(latitude: 38.576271, longitude: 68.779716),
+      icon: PlacemarkIcon.single(
+        PlacemarkIconStyle(
+          anchor: const Offset(0.5, 1),
+          image: BitmapDescriptor.fromAssetImage("assets/icons/map_icon.png"),
+          scale: 0.170,
+        ),
+      ),
+      opacity: 0.5,
+    );
     //38.589252 68.742095
     currentState.firstObject = PlacemarkMapObject(
-        mapId: currentState.firstPlaceMarkId,
-        point: const Point(latitude: 38.589252, longitude: 68.742095),
-        icon: PlacemarkIcon.single(PlacemarkIconStyle(
-            anchor: const Offset(0.5, 1),
-            image: BitmapDescriptor.fromAssetImage("assets/icons/map_icon.png"),
-            scale: 0.100)),
-        opacity: 0.5,
-        //if you want to do some stuff while tapping on place mark use this onTap callback
-        onTap: (placeMark, point) async {
-          if (currentState.loadingMap) return;
-          currentState.loadingMap = true;
+      mapId: currentState.firstPlaceMarkId,
+      point: const Point(latitude: 38.589252, longitude: 68.742095),
+      icon: PlacemarkIcon.single(
+        PlacemarkIconStyle(
+          anchor: const Offset(0.5, 1),
+          image: BitmapDescriptor.fromAssetImage("assets/icons/map_icon.png"),
+          scale: 0.100,
+        ),
+      ),
+      opacity: 0.5,
+      //if you want to do some stuff while tapping on place mark use this onTap callback
+      onTap: (placeMark, point) async {
+        if (currentState.loadingMap) return;
+        currentState.loadingMap = true;
 
-          //if you want to move camera use this
-          await currentState.controller.moveCamera(
-              CameraUpdate.newCameraPosition(const CameraPosition(
-                  target: Point(latitude: 38.589252, longitude: 68.742095), zoom: 13)),
-              animation: const MapAnimation(type: MapAnimationType.smooth, duration: 1));
+        //if you want to move camera use this
+        await currentState.controller.moveCamera(
+          CameraUpdate.newCameraPosition(
+            const CameraPosition(
+              target: Point(latitude: 38.589252, longitude: 68.742095),
+              zoom: 13,
+            ),
+          ),
+          animation: const MapAnimation(
+            type: MapAnimationType.smooth,
+            duration: 1,
+          ),
+        );
 
-          currentState.loadingMap = false;
-        });
+        currentState.loadingMap = false;
+      },
+    );
     currentState.secondObject = PlacemarkMapObject(
-        mapId: currentState.secondPlaceMarkId,
-        point: const Point(latitude: 38.548496, longitude: 68.772179),
-        icon: PlacemarkIcon.single(PlacemarkIconStyle(
-            anchor: const Offset(0.5, 1),
-            image: BitmapDescriptor.fromAssetImage("assets/icons/map_icon.png"),
-            scale: 0.100)),
-        opacity: 0.5,
-        //if you want to do some stuff while tapping on place mark use this onTap callback
-        onTap: (placeMark, point) async {
-          if (currentState.loadingMap) return;
-          currentState.loadingMap = true;
+      mapId: currentState.secondPlaceMarkId,
+      point: const Point(latitude: 38.548496, longitude: 68.772179),
+      icon: PlacemarkIcon.single(PlacemarkIconStyle(
+          anchor: const Offset(0.5, 1),
+          image: BitmapDescriptor.fromAssetImage("assets/icons/map_icon.png"),
+          scale: 0.100)),
+      opacity: 0.5,
+      //if you want to do some stuff while tapping on place mark use this onTap callback
+      onTap: (placeMark, point) async {
+        if (currentState.loadingMap) return;
+        currentState.loadingMap = true;
 
-          //if you want to move camera use this
-          await currentState.controller.moveCamera(
-              CameraUpdate.newCameraPosition(const CameraPosition(
-                  target: Point(latitude: 38.548496, longitude: 68.772179), zoom: 13)),
-              animation: const MapAnimation(type: MapAnimationType.smooth, duration: 1));
+        //if you want to move camera use this
+        await currentState.controller.moveCamera(
+          CameraUpdate.newCameraPosition(
+            const CameraPosition(
+              target: Point(latitude: 38.548496, longitude: 68.772179),
+              zoom: 13,
+            ),
+          ),
+          animation: const MapAnimation(
+            type: MapAnimationType.smooth,
+            duration: 1,
+          ),
+        );
 
-          currentState.loadingMap = false;
-        });
+        currentState.loadingMap = false;
+      },
+    );
 
     //add all placeMarkObject here. This mapObject will be added in YandexMap widget in YandexMapScreen
     currentState.mapObjects = [
@@ -157,7 +188,13 @@ class MainMapCubit extends Cubit<MainMapStates> {
         .firstWhere((el) => el.mapId == currentState.cameraMapObjectId) as PlacemarkMapObject;
 
     await currentState.controller.moveCamera(
-        CameraUpdate.newCameraPosition(CameraPosition(target: placeMarkMapObject.point, zoom: 12)));
+      CameraUpdate.newCameraPosition(
+        CameraPosition(
+          target: placeMarkMapObject.point,
+          zoom: 12,
+        ),
+      ),
+    );
 
     emit(InitialMapStates(currentState));
   }
@@ -209,12 +246,16 @@ class MainMapCubit extends Cubit<MainMapStates> {
     var currentState = state.mapStateModel;
     final getCameraPosition = await currentState.controller.getCameraPosition();
 
-    var results = YandexSearch.searchByPoint(
-        point: getCameraPosition.target,
-        zoom: getCameraPosition.zoom.toInt(),
-        searchOptions: const SearchOptions(searchType: SearchType.geo, geometry: false));
+    var results = await YandexSearch.searchByPoint(
+      point: getCameraPosition.target,
+      zoom: getCameraPosition.zoom.toInt(),
+      searchOptions: const SearchOptions(
+        searchType: SearchType.geo,
+        geometry: false,
+      ),
+    );
 
-    SearchSessionResult searchResult = await results.result;
+    SearchSessionResult searchResult = await results.$2;
     if (searchResult.error != null) {
       //any error message or function
       return;
@@ -222,8 +263,13 @@ class MainMapCubit extends Cubit<MainMapStates> {
     debugPrint("name: ${searchResult.items}");
     debugPrint("name: ${searchResult.items?[0].name}");
     if (context.mounted) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text("${searchResult.items?[0].name}")));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            "${searchResult.items?[0].name}",
+          ),
+        ),
+      );
     }
   }
 
@@ -233,16 +279,21 @@ class MainMapCubit extends Cubit<MainMapStates> {
 
     var cameraPosition = await currentState.controller.getCameraPosition();
 
-    final results = YandexSearch.searchByText(
-        searchText: currentState.searchByNameController.text.trim(),
-        geometry: Geometry.fromBoundingBox(BoundingBox(
-          southWest: Point(
-              latitude: cameraPosition.target.latitude, longitude: cameraPosition.target.longitude),
-          northEast: Point(
-              latitude: cameraPosition.target.latitude, longitude: cameraPosition.target.longitude),
-        )),
-        searchOptions: const SearchOptions(searchType: SearchType.geo, geometry: false));
-    SearchSessionResult result = await results.result;
+    final results = await YandexSearch.searchByText(
+      searchText: currentState.searchByNameController.text.trim(),
+      geometry: Geometry.fromBoundingBox(BoundingBox(
+        southWest: Point(
+            latitude: cameraPosition.target.latitude, longitude: cameraPosition.target.longitude),
+        northEast: Point(
+            latitude: cameraPosition.target.latitude, longitude: cameraPosition.target.longitude),
+      )),
+      searchOptions: const SearchOptions(
+        searchType: SearchType.geo,
+        geometry: false,
+      ),
+    );
+
+    SearchSessionResult result = await results.$2;
 
     if (result.error != null) {
       //any error message or function
@@ -279,19 +330,20 @@ class MainMapCubit extends Cubit<MainMapStates> {
 
   //if you are searching driving routes to get information from one point to another use
   //this function. It gives all information like distance, estimated time of arrival, for adding polyLines and other things
-  Future<DrivingResultWithSession?> requestRoutesBetweenPoints(
+  Future<DrivingSessionResult?> requestRoutesBetweenPoints(
       {required Point? point1, required Point? point2}) async {
     if (point1 == null || point2 == null) return null;
     var currentState = state.mapStateModel;
-    var drivingSearchResults =
-        currentState.drivingResultWithSession = YandexDriving.requestRoutes(points: [
+    var drivingSearchResults = await YandexDriving.requestRoutes(points: [
       RequestPoint(
           point: currentState.firstObject.point, requestPointType: RequestPointType.wayPoint),
       RequestPoint(
           point: currentState.secondObject.point, requestPointType: RequestPointType.wayPoint),
     ], drivingOptions: const DrivingOptions(initialAzimuth: 0, routesCount: 5, avoidTolls: true));
 
-    return drivingSearchResults;
+    currentState.drivingResultWithSession = await drivingSearchResults.$2;
+
+    return drivingSearchResults.$2;
   }
 
   //for making routes to reaching the point
@@ -301,26 +353,24 @@ class MainMapCubit extends Cubit<MainMapStates> {
     var drivingRes = await requestRoutesBetweenPoints(
         point1: currentState.firstObject.point, point2: currentState.secondObject.point);
 
-    var result = await drivingRes?.result;
-
-    if (result?.error != null) {
-      debugPrint('Error: ${result?.error}');
+    if (drivingRes?.error != null) {
+      debugPrint('Error: ${drivingRes?.error}');
       return;
     }
 
-    currentState.results.add(result!);
+    currentState.results.add(drivingRes!);
 
-    currentState.searchRes = result.routes?[0].metadata.weight.distance.text;
+    currentState.searchRes = drivingRes.routes?[0].metadata.weight.distance.text;
     //this adds all possible routes to the point
     //if you want to add only one route to reach the point do it without loop and get only first object of array
-    result.routes!.asMap().forEach((i, route) {
+    drivingRes.routes!.asMap().forEach((i, route) {
       //for getting distance and time of route
       debugPrint("$i route distance: ${route.metadata.weight.distance.text}");
       debugPrint("$i estimated time of arrival: ${route.metadata.weight.time.text}");
 
       currentState.mapObjects.add(PolylineMapObject(
         mapId: MapObjectId('route_${i}_polyline'),
-        polyline: Polyline(points: route.geometry),
+        polyline: Polyline(points: route.geometry.points),
         strokeColor: Theme.of(GlobalContextHelper.instance.globalNavigatorContext.currentContext!)
             .colorScheme
             .secondary,
@@ -366,7 +416,7 @@ class MainMapCubit extends Cubit<MainMapStates> {
       animation: const MapAnimation(type: MapAnimationType.smooth, duration: 0.3),
     );
 
-    var searchRes = YandexSearch.searchByPoint(
+    var searchRes = await YandexSearch.searchByPoint(
         point: point,
         zoom: cameraPos.zoom.toInt(),
         searchOptions: const SearchOptions(
@@ -374,7 +424,7 @@ class MainMapCubit extends Cubit<MainMapStates> {
           geometry: false,
         ));
 
-    var res = await searchRes.result;
+    var res = await searchRes.$2;
 
     if (!context.mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -432,7 +482,7 @@ class MainMapCubit extends Cubit<MainMapStates> {
       mapId: const MapObjectId('circle_map_object_id-1'),
       circle: const Circle(center: Point(latitude: 38.583026, longitude: 68.716816), radius: 1000),
       strokeColor: Colors.blue[700]!,
-      fillColor: Colors.blue[300]!.withOpacity(0.3),
+      fillColor: Colors.blue[300]!.withValues(alpha: 0.3),
       onTap: (CircleMapObject self, Point point) => debugPrint('Tapped me at $point'),
     );
 
@@ -458,8 +508,8 @@ class MainMapCubit extends Cubit<MainMapStates> {
     var polygonMapObject = PolygonMapObject(
         strokeColor: Colors.orange[700]!,
         strokeWidth: 3.0,
-        fillColor: Colors.yellow[200]!.withOpacity(0.4),
-        onTap: (PolygonMapObject self, Point point) => print('Tapped me at $point'),
+        fillColor: Colors.yellow[200]!.withValues(alpha: 0.4),
+        onTap: (PolygonMapObject self, Point point) => debugPrint('Tapped me at $point'),
         mapId: const MapObjectId("polygon_map_object_id-1"),
         polygon: const Polygon(
             outerRing: LinearRing(points: [
@@ -483,7 +533,7 @@ class MainMapCubit extends Cubit<MainMapStates> {
 
   // when user search some address this function will suggest him other same addresses
   void suggestPositionsInRequest(String? addressName) async {
-    final resultWithSession = YandexSuggest.getSuggestions(
+    final resultWithSession = await YandexSuggest.getSuggestions(
         text: addressName ?? "микрорайон Зарафшон, 1м3",
         boundingBox: const BoundingBox(
             northEast: Point(latitude: 56.0421, longitude: 38.0284),
@@ -493,7 +543,7 @@ class MainMapCubit extends Cubit<MainMapStates> {
           suggestWords: true,
         ));
 
-    var res = await resultWithSession.result;
+    var res = await resultWithSession.$2;
 
     for (var each in res.items ?? <SuggestItem>[]) {
       debugPrint("title: ${each.title}");
@@ -551,7 +601,7 @@ class MainMapCubit extends Cubit<MainMapStates> {
     debugPrint("first: ${firstMarker?.point} | second: ${secondMarker?.point}");
 
     if (firstMarker != null && secondMarker != null) {
-      final yandexSearch = YandexDriving.requestRoutes(
+      final yandexSearch = await YandexDriving.requestRoutes(
         points: [
           RequestPoint(point: firstMarker.point, requestPointType: RequestPointType.wayPoint),
           RequestPoint(point: secondMarker.point, requestPointType: RequestPointType.wayPoint)
@@ -559,13 +609,13 @@ class MainMapCubit extends Cubit<MainMapStates> {
         drivingOptions: const DrivingOptions(initialAzimuth: 0, routesCount: 5, avoidTolls: true),
       );
 
-      final result = await yandexSearch.result;
+      final result = await yandexSearch.$2;
 
       const MapObjectId placeMark = MapObjectId('destination');
 
       final getPos = PolylineMapObject(
         mapId: placeMark,
-        polyline: Polyline(points: (result.routes ?? []).first.geometry),
+        polyline: Polyline(points: (result.routes ?? <DrivingRoute>[]).first.geometry.points),
         strokeColor: Theme.of(GlobalContextHelper.instance.globalNavigatorContext.currentContext!)
             .colorScheme
             .secondary,
@@ -591,7 +641,7 @@ class MainMapCubit extends Cubit<MainMapStates> {
           width: 50,
           height: 50,
           decoration: BoxDecoration(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(50),
           ),
         ),
