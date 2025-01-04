@@ -62,7 +62,7 @@ dependencies:
   path_provider: ^2.1.4
   pdf: ^3.8.4
   open_file:
-  pdfx: ^2.7.0
+  pdfx: ^2.8.0
   conditional_builder_null_safety: ^0.0.6
 #  flutter_scan_bluetooth: ^2.1.4
   # The following adds the Cupertino Icons font to your application.

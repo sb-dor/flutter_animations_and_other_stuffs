@@ -36,7 +36,6 @@ subprojects {
                     && !details.requested.name.contains('multidex')) {
                 details.useVersion "27.1.1"
             }
-            exclude group: 'androidx.work', module: 'work-runtime-ktx'
         }
     }
 }
