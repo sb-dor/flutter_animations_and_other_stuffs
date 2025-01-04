@@ -28,6 +28,11 @@ class SliverSectionScrollEvent with _$SliverSectionScrollEvent {
     required final int position,
     required final ItemScrollController tabBarScrollController,
   }) = _AnimateTabBarOnScrollEventonSliverSectionScrollEvent;
+
+  const factory SliverSectionScrollEvent.animateToPositionOnClick({
+    required int indexPosition,
+    required ScrollController listScrollController,
+  }) = _AnimateToPositionOnClick;
 }
 
 @freezed
@@ -62,6 +67,7 @@ class SliverSectionScrollBloc extends Bloc<SliverSectionScrollEvent, SliverSecti
         initPosition: (event) => _initPositions(event, emit),
         scrollListener: (event) => _scrollListener(event, emit),
         animateTabBarOnScroll: (event) => _animateToTabBarOnScroll(event, emit),
+        animateToPositionOnClick: (event) => _animateToPositionOnClick(event, emit),
       ),
     );
   }
@@ -186,6 +192,25 @@ class SliverSectionScrollBloc extends Bloc<SliverSectionScrollEvent, SliverSecti
       index: event.position,
       duration: Duration(milliseconds: 400),
       // alignment: -0.5,
+    );
+  }
+
+  void _animateToPositionOnClick(
+    _AnimateToPositionOnClick event,
+    Emitter<SliverSectionScrollState> emit,
+  ) async {
+    final offset = state.stateModel.eachSectionPosition.elementAtOrNull(event.indexPosition);
+
+    if (offset == null) return;
+
+    final scrollPos = kToolbarHeight + sliverTabBarHeight + 70;
+
+    // debugPrint("all elements: ${state.stateModel.eachSectionPosition}");
+
+    await event.listScrollController.animateTo(
+      offset - scrollPos,
+      duration: Duration(milliseconds: 400),
+      curve: Curves.linear,
     );
   }
 }

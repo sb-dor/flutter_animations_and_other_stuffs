@@ -14,11 +14,13 @@ extension StringEx on String {
 }
 
 class SliverSectionScrollTabBarLoadedWidget extends StatelessWidget {
-  final ItemScrollController scrollController;
+  final ItemScrollController itemScrollController;
+  final ScrollController listScrollController;
 
   const SliverSectionScrollTabBarLoadedWidget({
     super.key,
-    required this.scrollController,
+    required this.itemScrollController,
+    required this.listScrollController,
   });
 
   @override
@@ -26,15 +28,22 @@ class SliverSectionScrollTabBarLoadedWidget extends StatelessWidget {
     return SliverPersistentHeader(
       floating: false,
       pinned: true,
-      delegate: Delegate(scrollController: scrollController),
+      delegate: Delegate(
+        itemScrollController: itemScrollController,
+        listScrollController: listScrollController,
+      ),
     );
   }
 }
 
 class Delegate extends SliverPersistentHeaderDelegate {
-  final ItemScrollController scrollController;
+  final ItemScrollController itemScrollController;
+  final ScrollController listScrollController;
 
-  const Delegate({required this.scrollController}) : super();
+  const Delegate({
+    required this.itemScrollController,
+    required this.listScrollController,
+  }) : super();
 
   @override
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
@@ -64,7 +73,7 @@ class Delegate extends SliverPersistentHeaderDelegate {
                       ],
               ),
               child: ScrollablePositionedList.separated(
-                itemScrollController: scrollController,
+                itemScrollController: itemScrollController,
                 separatorBuilder: (context, index) => SizedBox(width: 10),
                 scrollDirection: Axis.horizontal,
                 itemCount: currentState.sliverTitles.length,
@@ -73,9 +82,12 @@ class Delegate extends SliverPersistentHeaderDelegate {
                 itemBuilder: (context, index) {
                   return InkWell(
                     onTap: () {
-                      // context
-                      //     .read<MainPageBloc>()
-                      //     .add(ChangeSliverPersistentState(index: index, context: context))
+                      context.read<SliverSectionScrollBloc>().add(
+                            SliverSectionScrollEvent.animateToPositionOnClick(
+                              indexPosition: index,
+                              listScrollController: listScrollController,
+                            ),
+                          );
                     },
                     child: Container(
                       padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),

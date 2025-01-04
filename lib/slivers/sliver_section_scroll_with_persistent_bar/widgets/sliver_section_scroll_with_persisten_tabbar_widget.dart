@@ -106,7 +106,8 @@ class _SliverSectionScrollWithPersistentTabBarWidgetState
                 ),
               ),
               SliverSectionScrollTabBarLoadedWidget(
-                scrollController: _tabBarScrollController,
+                itemScrollController: _tabBarScrollController,
+                listScrollController: _listScrollController,
               ),
               BlocBuilder<SliverSectionScrollBloc, SliverSectionScrollState>(
                 builder: (context, state) {
@@ -114,7 +115,8 @@ class _SliverSectionScrollWithPersistentTabBarWidgetState
                     case InitialStateOnSliverSectionScrollState():
                       return SliverToBoxAdapter();
                     case InProgressStateOnSliverSectionScrollState():
-                      return SliverList.builder(
+                      return SliverList.separated(
+                        separatorBuilder: (context, index) => SizedBox(height: 10),
                         itemCount: 10,
                         itemBuilder: (context, index) {
                           return ShimmerContainer(
