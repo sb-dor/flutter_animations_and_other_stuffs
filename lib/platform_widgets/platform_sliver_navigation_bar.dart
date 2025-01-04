@@ -31,8 +31,8 @@ class _CustomScrollViewHelper extends StatefulWidget {
 
 class _CustomScrollViewHelperState extends State<_CustomScrollViewHelper> {
   final ScrollController _scrollController = ScrollController();
-  static const _kBasePadding = 16.0;
-  static const kExpandedHeight = 140.0;
+  static const _kBasePadding = 5.0;
+  static const kExpandedHeight = 110.0;
 
   final ValueNotifier<double> _titlePaddingNotifier = ValueNotifier(_kBasePadding);
 
@@ -40,10 +40,14 @@ class _CustomScrollViewHelperState extends State<_CustomScrollViewHelper> {
     const kCollapsedPadding = 60.0;
 
     if (_scrollController.hasClients) {
-      return min(
-          _kBasePadding + kCollapsedPadding,
-          _kBasePadding +
-              (kCollapsedPadding * _scrollController.offset) / (kExpandedHeight - kToolbarHeight));
+      var result = min(
+        _kBasePadding + kCollapsedPadding,
+        _kBasePadding +
+            (kCollapsedPadding * _scrollController.offset) / (kExpandedHeight - kToolbarHeight),
+      );
+
+      if (result < 0.0) return 5.0;
+      return result;
     }
 
     return _kBasePadding;

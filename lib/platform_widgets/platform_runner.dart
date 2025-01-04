@@ -16,13 +16,9 @@ class PlatformRunner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PlatformHelper.isCupertino()
-        ? const CupertinoApp(
-            home: _CupertinoApp(),
-          )
-        : const MaterialApp(
-            home: _MaterialApp(),
-          );
+    return  MaterialApp(
+      home: _MaterialApp(),
+    );
   }
 }
 
