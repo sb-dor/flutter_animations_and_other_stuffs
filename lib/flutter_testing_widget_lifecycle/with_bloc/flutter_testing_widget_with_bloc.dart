@@ -46,6 +46,9 @@ class _FlutterTestingWithBlocUIState extends State<_FlutterTestingWithBlocUI> {
             builder: (context, state) {
               return Column(
                 children: [
+                  // it doesn't matter whether you widget using const, it will change if widget has bloc inside
+                  // that changes state
+                  const _TestBloc(),
                   // it will not change
                   const _TestRandom(),
                   // it will change
@@ -71,5 +74,18 @@ class _TestRandom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text("${Random().nextInt(100)}");
+  }
+}
+
+class _TestBloc extends StatelessWidget {
+  const _TestBloc({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<FlutterTestingWidgetsBloc, FlutterTestingWidgetsState>(
+      builder: (context, state) {
+        return Text("${state.test}");
+      },
+    );
   }
 }
