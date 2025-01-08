@@ -137,10 +137,10 @@ typedef SizeWidgetBuilder = Widget Function(BuildContext context);
 
 class SizeConfiguration extends StatelessWidget {
   const SizeConfiguration({
-    Key? key,
+    super.key,
     required this.builder,
     this.designSize,
-  }) : super(key: key);
+  });
 
   ///The size of device
   ///

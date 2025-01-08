@@ -16,7 +16,7 @@ class SliverSectionScrollStateModel {
     this.scrollIndexPositionAt = 0,
   });
 
-  factory SliverSectionScrollStateModel.idle() => SliverSectionScrollStateModel(
+  factory SliverSectionScrollStateModel.idle() => const SliverSectionScrollStateModel(
         categories: <SliverCategoryModel>[],
         globalKeys: <GlobalKey>[],
       );
@@ -42,11 +42,7 @@ class SliverSectionScrollStateModel {
 
   @override
   String toString() {
-    return 'SliverSectionScrollStateModel{' +
-        ' categories: $categories,' +
-        ' globalKeys: $globalKeys,' +
-        ' sliverTitles: $sliverTitles,' +
-        ' eachSectionPosition: $eachSectionPosition,' +
+    return 'SliverSectionScrollStateModel{' ' categories: $categories,' ' globalKeys: $globalKeys,' ' sliverTitles: $sliverTitles,' ' eachSectionPosition: $eachSectionPosition,' +
         ' scrollIndexPositionAt: $scrollIndexPositionAt,' +
         '}';
   }

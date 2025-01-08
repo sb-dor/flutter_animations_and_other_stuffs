@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class SliverAndScrollPage extends StatefulWidget {
-  const SliverAndScrollPage({Key? key}) : super(key: key);
+  const SliverAndScrollPage({super.key});
 
   @override
   State<SliverAndScrollPage> createState() => _SliverAndScrollPageState();

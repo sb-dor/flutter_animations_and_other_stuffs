@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animations_2/hive/hive_database_helper.dart';
 
 class HiveDatabasePage extends StatefulWidget {
-  const HiveDatabasePage({Key? key}) : super(key: key);
+  const HiveDatabasePage({super.key});
 
   @override
   State<HiveDatabasePage> createState() => _HiveDatabasePageState();

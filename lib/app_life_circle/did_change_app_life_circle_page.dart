@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class DidChangeAppLifeCirclePage extends StatefulWidget {
-  const DidChangeAppLifeCirclePage({Key? key}) : super(key: key);
+  const DidChangeAppLifeCirclePage({super.key});
 
   @override
   State<DidChangeAppLifeCirclePage> createState() => _DidChangeAppLifeCirclePageState();

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animations_2/animations/scale_animation.dart';
 
 class AnimatedListPage extends StatefulWidget {
-  const AnimatedListPage({Key? key}) : super(key: key);
+  const AnimatedListPage({super.key});
 
   @override
   State<AnimatedListPage> createState() => _AnimatedListPageState();

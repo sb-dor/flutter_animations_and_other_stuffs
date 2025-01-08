@@ -25,7 +25,7 @@ class _CustomDropdownImplState extends State<CustomDropdownImpl> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "ML article about popups",
           style: TextStyle(color: Colors.black),
         ),

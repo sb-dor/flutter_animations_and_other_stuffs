@@ -5,10 +5,10 @@ class GetBoxOffset extends StatefulWidget {
   final Function(Offset offset) offset;
 
   const GetBoxOffset({
-    Key? key,
+    super.key,
     required this.child,
     required this.offset,
-  }) : super(key: key);
+  });
 
   @override
   State<GetBoxOffset> createState() => _GetBoxOffsetState();

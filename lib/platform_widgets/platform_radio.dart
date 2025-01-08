@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animations_2/platform_widgets/platform_helper.dart';
-import 'package:intersperse/intersperse.dart';
 
 enum RadioCheckerEnum {
   russia,
@@ -32,7 +31,7 @@ class _PlatformRadioState extends State<PlatformRadio> {
                     .map(
                       (element) => Column(
                         children: [
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
                           CupertinoRadio(
                             value: element,
                             groupValue: radio,

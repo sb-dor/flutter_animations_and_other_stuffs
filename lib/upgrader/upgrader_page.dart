@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:upgrader/upgrader.dart';
 
 class UpGraderPage extends StatefulWidget {
-  const UpGraderPage({Key? key}) : super(key: key);
+  const UpGraderPage({super.key});
 
   @override
   State<UpGraderPage> createState() => _UpGraderPageState();

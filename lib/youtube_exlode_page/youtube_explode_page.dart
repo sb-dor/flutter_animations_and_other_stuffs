@@ -11,7 +11,7 @@ import 'package:dio/dio.dart';
 import 'package:ffmpeg_kit_flutter/ffmpeg_kit.dart';
 
 class YoutubeExplodePage extends StatefulWidget {
-  const YoutubeExplodePage({Key? key}) : super(key: key);
+  const YoutubeExplodePage({super.key});
 
   @override
   State<YoutubeExplodePage> createState() => _YoutubeExplodePageState();

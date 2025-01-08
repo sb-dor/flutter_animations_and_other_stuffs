@@ -11,7 +11,7 @@ abstract class FirstBlocStates {
 }
 
 class InitState extends FirstBlocStates {
-  InitState({required int counter}) : super(counter: counter);
+  InitState({required super.counter});
 }
 
 class FirstBloc extends Bloc<FirstBlocEvents, FirstBlocStates> {

@@ -4,14 +4,10 @@ import 'package:flutter_animations_2/michael_lazebny_articles/analytics_reporter
 import 'package:flutter_animations_2/michael_lazebny_articles/analytics_reporter/analytics_interceptor.dart';
 import 'package:flutter_animations_2/michael_lazebny_articles/analytics_reporter/analytics_reporter.dart';
 import 'package:flutter_animations_2/michael_lazebny_articles/error_handling/own_either_class.dart';
-import 'package:flutter_animations_2/michael_lazebny_articles/popups/popup_widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 import 'error_handling/mastering_error_handling_in_dart.dart';
-import 'popups/custom_dropdown.dart';
 import 'popups/custom_tool_tip_impl.dart';
-import 'popups/popup_follower_impl.dart';
-import 'popups/popup_widgets_with_shortcuts.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,7 +38,7 @@ void main() async {
 }
 
 void _appRunner() => runApp(
-      MaterialApp(
+      const MaterialApp(
         debugShowCheckedModeBanner: false,
         // showSemanticsDebugger: true,
         home: CustomToolTipImpl(),

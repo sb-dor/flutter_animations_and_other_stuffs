@@ -15,8 +15,8 @@ class _CustomToolTipImplState extends State<CustomToolTipImpl> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Custom tooltip impl"),
-        actions: [
+        title: const Text("Custom tooltip impl"),
+        actions: const [
           CustomerTooltip(
             content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit "
                 "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -29,7 +29,7 @@ class _CustomToolTipImplState extends State<CustomToolTipImpl> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CustomerTooltip(
+            const CustomerTooltip(
               content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit "
                   "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
               child: Icon(Icons.info),
@@ -37,7 +37,7 @@ class _CustomToolTipImplState extends State<CustomToolTipImpl> {
             Semantics(
               label: 'Add to cart',
               button: true,
-              child: Icon(Icons.add_shopping_cart),
+              child: const Icon(Icons.add_shopping_cart),
             )
           ],
         ),
@@ -66,7 +66,7 @@ class _CustomerTooltipState extends State<CustomerTooltip> with SingleTickerProv
   final overlayController = OverlayPortalController(debugLabel: 'CustomTooltip');
   late final AnimationController _animationController;
 
-  Duration get _animationDuration => widget.animationDuration ?? Duration(milliseconds: 300);
+  Duration get _animationDuration => widget.animationDuration ?? const Duration(milliseconds: 300);
 
   @override
   void initState() {
@@ -132,10 +132,10 @@ class _CustomerTooltipState extends State<CustomerTooltip> with SingleTickerProv
         child: FadeTransition(
           opacity: _animationController,
           child: ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: 200),
+            constraints: const BoxConstraints(maxWidth: 200),
             child: Card(
               child: Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8.0),
                 child: Text(widget.content),
               ),
             ),

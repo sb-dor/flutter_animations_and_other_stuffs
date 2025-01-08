@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AnimatedContainerPage extends StatelessWidget {
-  const AnimatedContainerPage({Key? key}) : super(key: key);
+  const AnimatedContainerPage({super.key});
 
   //usually tween animation builder uses at the beginning of creating UI
   @override
@@ -11,7 +11,7 @@ class AnimatedContainerPage extends StatelessWidget {
 }
 
 class AnimatedContainer extends StatefulWidget {
-  const AnimatedContainer({Key? key}) : super(key: key);
+  const AnimatedContainer({super.key});
 
   @override
   State<AnimatedContainer> createState() => _AnimatedContainerState();

@@ -13,13 +13,13 @@ class SliverSectionScrollWithPersistentTabBarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => SliverSectionScrollBloc(),
-      child: _SliverSectionScrollWithPersistentTabBarUI(),
+      child: const _SliverSectionScrollWithPersistentTabBarUI(),
     );
   }
 }
 
 class _SliverSectionScrollWithPersistentTabBarUI extends StatefulWidget {
-  const _SliverSectionScrollWithPersistentTabBarUI({super.key});
+  const _SliverSectionScrollWithPersistentTabBarUI();
 
   @override
   State<_SliverSectionScrollWithPersistentTabBarUI> createState() =>
@@ -35,7 +35,7 @@ class _SliverSectionScrollWithPersistentTabBarWidgetState
   @override
   void initState() {
     super.initState();
-    context.read<SliverSectionScrollBloc>().add(SliverSectionScrollEvent.init());
+    context.read<SliverSectionScrollBloc>().add(const SliverSectionScrollEvent.init());
   }
 
   @override
@@ -81,7 +81,7 @@ class _SliverSectionScrollWithPersistentTabBarWidgetState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Sliver section scroll widget"),
+        title: const Text("Sliver section scroll widget"),
       ),
       body: MultiBlocListener(
         listeners: [
@@ -95,11 +95,11 @@ class _SliverSectionScrollWithPersistentTabBarWidgetState
         ],
         child: RefreshIndicator(
           onRefresh: () async =>
-              context.read<SliverSectionScrollBloc>().add(SliverSectionScrollEvent.init()),
+              context.read<SliverSectionScrollBloc>().add(const SliverSectionScrollEvent.init()),
           child: CustomScrollView(
             controller: _listScrollController,
             slivers: [
-              SliverToBoxAdapter(
+              const SliverToBoxAdapter(
                 child: SizedBox(
                   height: 300,
                   child: Placeholder(),
@@ -113,10 +113,10 @@ class _SliverSectionScrollWithPersistentTabBarWidgetState
                 builder: (context, state) {
                   switch (state) {
                     case InitialStateOnSliverSectionScrollState():
-                      return SliverToBoxAdapter();
+                      return const SliverToBoxAdapter();
                     case InProgressStateOnSliverSectionScrollState():
                       return SliverList.separated(
-                        separatorBuilder: (context, index) => SizedBox(height: 10),
+                        separatorBuilder: (context, index) => const SizedBox(height: 10),
                         itemCount: 10,
                         itemBuilder: (context, index) {
                           return ShimmerContainer(
@@ -135,7 +135,7 @@ class _SliverSectionScrollWithPersistentTabBarWidgetState
                             primary: false,
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
-                            separatorBuilder: (context, index) => SizedBox(height: 30),
+                            separatorBuilder: (context, index) => const SizedBox(height: 30),
                             itemCount: currentStateModel.categories.length,
                             itemBuilder: (context, index) {
                               return Container(
@@ -149,7 +149,7 @@ class _SliverSectionScrollWithPersistentTabBarWidgetState
                                         Expanded(
                                           child: Text(
                                             currentStateModel.categories[index].name ?? '',
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 color: Colors.black,
                                                 fontSize: 16),
@@ -157,7 +157,7 @@ class _SliverSectionScrollWithPersistentTabBarWidgetState
                                         ),
                                         ElevatedButton(
                                           onPressed: () {},
-                                          child: Text("Add"),
+                                          child: const Text("Add"),
                                         ),
                                       ],
                                     ),
@@ -182,7 +182,7 @@ class _SliverSectionScrollWithPersistentTabBarWidgetState
                                           child: Column(
                                             mainAxisAlignment: MainAxisAlignment.center,
                                             children: [
-                                              Icon(Icons.production_quantity_limits,
+                                              const Icon(Icons.production_quantity_limits,
                                                   size: 48, color: Colors.blue),
                                               const SizedBox(height: 8),
                                               Text(

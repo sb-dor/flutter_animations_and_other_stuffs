@@ -5,7 +5,7 @@ import 'package:flutter_animations_2/animations/scale_animation.dart';
 import 'package:flutter_animations_2/animations/slide_animation.dart';
 
 class AnimatedListWithAnimationPage extends StatelessWidget {
-  const AnimatedListWithAnimationPage({Key? key}) : super(key: key);
+  const AnimatedListWithAnimationPage({super.key});
 
   @override
   Widget build(BuildContext context) {

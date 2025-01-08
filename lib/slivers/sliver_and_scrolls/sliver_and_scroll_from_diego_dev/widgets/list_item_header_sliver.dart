@@ -5,9 +5,9 @@ import 'package:flutter_animations_2/slivers/sliver_and_scrolls/sliver_and_scrol
 
 class ListItemHeaderSliver extends StatelessWidget {
   const ListItemHeaderSliver({
-    Key? key,
+    super.key,
     required this.bloc,
-  }) : super(key: key);
+  });
 
   final SliverScrollController bloc;
 

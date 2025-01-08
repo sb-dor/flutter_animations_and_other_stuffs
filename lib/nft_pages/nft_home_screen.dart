@@ -6,7 +6,7 @@ import 'package:flutter_animations_2/animations/navigation/page_transition_anima
 import 'package:flutter_animations_2/nft_pages/widgets/image_list_view.dart';
 
 class NftHomeScreen extends StatelessWidget {
-  const NftHomeScreen({Key? key}) : super(key: key);
+  const NftHomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

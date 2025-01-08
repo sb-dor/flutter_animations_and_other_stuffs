@@ -1,14 +1,8 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animations_2/platform_widgets/platform_bottom_navbar.dart';
-import 'package:flutter_animations_2/platform_widgets/platform_radio.dart';
 
-import 'cupertino_context_menu.dart';
-import 'cupertino_picker_widget.dart';
-import 'cupertino_sliding_segment_control.dart';
 import 'cupertino_text_fields.dart';
-import 'platform_helper.dart';
 import 'platform_sliver_navigation_bar.dart';
 
 class PlatformRunner extends StatelessWidget {
@@ -16,14 +10,14 @@ class PlatformRunner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return  const MaterialApp(
       home: _MaterialApp(),
     );
   }
 }
 
 class _CupertinoApp extends StatelessWidget {
-  const _CupertinoApp({super.key});
+  const _CupertinoApp();
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +48,7 @@ class _CupertinoApp extends StatelessWidget {
 }
 
 class _MaterialApp extends StatelessWidget {
-  const _MaterialApp({super.key});
+  const _MaterialApp();
 
   @override
   Widget build(BuildContext context) {

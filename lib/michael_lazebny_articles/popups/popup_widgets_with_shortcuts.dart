@@ -14,7 +14,7 @@ class _PopupWidgetsWithShortcutsState extends State<PopupWidgetsWithShortcuts> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Popup widgets with shortcuts",
           style: TextStyle(color: Colors.black),
         ),
@@ -62,7 +62,7 @@ class _PopupWidgetsWithShortcutsState extends State<PopupWidgetsWithShortcuts> {
                 onPressed: () {
                   controller.show();
                 },
-                child: Text(
+                child: const Text(
                   "Show simple popup",
                 ),
               ),

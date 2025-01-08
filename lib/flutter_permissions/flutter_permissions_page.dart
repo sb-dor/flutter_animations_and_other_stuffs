@@ -4,7 +4,7 @@ import 'package:flutter_animations_2/flutter_permissions/cubit/flutter_permissio
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FlutterPermissionsPage extends StatefulWidget {
-  const FlutterPermissionsPage({Key? key}) : super(key: key);
+  const FlutterPermissionsPage({super.key});
 
   @override
   State<FlutterPermissionsPage> createState() => _FlutterPermissionsPageState();

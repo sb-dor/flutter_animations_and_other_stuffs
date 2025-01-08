@@ -3,9 +3,9 @@ import 'package:flutter_animations_2/slivers/sliver_and_scrolls/sliver_and_scrol
 
 class SliverBodyItems extends StatelessWidget {
   const SliverBodyItems({
-    Key? key,
+    super.key,
     required this.listItem,
-  }) : super(key: key);
+  });
 
   final List<Product> listItem;
 

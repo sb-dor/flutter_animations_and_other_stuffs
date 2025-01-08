@@ -7,7 +7,7 @@ import 'package:flutter_animations_2/delivery_food_ui/core/utils/navigation.dart
 import 'home_screen/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  const SplashScreen({super.key});
 
   @override
   _SplashScreenState createState() => _SplashScreenState();

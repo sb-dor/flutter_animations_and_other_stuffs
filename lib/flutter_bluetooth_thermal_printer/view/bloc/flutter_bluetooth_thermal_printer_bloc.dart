@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter_animations_2/flutter_bluetooth_thermal_printer/services/esc_local_keys.dart';
-import 'package:flutter_animations_2/flutter_bluetooth_thermal_printer/services/flutter_bluetooth_thermal_printer_service.dart';
 import 'package:flutter_animations_2/flutter_bluetooth_thermal_printer/view/bloc/state_model/flutter_bluetooth_thermal_printer_state_model.dart';
 import 'package:flutter_animations_2/getit/locator.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
@@ -8,7 +7,6 @@ import 'package:flutter_pos_printer_platform_image_3/flutter_pos_printer_platfor
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_esc_pos_utils/flutter_esc_pos_utils.dart';
-import 'package:printing/printing.dart';
 import 'package:flutter_animations_2/flutter_bluetooth_thermal_printer/services/flutter_bluetooth_thermal_printer_service.dart'
     as service;
 
@@ -366,6 +364,8 @@ class FlutterBluetoothThermalPrinterBloc
 
   // uncomment and write your own code for getting saved printer device
   Future<PrinterDevice?> _getDeviceFromLocalStorage() async {
+    return null;
+  
     // Asynchronously retrieves a PrinterDevice object from local storage, or returns null if not found.
 
     // Retrieves the printer's name from shared preferences using the key for device name.

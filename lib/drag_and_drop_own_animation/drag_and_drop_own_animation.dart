@@ -79,7 +79,7 @@ class _DragAndDropOwnAnimationState extends State<DragAndDropOwnAnimation> {
                           item: e,
                         ),
                       )
-                      .toList(),
+                      ,
                   // if (candidateData.isNotEmpty)
                   //   _ReusableItemWidget(
                   //     item: candidateData.first!,
@@ -98,7 +98,6 @@ class _ItemWidget extends StatefulWidget {
   final DADAnimationModel item;
 
   const _ItemWidget({
-    super.key,
     required this.item,
   });
 

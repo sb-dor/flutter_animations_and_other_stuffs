@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_animations_2/michael_lazebny_articles/analytics_reporter/analytics_builder.dart';
 import 'package:flutter_animations_2/michael_lazebny_articles/analytics_reporter/analytics_event.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animations_2/custom_painter/custom_painters.dart';
 
 class CustomPainterScreen extends StatefulWidget {
-  const CustomPainterScreen({Key? key}) : super(key: key);
+  const CustomPainterScreen({super.key});
 
   @override
   State<CustomPainterScreen> createState() => _CustomPainterScreenState();

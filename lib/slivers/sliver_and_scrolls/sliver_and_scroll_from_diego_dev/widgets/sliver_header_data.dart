@@ -2,25 +2,25 @@ import 'package:flutter/material.dart';
 
 class SliverHeaderData extends StatelessWidget {
   const SliverHeaderData({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 16.0),
+    return const Padding(
+      padding: EdgeInsets.only(left: 16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const Text(
+          Text(
             'Asiatisch .  koreanisch . Japnisch',
             style: TextStyle(
               fontSize: 14,
             ),
           ),
-          const SizedBox(height: 6),
+          SizedBox(height: 6),
           Row(
-            children: const [
+            children: [
               Icon(
                 Icons.access_time,
                 size: 14,

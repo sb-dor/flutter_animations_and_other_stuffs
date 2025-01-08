@@ -13,7 +13,7 @@ import 'package:flutter_animations_2/delivery_food_ui/screens/vendor_screen/widg
 import 'package:flutter_animations_2/delivery_food_ui/screens/vendor_screen/widgets/vendor_info_card.dart';
 
 class VendorScreen extends StatefulWidget {
-  const VendorScreen({Key? key}) : super(key: key);
+  const VendorScreen({super.key});
 
   @override
   _VendorScreenState createState() => _VendorScreenState();

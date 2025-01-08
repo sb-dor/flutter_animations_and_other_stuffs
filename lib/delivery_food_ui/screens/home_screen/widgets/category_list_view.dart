@@ -3,7 +3,7 @@ import 'package:flutter_animations_2/delivery_food_ui/core/utils/ui_helper.dart'
 import 'package:flutter_animations_2/delivery_food_ui/data.dart';
 
 class CategoryListView extends StatefulWidget {
-  const CategoryListView({Key? key}) : super(key: key);
+  const CategoryListView({super.key});
 
   @override
   _CategoryListViewState createState() => _CategoryListViewState();
@@ -48,11 +48,10 @@ class _CategoryListViewState extends State<CategoryListView> {
 
 class CategoryItem extends StatelessWidget {
   const CategoryItem(
-      {Key? key,
+      {super.key,
       required this.icon,
       required this.name,
-      required this.backgroundColor})
-      : super(key: key);
+      required this.backgroundColor});
 
   final Widget icon;
   final String name;

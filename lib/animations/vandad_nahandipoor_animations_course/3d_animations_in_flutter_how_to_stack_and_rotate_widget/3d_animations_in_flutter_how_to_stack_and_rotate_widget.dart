@@ -6,7 +6,7 @@ import 'package:vector_math/vector_math_64.dart' as vector;
 const double widthAndHeight = 100;
 
 class ThirdDAnimationsInFlutterHowToStackAndRotateWidget extends StatefulWidget {
-  const ThirdDAnimationsInFlutterHowToStackAndRotateWidget({Key? key}) : super(key: key);
+  const ThirdDAnimationsInFlutterHowToStackAndRotateWidget({super.key});
 
   @override
   State<ThirdDAnimationsInFlutterHowToStackAndRotateWidget> createState() =>

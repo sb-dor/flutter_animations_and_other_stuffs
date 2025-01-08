@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class HeartAnimationPage extends StatelessWidget {
-  const HeartAnimationPage({Key? key}) : super(key: key);
+  const HeartAnimationPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +10,7 @@ class HeartAnimationPage extends StatelessWidget {
 }
 
 class AnimatedHeart extends StatefulWidget {
-  const AnimatedHeart({Key? key}) : super(key: key);
+  const AnimatedHeart({super.key});
 
   @override
   State<AnimatedHeart> createState() => _AnimatedHeartState();

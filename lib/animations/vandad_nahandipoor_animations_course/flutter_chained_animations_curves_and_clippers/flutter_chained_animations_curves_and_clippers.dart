@@ -49,7 +49,7 @@ class HalfCircleClipper extends CustomClipper<Path> {
 }
 
 class FlutterChainedAnimationsCurvesAndClippers extends StatefulWidget {
-  const FlutterChainedAnimationsCurvesAndClippers({Key? key}) : super(key: key);
+  const FlutterChainedAnimationsCurvesAndClippers({super.key});
 
   @override
   State<FlutterChainedAnimationsCurvesAndClippers> createState() =>

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 
 class AnimatedCartPage extends StatefulWidget {
-  const AnimatedCartPage({Key? key}) : super(key: key);
+  const AnimatedCartPage({super.key});
 
 
   @override

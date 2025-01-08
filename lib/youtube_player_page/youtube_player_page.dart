@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class YoutubePlayerPage extends StatefulWidget {
-  const YoutubePlayerPage({Key? key}) : super(key: key);
+  const YoutubePlayerPage({super.key});
 
   @override
   State<YoutubePlayerPage> createState() => _YoutubePlayerPageState();

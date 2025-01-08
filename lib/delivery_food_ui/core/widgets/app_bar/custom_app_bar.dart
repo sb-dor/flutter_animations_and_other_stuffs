@@ -127,7 +127,7 @@ class CustomAppBar extends StatelessWidget {
 }
 
 class PlatformIcon extends StatelessWidget {
-  const PlatformIcon({Key? key, this.color}) : super(key: key);
+  const PlatformIcon({super.key, this.color});
 
   final Color? color;
 

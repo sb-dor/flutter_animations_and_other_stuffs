@@ -1,41 +1,26 @@
-import 'dart:async';
 
 import 'package:firebase_core/firebase_core.dart' show Firebase;
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animations_2/DI/example/di_page.dart';
 import 'package:flutter_animations_2/bloc_learning/bloc_concurrency/main_bloc_concurrency.dart';
 import 'package:flutter_animations_2/bloc_learning/bloc_to_bloc_comm/first_bloc/first_bloc.dart';
 import 'package:flutter_animations_2/bloc_learning/bloc_to_bloc_comm/second_bloc/second_bloc.dart';
 import 'package:flutter_animations_2/bloc_learning/using_freezed/using_freezed_bloc.dart';
 import 'package:flutter_animations_2/bottom_modal_sheets/bottom_modal_sheets_cubit/bottom_modal_sheet_cubit.dart';
-import 'package:flutter_animations_2/bottom_modal_sheets/bottom_sheet_with_slivers/bottom_sheet_with_slivers.dart';
-import 'package:flutter_animations_2/card_animation_from_karteto_app_own_code/own_karteto_app_code_card_animation.dart';
 import 'package:flutter_animations_2/dart_features/dart_enums.dart';
-import 'package:flutter_animations_2/dart_sync_async_isolates/stream_transformers/stream_transformers.dart';
 import 'package:flutter_animations_2/design_templates/clean_architecture/presentation/cubit/day_cubit.dart';
 import 'package:flutter_animations_2/design_templates/mvvm/viewmodel_mvvm.dart';
-import 'package:flutter_animations_2/drag_and_drop_own_animation/drag_and_drop_own_animation.dart';
 import 'package:flutter_animations_2/drag_and_drop_own_animation/provider/drag_and_drop_provider.dart';
 import 'package:flutter_animations_2/esc_pos_printer_with_bluetooth/esc_pos_printer_ui_helper.dart';
-import 'package:flutter_animations_2/firebase_options.dart';
-import 'package:flutter_animations_2/firebase_push_notification/firebase_push_not.dart';
 import 'package:flutter_animations_2/flutter_background_service/flutter_background_service_helper.dart';
 import 'package:flutter_animations_2/flutter_camera/flutter_camera_helper.dart';
 import 'package:flutter_animations_2/flutter_nearby_connectivity/yt_nearby_p2p_connection/cubit/nearby_server_cubit.dart';
 import 'package:flutter_animations_2/flutter_permissions/cubit/flutter_permissions_cubit.dart';
-import 'package:flutter_animations_2/flutter_riverpod/riverpod_functions/riverpod_function_page.dart';
-import 'package:flutter_animations_2/flutter_riverpod/riverpod_generated_code/riverpod_generated_code_page.dart';
-import 'package:flutter_animations_2/flutter_secure_storage/flutter_secure_storage_page.dart';
-import 'package:flutter_animations_2/flutter_shortcuts/flutter_shortcuts.dart';
 import 'package:flutter_animations_2/global_context/global_context.helper.dart';
-import 'package:flutter_animations_2/hive/hive_database_helper.dart';
 import 'package:flutter_animations_2/hive/lazy_load/hive_settings.dart';
-import 'package:flutter_animations_2/hive/users_todo_test/hive_database/users_todo_hive_database.dart';
 import 'package:flutter_animations_2/hive/users_todo_test/user_test_change_notifier_provider.dart';
 import 'package:flutter_animations_2/hive/users_todo_test/viewmodel/users_todo_vm.dart';
 import 'package:flutter_animations_2/internet_controller/cubit/internet_conn_checker_cubit.dart';
@@ -54,33 +39,12 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart' as provider;
 import 'package:url_strategy/url_strategy.dart';
 
-import 'animation_pages/animated_widget_detector.dart';
-import 'bloc_learning/bloc_concurrency/main_bloc_concurrency_page.dart';
-import 'design_templates/todo_mvvm/view/todo_mvvm_view.dart';
-import 'drag_and_drop_animation/animated_drag_drop_app.dart';
-import 'files/files_page.dart';
 import 'flutter_bluetooth_thermal_printer/view/bloc/flutter_bluetooth_thermal_printer_bloc.dart';
-import 'flutter_bluetooth_thermal_printer/view/page/flutter_bluetooth_thermal_printer_page.dart';
+import 'flutter_testing_widget_lifecycle/flutter_testing_widget_lifecycle_with_setstate.dart';
+import 'flutter_testing_widget_lifecycle/with_bloc/flutter_testing_widget_with_bloc.dart';
 import 'generated/l10n.dart';
 import 'getit/locator.dart';
 import 'google_map/cubit/main_google_map_cubit.dart';
-import 'handling_errors/handling_error_page.dart';
-import 'hive/lazy_load/pages/lazy_load_hive.dart';
-import 'hive/users_todo_test/pages/users_page_test.dart';
-import 'platform_widgets/platform_runner.dart';
-import 'retrofit/view/retrofit_view.dart';
-import 'slivers/nested_scroll_view_page.dart';
-import 'slivers/sliver_and_scrolls/simple_sliver_and_scroll_page.dart';
-import 'slivers/sliver_and_scrolls/sliver_and_scroll_from_diego_dev/home_sliver_with_scrollable_tabs.dart';
-import 'slivers/sliver_and_scrolls/sliver_and_scroll_page.dart';
-import 'slivers/sliver_app_bar_title_animation.dart';
-import 'slivers/sliver_appbar_with_tabbar_page.dart';
-import 'slivers/sliver_section_scroll_with_persistent_bar/widgets/sliver_section_scroll_with_persisten_tabbar_widget.dart';
-import 'slivers/sliver_stuck_after_each_other/sliver_app_bar_page.dart';
-import 'stateless_widget_with_state/statelesswidget_with_state.dart';
-import 'widget_ket_test/widget_key_test_page.dart';
-import 'michael_lazebny_articles/ml_main.dart' as mldart;
-import 'yandex_mapkit/yandex_map_screen.dart';
 
 void main() async {
   // final streamTransformers = StreamTransformers();
@@ -261,7 +225,7 @@ void main() async {
 }
 
 class MainApp extends StatefulWidget {
-  const MainApp({Key? key}) : super(key: key);
+  const MainApp({super.key});
 
   @override
   State<MainApp> createState() => _MainAppState();
@@ -294,7 +258,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const PlatformRunner(),
+        builder: (context, state) => const FlutterTestingWidgetWithBloc(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {

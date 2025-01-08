@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SliverAppbarWithTabBar extends StatefulWidget {
-  const SliverAppbarWithTabBar({Key? key}) : super(key: key);
+  const SliverAppbarWithTabBar({super.key});
 
   @override
   State<SliverAppbarWithTabBar> createState() => _SliverAppbarWithTabBar();

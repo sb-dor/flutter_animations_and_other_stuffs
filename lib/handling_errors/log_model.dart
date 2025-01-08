@@ -1,5 +1,3 @@
-import 'package:equatable/equatable.dart';
-import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
 
 class LogModel extends HiveObject {

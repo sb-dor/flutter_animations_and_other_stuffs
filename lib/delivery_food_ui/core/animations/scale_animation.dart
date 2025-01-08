@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 ///using TweenAnimationBuilder
 class ScaleAnimation extends StatelessWidget {
   const ScaleAnimation({
-    Key? key,
+    super.key,
     required this.child,
     this.begin = 0.4,
     this.end = 1,
@@ -13,7 +13,7 @@ class ScaleAnimation extends StatelessWidget {
     this.intervalEnd = 1,
     this.duration = const Duration(milliseconds: 450),
     this.curve = Curves.fastOutSlowIn,
-  }) : super(key: key);
+  });
 
   ///Animate from value
   ///

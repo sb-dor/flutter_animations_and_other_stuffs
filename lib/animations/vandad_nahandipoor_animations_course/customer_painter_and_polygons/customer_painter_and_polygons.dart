@@ -57,7 +57,7 @@ class Polygon extends CustomPainter {
 }
 
 class CustomerPainterAndPolygons extends StatefulWidget {
-  const CustomerPainterAndPolygons({Key? key}) : super(key: key);
+  const CustomerPainterAndPolygons({super.key});
 
   @override
   State<CustomerPainterAndPolygons> createState() => _CustomerPainterAndPolygonsState();

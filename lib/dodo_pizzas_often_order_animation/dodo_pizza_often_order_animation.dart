@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class DodoPizzaOftenOrderAnimation extends StatefulWidget {
-  const DodoPizzaOftenOrderAnimation({Key? key}) : super(key: key);
+  const DodoPizzaOftenOrderAnimation({super.key});
 
   @override
   State<DodoPizzaOftenOrderAnimation> createState() => _DodoPizzaOftenOrderAnimationState();
@@ -134,7 +134,7 @@ class _DodoPizzaOftenOrderAnimationState extends State<DodoPizzaOftenOrderAnimat
 class AnimatedDodoContainer extends StatefulWidget {
   final int index;
 
-  const AnimatedDodoContainer({Key? key, required this.index}) : super(key: key);
+  const AnimatedDodoContainer({super.key, required this.index});
 
   @override
   State<AnimatedDodoContainer> createState() => _AnimatedDodoContainerState();

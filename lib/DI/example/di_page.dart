@@ -49,14 +49,14 @@ class _DiPageState extends State<DiPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("DI Page"),
+        title: const Text("DI Page"),
       ),
       body: Column(
         children: [
           ElevatedButton(onPressed: () {
 
-          }, child: Text("Click")),
-          ElevatedButton(onPressed: () {}, child: Text("Click 2")),
+          }, child: const Text("Click")),
+          ElevatedButton(onPressed: () {}, child: const Text("Click 2")),
         ],
       ),
     );

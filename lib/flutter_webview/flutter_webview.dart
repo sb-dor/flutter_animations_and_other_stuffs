@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class FlutterWebView extends StatefulWidget {
-  const FlutterWebView({Key? key}) : super(key: key);
+  const FlutterWebView({super.key});
 
   @override
   State<FlutterWebView> createState() => _FlutterWebViewState();

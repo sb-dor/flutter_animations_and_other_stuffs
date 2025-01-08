@@ -11,7 +11,7 @@ class _TypeOfSolve {
 }
 
 class ExcelPage extends StatefulWidget {
-  const ExcelPage({Key? key}) : super(key: key);
+  const ExcelPage({super.key});
 
   @override
   State<ExcelPage> createState() => _ExcelPageState();

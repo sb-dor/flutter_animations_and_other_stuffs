@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animations_2/pdf/data/pdf_generator.dart';
 
 class PdfPage extends StatefulWidget {
-  const PdfPage({Key? key}) : super(key: key);
+  const PdfPage({super.key});
 
   @override
   State<PdfPage> createState() => _PdfPageState();

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animations_2/slivers/sliver_section_scroll_with_persistent_bar/bloc/state_model/sliver_section_scroll_state_model.dart';
 import 'package:flutter_animations_2/slivers/sliver_section_scroll_with_persistent_bar/models/sliver_category_model.dart';
@@ -190,7 +189,7 @@ class SliverSectionScrollBloc extends Bloc<SliverSectionScrollEvent, SliverSecti
 
     await event.tabBarScrollController.scrollTo(
       index: event.position,
-      duration: Duration(milliseconds: 400),
+      duration: const Duration(milliseconds: 400),
       // alignment: -0.5,
     );
   }
@@ -209,7 +208,7 @@ class SliverSectionScrollBloc extends Bloc<SliverSectionScrollEvent, SliverSecti
 
     await event.listScrollController.animateTo(
       offset - scrollPos,
-      duration: Duration(milliseconds: 400),
+      duration: const Duration(milliseconds: 400),
       curve: Curves.linear,
     );
   }

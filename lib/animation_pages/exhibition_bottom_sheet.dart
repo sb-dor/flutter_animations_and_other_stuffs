@@ -12,7 +12,7 @@ const double iconsVerticalSpacing = 24;
 const double iconsHorizontalSpacing = 16;
 
 class MainExhibitionBottomSheet extends StatelessWidget {
-  const MainExhibitionBottomSheet({Key? key}) : super(key: key);
+  const MainExhibitionBottomSheet({super.key});
 
   @override
   Widget build(BuildContext context) {

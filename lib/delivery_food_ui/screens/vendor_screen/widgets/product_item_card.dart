@@ -5,11 +5,10 @@ import '../../../core/widgets/button/buttons.dart';
 
 class ProductItem extends StatelessWidget {
   const ProductItem(
-      {Key? key,
+      {super.key,
       required this.title,
       required this.detail,
-      required this.imagePath})
-      : super(key: key);
+      required this.imagePath});
 
   final String imagePath;
   final String title;

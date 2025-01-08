@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animations_2/flutter_web_scrapper/helper/flutter_web_scrapper_helper.dart';
 
 class FlutterWebScrapperPage extends StatefulWidget {
-  const FlutterWebScrapperPage({Key? key}) : super(key: key);
+  const FlutterWebScrapperPage({super.key});
 
   @override
   State<FlutterWebScrapperPage> createState() => _FlutterWebScrapperPageState();

@@ -3,7 +3,7 @@ import 'package:flutter_animations_2/design_templates/mvvm/viewmodel_mvvm.dart';
 import 'package:provider/provider.dart';
 
 class ViewMVVM extends StatelessWidget {
-  const ViewMVVM({Key? key}) : super(key: key);
+  const ViewMVVM({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -13,7 +13,7 @@ class TextWidget extends StatelessWidget {
   final double? letterSpacing;
 
   const TextWidget(
-      {Key? key,
+      {super.key,
       required this.text,
       this.size,
       this.color,
@@ -23,8 +23,7 @@ class TextWidget extends StatelessWidget {
       this.overFlow,
       this.textAlign,
       this.padding,
-      this.letterSpacing})
-      : super(key: key);
+      this.letterSpacing});
 
   @override
   Widget build(BuildContext context) {

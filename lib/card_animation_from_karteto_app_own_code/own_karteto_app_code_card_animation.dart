@@ -1,10 +1,7 @@
 import 'dart:math';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_animations_2/drag_and_drop_animation/utils.dart';
-import 'package:flutter_animations_2/global_context/global_context.helper.dart';
 
 import 'own_karteto_cards.dart';
 
@@ -136,7 +133,6 @@ class _CardWidget extends StatefulWidget {
   final VoidCallback onDragEnd;
 
   const _CardWidget({
-    super.key,
     required this.ownKartetoCards,
     required this.index,
     required this.onDragEnd,
@@ -298,7 +294,6 @@ class _OverlayOfAnimation extends StatefulWidget {
   final VoidCallback onEndAnimation;
 
   const _OverlayOfAnimation({
-    super.key,
     required this.ownKartetoCards,
     required this.endPositionOfWidget,
     required this.onEndAnimation,

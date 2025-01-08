@@ -1,4 +1,3 @@
-import 'package:flutter_animations_2/hive/lazy_load/hive_settings.dart';
 import 'package:flutter_animations_2/hive/users_todo_test/models/users_test.dart';
 import 'package:flutter_animations_2/hive/users_todo_test/models/users_todo_test.dart';
 import 'package:hive_flutter/hive_flutter.dart';

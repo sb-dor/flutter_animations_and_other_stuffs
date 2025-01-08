@@ -34,7 +34,7 @@ List<CardModel> demoCardData = [
 ];
 
 class FlutterParallaxHorizontalEffect extends StatefulWidget {
-  const FlutterParallaxHorizontalEffect({Key? key}) : super(key: key);
+  const FlutterParallaxHorizontalEffect({super.key});
 
   @override
   State<FlutterParallaxHorizontalEffect> createState() => _FlutterParallaxEffectState();

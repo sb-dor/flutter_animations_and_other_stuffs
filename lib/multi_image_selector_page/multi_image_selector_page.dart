@@ -5,7 +5,7 @@ import 'package:flutter_animations_2/multi_image_selector_page/helper/multi_sele
 import 'package:image_picker/image_picker.dart';
 
 class MultiImageSelectorPage extends StatefulWidget {
-  const MultiImageSelectorPage({Key? key}) : super(key: key);
+  const MultiImageSelectorPage({super.key});
 
   @override
   State<MultiImageSelectorPage> createState() => _MultiImageSelectorPageState();

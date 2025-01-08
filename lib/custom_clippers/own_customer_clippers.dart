@@ -71,7 +71,7 @@ class MyCustomClipper extends CustomClipper<Path> {
 }
 
 class OwnCustomClippers extends StatefulWidget {
-  const OwnCustomClippers({Key? key}) : super(key: key);
+  const OwnCustomClippers({super.key});
 
   @override
   State<OwnCustomClippers> createState() => _OwnCustomClippersState();

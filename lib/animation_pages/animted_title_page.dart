@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AnimatedTitlePage extends StatelessWidget {
-  const AnimatedTitlePage({Key? key}) : super(key: key);
+  const AnimatedTitlePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class AnimatedTitlePage extends StatelessWidget {
 }
 
 class AnimatedTitle extends StatefulWidget {
-  const AnimatedTitle({Key? key}) : super(key: key);
+  const AnimatedTitle({super.key});
 
   @override
   State<AnimatedTitle> createState() => _AnimatedTitleState();

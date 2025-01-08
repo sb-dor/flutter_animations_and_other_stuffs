@@ -35,15 +35,14 @@ class ScaleAnimation extends StatelessWidget {
   final Widget child;
 
   const ScaleAnimation(
-      {Key? key,
+      {super.key,
       this.begin,
       this.end,
       required this.child,
       this.duration,
       this.intervalEnd,
       this.intervalStart,
-      this.curve})
-      : super(key: key);
+      this.curve});
 
   @override
   Widget build(BuildContext context) {

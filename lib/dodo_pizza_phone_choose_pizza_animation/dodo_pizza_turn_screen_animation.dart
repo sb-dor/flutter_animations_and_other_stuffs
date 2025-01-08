@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animations_2/widgets/text_widget.dart';
 
 class DodoPizzaTurnPizzaAnimation extends StatefulWidget {
-  const DodoPizzaTurnPizzaAnimation({Key? key}) : super(key: key);
+  const DodoPizzaTurnPizzaAnimation({super.key});
 
   @override
   State<DodoPizzaTurnPizzaAnimation> createState() => _DodoPizzaTurnPizzaAnimationState();
@@ -48,7 +48,7 @@ class _DodoPizzaTurnPizzaAnimationState extends State<DodoPizzaTurnPizzaAnimatio
 }
 
 class MainTurnAnimation extends StatefulWidget {
-  const MainTurnAnimation({Key? key}) : super(key: key);
+  const MainTurnAnimation({super.key});
 
   @override
   State<MainTurnAnimation> createState() => _MainTurnAnimationState();

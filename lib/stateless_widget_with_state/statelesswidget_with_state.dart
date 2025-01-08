@@ -23,16 +23,8 @@ class MyStatelessElement extends StatelessElement {
   }
 
   // dispose
-  @override
-  void unmount() {
-    super.unmount();
-  }
 
   // didUpdateWidget
-  @override
-  void update(covariant StatelessWidget newWidget) {
-    super.update(newWidget);
-  }
 
   // setState is our own function
   void setState(VoidCallback fn) {
@@ -65,4 +57,18 @@ class MyStatelessElement extends StatelessElement {
           ),
         ),
       );
+}
+
+class TestStateFul extends StatefulWidget {
+  const TestStateFul({super.key});
+
+  @override
+  State<TestStateFul> createState() => _TestStateFulState();
+}
+
+class _TestStateFulState extends State<TestStateFul> {
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
 }

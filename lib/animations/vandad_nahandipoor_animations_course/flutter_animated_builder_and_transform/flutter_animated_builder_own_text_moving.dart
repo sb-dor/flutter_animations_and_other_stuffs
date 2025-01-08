@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class FlutterAnimatedBuilderOwnTextMoving extends StatefulWidget {
-  const FlutterAnimatedBuilderOwnTextMoving({Key? key}) : super(key: key);
+  const FlutterAnimatedBuilderOwnTextMoving({super.key});
 
   @override
   State<FlutterAnimatedBuilderOwnTextMoving> createState() =>

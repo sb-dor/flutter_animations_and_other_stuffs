@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 ///using TweenAnimationBuilder
 class FadeAnimation extends StatelessWidget {
   const FadeAnimation({
-    Key? key,
+    super.key,
     required this.child,
     this.begin = 0,
     this.end = 1,
@@ -13,7 +13,7 @@ class FadeAnimation extends StatelessWidget {
     this.intervalEnd = 1,
     this.duration = const Duration(milliseconds: 450),
     this.curve = Curves.fastOutSlowIn,
-  }) : super(key: key);
+  });
 
   ///Animate from value
   ///

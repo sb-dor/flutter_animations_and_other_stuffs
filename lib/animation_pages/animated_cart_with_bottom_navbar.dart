@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:add_to_cart_animation/add_to_cart_animation.dart';
 
 class AnimatedCartWithBottomNavbar extends StatefulWidget {
-  const AnimatedCartWithBottomNavbar({Key? key}) : super(key: key);
+  const AnimatedCartWithBottomNavbar({super.key});
 
   @override
   State<AnimatedCartWithBottomNavbar> createState() => _AnimatedCartWithBottomNavbarState();

@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
 // only for android test purpose
 class ContextMenuExample extends StatelessWidget {

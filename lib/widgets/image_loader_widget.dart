@@ -15,7 +15,7 @@ class ImageLoaderWidget extends StatelessWidget {
   final BorderRadius? borderRadius;
 
   const ImageLoaderWidget(
-      {Key? key,
+      {super.key,
       required this.url,
       required this.errorImageUrl,
       this.imageBlurHash,
@@ -24,8 +24,7 @@ class ImageLoaderWidget extends StatelessWidget {
       this.boxFit,
       this.marginShimmerContainer,
       this.paddingShimmerContainer,
-      this.borderRadius})
-      : super(key: key);
+      this.borderRadius});
 
   @override
   Widget build(BuildContext context) {

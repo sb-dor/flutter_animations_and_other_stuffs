@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 enum Calendar { day, week, month, year }
 
 class SegmentButtonClass extends StatefulWidget {
-  const SegmentButtonClass({Key? key}) : super(key: key);
+  const SegmentButtonClass({super.key});
 
   @override
   State<SegmentButtonClass> createState() => _SegmentButtonClassState();

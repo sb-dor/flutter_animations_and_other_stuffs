@@ -1,4 +1,3 @@
-import 'package:flutter_animations_2/floor_database/db/floor_app_database.dart';
 import 'package:get_it/get_it.dart';
 
 import 'domain/meme_controller.dart';

@@ -45,7 +45,9 @@ class _FlutterGesturesMoveByPositionState extends State<FlutterGesturesMoveByPos
                     onPointerMove: (PointerMoveEvent move) {
                       if ((move.position.dx - (containerWidth / 2)) < 0 ||
                           (move.position.dx + (containerWidth / 2)) >
-                              MediaQuery.of(context).size.width) return;
+                              MediaQuery.of(context).size.width) {
+                        return;
+                      }
                       if ((move.position.dy - containerHeight) < 0 || move.position.dy > 300) {
                         return;
                       }

@@ -194,7 +194,7 @@ class _SimpleSliverAndScrollPageState extends State<SimpleSliverAndScrollPage> {
                     ],
                   ),
                 )
-                .toList(),
+                ,
             // for (int i = 0; i < sliverForHeaders.length; i++) ...[
             //   SliverPadding(
             //     padding: const EdgeInsets.only(left: 10, right: 10),

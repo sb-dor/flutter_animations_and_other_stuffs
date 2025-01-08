@@ -3,7 +3,7 @@ import 'package:flutter_animations_2/bloc_learning/bloc_concurrency/main_bloc_co
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MaiNBlocConcurrencyPage extends StatefulWidget {
-  const MaiNBlocConcurrencyPage({Key? key}) : super(key: key);
+  const MaiNBlocConcurrencyPage({super.key});
 
   @override
   State<MaiNBlocConcurrencyPage> createState() => _MaiNBlocConcurrencyPageState();

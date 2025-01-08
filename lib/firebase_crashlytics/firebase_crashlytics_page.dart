@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class FirebaseCrashlyticsPage extends StatelessWidget {
-  const FirebaseCrashlyticsPage({Key? key}) : super(key: key);
+  const FirebaseCrashlyticsPage({super.key});
 
   @override
   Widget build(BuildContext context) {

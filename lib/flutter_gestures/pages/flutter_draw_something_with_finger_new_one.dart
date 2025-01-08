@@ -42,7 +42,7 @@ class LineWidget {
 }
 
 class FlutterDrawSomethingWithFingerNewOne extends StatefulWidget {
-  const FlutterDrawSomethingWithFingerNewOne({Key? key}) : super(key: key);
+  const FlutterDrawSomethingWithFingerNewOne({super.key});
 
   @override
   State<FlutterDrawSomethingWithFingerNewOne> createState() =>

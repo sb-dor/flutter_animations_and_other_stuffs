@@ -3,7 +3,7 @@ import 'package:flutter_animations_2/material3/material_changer_cubit/material_c
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BottomNavBar extends StatelessWidget {
-  const BottomNavBar({Key? key}) : super(key: key);
+  const BottomNavBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class BottomNavBar extends StatelessWidget {
 }
 
 class _AnotherPage extends StatelessWidget {
-  const _AnotherPage({Key? key}) : super(key: key);
+  const _AnotherPage();
 
   @override
   Widget build(BuildContext context) {

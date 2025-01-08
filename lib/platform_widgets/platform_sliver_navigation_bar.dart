@@ -23,7 +23,7 @@ class PlatformSliverNavigationBar extends StatelessWidget {
 }
 
 class _CustomScrollViewHelper extends StatefulWidget {
-  const _CustomScrollViewHelper({super.key});
+  const _CustomScrollViewHelper();
 
   @override
   State<_CustomScrollViewHelper> createState() => _CustomScrollViewHelperState();
@@ -111,7 +111,7 @@ class _CustomScrollViewHelperState extends State<_CustomScrollViewHelper> {
           (element) => SliverPadding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             sliver: SliverToBoxAdapter(
-              child: Text("Element is: ${element}"),
+              child: Text("Element is: $element"),
             ),
           ),
         ),

@@ -10,7 +10,7 @@ import 'package:flutter_animations_2/delivery_food_ui/core/widgets/button/button
 import 'package:flutter_animations_2/delivery_food_ui/screens/product_screen/widgets/product_info_text.dart';
 
 class ProductScreen extends StatefulWidget {
-  const ProductScreen({Key? key}) : super(key: key);
+  const ProductScreen({super.key});
 
   @override
   _ProductScreenState createState() => _ProductScreenState();

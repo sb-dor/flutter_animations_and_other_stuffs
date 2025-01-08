@@ -8,7 +8,7 @@ import 'widgets/sliver_body_items.dart';
 import 'widgets/sliver_header_data.dart';
 
 class HomeSliverWithTab extends StatefulWidget {
-  const HomeSliverWithTab({Key? key}) : super(key: key);
+  const HomeSliverWithTab({super.key});
 
   @override
   State<HomeSliverWithTab> createState() => _HomeSliverWithTabState();
@@ -89,10 +89,9 @@ class _HomeSliverWithTabState extends State<HomeSliverWithTab> {
 
 class _FlexibleSpaceBarHeader extends StatelessWidget {
   const _FlexibleSpaceBarHeader({
-    Key? key,
     required this.valueScroll,
     required this.bloc,
-  }) : super(key: key);
+  });
 
   final double valueScroll;
   final SliverScrollController bloc;

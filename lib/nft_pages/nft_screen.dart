@@ -5,7 +5,7 @@ import 'package:flutter_animations_2/animations/fade_animation.dart';
 class NftScreen extends StatelessWidget {
   final String imageAsset;
 
-  const NftScreen({Key? key, required this.imageAsset}) : super(key: key);
+  const NftScreen({super.key, required this.imageAsset});
 
   @override
   Widget build(BuildContext context) {
@@ -110,8 +110,7 @@ class InfoTile extends StatelessWidget {
   final String title;
   final String content;
 
-  const InfoTile({Key? key, required this.title, required this.content})
-      : super(key: key);
+  const InfoTile({super.key, required this.title, required this.content});
 
   @override
   Widget build(BuildContext context) {

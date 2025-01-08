@@ -3,7 +3,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:rive/rive.dart';
 
 class RiveAnimationPage extends StatefulWidget {
-  const RiveAnimationPage({Key? key}) : super(key: key);
+  const RiveAnimationPage({super.key});
 
   @override
   State<RiveAnimationPage> createState() => _RiveAnimationPageState();

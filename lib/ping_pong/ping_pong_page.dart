@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class PingPongPage extends StatefulWidget {
-  const PingPongPage({Key? key}) : super(key: key);
+  const PingPongPage({super.key});
 
   @override
   State<PingPongPage> createState() => _PingPongPageState();

@@ -10,13 +10,13 @@ class AnimatedAppbarPage extends StatefulWidget {
   final bool reverseAnimation;
 
   const AnimatedAppbarPage({
-    Key? key,
+    super.key,
     this.title,
     this.titleSize = 20,
     this.titleText,
     this.leading,
     this.reverseAnimation = false,
-  }) : super(key: key);
+  });
 
   @override
   State<AnimatedAppbarPage> createState() => _AnimatedAppbarPageState();

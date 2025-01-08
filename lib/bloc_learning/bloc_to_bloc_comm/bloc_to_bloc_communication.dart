@@ -4,7 +4,7 @@ import 'package:flutter_animations_2/bloc_learning/bloc_to_bloc_comm/second_bloc
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BlocToBlocCommunication extends StatefulWidget {
-  const BlocToBlocCommunication({Key? key}) : super(key: key);
+  const BlocToBlocCommunication({super.key});
 
   @override
   State<BlocToBlocCommunication> createState() => _BlocToBlocCommunicationState();

@@ -29,7 +29,7 @@ final goRouter = GoRouter(routes: [
 ]);
 
 class FlutterDeepLinkPage extends StatelessWidget {
-  const FlutterDeepLinkPage({Key? key}) : super(key: key);
+  const FlutterDeepLinkPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ class FlutterDeepLinkPage extends StatelessWidget {
 }
 
 class _HomePage extends StatelessWidget {
-  const _HomePage({Key? key}) : super(key: key);
+  const _HomePage();
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +54,7 @@ class _Profile extends StatelessWidget {
   final String? name;
   final String? birthDay;
 
-  const _Profile({Key? key, this.age, this.name, this.birthDay}) : super(key: key);
+  const _Profile({this.age, this.name, this.birthDay});
 
   @override
   Widget build(BuildContext context) {

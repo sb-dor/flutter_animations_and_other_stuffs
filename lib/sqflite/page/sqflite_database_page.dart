@@ -3,7 +3,7 @@ import 'package:flutter_animations_2/sqflite/model/database_model.dart';
 import 'package:flutter_animations_2/sqflite/sqflite_database_helper.dart';
 
 class SqfliteDatabasePage extends StatefulWidget {
-  const SqfliteDatabasePage({Key? key}) : super(key: key);
+  const SqfliteDatabasePage({super.key});
 
   @override
   State<SqfliteDatabasePage> createState() => _SqfliteDatabasePageState();

@@ -13,7 +13,7 @@ import 'package:flutter_animations_2/delivery_food_ui/screens/home_screen/widget
 import 'package:flutter_animations_2/delivery_food_ui/screens/vendor_screen/vendor_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   _HomeScreenState createState() => _HomeScreenState();

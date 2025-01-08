@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class BlurContainer extends StatelessWidget {
   final Widget child;
 
-  const BlurContainer({Key? key, required this.child}) : super(key: key);
+  const BlurContainer({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {

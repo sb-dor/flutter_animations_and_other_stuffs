@@ -10,11 +10,10 @@ class ImageListView extends StatefulWidget {
   final Duration duration;
 
   const ImageListView(
-      {Key? key,
+      {super.key,
       required this.startIndex,
       required this.startFromRight,
-      required this.duration})
-      : super(key: key);
+      required this.duration});
 
   @override
   State<ImageListView> createState() => _ImageListViewState();
@@ -81,7 +80,7 @@ class _ImageListViewState extends State<ImageListView> {
 class _ImageTile extends StatelessWidget {
   final String image;
 
-  const _ImageTile({Key? key, required this.image}) : super(key: key);
+  const _ImageTile({required this.image});
 
   @override
   Widget build(BuildContext context) {

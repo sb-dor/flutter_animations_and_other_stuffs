@@ -1,7 +1,6 @@
 import 'package:drift/drift.dart';
 import 'package:flutter_animations_2/drift/database/app_database.dart';
 import 'package:flutter_animations_2/drift/database/tables/todo_drift_db_table.dart';
-import 'package:path/path.dart';
 
 final class TodoDriftDatabaseHelper {
   final AppDatabase _database;

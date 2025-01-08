@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animations_2/delivery_food_ui/core/utils/ui_helper.dart';
 
 class ProductInfoText extends StatelessWidget {
-  const ProductInfoText({Key? key, required this.text, required this.value})
-      : super(key: key);
+  const ProductInfoText({super.key, required this.text, required this.value});
 
   final String text;
   final String value;

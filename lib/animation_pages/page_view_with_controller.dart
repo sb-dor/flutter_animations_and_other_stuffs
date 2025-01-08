@@ -6,7 +6,7 @@ import 'dart:math' as math;
 import 'package:flutter_animations_2/models/product.dart';
 
 class PageViewWithController extends StatefulWidget {
-  const PageViewWithController({Key? key}) : super(key: key);
+  const PageViewWithController({super.key});
 
   @override
   State<PageViewWithController> createState() => _PageViewWithControllerState();

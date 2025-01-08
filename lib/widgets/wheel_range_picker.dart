@@ -26,7 +26,7 @@ class WheelRangePicker extends StatefulWidget {
   final String? secondStartValue;
 
   const WheelRangePicker({
-    Key? key,
+    super.key,
     required this.listForShow,
     required this.onFirstSliderChange,
     required this.onSecondSliderChange,
@@ -36,7 +36,7 @@ class WheelRangePicker extends StatefulWidget {
     this.startValue = false,
     this.firstStartValue,
     this.secondStartValue,
-  }) : super(key: key);
+  });
 
   @override
   State<WheelRangePicker> createState() => _WheelRangePickerState();

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_blurhash/flutter_blurhash.dart';
 
 class FlutterBlurHash extends StatefulWidget {
-  const FlutterBlurHash({Key? key}) : super(key: key);
+  const FlutterBlurHash({super.key});
 
   @override
   State<FlutterBlurHash> createState() => _FlutterBlurHashState();

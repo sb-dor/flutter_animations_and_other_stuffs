@@ -2,7 +2,7 @@ import 'dart:math' show pi;
 import 'package:flutter/material.dart';
 
 class FlutterAnimatedBuilderAndTMainScreen extends StatefulWidget {
-  const FlutterAnimatedBuilderAndTMainScreen({Key? key}) : super(key: key);
+  const FlutterAnimatedBuilderAndTMainScreen({super.key});
 
   @override
   State<FlutterAnimatedBuilderAndTMainScreen> createState() =>

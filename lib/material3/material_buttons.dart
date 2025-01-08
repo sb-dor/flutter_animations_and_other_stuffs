@@ -3,7 +3,7 @@ import 'package:flutter_animations_2/material3/material_changer_cubit/material_c
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MaterialButtons extends StatelessWidget {
-  const MaterialButtons({Key? key}) : super(key: key);
+  const MaterialButtons({super.key});
 
   @override
   Widget build(BuildContext context) {

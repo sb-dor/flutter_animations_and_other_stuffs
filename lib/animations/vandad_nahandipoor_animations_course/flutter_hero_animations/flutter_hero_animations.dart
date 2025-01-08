@@ -16,7 +16,7 @@ const people = [
 ];
 
 class FlutterHeroAnimations extends StatefulWidget {
-  const FlutterHeroAnimations({Key? key}) : super(key: key);
+  const FlutterHeroAnimations({super.key});
 
   @override
   State<FlutterHeroAnimations> createState() => _FlutterHeroAnimationsState();
@@ -56,7 +56,7 @@ class _FlutterHeroAnimationsState extends State<FlutterHeroAnimations> {
 class DetailsFlutterHeroAnimationPage extends StatelessWidget {
   final Person person;
 
-  const DetailsFlutterHeroAnimationPage({Key? key, required this.person}) : super(key: key);
+  const DetailsFlutterHeroAnimationPage({super.key, required this.person});
 
   @override
   Widget build(BuildContext context) {

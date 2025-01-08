@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animations_2/bloc_learning/streams/stream/simple_stream_bloc.dart';
 
 class SimpleBlocPageWithStream extends StatefulWidget {
-  const SimpleBlocPageWithStream({Key? key}) : super(key: key);
+  const SimpleBlocPageWithStream({super.key});
 
   @override
   State<SimpleBlocPageWithStream> createState() => _SimpleBlocPageWithStreamState();

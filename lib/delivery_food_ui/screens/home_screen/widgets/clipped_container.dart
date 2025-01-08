@@ -3,13 +3,13 @@ import 'package:flutter_animations_2/animations/slide_animation.dart';
 import 'package:flutter_animations_2/delivery_food_ui/core/utils/ui_helper.dart';
 class ClippedContainer extends StatelessWidget {
   const ClippedContainer({
-    Key? key,
+    super.key,
     required this.child,
     this.height,
     this.backgroundColor,
     this.alignment = Alignment.center,
     this.isAnimated = true,
-  }) : super(key: key);
+  });
 
   final Widget child;
   final double? height;

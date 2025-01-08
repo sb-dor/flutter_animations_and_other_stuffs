@@ -17,7 +17,7 @@ class _PopupFollowerState extends State<PopupFollowerImpl> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Popup widgets with shortcuts with PopupFollower widget",
           style: TextStyle(color: Colors.black),
         ),
@@ -54,7 +54,7 @@ class _PopupFollowerState extends State<PopupFollowerImpl> {
                 onPressed: () {
                   controller.show();
                 },
-                child: Text(
+                child: const Text(
                   "Show simple popup",
                 ),
               ),

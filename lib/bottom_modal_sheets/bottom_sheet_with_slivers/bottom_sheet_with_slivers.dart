@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animations_2/bottom_modal_sheets/bottom_modal_sheet_dynamic_size.dart';
-import 'package:get/get.dart';
-import 'package:sliver_tools/sliver_tools.dart';
 
 class BottomSheetWithSlivers extends StatefulWidget {
   const BottomSheetWithSlivers({super.key});
@@ -36,7 +33,7 @@ class _BottomSheetWithSliversState extends State<BottomSheetWithSlivers> {
 }
 
 class _MyModalSheet extends StatelessWidget {
-  const _MyModalSheet({super.key});
+  const _MyModalSheet();
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +70,7 @@ class _MyModalSheet extends StatelessWidget {
                 ),
                 child: FlexibleSpaceBar(
                   collapseMode: CollapseMode.none,
-                  stretchModes: [
+                  stretchModes: const [
                     StretchMode.zoomBackground,
                   ],
                   background: Image.asset(

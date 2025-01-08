@@ -5,11 +5,10 @@ import '../../../core/widgets/icon/custom_icons.dart';
 
 class VendorInfoCard extends StatelessWidget {
   const VendorInfoCard(
-      {Key? key,
+      {super.key,
       required this.title,
       required this.rating,
-      required this.sideImagePath})
-      : super(key: key);
+      required this.sideImagePath});
 
   final String title;
   final double rating;

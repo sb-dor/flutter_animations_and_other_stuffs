@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animations_2/animation_pages/flutter_parallax_horizontal_effect.dart';
 
 class FlutterParallaxVerticalEffect extends StatefulWidget {
-  const FlutterParallaxVerticalEffect({Key? key}) : super(key: key);
+  const FlutterParallaxVerticalEffect({super.key});
 
   @override
   State<FlutterParallaxVerticalEffect> createState() => _FlutterParallaxVerticalEffectState();

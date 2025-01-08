@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class GoogleSignInPage extends StatefulWidget {
-  const GoogleSignInPage({Key? key}) : super(key: key);
+  const GoogleSignInPage({super.key});
 
   @override
   State<GoogleSignInPage> createState() => _GoogleSignInPageState();

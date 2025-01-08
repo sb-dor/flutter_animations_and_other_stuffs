@@ -12,7 +12,7 @@ class CircleClipper extends CustomClipper<Path> {
 }
 
 class TweenAnimationBuilderAndCustomClipperAndClipPath extends StatefulWidget {
-  const TweenAnimationBuilderAndCustomClipperAndClipPath({Key? key}) : super(key: key);
+  const TweenAnimationBuilderAndCustomClipperAndClipPath({super.key});
 
   @override
   State<TweenAnimationBuilderAndCustomClipperAndClipPath> createState() =>

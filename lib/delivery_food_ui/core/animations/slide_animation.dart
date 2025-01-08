@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 ///using TweenAnimationBuilder
 class SlideAnimation extends StatelessWidget {
   const SlideAnimation({
-    Key? key,
+    super.key,
     required this.child,
     this.begin = const Offset(250, 0),
     this.end = const Offset(0, 0),
@@ -13,7 +13,7 @@ class SlideAnimation extends StatelessWidget {
     this.intervalEnd = 1,
     this.duration = const Duration(milliseconds: 450),
     this.curve = Curves.fastOutSlowIn,
-  }) : super(key: key);
+  });
 
   ///Animate from value
   ///

@@ -58,7 +58,7 @@ class _AnimatedWidgetDetectorState extends State<AnimatedWidgetDetector> {
 }
 
 class _VisibilityAnimatedWidget extends StatefulWidget {
-  const _VisibilityAnimatedWidget({super.key});
+  const _VisibilityAnimatedWidget();
 
   @override
   State<_VisibilityAnimatedWidget> createState() => _VisibilityAnimatedWidgetState();
@@ -75,7 +75,7 @@ class _VisibilityAnimatedWidgetState extends State<_VisibilityAnimatedWidget> {
       onVisibilityChanged: (visibilityInfo) {
         var visiblePercentage = visibilityInfo.visibleFraction * 100;
         if (visiblePercentage > 20) {
-          debugPrint('Widget ${visibilityInfo.key} is ${visiblePercentage}% visible $_widgetId');
+          debugPrint('Widget ${visibilityInfo.key} is $visiblePercentage% visible $_widgetId');
         }
 
         //// gets first found type of <_AnimatedWidgetDetectorState>

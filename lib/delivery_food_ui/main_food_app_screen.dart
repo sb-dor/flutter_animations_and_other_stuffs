@@ -5,7 +5,7 @@ import 'package:flutter_animations_2/delivery_food_ui/screens/splash_screen.dart
 
 
 class MainFoodAppScreen extends StatelessWidget {
-  const MainFoodAppScreen({Key? key}) : super(key: key);
+  const MainFoodAppScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return SizeConfiguration(

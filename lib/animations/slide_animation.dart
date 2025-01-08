@@ -35,15 +35,14 @@ class SlideAnimation extends StatelessWidget {
   final Widget? child;
 
   const SlideAnimation(
-      {Key? key,
+      {super.key,
       required this.child,
       this.begin,
       this.end,
       this.intervalStart,
       this.intervalEnd,
       this.duration,
-      this.curve})
-      : super(key: key);
+      this.curve});
 
   @override
   Widget build(BuildContext context) {

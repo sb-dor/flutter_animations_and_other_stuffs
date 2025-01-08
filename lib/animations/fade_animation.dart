@@ -34,15 +34,14 @@ class FadeAnimation extends StatelessWidget {
   ///This widget will be animated
   final Widget child;
   const FadeAnimation(
-      {Key? key,
+      {super.key,
       required this.child,
       this.begin,
       this.end,
       this.duration,
       this.intervalStart,
       this.intervalEnd,
-      this.curve})
-      : super(key: key);
+      this.curve});
 
 
   @override

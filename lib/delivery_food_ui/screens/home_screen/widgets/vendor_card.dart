@@ -4,11 +4,10 @@ import 'package:flutter_animations_2/delivery_food_ui/core/widgets/icon/custom_i
 
 class VendorCard extends StatelessWidget {
   const VendorCard(
-      {Key? key,
+      {super.key,
       required this.imagePath,
       required this.name,
-      required this.rating})
-      : super(key: key);
+      required this.rating});
 
   final String imagePath;
   final String name;
@@ -118,7 +117,7 @@ class VendorCard extends StatelessWidget {
 }
 
 class FavIcon extends StatelessWidget {
-  const FavIcon({Key? key}) : super(key: key);
+  const FavIcon({super.key});
 
   @override
   Widget build(BuildContext context) {

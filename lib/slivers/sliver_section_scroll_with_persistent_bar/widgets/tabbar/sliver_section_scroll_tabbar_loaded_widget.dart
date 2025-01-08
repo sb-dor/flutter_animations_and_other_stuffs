@@ -53,12 +53,12 @@ class Delegate extends SliverPersistentHeaderDelegate {
           case InitialStateOnSliverSectionScrollState():
           case InProgressStateOnSliverSectionScrollState():
           case InitializingPositionsStateOnSliverSectionScrollState():
-            return SliverSectionScrollTabBarLoading();
+            return const SliverSectionScrollTabBarLoading();
           case CompletedStateOnSliverSectionScrollState():
             final currentState = state.stateModel;
             return AnimatedContainer(
               duration: const Duration(milliseconds: 175),
-              padding: EdgeInsets.only(left: 5, top: 10, bottom: 10),
+              padding: const EdgeInsets.only(left: 5, top: 10, bottom: 10),
               decoration: BoxDecoration(
                 color: Theme.of(context).scaffoldBackgroundColor,
                 borderRadius: BorderRadius.circular(5),
@@ -66,7 +66,7 @@ class Delegate extends SliverPersistentHeaderDelegate {
                     ? []
                     : [
                         BoxShadow(
-                          offset: Offset(0, 1),
+                          offset: const Offset(0, 1),
                           color: Theme.of(context).dividerColor,
                           blurRadius: 2,
                         ),
@@ -74,7 +74,7 @@ class Delegate extends SliverPersistentHeaderDelegate {
               ),
               child: ScrollablePositionedList.separated(
                 itemScrollController: itemScrollController,
-                separatorBuilder: (context, index) => SizedBox(width: 10),
+                separatorBuilder: (context, index) => const SizedBox(width: 10),
                 scrollDirection: Axis.horizontal,
                 itemCount: currentState.sliverTitles.length,
                 physics: const AlwaysScrollableScrollPhysics(parent: ClampingScrollPhysics()),
@@ -90,7 +90,7 @@ class Delegate extends SliverPersistentHeaderDelegate {
                           );
                     },
                     child: Container(
-                      padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
+                      padding: const EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
                       decoration: BoxDecoration(
                           color: currentState.scrollIndexPositionAt == index
                               ? Theme.of(context).primaryColor.withValues(alpha: 0.3)

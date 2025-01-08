@@ -15,7 +15,7 @@ class RetrofitView extends StatelessWidget {
 }
 
 class _RetrofitViewHelper extends StatefulWidget {
-  const _RetrofitViewHelper({super.key});
+  const _RetrofitViewHelper();
 
   @override
   State<_RetrofitViewHelper> createState() => _RetrofitViewHelperState();

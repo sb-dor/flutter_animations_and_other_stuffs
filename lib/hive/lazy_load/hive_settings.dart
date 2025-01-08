@@ -4,7 +4,6 @@ import 'package:flutter_animations_2/handling_errors/log_model.dart';
 import 'package:flutter_animations_2/hive/lazy_load/generated_model/generated_hive_model.dart';
 import 'package:flutter_animations_2/hive/lazy_load/model/product_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:http/http.dart';
 import 'package:uuid/uuid.dart';
 
 class HiveSettings {

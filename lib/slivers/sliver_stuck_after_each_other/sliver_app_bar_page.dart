@@ -5,7 +5,7 @@ import 'package:flutter_animations_2/slivers/sliver_stuck_after_each_other/multi
 import 'package:sliver_tools/sliver_tools.dart';
 
 class SliverAppBarPage extends StatelessWidget {
-  const SliverAppBarPage({Key? key}) : super(key: key);
+  const SliverAppBarPage({super.key});
 
   @override
   Widget build(BuildContext context) {

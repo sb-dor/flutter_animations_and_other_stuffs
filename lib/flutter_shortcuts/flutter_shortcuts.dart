@@ -1,4 +1,3 @@
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -142,7 +141,7 @@ class _FlutterShortcutsState extends State<FlutterShortcuts> {
 // all shortcut will work in there specific widget
 // it's awesome
 class _SameShortcutsWidget extends StatefulWidget {
-  const _SameShortcutsWidget({super.key});
+  const _SameShortcutsWidget();
 
   @override
   State<_SameShortcutsWidget> createState() => _SameShortcutsWidgetState();

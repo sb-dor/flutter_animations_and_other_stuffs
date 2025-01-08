@@ -50,7 +50,7 @@ class HalfOfLeftContainer extends CustomClipper<Path> {
 }
 
 class DodoPizzaPhoneChoosePizzaAnimation extends StatefulWidget {
-  const DodoPizzaPhoneChoosePizzaAnimation({Key? key}) : super(key: key);
+  const DodoPizzaPhoneChoosePizzaAnimation({super.key});
 
   @override
   State<DodoPizzaPhoneChoosePizzaAnimation> createState() =>

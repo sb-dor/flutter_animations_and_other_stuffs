@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 
 class CustomClippersScreen extends StatelessWidget {
-  const CustomClippersScreen({Key? key}) : super(key: key);
+  const CustomClippersScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

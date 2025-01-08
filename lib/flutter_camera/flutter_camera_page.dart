@@ -10,7 +10,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:video_player/video_player.dart';
 
 class FlutterCameraPage extends StatefulWidget {
-  const FlutterCameraPage({Key? key}) : super(key: key);
+  const FlutterCameraPage({super.key});
 
   @override
   State<FlutterCameraPage> createState() => _FlutterCameraPageState();
@@ -229,9 +229,8 @@ class _VideoPlayerWidget extends StatefulWidget {
   final String pathOfVideo;
 
   const _VideoPlayerWidget({
-    Key? key,
     required this.pathOfVideo,
-  }) : super(key: key);
+  });
 
   @override
   State<_VideoPlayerWidget> createState() => _VideoPlayerWidgetState();

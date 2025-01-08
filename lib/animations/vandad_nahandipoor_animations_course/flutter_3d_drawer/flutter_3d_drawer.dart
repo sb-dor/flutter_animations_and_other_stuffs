@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class FlutterThreeDimensionDrawer extends StatefulWidget {
-  const FlutterThreeDimensionDrawer({Key? key}) : super(key: key);
+  const FlutterThreeDimensionDrawer({super.key});
 
   @override
   State<FlutterThreeDimensionDrawer> createState() => _FlutterThreeDimensionDrawerState();
@@ -50,7 +50,7 @@ class _FlutterThreeDimensionDrawerState extends State<FlutterThreeDimensionDrawe
 }
 
 class MyDrawer extends StatefulWidget {
-  const MyDrawer({Key? key}) : super(key: key);
+  const MyDrawer({super.key});
 
   @override
   State<MyDrawer> createState() => _MyDrawerState();
@@ -67,7 +67,7 @@ class _MyDrawerState extends State<MyDrawer> {
 }
 
 class MyChild extends StatefulWidget {
-  const MyChild({Key? key}) : super(key: key);
+  const MyChild({super.key});
 
   @override
   State<MyChild> createState() => _MyChildState();

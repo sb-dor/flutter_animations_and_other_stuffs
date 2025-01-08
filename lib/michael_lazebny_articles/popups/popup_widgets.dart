@@ -14,7 +14,7 @@ class _PopupWidgetsState extends State<PopupWidgets> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "ML article about popups",
           style: TextStyle(color: Colors.black),
         ),
@@ -59,7 +59,7 @@ class _PopupWidgetsState extends State<PopupWidgets> {
                   // }
                   controller.show();
                 },
-                child: Text("Show simple popup"),
+                child: const Text("Show simple popup"),
               ),
             ),
           ],
