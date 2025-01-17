@@ -40,6 +40,7 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart' as provider;
 import 'package:url_strategy/url_strategy.dart';
 
+import 'excel/excel_page.dart';
 import 'flutter_bluetooth_thermal_printer/view/bloc/flutter_bluetooth_thermal_printer_bloc.dart';
 import 'flutter_testing_widget_lifecycle/flutter_testing_widget_lifecycle_with_setstate.dart';
 import 'flutter_testing_widget_lifecycle/with_bloc/flutter_testing_widget_with_bloc.dart';
@@ -261,7 +262,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const FlutterTestingWidgetWithBloc(),
+        builder: (context, state) => const ExcelPage(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {

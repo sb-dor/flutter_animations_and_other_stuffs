@@ -1,4 +1,5 @@
 import 'package:excel/excel.dart';
+import 'package:flutter/cupertino.dart';
 
 class ExcelConverter {
   //
@@ -44,6 +45,8 @@ class ExcelConverter {
       }
     }
 
+    debugPrint("$dataRows");
+
     return dataRows;
   }
 
@@ -66,6 +69,8 @@ class ExcelConverter {
 
       csvMappedData.add(rowData);
     }
+
+    debugPrint("$csvMappedData");
 
     return csvMappedData;
   }
