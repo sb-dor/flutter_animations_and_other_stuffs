@@ -152,6 +152,7 @@ dependencies:
   drift_flutter: ^0.2.2
   logger: ^2.5.0
   firebase_analytics: ^11.3.6
+  csv: ^6.0.0
 
 
 

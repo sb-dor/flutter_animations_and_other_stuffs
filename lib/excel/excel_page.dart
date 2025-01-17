@@ -2,7 +2,9 @@ import 'dart:io';
 import 'package:excel/excel.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter_animations_2/excel/excel_converter/bloc/excel_converter_bloc.dart';
 import 'package:path/path.dart' as path;
+import 'package:provider/provider.dart';
 
 class _TypeOfSolve {
   String type;
@@ -56,8 +58,7 @@ class _ExcelPageState extends State<ExcelPage> {
       debugPrint("maxRows: ${excel.tables[table]?.maxRows}");
 
       int indexOfTitle = excel.tables[table]?.rows[0].indexWhere((element) =>
-              element?.value.toString().toLowerCase() ==
-                  nameOfColumn.trim().toLowerCase()) ??
+              element?.value.toString().toLowerCase() == nameOfColumn.trim().toLowerCase()) ??
           -1;
       if (indexOfTitle == -1) {
         showMessage(message: "Field was not found");
@@ -103,6 +104,20 @@ class _ExcelPageState extends State<ExcelPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Excel file parser"),
+        actions: [
+          IconButton(
+            onPressed: () {
+              context.read<ExcelConversionBloc>().add(
+                ExcelConversionEvent.pickFile(onErrorMessage: (message) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text(message)),
+                  );
+                }),
+              );
+            },
+            icon: const Icon(Icons.cloud_upload),
+          ),
+        ],
       ),
       body: ListView(padding: const EdgeInsets.only(left: 10, right: 10), children: [
         Row(children: [

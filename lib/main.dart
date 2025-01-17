@@ -15,6 +15,7 @@ import 'package:flutter_animations_2/design_templates/clean_architecture/present
 import 'package:flutter_animations_2/design_templates/mvvm/viewmodel_mvvm.dart';
 import 'package:flutter_animations_2/drag_and_drop_own_animation/provider/drag_and_drop_provider.dart';
 import 'package:flutter_animations_2/esc_pos_printer_with_bluetooth/esc_pos_printer_ui_helper.dart';
+import 'package:flutter_animations_2/excel/excel_converter/bloc/excel_converter_bloc.dart';
 import 'package:flutter_animations_2/flutter_background_service/flutter_background_service_helper.dart';
 import 'package:flutter_animations_2/flutter_camera/flutter_camera_helper.dart';
 import 'package:flutter_animations_2/flutter_nearby_connectivity/yt_nearby_p2p_connection/cubit/nearby_server_cubit.dart';
@@ -167,6 +168,8 @@ void main() async {
         BlocProvider(create: (_) => UsingFreezedBloc()),
 
         BlocProvider(create: (_) => FlutterBluetoothThermalPrinterBloc()),
+
+        BlocProvider(create: (_) => ExcelConversionBloc()),
       ],
       child: provider.MultiProvider(
         providers: [
