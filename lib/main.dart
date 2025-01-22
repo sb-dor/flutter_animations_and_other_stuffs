@@ -1,4 +1,3 @@
-
 import 'package:firebase_core/firebase_core.dart' show Firebase;
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
@@ -60,8 +59,7 @@ void main() async {
     await setup();
 
     try {
-      await Firebase.initializeApp(
-      );
+      await Firebase.initializeApp();
       // await FirebasePushNot.initTopic();
       // await FirebasePushNot.initBackGroundNotification();
       // await FirebasePushNot.initForeGroundNotification();
@@ -262,7 +260,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const ExcelPage(),
+        builder: (context, state) => const FlutterTestingWidgetWithBloc(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {

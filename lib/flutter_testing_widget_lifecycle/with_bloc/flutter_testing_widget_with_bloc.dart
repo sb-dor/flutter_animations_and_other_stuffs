@@ -53,6 +53,10 @@ class _FlutterTestingWithBlocUIState extends State<_FlutterTestingWithBlocUI> {
                   const _TestRandom(),
                   // it will change
                   Text("${state.test}"),
+
+                  //
+                  const Text("TESTMI"),
+                  _TestRandom(),
                 ],
               );
             },
@@ -61,7 +65,10 @@ class _FlutterTestingWithBlocUIState extends State<_FlutterTestingWithBlocUI> {
           const _TestRandom(),
           // if any function calls setState it will change otherwise it will not update
           // the state
-          _TestRandom(),
+          const _TestRandom(),
+
+          const _TestRandomBlocTogether(),
+
         ],
       ),
     );
@@ -73,6 +80,7 @@ class _TestRandom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("mi");
     return Text("${Random().nextInt(100)}");
   }
 }
@@ -89,3 +97,19 @@ class _TestBloc extends StatelessWidget {
     );
   }
 }
+
+class _TestRandomBlocTogether extends StatelessWidget {
+  const _TestRandomBlocTogether({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Column(
+      children: [
+        Text("Doulbe"),
+        _TestRandom(),
+        _TestBloc(),
+      ],
+    );
+  }
+}
+
