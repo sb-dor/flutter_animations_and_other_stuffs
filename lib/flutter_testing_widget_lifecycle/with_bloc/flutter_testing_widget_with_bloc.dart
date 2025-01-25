@@ -56,6 +56,7 @@ class _FlutterTestingWithBlocUIState extends State<_FlutterTestingWithBlocUI> {
 
                   //
                   const Text("TESTMI"),
+
                   _TestRandom(),
                 ],
               );
