@@ -40,6 +40,7 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart' as provider;
 import 'package:url_strategy/url_strategy.dart';
 
+import 'animation_pages/better_perfomance_animated_builder.dart';
 import 'excel/excel_page.dart';
 import 'flutter_bluetooth_thermal_printer/view/bloc/flutter_bluetooth_thermal_printer_bloc.dart';
 import 'flutter_testing_widget_lifecycle/flutter_testing_widget_lifecycle_with_setstate.dart';
@@ -261,7 +262,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const FlutterCarouselViewTest(),
+        builder: (context, state) => const BetterPerformanceAnimatedBuilder(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
