@@ -29,9 +29,7 @@ class _BetterPerformanceAnimatedBuilderState extends State<BetterPerformanceAnim
       ),
     );
 
-    _animationController
-      ..forward()
-      ..repeat();
+    _animationController.repeat(reverse: true);
 
     super.initState();
   }
@@ -63,10 +61,18 @@ class _BetterPerformanceAnimatedBuilderState extends State<BetterPerformanceAnim
                   );
                 },
                 // it's a child that will be built once and inserted inside builder as a child
-                child: const ColoredBox(
+                child: Container(
+                  width: 100,
+                  height: 100,
                   color: Colors.red,
-                  child: Center(
-                    child: Text("Animated ColoredBox"),
+                  child: const Center(
+                    child: Text(
+                      "Animated ColoredBox",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
                 ),
               ),
