@@ -66,8 +66,16 @@ class _DiPageState extends State<DiPage> {
       ),
       body: Column(
         children: [
-          ElevatedButton(onPressed: () {}, child: const Text("Click")),
-          ElevatedButton(onPressed: () {}, child: const Text("Click 2")),
+          ElevatedButton(
+            onPressed: () {
+
+            },
+            child: const Text("Click"),
+          ),
+          ElevatedButton(
+            onPressed: () {},
+            child: const Text("Click 2"),
+          ),
         ],
       ),
     );

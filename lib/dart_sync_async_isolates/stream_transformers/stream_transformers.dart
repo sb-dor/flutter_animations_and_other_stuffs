@@ -194,3 +194,79 @@ class MyBaseTransformer extends StreamTransformerBase<int, String> {
     );
   }
 }
+
+
+
+// IMPLEMENTATION WAS TAKES FROM ANOTHER PROJECT
+// ---
+// class BetterCurrencyModelStreamTransformer extends StreamTransformerBase<dynamic, CurrencyModel> {
+//   @override
+//   Stream<CurrencyModel> bind(Stream stream) async* {
+//     yield* stream.transform(
+//       StreamTransformer.fromHandlers(
+//         handleData: (data, sink) {
+//           debugPrint("each data in handler $data");
+//           final Map<String, dynamic> json = jsonDecode(data);
+//           if (json.containsKey('INSTRUMENT') || json.containsKey('instrument')) {
+//             sink.add(CurrencyModel.fromJson(json));
+//           }
+//         },
+//         handleError: (error, stackTrace, sink) {
+//           // errors will be handled here
+//           // 1. send error to your selver
+//           // 2. you can transform error or add something else in sink if error occurs
+//           /// sink.add(modelThatYouWantToAdd);
+//           // if you use this error handler
+//           // stream will be stopped
+//           /// Error.throwWithStackTrace(error, stackTrace);
+//         },
+//       ),
+//     );
+//   }
+// }
+//
+// // better to use
+// // https://youtu.be/PEAcR3JWQDQ?t=4300
+// class AsyncAwaitTransformer extends StreamTransformerBase<dynamic, CurrencyModel> {
+//   // don't put async in this function and just return stream of controller in the end
+//   // because if get error inside stream you cant handle that
+//
+//   @override
+//   Stream<CurrencyModel> bind(Stream stream) {
+//     StreamSubscription? subscription;
+//
+//     final controller = StreamController<CurrencyModel>(
+//       onPause: () => subscription?.pause(),
+//       onCancel: () => subscription?.cancel(),
+//       onResume: () => subscription?.resume(),
+//     );
+//
+//     subscription = stream.asyncMap((value) async {
+//       // do some futures here if you want
+//       // for ex Future.delayed(const Duration(seconds: 1));
+//       // it means that you have an function that makes request to the server
+//       // or a function that calculates something and it takes time
+//       // do your futures here
+//       CurrencyModel? model;
+//       final Map<String, dynamic> json = jsonDecode(value);
+//       if (json.containsKey('INSTRUMENT') || json.containsKey('instrument')) {
+//         model = CurrencyModel.fromJson(json);
+//       }
+//       return model;
+//     }).listen(
+//           (value) {
+//         // never do async-await operation inside listen method
+//         // or even you can write above function here if its not future
+//         //  final Map<String, dynamic> json = jsonDecode(value);
+//         //       if (json.containsKey('INSTRUMENT') || json.containsKey('instrument')) {
+//         //         return CurrencyModel.fromJson(json);
+//         //       }
+//         if (value != null) controller.add(value);
+//       },
+//       onError: (value) => controller.addError(value),
+//       onDone: () => controller.close(),
+//     );
+//
+//     return controller.stream;
+//   }
+// }
