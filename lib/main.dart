@@ -48,7 +48,7 @@ import 'flutter_testing_widget_lifecycle/with_bloc/flutter_testing_widget_with_b
 import 'generated/l10n.dart';
 import 'getit/locator.dart';
 import 'google_map/cubit/main_google_map_cubit.dart';
-import 'stateless_widget_with_state/statelesswidget_test_markneedsbuild.dart';
+import 'stateless_widget_with_state/stateless_widget_test_mark_needs_build.dart';
 import 'stateless_widget_with_state/statelesswidget_with_state.dart';
 
 void main() async {
@@ -264,7 +264,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const StatelesswidgetTestMarkneedsbuild(),
+        builder: (context, state) => const StatelessWidgetTestMarkNeedsBuild(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {

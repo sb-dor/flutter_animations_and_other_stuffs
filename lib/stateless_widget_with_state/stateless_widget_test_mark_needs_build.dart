@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class StatelesswidgetTestMarkneedsbuild extends StatelessWidget {
-  const StatelesswidgetTestMarkneedsbuild({super.key});
+class StatelessWidgetTestMarkNeedsBuild extends StatelessWidget {
+  const StatelessWidgetTestMarkNeedsBuild({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Test"),
+        title: const Text("Test"),
       ),
       body: TextButton(
         onPressed: () {
