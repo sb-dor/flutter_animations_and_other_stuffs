@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animations_2/DI/example/calc_service.dart';
 import 'package:flutter_animations_2/DI/example/example_view_model.dart';
 import 'di_container.dart';
 import 'service_locator.dart';
@@ -17,11 +18,23 @@ class _MainDIPageState extends State<MainDIPage> {
   // get DI container without passing data through container
   // you have already set all necessary dependencies in DI container
   // now you can use that without writing bunch of code
-  final _diContainer = DIContainer();
+  late final DIContainer _diContainer;
+
+  @override
+  void initState() {
+    super.initState();
+    final calcService = FirstCalc();
+    final exampleCalcVM = ExampleCalcModel(calcService);
+    _diContainer = DIContainer(
+      calcService: calcService,
+      exampleViewModel: exampleCalcVM,
+      exampleWidget: DiPage(model: exampleCalcVM),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    return _diContainer.exampleWidget();
+    return _diContainer.exampleWidget;
   }
 }
 
@@ -41,8 +54,8 @@ class _DiPageState extends State<DiPage> {
   @override
   void initState() {
     super.initState();
-    debugPrint("hashcode of dI container: ${ServiceLocator.instance.diContainer.hashCode}");
-    debugPrint("hashcode of dI container: ${ServiceLocator.instance.diContainer.hashCode}");
+    debugPrint("hashcode of calcService: ${ServiceLocator.instance.calcService.hashCode}");
+    debugPrint("hashcode of calcService: ${ServiceLocator.instance.calcService.hashCode}");
   }
 
   @override
@@ -53,9 +66,7 @@ class _DiPageState extends State<DiPage> {
       ),
       body: Column(
         children: [
-          ElevatedButton(onPressed: () {
-
-          }, child: const Text("Click")),
+          ElevatedButton(onPressed: () {}, child: const Text("Click")),
           ElevatedButton(onPressed: () {}, child: const Text("Click 2")),
         ],
       ),

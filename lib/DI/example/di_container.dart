@@ -59,9 +59,22 @@ Advantages:
 // DI container is something that has every necessary dependency in it
 // and you don't have init every of them separately. Just get DIContainer and use it with it's dependencies
 class DIContainer {
-  CalcService calcService() => FirstCalc();
+  //
+  DIContainer({
+    required this.calcService,
+    required this.exampleViewModel,
+    required this.exampleWidget,
+  });
 
-  ExampleViewModel exampleCalcModel() => ExampleCalcModel(calcService());
+  final CalcService calcService;
 
-  Widget exampleWidget() => DiPage(model: exampleCalcModel());
+  final ExampleViewModel exampleViewModel;
+
+  final Widget exampleWidget;
+
+// CalcService calcService() => FirstCalc();
+//
+// ExampleViewModel exampleCalcModel() => ExampleCalcModel(calcService());
+//
+// Widget exampleWidget() => DiPage(model: exampleCalcModel());
 }

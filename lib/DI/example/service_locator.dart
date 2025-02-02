@@ -51,14 +51,18 @@ Advantages:
  */
 
 // every access to ServiceLocator.instance.diContainer will return the same diContainer instance.
+import 'package:flutter_animations_2/DI/example/calc_service.dart';
+
 import 'di_container.dart';
 
 class ServiceLocator {
-  final diContainer = DIContainer();
-
   static ServiceLocator? _instance;
 
   static ServiceLocator get instance => _instance ??= ServiceLocator._();
+
+  Map<Object, dynamic> registerServices = {};
+
+  final CalcService calcService = FirstCalc();
 
   ServiceLocator._();
 }

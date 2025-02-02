@@ -4,6 +4,7 @@ import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animations_2/DI/example/di_page.dart';
 import 'package:flutter_animations_2/animation_pages/flutter_carousel_view_test.dart';
 import 'package:flutter_animations_2/bloc_learning/bloc_concurrency/main_bloc_concurrency.dart';
 import 'package:flutter_animations_2/bloc_learning/bloc_to_bloc_comm/first_bloc/first_bloc.dart';
@@ -264,7 +265,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const StatelessWidgetTestMarkNeedsBuild(),
+        builder: (context, state) => const MainDIPage(),
         listener: (context, state) {
           //listen internet conn here
           if (state) {
