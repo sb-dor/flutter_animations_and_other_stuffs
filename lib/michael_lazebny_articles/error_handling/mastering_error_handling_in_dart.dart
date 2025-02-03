@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animations_2/michael_lazebny_articles/error_handling/test_error_handling_once_again.dart';
 import 'package:logger/logger.dart';
 import 'package:http/http.dart' as http;
 
@@ -149,7 +150,6 @@ class MasteringErrorHandlingInDart {
       /// use [Error.throwWithStackTrace] for throwing errors.
       /// Unlike the standard 'throw', this method retains the original stack trace.
       Error.throwWithStackTrace(
-
         /// use just error instead of [ExceptionHandler] if you want
         /// but whether [ExceptionHandler] has cause it would be better to use it
         ExceptionHandler("Catching errors from response function", cause: error),
@@ -163,7 +163,9 @@ class MasteringErrorHandlingInDart {
   //
   void mainFunction() {
     runZonedGuarded(
-          () {
+      () {
+        final testFunction = TestErrorHandlingOnceAgain();
+        testFunction.tempChecker();
         // here you can handle errors that may happen in widget side
         // or send to the server
         // send to the firebase crashlytics
@@ -210,7 +212,13 @@ class MasteringErrorHandlingInDart {
           };
         };
       },
-          (error, stackTrace) async {
+      (error, stackTrace) async {
+        _logger.log(
+          Level.error,
+          "Error occurred in mastering error handling from Michael Lazebny's articles",
+          error: error,
+          stackTrace: stackTrace,
+        );
         // or maybe any other server
         await FirebaseCrashlytics.instance.recordError(
           error,
