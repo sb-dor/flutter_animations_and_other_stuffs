@@ -29,8 +29,25 @@ final class TestErrorHandlingOnceAgain {
   void tempChecker() {
     try {
       //
+
+      _testingRequest();
+
+      bool.parse("1");
+
+      //
+    } on RestApiException {
+      // it will be sent inside zone even if you didn't catch them
+      rethrow;
+    } catch (error, stackTrace) {
+      //
+      Error.throwWithStackTrace(error, stackTrace);
+    }
+  }
+
+  void _testingRequest() {
+    try {
       final test = <String, Object?>{
-        "success": false,
+        "success1": false,
       };
 
       if (test['success'] == true) {
@@ -40,16 +57,10 @@ final class TestErrorHandlingOnceAgain {
       if (test['success'] == false) {
         throw UnAuthException();
       }
-
-      print(test);
-
-      //
     } on RestApiException {
-      // it will be sent inside zone even if you didn't catch them
       rethrow;
     } catch (error, stackTrace) {
-      // remember of avoiding throws inside catches
-      Error.throwWithStackTrace(error, stackTrace);
+      //
     }
   }
 }
