@@ -164,8 +164,10 @@ class MasteringErrorHandlingInDart {
   void mainFunction() {
     runZonedGuarded(
       () {
-        final testFunction = TestErrorHandlingOnceAgain();
-        testFunction.tempChecker();
+        // try {
+          final testFunction = TestErrorHandlingOnceAgain();
+          testFunction.tempChecker();
+        // } catch (error, stackTrace) {}
         // here you can handle errors that may happen in widget side
         // or send to the server
         // send to the firebase crashlytics

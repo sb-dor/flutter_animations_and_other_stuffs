@@ -26,6 +26,8 @@ final class UnAuthException extends RestApiException {
 final class TestErrorHandlingOnceAgain {
   //
 
+  // In your code, if bool.parse("1") throws an error, Dart will not automatically
+  // catch it unless you explicitly handle it with a catch block.
   void tempChecker() {
     try {
       //
@@ -38,10 +40,13 @@ final class TestErrorHandlingOnceAgain {
     } on RestApiException {
       // it will be sent inside zone even if you didn't catch them
       rethrow;
-    } catch (error, stackTrace) {
-      //
-      Error.throwWithStackTrace(error, stackTrace);
     }
+    // if there is "catch" you have to catch "stacktrace", "error" (that is why use "Error.throwWithStackTrace" )
+    // if you didn't catch it, dart will automatically catch them all
+    // catch (error, stackTrace) {
+    //   //
+    //   Error.throwWithStackTrace(error, stackTrace);
+    // }
   }
 
   void _testingRequest() {
