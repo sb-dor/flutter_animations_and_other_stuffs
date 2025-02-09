@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-// In this widget I didn't find any solution for
+// In this widget I haven't found any solution for
 // handling validation while user taps on button.
 // Validation works only when user types something in textFiled but not on submit (when clicks on button)
 class TextFieldValidationWidget extends StatefulWidget {
