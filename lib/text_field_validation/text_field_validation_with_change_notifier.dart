@@ -102,12 +102,14 @@ class _TextFieldValidationWithChangeNotifierState
                     decoration: InputDecoration(
                       errorText: _textFieldValidationNotifier.emailError,
                     ),
+                    onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
                   ),
                   TextField(
                     controller: _passwordController,
                     decoration: InputDecoration(
                       errorText: _textFieldValidationNotifier.passwordError,
                     ),
+                    onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
                   )
                 ],
               );
