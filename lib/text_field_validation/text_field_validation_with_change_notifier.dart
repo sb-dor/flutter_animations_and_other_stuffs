@@ -69,11 +69,11 @@ class _TextFieldValidationWithChangeNotifierState
 
   @override
   void initState() {
+    super.initState();
     _textFieldValidationNotifier = TextFieldValidationNotifier(
       emailController: _emailController,
       passwordController: _passwordController,
     );
-    super.initState();
   }
 
   @override
