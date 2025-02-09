@@ -80,6 +80,7 @@ class _TextFieldValidationWithChangeNotifierState
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
+    _textFieldValidationNotifier.dispose();
     super.dispose();
   }
 
