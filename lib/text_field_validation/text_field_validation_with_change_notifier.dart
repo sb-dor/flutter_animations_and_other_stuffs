@@ -95,22 +95,21 @@ class _TextFieldValidationWithChangeNotifierState
           ListenableBuilder(
             listenable: _textFieldValidationNotifier,
             builder: (context, child) {
-              return TextField(
-                controller: _emailController,
-                decoration: InputDecoration(
-                  errorText: _textFieldValidationNotifier.emailError,
-                ),
-              );
-            },
-          ),
-          ListenableBuilder(
-            listenable: _textFieldValidationNotifier,
-            builder: (context, child) {
-              return TextField(
-                controller: _passwordController,
-                decoration: InputDecoration(
-                  errorText: _textFieldValidationNotifier.passwordError,
-                ),
+              return Column(
+                children: [
+                  TextField(
+                    controller: _emailController,
+                    decoration: InputDecoration(
+                      errorText: _textFieldValidationNotifier.emailError,
+                    ),
+                  ),
+                  TextField(
+                    controller: _passwordController,
+                    decoration: InputDecoration(
+                      errorText: _textFieldValidationNotifier.passwordError,
+                    ),
+                  )
+                ],
               );
             },
           ),
