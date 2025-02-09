@@ -78,9 +78,9 @@ class _TextFieldValidationWithChangeNotifierState
 
   @override
   void dispose() {
+    _textFieldValidationNotifier.dispose();
     _emailController.dispose();
     _passwordController.dispose();
-    _textFieldValidationNotifier.dispose();
     super.dispose();
   }
 
