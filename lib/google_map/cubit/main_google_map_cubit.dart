@@ -175,7 +175,7 @@ class MainGoogleMapCubit extends Cubit<GoogleMapStates> {
       PolylinePoints polylinePoints = PolylinePoints();
 
       PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
-        googleApiKey: GOOGLE_API_KEY_ENV,
+        googleApiKey: GOOGLE_API_KEY,
         request: PolylineRequest(
           origin: PointLatLng(firstMarker.position.latitude, firstMarker.position.longitude),
           destination: PointLatLng(secondMarker.position.latitude, secondMarker.position.longitude),

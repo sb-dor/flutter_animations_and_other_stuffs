@@ -153,6 +153,7 @@ dependencies:
   logger: ^2.5.0
   firebase_analytics: ^11.3.6
   csv: ^6.0.0
+  linked_scroll_controller: ^0.2.0
 
 
 
