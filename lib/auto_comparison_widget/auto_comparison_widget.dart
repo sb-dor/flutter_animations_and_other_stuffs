@@ -164,9 +164,12 @@ class _ComparisonsDetailsState extends State<ComparisonsDetails> {
                             ),
                           ),
                           onPressed: () {},
-                          child: const Text(
-                            "Показать телефон",
-                            style: TextStyle(color: Colors.white),
+                          child: const Center(
+                            child: Text(
+                              "Показать телефон",
+                              style: TextStyle(color: Colors.white),
+                              textAlign: TextAlign.center,
+                            ),
                           ),
                         ),
                       ),
@@ -175,7 +178,7 @@ class _ComparisonsDetailsState extends State<ComparisonsDetails> {
                       const SizedBox(height: 65),
                       TextWidget(
                         text: "${comparison.price}"
-                            " c.",
+                            ,
                         size: 16,
                         fontWeight: FontWeight.bold,
                       ),
@@ -184,7 +187,7 @@ class _ComparisonsDetailsState extends State<ComparisonsDetails> {
                       const SizedBox(height: 25),
                       TextWidget(
                         text: "${comparison.mileage}"
-                            " км",
+                            ,
                         size: 16,
                         fontWeight: FontWeight.bold,
                       ),
@@ -200,7 +203,7 @@ class _ComparisonsDetailsState extends State<ComparisonsDetails> {
                       // Цвет
                       const SizedBox(height: 25),
                       TextWidget(
-                        text: comparison.color ?? '-',
+                        text: comparison.color,
                         size: 16,
                         fontWeight: FontWeight.bold,
                       ),
@@ -231,7 +234,7 @@ class _ComparisonsDetailsState extends State<ComparisonsDetails> {
                       const Divider(height: _kDividerHeight),
                       // Мощность
                       const SizedBox(height: 25),
-                      TextWidget(
+                      const TextWidget(
                         text: "100 Horse speed",
                         size: 16,
                         fontWeight: FontWeight.bold,
