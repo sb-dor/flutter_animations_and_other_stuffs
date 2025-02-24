@@ -154,6 +154,7 @@ dependencies:
   firebase_analytics: ^11.3.6
   csv: ^6.0.0
   linked_scroll_controller: ^0.2.0
+  collection: ^1.19.0
 
 
 
@@ -172,7 +173,6 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
   custom_lint_core: ^0.7.0
-  collection: ^1.17.2
   riverpod_generator: ^2.6.3
   custom_lint: ^0.7.0
   riverpod_lint: ^2.6.3

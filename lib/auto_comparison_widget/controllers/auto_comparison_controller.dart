@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animations_2/auto_comparison_widget/widgets/animted_comparison_tombar.dart';
 import 'package:linked_scroll_controller/linked_scroll_controller.dart';
 
 final class AutoComparisonController with ChangeNotifier {
@@ -15,12 +16,19 @@ final class AutoComparisonController with ChangeNotifier {
   final LinkedScrollControllerGroup _scrollControllerGroup;
   final PageController _pageController;
 
-  bool startedToScrollPageView = false;
+  bool startedToScrollPageView = false, showAnimatedTopBar = false;
   double scrollingTextOffset = 0.0;
 
   void _scrollListener() {
     if (!startedToScrollPageView) {
       scrollingTextOffset = _scrollControllerGroup.offset;
+      notifyListeners();
+    }
+    if (!showAnimatedTopBar && _scrollControllerGroup.offset >= animatedTopBarHeight) {
+      showAnimatedTopBar = true;
+      notifyListeners();
+    } else if (showAnimatedTopBar && _scrollControllerGroup.offset < animatedTopBarHeight) {
+      showAnimatedTopBar = false;
       notifyListeners();
     }
   }

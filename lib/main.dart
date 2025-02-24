@@ -42,7 +42,7 @@ import 'package:provider/provider.dart' as provider;
 import 'package:url_strategy/url_strategy.dart';
 
 import 'animation_pages/better_perfomance_animated_builder.dart';
-import 'auto_comparison_widget/auto_comparison_widget.dart';
+import 'auto_comparison_widget/widgets/auto_comparison_widget.dart';
 import 'dodo_pizzas_often_order_animation/dodo_pizza_often_order_animation.dart';
 import 'excel/excel_page.dart';
 import 'flutter_bluetooth_thermal_printer/view/bloc/flutter_bluetooth_thermal_printer_bloc.dart';

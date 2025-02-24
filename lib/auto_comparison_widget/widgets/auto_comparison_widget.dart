@@ -1,11 +1,20 @@
 // remember that every widget has it's own sizedBox with height,
 // in order to figure it out in which position is specific widget to make calculation
 // and animate positioned widget in stack widget
+//
+// was created changeNotifiers
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animations_2/auto_comparison_widget/auto_comparison_controller.dart';
-import 'package:flutter_animations_2/auto_comparison_widget/listview_model.dart';
+import 'package:flutter_animations_2/auto_comparison_widget/controllers/auto_comparison_controller.dart';
+import 'package:flutter_animations_2/auto_comparison_widget/controllers/auto_comparison_topbar_controller.dart';
+import 'package:flutter_animations_2/auto_comparison_widget/models/listview_model.dart';
 import 'package:flutter_animations_2/widgets/text_widget.dart';
 import 'package:linked_scroll_controller/linked_scroll_controller.dart';
+
+import 'animted_comparison_tombar.dart';
+
+const double kButtonsHeight = 40.0;
+const double kDividerHeight = 16.0;
 
 class ComparisonsDetails extends StatefulWidget {
   //
@@ -16,12 +25,11 @@ class ComparisonsDetails extends StatefulWidget {
 }
 
 class _ComparisonsDetailsState extends State<ComparisonsDetails> {
-  static const double _kButtonsHeight = 40.0;
-  static const double _kDividerHeight = 16.0;
   late final PageController _pageController;
   late final LinkedScrollControllerGroup _linkedScrollControllerGroup;
   final List<ScrollController> _scrollControllers = [];
   late final AutoComparisonController _autoComparisonController;
+  late final AutoComparisonTopBarController _autoComparisonTopBarController;
 
   @override
   void initState() {
@@ -36,6 +44,9 @@ class _ComparisonsDetailsState extends State<ComparisonsDetails> {
       scrollControllerGroup: _linkedScrollControllerGroup,
       pageController: _pageController,
     );
+    _autoComparisonTopBarController = AutoComparisonTopBarController(
+      pageController: _pageController,
+    );
   }
 
   @override
@@ -44,6 +55,7 @@ class _ComparisonsDetailsState extends State<ComparisonsDetails> {
       each.dispose();
     }
     _autoComparisonController.dispose();
+    _autoComparisonTopBarController.dispose();
     _pageController.dispose();
     super.dispose();
   }
@@ -137,7 +149,7 @@ class _ComparisonsDetailsState extends State<ComparisonsDetails> {
                           ),
                         ),
                         SizedBox(
-                          height: _kButtonsHeight,
+                          height: kButtonsHeight,
                           child: ElevatedButton(
                             style: ButtonStyle(
                               backgroundColor: const WidgetStatePropertyAll(
@@ -159,7 +171,7 @@ class _ComparisonsDetailsState extends State<ComparisonsDetails> {
                             ),
                           ),
                         ),
-                        const Divider(height: _kDividerHeight),
+                        const Divider(height: kDividerHeight),
                         // Цена
                         const SizedBox(height: 65),
                         TextWidget(
@@ -167,7 +179,7 @@ class _ComparisonsDetailsState extends State<ComparisonsDetails> {
                           size: 16,
                           fontWeight: FontWeight.bold,
                         ),
-                        const Divider(height: _kDividerHeight),
+                        const Divider(height: kDividerHeight),
                         // Пробег
                         const SizedBox(height: 25),
                         TextWidget(
@@ -175,7 +187,7 @@ class _ComparisonsDetailsState extends State<ComparisonsDetails> {
                           size: 16,
                           fontWeight: FontWeight.bold,
                         ),
-                        const Divider(height: _kDividerHeight),
+                        const Divider(height: kDividerHeight),
                         // Состояние
                         const SizedBox(height: 25),
                         const TextWidget(
@@ -183,7 +195,7 @@ class _ComparisonsDetailsState extends State<ComparisonsDetails> {
                           size: 16,
                           fontWeight: FontWeight.bold,
                         ),
-                        const Divider(height: _kDividerHeight),
+                        const Divider(height: kDividerHeight),
                         // Цвет
                         const SizedBox(height: 25),
                         TextWidget(
@@ -191,7 +203,7 @@ class _ComparisonsDetailsState extends State<ComparisonsDetails> {
                           size: 16,
                           fontWeight: FontWeight.bold,
                         ),
-                        const Divider(height: _kDividerHeight),
+                        const Divider(height: kDividerHeight),
                         // Таможня
                         const SizedBox(height: 25),
                         TextWidget(
@@ -199,7 +211,7 @@ class _ComparisonsDetailsState extends State<ComparisonsDetails> {
                           size: 16,
                           fontWeight: FontWeight.bold,
                         ),
-                        const Divider(height: _kDividerHeight),
+                        const Divider(height: kDividerHeight),
                         // Объем
                         const SizedBox(height: 25),
                         TextWidget(
@@ -207,7 +219,7 @@ class _ComparisonsDetailsState extends State<ComparisonsDetails> {
                           size: 16,
                           fontWeight: FontWeight.bold,
                         ),
-                        const Divider(height: _kDividerHeight),
+                        const Divider(height: kDividerHeight),
                         // Двигатель
                         const SizedBox(height: 25),
                         TextWidget(
@@ -215,7 +227,7 @@ class _ComparisonsDetailsState extends State<ComparisonsDetails> {
                           size: 16,
                           fontWeight: FontWeight.bold,
                         ),
-                        const Divider(height: _kDividerHeight),
+                        const Divider(height: kDividerHeight),
                         // Мощность
                         const SizedBox(height: 25),
                         const TextWidget(
@@ -223,7 +235,7 @@ class _ComparisonsDetailsState extends State<ComparisonsDetails> {
                           size: 16,
                           fontWeight: FontWeight.bold,
                         ),
-                        const Divider(height: _kDividerHeight),
+                        const Divider(height: kDividerHeight),
                         // if (!_startedToScrollPageView && _pageController.page?.toInt() == index)
                         //   const SizedBox(
                         //     height: 20,
@@ -241,175 +253,61 @@ class _ComparisonsDetailsState extends State<ComparisonsDetails> {
               ),
             ),
             // Характеристики
-            ListenableBuilder(
-              listenable: _autoComparisonController,
-              builder: (context, child) {
-                return Positioned(
-                  top: (205 + _kButtonsHeight + _kDividerHeight) -
-                      _autoComparisonController.scrollingTextOffset,
-                  left: 5,
-                  child: const SizedBox(
-                    height: 30,
-                    child: TextWidget(
-                      text: "Характеристики",
-                      size: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                );
-              },
+            _FixedScrollText(
+              comparisonScrollController: _autoComparisonController,
+              title: "Характеристики",
+              heightFrom: 205,
+              textSize: 20,
+              fontWeight: FontWeight.bold,
             ),
-            ListenableBuilder(
-              listenable: _autoComparisonController,
-              builder: (context, child) {
-                return Positioned(
-                  top: (250 + _kButtonsHeight + _kDividerHeight) -
-                      _autoComparisonController.scrollingTextOffset,
-                  left: 5,
-                  child: const SizedBox(
-                    height: 30,
-                    child: TextWidget(
-                      text: "Цена",
-                      size: 16,
-                      color: Colors.grey,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                );
-              },
+            _FixedScrollText(
+              comparisonScrollController: _autoComparisonController,
+              title: "Цена",
+              heightFrom: 250,
             ),
-            ListenableBuilder(
-              listenable: _autoComparisonController,
-              builder: (context, child) {
-                return Positioned(
-                  top: (310 + _kButtonsHeight + _kDividerHeight) -
-                      _autoComparisonController.scrollingTextOffset,
-                  left: 5,
-                  child: const SizedBox(
-                    height: 30,
-                    child: TextWidget(
-                      text: "Пробег",
-                      size: 16,
-                      color: Colors.grey,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                );
-              },
+            _FixedScrollText(
+              comparisonScrollController: _autoComparisonController,
+              title: "Пробег",
+              heightFrom: 310,
             ),
-            ListenableBuilder(
-              listenable: _autoComparisonController,
-              builder: (context, child) {
-                return Positioned(
-                  top: (375 + _kButtonsHeight + _kDividerHeight) -
-                      _autoComparisonController.scrollingTextOffset,
-                  left: 5,
-                  child: const SizedBox(
-                    height: 30,
-                    child: TextWidget(
-                      text: "Состояние",
-                      size: 16,
-                      color: Colors.grey,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                );
-              },
+            _FixedScrollText(
+              comparisonScrollController: _autoComparisonController,
+              title: "Состояние",
+              heightFrom: 375,
             ),
-            ListenableBuilder(
-              listenable: _autoComparisonController,
-              builder: (context, child) {
-                return Positioned(
-                  top: (440 + _kButtonsHeight + _kDividerHeight) -
-                      _autoComparisonController.scrollingTextOffset,
-                  left: 5,
-                  child: const SizedBox(
-                    height: 30,
-                    child: TextWidget(
-                      text: "Цвет",
-                      size: 16,
-                      color: Colors.grey,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                );
-              },
+            _FixedScrollText(
+              comparisonScrollController: _autoComparisonController,
+              title: "Цвет",
+              heightFrom: 440,
             ),
-            ListenableBuilder(
-              listenable: _autoComparisonController,
-              builder: (context, child) {
-                return Positioned(
-                  top: (505 + _kButtonsHeight + _kDividerHeight) -
-                      _autoComparisonController.scrollingTextOffset,
-                  left: 5,
-                  child: const SizedBox(
-                    height: 30,
-                    child: TextWidget(
-                      text: "Таможня",
-                      size: 16,
-                      color: Colors.grey,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                );
-              },
+            _FixedScrollText(
+              comparisonScrollController: _autoComparisonController,
+              title: "Таможня",
+              heightFrom: 505,
             ),
-            ListenableBuilder(
-              listenable: _autoComparisonController,
-              builder: (context, child) {
-                return Positioned(
-                  top: (570 + _kButtonsHeight + _kDividerHeight) -
-                      _autoComparisonController.scrollingTextOffset,
-                  left: 5,
-                  child: const SizedBox(
-                    height: 30,
-                    child: TextWidget(
-                      text: "Объем",
-                      size: 16,
-                      color: Colors.grey,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                );
-              },
+            _FixedScrollText(
+              comparisonScrollController: _autoComparisonController,
+              title: "Объем",
+              heightFrom: 570,
             ),
-            ListenableBuilder(
-              listenable: _autoComparisonController,
-              builder: (context, child) {
-                return Positioned(
-                  top: (635 + _kButtonsHeight + _kDividerHeight) -
-                      _autoComparisonController.scrollingTextOffset,
-                  left: 5,
-                  child: const SizedBox(
-                    height: 30,
-                    child: TextWidget(
-                      text: "Двигатель",
-                      size: 16,
-                      color: Colors.grey,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                );
-              },
+            _FixedScrollText(
+              comparisonScrollController: _autoComparisonController,
+              title: "Двигатель",
+              heightFrom: 635,
             ),
-            ListenableBuilder(
-              listenable: _autoComparisonController,
-              builder: (context, child) {
-                return Positioned(
-                  top: (700 + _kButtonsHeight + _kDividerHeight) -
-                      _autoComparisonController.scrollingTextOffset,
-                  left: 5,
-                  child: const SizedBox(
-                    height: 30,
-                    child: TextWidget(
-                      text: "Мощность",
-                      size: 16,
-                      color: Colors.grey,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                );
-              },
+            _FixedScrollText(
+              comparisonScrollController: _autoComparisonController,
+              title: "Мощность",
+              heightFrom: 700,
+            ),
+            ...ListViewModel.comparisons.mapIndexed(
+              (index, comparison) => AnimatedComparisonTopBar(
+                autoComparisonController: _autoComparisonController,
+                autoComparisonTopBarController: _autoComparisonTopBarController,
+                comparison: comparison,
+                index: index,
+                screenWidth: MediaQuery.of(context).size.width,
+              ),
             ),
           ],
         ),
@@ -418,20 +316,44 @@ class _ComparisonsDetailsState extends State<ComparisonsDetails> {
   }
 }
 
-class TextModel {
-  final String text;
-  final double size;
-  final FontWeight fontWeight;
-  final Color? color;
-  final int? maxLines;
-  final TextOverflow? overFlow;
-
-  TextModel({
-    required this.text,
-    this.size = 16,
-    this.fontWeight = FontWeight.normal,
-    this.color,
-    this.maxLines,
-    this.overFlow,
+class _FixedScrollText extends StatelessWidget {
+  //
+  const _FixedScrollText({
+    required this.comparisonScrollController,
+    required this.title,
+    required this.heightFrom,
+    this.textSize = 16,
+    this.fontWeight = FontWeight.w500,
+    this.color = Colors.grey,
   });
+
+  final AutoComparisonController comparisonScrollController;
+  final String title;
+  final double heightFrom;
+  final double textSize;
+  final FontWeight fontWeight;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListenableBuilder(
+      listenable: comparisonScrollController,
+      builder: (context, child) {
+        return Positioned(
+          top: (heightFrom + kButtonsHeight + kDividerHeight) -
+              comparisonScrollController.scrollingTextOffset,
+          left: 5,
+          child: SizedBox(
+            height: 30,
+            child: TextWidget(
+              text: title,
+              size: textSize,
+              color: color,
+              fontWeight: fontWeight,
+            ),
+          ),
+        );
+      },
+    );
+  }
 }
