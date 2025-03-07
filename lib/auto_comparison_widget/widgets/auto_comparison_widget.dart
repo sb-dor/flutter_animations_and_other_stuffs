@@ -325,6 +325,7 @@ class _FixedScrollText extends StatelessWidget {
     required this.heightFrom,
     this.textSize = 16,
     this.fontWeight = FontWeight.w500,
+    this.color = Colors.black,
   });
 
   final AutoComparisonController comparisonScrollController;
