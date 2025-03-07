@@ -26,9 +26,10 @@ class NearbyClient {
       socket = await Socket.connect(hostName, port!);
       isConnected = true;
       String deviceName = await getDeviceName();
-      write("successfully connected with the ${await getDeviceName()}"); // write to the server
-      onData!(Uint8List.fromList(
-          "successfully connected to the $deviceName".codeUnits)); // write to yourself
+      write(
+          "successfully connected with the ${await getDeviceName()}"); // write to the server
+      onData!(Uint8List.fromList("successfully connected to the $deviceName"
+          .codeUnits)); // write to yourself
       socket?.listen(
         (event) {
           onData!(event);
@@ -68,15 +69,18 @@ class NearbyClient {
     String deviceInfo = '';
 
     if (Platform.isAndroid) {
-      deviceInfo = await deviceInfoPlugin.androidInfo.then((value) => value.device);
+      deviceInfo =
+          await deviceInfoPlugin.androidInfo.then((value) => value.device);
     } else if (Platform.isIOS) {
       deviceInfo = await deviceInfoPlugin.iosInfo.then((value) => value.name);
     } else if (Platform.isWindows) {
-      deviceInfo = await deviceInfoPlugin.windowsInfo.then((value) => value.productName);
+      deviceInfo =
+          await deviceInfoPlugin.windowsInfo.then((value) => value.productName);
     } else if (Platform.isLinux) {
       deviceInfo = await deviceInfoPlugin.linuxInfo.then((value) => value.name);
     } else if (Platform.isMacOS) {
-      deviceInfo = await deviceInfoPlugin.macOsInfo.then((value) => value.computerName);
+      deviceInfo =
+          await deviceInfoPlugin.macOsInfo.then((value) => value.computerName);
     }
     return deviceInfo;
   }

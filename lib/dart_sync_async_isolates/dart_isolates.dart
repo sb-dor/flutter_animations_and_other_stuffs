@@ -11,7 +11,8 @@ class DartIsolates {
     final receivePort = ReceivePort();
 
     // создаем новый изолят
-    final isolate = await Isolate.spawn(anotherFunctionThatWillWorkInIsolate, receivePort.sendPort);
+    final isolate = await Isolate.spawn(
+        anotherFunctionThatWillWorkInIsolate, receivePort.sendPort);
 
     // запускаем прослушивание входящих сообщений
     receivePort.listen((message) {
@@ -38,8 +39,10 @@ class DartIsolates {
 
     // to run code in two isolates create two different receivePort
     // other way it will throw an exception
-    final isolate1 = await Isolate.spawn(isolate2FirstFunc, receiverPort.sendPort);
-    final isolate2 = await Isolate.spawn(isolate2FSecondFunc, receiverPort2.sendPort);
+    final isolate1 =
+        await Isolate.spawn(isolate2FirstFunc, receiverPort.sendPort);
+    final isolate2 =
+        await Isolate.spawn(isolate2FSecondFunc, receiverPort2.sendPort);
 
     receiverPort.listen((message) {
       debugPrint("$message");

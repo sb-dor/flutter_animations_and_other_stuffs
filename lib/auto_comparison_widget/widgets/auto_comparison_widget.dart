@@ -93,7 +93,8 @@ class _ComparisonsDetailsState extends State<ComparisonsDetails> {
                 itemBuilder: (context, index) {
                   final comparison = ListViewModel.comparisons[index];
                   return ScrollConfiguration(
-                    behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+                    behavior: ScrollConfiguration.of(context)
+                        .copyWith(scrollbars: false),
                     child: ListView(
                       padding: const EdgeInsets.only(left: 5, right: 5),
                       physics: const AlwaysScrollableScrollPhysics(
@@ -324,7 +325,6 @@ class _FixedScrollText extends StatelessWidget {
     required this.heightFrom,
     this.textSize = 16,
     this.fontWeight = FontWeight.w500,
-    this.color = Colors.grey,
   });
 
   final AutoComparisonController comparisonScrollController;

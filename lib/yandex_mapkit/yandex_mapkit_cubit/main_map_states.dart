@@ -7,5 +7,6 @@ abstract class MainMapStates {
 }
 
 class InitialMapStates extends MainMapStates {
-  InitialMapStates(MapStateModel mapStateModel) : super(mapStateModel: mapStateModel);
+  InitialMapStates(MapStateModel mapStateModel)
+      : super(mapStateModel: mapStateModel);
 }

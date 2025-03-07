@@ -9,11 +9,15 @@ class ExcelConverter {
       if (cellValue is FormulaCellValue) return cellValue.formula;
       if (cellValue is IntCellValue) return cellValue.value.toString();
       if (cellValue is DoubleCellValue) return cellValue.value.toString();
-      if (cellValue is DateCellValue) return cellValue.asDateTimeUtc().toString();
+      if (cellValue is DateCellValue) {
+        return cellValue.asDateTimeUtc().toString();
+      }
       if (cellValue is TextCellValue) return cellValue.value.text ?? '';
       if (cellValue is BoolCellValue) return cellValue.value.toString();
       if (cellValue is TimeCellValue) return cellValue.asDuration().toString();
-      if (cellValue is DateTimeCellValue) return cellValue.asDateTimeUtc().toString();
+      if (cellValue is DateTimeCellValue) {
+        return cellValue.asDateTimeUtc().toString();
+      }
       return '';
     }
 
@@ -27,7 +31,8 @@ class ExcelConverter {
         final row = rows[i];
 
         if (i == 0) {
-          columnHeaders = row.map((cell) => convertCellValueToString(cell?.value)).toList();
+          columnHeaders =
+              row.map((cell) => convertCellValueToString(cell?.value)).toList();
           continue;
         }
 
@@ -50,8 +55,10 @@ class ExcelConverter {
     return dataRows;
   }
 
-  Future<List<Map<String, dynamic>>> convertCSV(List<List<dynamic>> csvData) async {
-    List<String> columnHeaders = csvData.first.map((header) => header.toString()).toList();
+  Future<List<Map<String, dynamic>>> convertCSV(
+      List<List<dynamic>> csvData) async {
+    List<String> columnHeaders =
+        csvData.first.map((header) => header.toString()).toList();
 
     columnHeaders = columnHeaders.first.split(";");
 

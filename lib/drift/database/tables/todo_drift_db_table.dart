@@ -35,9 +35,11 @@ class TodoDriftDbTable extends Table {
   // was changes to nullable()
   TextColumn get name => text().nullable()();
 
-  TextColumn get content => text().nullable()(); // added for 2 version two of database
+  TextColumn get content =>
+      text().nullable()(); // added for 2 version two of database
 
-  TextColumn get author => text().nullable()(); // added for 4 version two of database
+  TextColumn get author =>
+      text().nullable()(); // added for 4 version two of database
 
   // it was datetime column -> was changed into String
   TextColumn get createdAt => text().nullable()();

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class DADAnimationModel with ChangeNotifier{
+class DADAnimationModel with ChangeNotifier {
   String? firstName;
   String? lastName;
   String? asset;

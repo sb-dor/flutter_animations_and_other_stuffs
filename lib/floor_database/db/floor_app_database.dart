@@ -11,6 +11,5 @@
 //   PersonDao get personDao; // remember to write here only "Dao" of entities (models)
 // }
 
-
 // then you can register your database inside of getit or create your own singleton for registration
 // checkout inside of getit folder in order to find initialization of you database

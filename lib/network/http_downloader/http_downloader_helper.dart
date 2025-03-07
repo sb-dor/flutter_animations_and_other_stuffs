@@ -4,13 +4,20 @@ import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
 typedef DownloadingProgress = void Function(
-    int total, /// [total mb]
-    int downloading, /// [total downloaded]
-    double progress, /// [percentage of downloaded]
-    );
+  int total,
+
+  /// [total mb]
+  int downloading,
+
+  /// [total downloaded]
+  double progress,
+
+  /// [percentage of downloaded]
+);
 
 abstract class HttpDownloaderHelper {
-  static Future<Uint8List> download(String url, DownloadingProgress downloadingProgress) async {
+  static Future<Uint8List> download(
+      String url, DownloadingProgress downloadingProgress) async {
     final completer = Completer<Uint8List>();
 
     try {
@@ -23,7 +30,7 @@ abstract class HttpDownloaderHelper {
 
       response.asStream().listen((http.StreamedResponse streamedResponse) {
         streamedResponse.stream.listen(
-              (chunk) {
+          (chunk) {
             final int contentLength = streamedResponse.contentLength ?? 0;
             final progress = (downloadingBytes / contentLength) * 100;
             downloadingProgress(contentLength, downloadingBytes, progress);

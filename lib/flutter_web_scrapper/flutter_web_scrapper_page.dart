@@ -9,7 +9,8 @@ class FlutterWebScrapperPage extends StatefulWidget {
 }
 
 class _FlutterWebScrapperPageState extends State<FlutterWebScrapperPage> {
-  final FlutterWebScrapperHelper _scrapperHelper = FlutterWebScrapperHelper.instance;
+  final FlutterWebScrapperHelper _scrapperHelper =
+      FlutterWebScrapperHelper.instance;
 
   List<Map<String, dynamic>> list = [];
 
@@ -55,7 +56,8 @@ class _FlutterWebScrapperPageState extends State<FlutterWebScrapperPage> {
                           height: 100,
                           child: Image.network(
                             list[index]['images'].first ?? "",
-                            errorBuilder: (context, ob, st) => const Text("Error"),
+                            errorBuilder: (context, ob, st) =>
+                                const Text("Error"),
                           ),
                         )
                       else

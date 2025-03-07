@@ -11,7 +11,8 @@ class MainWebDetailsPageWithUrl extends StatefulWidget {
   });
 
   @override
-  State<MainWebDetailsPageWithUrl> createState() => _MainWebDetailsPageWithUrlState();
+  State<MainWebDetailsPageWithUrl> createState() =>
+      _MainWebDetailsPageWithUrlState();
 }
 
 class _MainWebDetailsPageWithUrlState extends State<MainWebDetailsPageWithUrl> {

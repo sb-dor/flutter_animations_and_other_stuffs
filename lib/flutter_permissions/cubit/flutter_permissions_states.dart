@@ -7,6 +7,7 @@ abstract class FlutterPermissionStates {
 }
 
 class InitFlutterPermissionState extends FlutterPermissionStates {
-  InitFlutterPermissionState(FlutterPermissionStateModel flutterPermissionStateModel)
+  InitFlutterPermissionState(
+      FlutterPermissionStateModel flutterPermissionStateModel)
       : super(flutterPermissionStateModel: flutterPermissionStateModel);
 }

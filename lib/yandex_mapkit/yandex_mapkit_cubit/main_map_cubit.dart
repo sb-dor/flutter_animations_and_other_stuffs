@@ -24,7 +24,8 @@ class MainMapCubit extends Cubit<MainMapStates> {
           point: Point(latitude: each.lat, longitude: each.lon),
           icon: PlacemarkIcon.single(PlacemarkIconStyle(
               anchor: const Offset(0.5, 1),
-              image: BitmapDescriptor.fromAssetImage("assets/icons/map_icon.png"),
+              image:
+                  BitmapDescriptor.fromAssetImage("assets/icons/map_icon.png"),
               scale: 0.100)),
           opacity: 0.5,
         ),
@@ -46,12 +47,14 @@ class MainMapCubit extends Cubit<MainMapStates> {
       // if you want to show circle of not shown placeMarks in map add this one
       // this will show temp position of added PlaceMarks
 
-      onClusterAdded: (ClusterizedPlacemarkCollection self, Cluster cluster) async {
+      onClusterAdded:
+          (ClusterizedPlacemarkCollection self, Cluster cluster) async {
         return cluster.copyWith(
             appearance: cluster.appearance.copyWith(
                 icon: PlacemarkIcon.single(PlacemarkIconStyle(
           anchor: const Offset(0.5, 1),
-          image: BitmapDescriptor.fromBytes(await currentState.buildClusterAppearance(cluster)),
+          image: BitmapDescriptor.fromBytes(
+              await currentState.buildClusterAppearance(cluster)),
           scale: 1,
         ))));
       },
@@ -74,7 +77,8 @@ class MainMapCubit extends Cubit<MainMapStates> {
           point: Point(latitude: each.lat, longitude: each.lon),
           icon: PlacemarkIcon.single(PlacemarkIconStyle(
               anchor: const Offset(0.5, 1),
-              image: BitmapDescriptor.fromAssetImage("assets/icons/map_icon.png"),
+              image:
+                  BitmapDescriptor.fromAssetImage("assets/icons/map_icon.png"),
               scale: 0.100)),
           opacity: 0.5,
         ),
@@ -185,7 +189,8 @@ class MainMapCubit extends Cubit<MainMapStates> {
     currentState.controller = yandexMapController;
 
     final placeMarkMapObject = currentState.mapObjects
-        .firstWhere((el) => el.mapId == currentState.cameraMapObjectId) as PlacemarkMapObject;
+            .firstWhere((el) => el.mapId == currentState.cameraMapObjectId)
+        as PlacemarkMapObject;
 
     await currentState.controller.moveCamera(
       CameraUpdate.newCameraPosition(
@@ -208,34 +213,42 @@ class MainMapCubit extends Cubit<MainMapStates> {
     debugPrint("camera position target ${cameraPosition.target}");
 
     final firstMarkMapObject = currentState.mapObjects
-        .firstWhere((el) => el.mapId == currentState.firstPlaceMarkId) as PlacemarkMapObject;
+            .firstWhere((el) => el.mapId == currentState.firstPlaceMarkId)
+        as PlacemarkMapObject;
 
     final secondMarkMapObject = currentState.mapObjects
-        .firstWhere((el) => el.mapId == currentState.secondPlaceMarkId) as PlacemarkMapObject;
+            .firstWhere((el) => el.mapId == currentState.secondPlaceMarkId)
+        as PlacemarkMapObject;
 
     if (cameraPosition.zoom >= 11) {
-      currentState.mapObjects[currentState.mapObjects.indexOf(firstMarkMapObject)] =
+      currentState
+              .mapObjects[currentState.mapObjects.indexOf(firstMarkMapObject)] =
           firstMarkMapObject.copyWith(
               //38.589252 68.742095
               point: const Point(latitude: 38.589252, longitude: 68.742095));
 
-      currentState.mapObjects[currentState.mapObjects.indexOf(secondMarkMapObject)] =
+      currentState.mapObjects[
+              currentState.mapObjects.indexOf(secondMarkMapObject)] =
           secondMarkMapObject.copyWith(
               point: const Point(latitude: 38.548496, longitude: 68.772179));
     } else {
-      currentState.mapObjects[currentState.mapObjects.indexOf(firstMarkMapObject)] =
+      currentState
+              .mapObjects[currentState.mapObjects.indexOf(firstMarkMapObject)] =
           firstMarkMapObject.copyWith(
               point: const Point(latitude: 38.569730, longitude: 68.755880));
       //38.569730,68.755880
-      currentState.mapObjects[currentState.mapObjects.indexOf(secondMarkMapObject)] =
+      currentState.mapObjects[
+              currentState.mapObjects.indexOf(secondMarkMapObject)] =
           secondMarkMapObject.copyWith(
               point: const Point(latitude: 38.569730, longitude: 68.755880));
     }
 
     //every time when camera moves we will move main placeMark in map after camera
     final placeMarkMapObject = currentState.mapObjects
-        .firstWhere((el) => el.mapId == currentState.cameraMapObjectId) as PlacemarkMapObject;
-    currentState.mapObjects[currentState.mapObjects.indexOf(placeMarkMapObject)] =
+            .firstWhere((el) => el.mapId == currentState.cameraMapObjectId)
+        as PlacemarkMapObject;
+    currentState
+            .mapObjects[currentState.mapObjects.indexOf(placeMarkMapObject)] =
         placeMarkMapObject.copyWith(point: cameraPosition.target);
 
     emit(InitialMapStates(currentState));
@@ -283,9 +296,11 @@ class MainMapCubit extends Cubit<MainMapStates> {
       searchText: currentState.searchByNameController.text.trim(),
       geometry: Geometry.fromBoundingBox(BoundingBox(
         southWest: Point(
-            latitude: cameraPosition.target.latitude, longitude: cameraPosition.target.longitude),
+            latitude: cameraPosition.target.latitude,
+            longitude: cameraPosition.target.longitude),
         northEast: Point(
-            latitude: cameraPosition.target.latitude, longitude: cameraPosition.target.longitude),
+            latitude: cameraPosition.target.latitude,
+            longitude: cameraPosition.target.longitude),
       )),
       searchOptions: const SearchOptions(
         searchType: SearchType.geo,
@@ -319,7 +334,8 @@ class MainMapCubit extends Cubit<MainMapStates> {
         mapId: mapObjectId,
         point: point,
         icon: PlacemarkIcon.single(PlacemarkIconStyle(
-            image: BitmapDescriptor.fromAssetImage("assets/icons/map_icon.png"), scale: 0.100)),
+            image: BitmapDescriptor.fromAssetImage("assets/icons/map_icon.png"),
+            scale: 0.100)),
         opacity: 1);
 
     currentState.mapObjects.remove(currentState.tappedPoint);
@@ -334,12 +350,17 @@ class MainMapCubit extends Cubit<MainMapStates> {
       {required Point? point1, required Point? point2}) async {
     if (point1 == null || point2 == null) return null;
     var currentState = state.mapStateModel;
-    var drivingSearchResults = await YandexDriving.requestRoutes(points: [
-      RequestPoint(
-          point: currentState.firstObject.point, requestPointType: RequestPointType.wayPoint),
-      RequestPoint(
-          point: currentState.secondObject.point, requestPointType: RequestPointType.wayPoint),
-    ], drivingOptions: const DrivingOptions(initialAzimuth: 0, routesCount: 5, avoidTolls: true));
+    var drivingSearchResults = await YandexDriving.requestRoutes(
+        points: [
+          RequestPoint(
+              point: currentState.firstObject.point,
+              requestPointType: RequestPointType.wayPoint),
+          RequestPoint(
+              point: currentState.secondObject.point,
+              requestPointType: RequestPointType.wayPoint),
+        ],
+        drivingOptions: const DrivingOptions(
+            initialAzimuth: 0, routesCount: 5, avoidTolls: true));
 
     currentState.drivingResultWithSession = await drivingSearchResults.$2;
 
@@ -351,7 +372,8 @@ class MainMapCubit extends Cubit<MainMapStates> {
     var currentState = state.mapStateModel;
 
     var drivingRes = await requestRoutesBetweenPoints(
-        point1: currentState.firstObject.point, point2: currentState.secondObject.point);
+        point1: currentState.firstObject.point,
+        point2: currentState.secondObject.point);
 
     if (drivingRes?.error != null) {
       debugPrint('Error: ${drivingRes?.error}');
@@ -360,18 +382,21 @@ class MainMapCubit extends Cubit<MainMapStates> {
 
     currentState.results.add(drivingRes!);
 
-    currentState.searchRes = drivingRes.routes?[0].metadata.weight.distance.text;
+    currentState.searchRes =
+        drivingRes.routes?[0].metadata.weight.distance.text;
     //this adds all possible routes to the point
     //if you want to add only one route to reach the point do it without loop and get only first object of array
     drivingRes.routes!.asMap().forEach((i, route) {
       //for getting distance and time of route
       debugPrint("$i route distance: ${route.metadata.weight.distance.text}");
-      debugPrint("$i estimated time of arrival: ${route.metadata.weight.time.text}");
+      debugPrint(
+          "$i estimated time of arrival: ${route.metadata.weight.time.text}");
 
       currentState.mapObjects.add(PolylineMapObject(
         mapId: MapObjectId('route_${i}_polyline'),
         polyline: Polyline(points: route.geometry.points),
-        strokeColor: Theme.of(GlobalContextHelper.instance.globalNavigatorContext.currentContext!)
+        strokeColor: Theme.of(GlobalContextHelper
+                .instance.globalNavigatorContext.currentContext!)
             .colorScheme
             .secondary,
         strokeWidth: 3,
@@ -385,7 +410,8 @@ class MainMapCubit extends Cubit<MainMapStates> {
     var currentState = state.mapStateModel;
     var camera = await currentState.controller.getCameraPosition();
     currentState.controller.moveCamera(CameraUpdate.zoomTo(camera.zoom + 0.3),
-        animation: const MapAnimation(type: MapAnimationType.smooth, duration: 0.1));
+        animation:
+            const MapAnimation(type: MapAnimationType.smooth, duration: 0.1));
     emit(InitialMapStates(currentState));
   }
 
@@ -394,7 +420,8 @@ class MainMapCubit extends Cubit<MainMapStates> {
     var currentState = state.mapStateModel;
     var camera = await currentState.controller.getCameraPosition();
     currentState.controller.moveCamera(CameraUpdate.zoomTo(camera.zoom - 0.3),
-        animation: const MapAnimation(type: MapAnimationType.smooth, duration: 0.1));
+        animation:
+            const MapAnimation(type: MapAnimationType.smooth, duration: 0.1));
     emit(InitialMapStates(currentState));
   }
 
@@ -403,17 +430,23 @@ class MainMapCubit extends Cubit<MainMapStates> {
     var currentState = state.mapStateModel;
 
     final placeMarkMapObject = currentState.mapObjects
-        .firstWhere((el) => el.mapId == currentState.cameraMapObjectId) as PlacemarkMapObject;
+            .firstWhere((el) => el.mapId == currentState.cameraMapObjectId)
+        as PlacemarkMapObject;
 
-    currentState.mapObjects[currentState.mapObjects.indexOf(placeMarkMapObject)] =
+    currentState
+            .mapObjects[currentState.mapObjects.indexOf(placeMarkMapObject)] =
         placeMarkMapObject.copyWith(point: point);
 
     var cameraPos = await currentState.controller.getCameraPosition();
 
     currentState.controller.moveCamera(
       CameraUpdate.newCameraPosition(CameraPosition(
-          target: point, zoom: cameraPos.zoom, azimuth: cameraPos.azimuth, tilt: cameraPos.tilt)),
-      animation: const MapAnimation(type: MapAnimationType.smooth, duration: 0.3),
+          target: point,
+          zoom: cameraPos.zoom,
+          azimuth: cameraPos.azimuth,
+          tilt: cameraPos.tilt)),
+      animation:
+          const MapAnimation(type: MapAnimationType.smooth, duration: 0.3),
     );
 
     var searchRes = await YandexSearch.searchByPoint(
@@ -428,7 +461,8 @@ class MainMapCubit extends Cubit<MainMapStates> {
 
     if (!context.mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text("${res.items?[0].name}"), duration: const Duration(milliseconds: 500)));
+        content: Text("${res.items?[0].name}"),
+        duration: const Duration(milliseconds: 500)));
 
     suggestPositionsInRequest(res.items?[0].name);
 
@@ -470,20 +504,23 @@ class MainMapCubit extends Cubit<MainMapStates> {
   void addCircleMapObject() {
     var currentState = state.mapStateModel;
 
-    if (currentState.mapObjects
-        .any((element) => element.mapId == const MapObjectId('circle_map_object_id-1'))) {
-      currentState.mapObjects
-          .removeWhere((element) => element.mapId == const MapObjectId('circle_map_object_id-1'));
+    if (currentState.mapObjects.any((element) =>
+        element.mapId == const MapObjectId('circle_map_object_id-1'))) {
+      currentState.mapObjects.removeWhere((element) =>
+          element.mapId == const MapObjectId('circle_map_object_id-1'));
       emit(InitialMapStates(currentState));
       return;
     }
 
     final mapObject = CircleMapObject(
       mapId: const MapObjectId('circle_map_object_id-1'),
-      circle: const Circle(center: Point(latitude: 38.583026, longitude: 68.716816), radius: 1000),
+      circle: const Circle(
+          center: Point(latitude: 38.583026, longitude: 68.716816),
+          radius: 1000),
       strokeColor: Colors.blue[700]!,
       fillColor: Colors.blue[300]!.withValues(alpha: 0.3),
-      onTap: (CircleMapObject self, Point point) => debugPrint('Tapped me at $point'),
+      onTap: (CircleMapObject self, Point point) =>
+          debugPrint('Tapped me at $point'),
     );
 
     debugPrint("radius : ${mapObject.circle.radius}");
@@ -496,10 +533,10 @@ class MainMapCubit extends Cubit<MainMapStates> {
   void addPolygonPlacesInMap() {
     var currentState = state.mapStateModel;
 
-    if (currentState.mapObjects
-        .any((element) => element.mapId == const MapObjectId('polygon_map_object_id-1'))) {
-      currentState.mapObjects
-          .removeWhere((element) => element.mapId == const MapObjectId('polygon_map_object_id-1'));
+    if (currentState.mapObjects.any((element) =>
+        element.mapId == const MapObjectId('polygon_map_object_id-1'))) {
+      currentState.mapObjects.removeWhere((element) =>
+          element.mapId == const MapObjectId('polygon_map_object_id-1'));
       emit(InitialMapStates(currentState));
       return;
     }
@@ -509,7 +546,8 @@ class MainMapCubit extends Cubit<MainMapStates> {
         strokeColor: Colors.orange[700]!,
         strokeWidth: 3.0,
         fillColor: Colors.yellow[200]!.withValues(alpha: 0.4),
-        onTap: (PolygonMapObject self, Point point) => debugPrint('Tapped me at $point'),
+        onTap: (PolygonMapObject self, Point point) =>
+            debugPrint('Tapped me at $point'),
         mapId: const MapObjectId("polygon_map_object_id-1"),
         polygon: const Polygon(
             outerRing: LinearRing(points: [
@@ -552,8 +590,9 @@ class MainMapCubit extends Cubit<MainMapStates> {
       debugPrint("searchText: ${each.searchText}");
     }
 
-    List<SuggestItem> suggests =
-        (res.items ?? []).where((element) => element.subtitle == "Душанбе").toList();
+    List<SuggestItem> suggests = (res.items ?? [])
+        .where((element) => element.subtitle == "Душанбе")
+        .toList();
 
     debugPrint("suggests list : ${suggests.length}");
   }
@@ -573,7 +612,8 @@ class MainMapCubit extends Cubit<MainMapStates> {
 
   void startToSelectDestination() {
     var currentState = state.mapStateModel;
-    currentState.selectingUserDestination = !currentState.selectingUserDestination;
+    currentState.selectingUserDestination =
+        !currentState.selectingUserDestination;
     if (currentState.selectingUserDestination) _clearDestinationsMarks();
     emit(InitialMapStates(currentState));
   }
@@ -586,16 +626,19 @@ class MainMapCubit extends Cubit<MainMapStates> {
     MapObjectId firstPlaceMarkId =
         MapObjectId('destination_${currentState.polyLineDestinationIds}');
 
-    PlacemarkMapObject marker = PlacemarkMapObject(mapId: firstPlaceMarkId, point: point);
+    PlacemarkMapObject marker =
+        PlacemarkMapObject(mapId: firstPlaceMarkId, point: point);
 
     currentState.mapObjects.add(marker);
 
     final PlacemarkMapObject? firstMarker = currentState.mapObjects
-            .firstWhereOrNull((element) => element.mapId.value == 'destination_1')
+            .firstWhereOrNull(
+                (element) => element.mapId.value == 'destination_1')
         as PlacemarkMapObject?;
 
     final PlacemarkMapObject? secondMarker = currentState.mapObjects
-            .firstWhereOrNull((element) => element.mapId.value == 'destination_2')
+            .firstWhereOrNull(
+                (element) => element.mapId.value == 'destination_2')
         as PlacemarkMapObject?;
 
     debugPrint("first: ${firstMarker?.point} | second: ${secondMarker?.point}");
@@ -603,10 +646,15 @@ class MainMapCubit extends Cubit<MainMapStates> {
     if (firstMarker != null && secondMarker != null) {
       final yandexSearch = await YandexDriving.requestRoutes(
         points: [
-          RequestPoint(point: firstMarker.point, requestPointType: RequestPointType.wayPoint),
-          RequestPoint(point: secondMarker.point, requestPointType: RequestPointType.wayPoint)
+          RequestPoint(
+              point: firstMarker.point,
+              requestPointType: RequestPointType.wayPoint),
+          RequestPoint(
+              point: secondMarker.point,
+              requestPointType: RequestPointType.wayPoint)
         ],
-        drivingOptions: const DrivingOptions(initialAzimuth: 0, routesCount: 5, avoidTolls: true),
+        drivingOptions: const DrivingOptions(
+            initialAzimuth: 0, routesCount: 5, avoidTolls: true),
       );
 
       final result = await yandexSearch.$2;
@@ -615,8 +663,10 @@ class MainMapCubit extends Cubit<MainMapStates> {
 
       final getPos = PolylineMapObject(
         mapId: placeMark,
-        polyline: Polyline(points: (result.routes ?? <DrivingRoute>[]).first.geometry.points),
-        strokeColor: Theme.of(GlobalContextHelper.instance.globalNavigatorContext.currentContext!)
+        polyline: Polyline(
+            points: (result.routes ?? <DrivingRoute>[]).first.geometry.points),
+        strokeColor: Theme.of(GlobalContextHelper
+                .instance.globalNavigatorContext.currentContext!)
             .colorScheme
             .secondary,
         strokeWidth: 3,
@@ -648,7 +698,8 @@ class MainMapCubit extends Cubit<MainMapStates> {
       ),
     );
 
-    var screenPoint = ScreenPoint(x: screenPositionOffset.dx, y: screenPositionOffset.dy);
+    var screenPoint =
+        ScreenPoint(x: screenPositionOffset.dx, y: screenPositionOffset.dy);
 
     // add this point to the list and make request with this points in server
     var point = await currentState.controller.getPoint(screenPoint);

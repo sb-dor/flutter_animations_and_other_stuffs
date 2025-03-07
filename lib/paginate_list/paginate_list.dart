@@ -4,7 +4,9 @@ class PaginateList {
 
   //temp function, not usable, just for testing.
   static int checkListLength(
-      {required List<dynamic> wholeList, required List<dynamic> currentList, int perPage = 30}) {
+      {required List<dynamic> wholeList,
+      required List<dynamic> currentList,
+      int perPage = 30}) {
     return (currentList.length + perPage) > wholeList.length
         ? wholeList.length
         : (currentList.length + perPage);
@@ -15,7 +17,9 @@ class PaginateList {
   ///
   ///checks is list has more or not
   static bool checkHasMoreList(
-      {required List<dynamic> wholeList, required List<dynamic> currentList, int perPage = 30}) {
+      {required List<dynamic> wholeList,
+      required List<dynamic> currentList,
+      int perPage = 30}) {
     return (currentList.length + perPage) > wholeList.length ? false : true;
   }
 

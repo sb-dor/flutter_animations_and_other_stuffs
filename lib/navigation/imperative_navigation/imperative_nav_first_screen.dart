@@ -5,10 +5,12 @@ class ImperativeNavigationFirstScreen extends StatefulWidget {
   const ImperativeNavigationFirstScreen({super.key});
 
   @override
-  State<ImperativeNavigationFirstScreen> createState() => _ImperativeNavigationFirstScreenState();
+  State<ImperativeNavigationFirstScreen> createState() =>
+      _ImperativeNavigationFirstScreenState();
 }
 
-class _ImperativeNavigationFirstScreenState extends State<ImperativeNavigationFirstScreen> {
+class _ImperativeNavigationFirstScreenState
+    extends State<ImperativeNavigationFirstScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +24,8 @@ class _ImperativeNavigationFirstScreenState extends State<ImperativeNavigationFi
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const ImperativeNavigationSecondScreen(),
+                    builder: (context) =>
+                        const ImperativeNavigationSecondScreen(),
                   ),
                 );
               },

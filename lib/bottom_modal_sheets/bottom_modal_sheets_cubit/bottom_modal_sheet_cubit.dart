@@ -4,7 +4,8 @@ import 'package:flutter_animations_2/bottom_modal_sheets/bottom_modal_sheets_cub
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BottomModalSheetCubits extends Cubit<BottomModalSheetStates> {
-  BottomModalSheetCubits() : super(InitialModalBottomSheetStates(BottomModalSheetStateModel()));
+  BottomModalSheetCubits()
+      : super(InitialModalBottomSheetStates(BottomModalSheetStateModel()));
 
   void initChangeableHeight({required BuildContext context}) {
     var currentState = state.bottomModalSheetStateModel;
@@ -16,11 +17,11 @@ class BottomModalSheetCubits extends Cubit<BottomModalSheetStates> {
 
   void changeHeight({required BuildContext context}) async {
     var currentState = state.bottomModalSheetStateModel;
-    RenderBox box =
-        currentState.secondModalSheetKey.currentContext?.findRenderObject() as RenderBox;
+    RenderBox box = currentState.secondModalSheetKey.currentContext
+        ?.findRenderObject() as RenderBox;
     double pos = box.localToGlobal(Offset.zero).dy;
-    double middlePos =
-        MediaQuery.of(context).size.height / 3 - (MediaQuery.of(context).size.height / 4);
+    double middlePos = MediaQuery.of(context).size.height / 3 -
+        (MediaQuery.of(context).size.height / 4);
 
     if (pos >= MediaQuery.of(context).size.height / 1.6) {
       currentState.popupWorked = true;
@@ -39,11 +40,13 @@ class BottomModalSheetCubits extends Cubit<BottomModalSheetStates> {
 
     if (pos >= middlePos) {
       double res = pos - middlePos;
-      currentState.changeableHeight = (MediaQuery.of(context).size.height * 0.9) - res;
+      currentState.changeableHeight =
+          (MediaQuery.of(context).size.height * 0.9) - res;
       emit(InitialModalBottomSheetStates(currentState));
       return;
     }
-    if (currentState.changeableHeight < MediaQuery.of(context).size.height * 0.9) {
+    if (currentState.changeableHeight <
+        MediaQuery.of(context).size.height * 0.9) {
       currentState.changeableHeight = MediaQuery.of(context).size.height * 0.9;
     }
     emit(InitialModalBottomSheetStates(currentState));

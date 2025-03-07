@@ -29,7 +29,8 @@ final GoRouter _mainGoRouterDecNav = GoRouter(
           path: 'thirdscreen/:comingId/endpoint/:comingIdd',
           name: "nameforthirdscreen",
           builder: (context, state) {
-            int comingId = int.tryParse("${state.pathParameters['comingId']}") ?? 0;
+            int comingId =
+                int.tryParse("${state.pathParameters['comingId']}") ?? 0;
             return ThirdGoRouterDecScreen(
               id: comingId,
             );
@@ -44,7 +45,8 @@ class MainGoRouterDecNavigation extends StatefulWidget {
   const MainGoRouterDecNavigation({super.key});
 
   @override
-  State<MainGoRouterDecNavigation> createState() => _MainGoRouterDecNavigationState();
+  State<MainGoRouterDecNavigation> createState() =>
+      _MainGoRouterDecNavigationState();
 }
 
 class _MainGoRouterDecNavigationState extends State<MainGoRouterDecNavigation> {

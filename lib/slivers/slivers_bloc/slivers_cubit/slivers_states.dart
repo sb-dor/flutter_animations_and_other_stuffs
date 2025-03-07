@@ -7,5 +7,6 @@ abstract class SliverStates {
 }
 
 class InitialSliverState extends SliverStates {
-  InitialSliverState(SliverStateModel sliverStateModel) : super(sliverStateModel: sliverStateModel);
+  InitialSliverState(SliverStateModel sliverStateModel)
+      : super(sliverStateModel: sliverStateModel);
 }

@@ -12,7 +12,8 @@ class DayCubit extends Cubit<DayStates> {
     double longitude = 68.77905,
   }) async {
     emit(LoadingDayState(null));
-    var data = await repository.getDay(latitude: latitude, longitude: longitude);
+    var data =
+        await repository.getDay(latitude: latitude, longitude: longitude);
     emit(LoadedDayState(data));
   }
 }

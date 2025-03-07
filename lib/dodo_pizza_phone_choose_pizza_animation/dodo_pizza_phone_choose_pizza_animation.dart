@@ -57,7 +57,8 @@ class DodoPizzaPhoneChoosePizzaAnimation extends StatefulWidget {
       _DodoPizzaPhoneChoosePizzaAnimationState();
 }
 
-class _DodoPizzaPhoneChoosePizzaAnimationState extends State<DodoPizzaPhoneChoosePizzaAnimation>
+class _DodoPizzaPhoneChoosePizzaAnimationState
+    extends State<DodoPizzaPhoneChoosePizzaAnimation>
     with TickerProviderStateMixin {
   late PageController firstPageController;
   late PageController secondPageController;
@@ -68,8 +69,10 @@ class _DodoPizzaPhoneChoosePizzaAnimationState extends State<DodoPizzaPhoneChoos
   void initState() {
     // TODO: implement initState
     super.initState();
-    firstPageController = PageController(initialPage: 0, viewportFraction: 0.550);
-    secondPageController = PageController(initialPage: 0, viewportFraction: 0.550);
+    firstPageController =
+        PageController(initialPage: 0, viewportFraction: 0.550);
+    secondPageController =
+        PageController(initialPage: 0, viewportFraction: 0.550);
 
     firstPageController.addListener(() {
       setState(() {
@@ -105,7 +108,8 @@ class _DodoPizzaPhoneChoosePizzaAnimationState extends State<DodoPizzaPhoneChoos
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(onPressed: () => [], icon: const Icon(Icons.arrow_back_ios)),
+        leading: IconButton(
+            onPressed: () => [], icon: const Icon(Icons.arrow_back_ios)),
         title: const Text('Пиццы из половинок'),
         backgroundColor: Colors.white,
       ),
@@ -131,13 +135,17 @@ class _DodoPizzaPhoneChoosePizzaAnimationState extends State<DodoPizzaPhoneChoos
                             itemBuilder: (context, index) {
                               //for smoothly changing, the widget where is in index position will
                               // be typically but other widgets will smoothly change their scale
-                              double scale =
-                                  (1 - (initialPageOfFirstController - index).abs() * 0.50)
-                                      .clamp(0.65, 1.0);
+                              double scale = (1 -
+                                      (initialPageOfFirstController - index)
+                                              .abs() *
+                                          0.50)
+                                  .clamp(0.65, 1.0);
 
                               return Padding(
                                 padding: EdgeInsets.only(
-                                    left: (MediaQuery.of(context).size.width / 2) / 2.61),
+                                    left: (MediaQuery.of(context).size.width /
+                                            2) /
+                                        2.61),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -155,7 +163,10 @@ class _DodoPizzaPhoneChoosePizzaAnimationState extends State<DodoPizzaPhoneChoos
                                               child: ClipPath(
                                                 clipper: HalfOfRightContainer(),
                                                 child: SizedBox(
-                                                  width: MediaQuery.of(context).size.width / 1.61,
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width /
+                                                      1.61,
                                                   child: Image.asset(
                                                       "${DodoPizzaModel.list[index].image}",
                                                       fit: BoxFit.contain),
@@ -186,12 +197,16 @@ class _DodoPizzaPhoneChoosePizzaAnimationState extends State<DodoPizzaPhoneChoos
                             itemBuilder: (context, index) {
                               //for smoothly changing, the widget where is in index position will
                               // be typically but other widgets will smoothly change their scale
-                              double scale =
-                                  (1 - (initialPageOfSecondController - index).abs() * 0.50)
-                                      .clamp(0.65, 1.0);
+                              double scale = (1 -
+                                      (initialPageOfSecondController - index)
+                                              .abs() *
+                                          0.50)
+                                  .clamp(0.65, 1.0);
                               return Padding(
                                 padding: EdgeInsets.only(
-                                    right: (MediaQuery.of(context).size.width / 2) / 2.61),
+                                    right: (MediaQuery.of(context).size.width /
+                                            2) /
+                                        2.61),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -210,7 +225,10 @@ class _DodoPizzaPhoneChoosePizzaAnimationState extends State<DodoPizzaPhoneChoos
                                               child: ClipPath(
                                                 clipper: HalfOfLeftContainer(),
                                                 child: SizedBox(
-                                                  width: MediaQuery.of(context).size.width / 1.61,
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width /
+                                                      1.61,
                                                   child: Image.asset(
                                                       "${DodoPizzaModel.list[index].image}",
                                                       fit: BoxFit.contain),
@@ -255,8 +273,9 @@ class _DodoPizzaPhoneChoosePizzaAnimationState extends State<DodoPizzaPhoneChoos
               width: MediaQuery.of(context).size.width,
               height: 70,
               margin: const EdgeInsets.only(left: 15, right: 15),
-              decoration:
-                  BoxDecoration(color: Colors.deepOrange, borderRadius: BorderRadius.circular(50)),
+              decoration: BoxDecoration(
+                  color: Colors.deepOrange,
+                  borderRadius: BorderRadius.circular(50)),
               child: const Center(
                   child: Text(
                 "Объеденить половинок",

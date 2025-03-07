@@ -14,8 +14,10 @@ class ProductInfoText extends StatelessWidget {
       children: [
         Text(
           text,
-          style:
-              Theme.of(context).textTheme.titleMedium!.copyWith(fontSize: rf(12)),
+          style: Theme.of(context)
+              .textTheme
+              .titleMedium!
+              .copyWith(fontSize: rf(12)),
         ),
         Text(
           value,

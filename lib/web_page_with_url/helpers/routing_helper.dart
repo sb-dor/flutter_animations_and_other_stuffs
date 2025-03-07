@@ -11,7 +11,8 @@ final GoRouter webRouter = GoRouter(
       routes: [
         GoRoute(
           name: "detailsName",
-          path: 'details/:anyName/:anySurname/user', // you have to pass data other wise the route will not work
+          path:
+              'details/:anyName/:anySurname/user', // you have to pass data other wise the route will not work
           builder: (context, state) => MainWebDetailsPageWithUrl(
             name: state.pathParameters['anyName'] ?? '',
             sName: state.pathParameters['anySurname'] ?? '',

@@ -36,7 +36,8 @@ class _FlutterCameraPageState extends State<FlutterCameraPage> {
   }
 
   void initController() async {
-    _cameraController = CameraController(flutterCameraHelper.cameras[0], ResolutionPreset.max);
+    _cameraController =
+        CameraController(flutterCameraHelper.cameras[0], ResolutionPreset.max);
     await _cameraController?.initialize();
     minZoom = await _cameraController?.getMinZoomLevel();
     maxZoom = await _cameraController?.getMaxZoomLevel();
@@ -45,20 +46,22 @@ class _FlutterCameraPageState extends State<FlutterCameraPage> {
   }
 
   void saveImages() async {
-    var flutterPermissionCubit = BlocProvider.of<FlutterPermissionCubit>(context);
+    var flutterPermissionCubit =
+        BlocProvider.of<FlutterPermissionCubit>(context);
     await flutterPermissionCubit.storagePermissionHandler();
-    if (!flutterPermissionCubit.state.flutterPermissionStateModel.storagePermission) {
+    if (!flutterPermissionCubit
+        .state.flutterPermissionStateModel.storagePermission) {
       await flutterPermissionCubit.requestCameraPermission();
       return;
     }
-    
+
     var appDirectory = await getExternalStorageDirectory();
 
     var path = appDirectory?.path;
 
     for (var picture in pictures) {
       File file = File("$path/${picture.name}");
-      file.writeAsBytesSync(await picture.readAsBytes()); 
+      file.writeAsBytesSync(await picture.readAsBytes());
       await Gal.putImage(picture.path); //save image in gallery
     }
 
@@ -72,7 +75,8 @@ class _FlutterCameraPageState extends State<FlutterCameraPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ((_cameraController?.value.isInitialized ?? false) && _cameraController != null)
+      body: ((_cameraController?.value.isInitialized ?? false) &&
+              _cameraController != null)
           ? Stack(
               children: [
                 Positioned.fill(child: CameraPreview(_cameraController!)),
@@ -84,14 +88,16 @@ class _FlutterCameraPageState extends State<FlutterCameraPage> {
                       child: SizedBox(
                           height: 100,
                           child: ListView.separated(
-                              separatorBuilder: (context, index) => const SizedBox(width: 10),
+                              separatorBuilder: (context, index) =>
+                                  const SizedBox(width: 10),
                               scrollDirection: Axis.horizontal,
                               itemCount: pictures.length,
                               itemBuilder: (context, index) {
                                 return FadeAnimation(
                                     child: ClipRRect(
                                         borderRadius: BorderRadius.circular(10),
-                                        child: Image.file(File(pictures[index].path))));
+                                        child: Image.file(
+                                            File(pictures[index].path))));
                               }))),
                 if (videos.isNotEmpty)
                   Positioned(
@@ -102,15 +108,16 @@ class _FlutterCameraPageState extends State<FlutterCameraPage> {
                           width: 100,
                           height: 100,
                           child: ListView.separated(
-                              separatorBuilder: (context, index) => const SizedBox(width: 10),
+                              separatorBuilder: (context, index) =>
+                                  const SizedBox(width: 10),
                               scrollDirection: Axis.horizontal,
                               itemCount: videos.length,
                               itemBuilder: (context, index) {
                                 return FadeAnimation(
                                     child: ClipRRect(
                                         borderRadius: BorderRadius.circular(10),
-                                        child:
-                                            _VideoPlayerWidget(pathOfVideo: videos[index].path)));
+                                        child: _VideoPlayerWidget(
+                                            pathOfVideo: videos[index].path)));
                               }))),
                 Positioned(
                     left: 0,
@@ -125,7 +132,8 @@ class _FlutterCameraPageState extends State<FlutterCameraPage> {
                                   if (loadingTakingPicture) return;
                                   loadingTakingPicture = true;
                                   setState(() {});
-                                  var image = await _cameraController?.takePicture();
+                                  var image =
+                                      await _cameraController?.takePicture();
                                   if (image != null) pictures.add(image);
                                   loadingTakingPicture = false;
                                   setState(() {});
@@ -138,18 +146,23 @@ class _FlutterCameraPageState extends State<FlutterCameraPage> {
                             child: ElevatedButton(
                                 onPressed: () async {
                                   if (isRecording) {
-                                    var video = await _cameraController?.stopVideoRecording();
+                                    var video = await _cameraController
+                                        ?.stopVideoRecording();
                                     if (video != null) videos.add(video);
                                     isRecording = false;
                                   } else {
-                                    await _cameraController?.startVideoRecording();
+                                    await _cameraController
+                                        ?.startVideoRecording();
                                     isRecording = true;
                                   }
                                   setState(() {});
                                 },
                                 child: isRecording
-                                    ? const Icon(Icons.emergency_recording_outlined)
-                                    : const Icon(Icons.video_camera_back_rounded, size: 30)),
+                                    ? const Icon(
+                                        Icons.emergency_recording_outlined)
+                                    : const Icon(
+                                        Icons.video_camera_back_rounded,
+                                        size: 30)),
                           )
                         ]))),
                 Positioned(
@@ -161,7 +174,8 @@ class _FlutterCameraPageState extends State<FlutterCameraPage> {
                             .map((e) => Expanded(
                                   child: ElevatedButton(
                                       onPressed: () async {
-                                        await _cameraController?.setDescription(e);
+                                        await _cameraController
+                                            ?.setDescription(e);
                                         setState(() {});
                                       },
                                       child: Text(
@@ -177,47 +191,50 @@ class _FlutterCameraPageState extends State<FlutterCameraPage> {
                     top: MediaQuery.of(context).size.height * 0.04 + 50,
                     left: 0,
                     right: 0,
-                    child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                      Expanded(
-                        child: ElevatedButton(
-                            onPressed: () async {
-                              _cameraController?.setZoomLevel(minZoom ?? 1);
-                            },
-                            child: Text(
-                              "$minZoom Zoom",
-                              textAlign: TextAlign.center,
-                            )),
-                      ),
-                      Expanded(
-                        child: ElevatedButton(
-                            onPressed: () async {
-                              _cameraController?.setZoomLevel(maxZoom ?? 1);
-                            },
-                            child: Text(
-                              "$maxZoom Zoom",
-                              textAlign: TextAlign.center,
-                            )),
-                      ),
-                      Expanded(
-                        child: ElevatedButton(
-                            onPressed: () async {
-                              _cameraController?.setZoomLevel(averageZoom ?? 1);
-                            },
-                            child: Text(
-                              "$averageZoom Zoom",
-                              textAlign: TextAlign.center,
-                            )),
-                      ),
-                      if (videos.isNotEmpty || pictures.isNotEmpty)
-                        Expanded(
-                          child: ElevatedButton(
-                              onPressed: () async => saveImages(),
-                              child: const Text(
-                                "Save",
-                                textAlign: TextAlign.center,
-                              )),
-                        )
-                    ]))
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: ElevatedButton(
+                                onPressed: () async {
+                                  _cameraController?.setZoomLevel(minZoom ?? 1);
+                                },
+                                child: Text(
+                                  "$minZoom Zoom",
+                                  textAlign: TextAlign.center,
+                                )),
+                          ),
+                          Expanded(
+                            child: ElevatedButton(
+                                onPressed: () async {
+                                  _cameraController?.setZoomLevel(maxZoom ?? 1);
+                                },
+                                child: Text(
+                                  "$maxZoom Zoom",
+                                  textAlign: TextAlign.center,
+                                )),
+                          ),
+                          Expanded(
+                            child: ElevatedButton(
+                                onPressed: () async {
+                                  _cameraController
+                                      ?.setZoomLevel(averageZoom ?? 1);
+                                },
+                                child: Text(
+                                  "$averageZoom Zoom",
+                                  textAlign: TextAlign.center,
+                                )),
+                          ),
+                          if (videos.isNotEmpty || pictures.isNotEmpty)
+                            Expanded(
+                              child: ElevatedButton(
+                                  onPressed: () async => saveImages(),
+                                  child: const Text(
+                                    "Save",
+                                    textAlign: TextAlign.center,
+                                  )),
+                            )
+                        ]))
               ],
             )
           : const Center(child: CircularProgressIndicator()),
@@ -244,7 +261,8 @@ class _VideoPlayerWidgetState extends State<_VideoPlayerWidget> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _videoPlayerController = VideoPlayerController.file(File(widget.pathOfVideo))..initialize();
+    _videoPlayerController =
+        VideoPlayerController.file(File(widget.pathOfVideo))..initialize();
     _videoPlayerController.play();
     _videoPlayerController.addListener(() async {
       if (stoppedWithClick) return;

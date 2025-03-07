@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animations_2/animations/slide_animation.dart';
 import 'package:flutter_animations_2/delivery_food_ui/core/utils/ui_helper.dart';
+
 class ClippedContainer extends StatelessWidget {
   const ClippedContainer({
     super.key,

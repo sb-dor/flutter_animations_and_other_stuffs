@@ -8,7 +8,8 @@ class TodoListMVVMStateModel {
 
   final List<TodoMVVM> _todoMVVM = [];
 
-  UnmodifiableListView<TodoMVVM> get todoMVVM => UnmodifiableListView(_todoMVVM);
+  UnmodifiableListView<TodoMVVM> get todoMVVM =>
+      UnmodifiableListView(_todoMVVM);
 
   void _clearAllTodos() => _todoMVVM.clear();
 

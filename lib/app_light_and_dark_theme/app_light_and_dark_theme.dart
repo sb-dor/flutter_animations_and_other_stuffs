@@ -40,20 +40,25 @@ class AppTheme {
   static ThemeData get light => ThemeData(
       brightness: Brightness.light,
       visualDensity: visualDensity,
-      textTheme: GoogleFonts.mulishTextTheme().apply(bodyColor: AppColors.textDark),
+      textTheme:
+          GoogleFonts.mulishTextTheme().apply(bodyColor: AppColors.textDark),
       appBarTheme: lightBase.appBarTheme.copyWith(
           iconTheme: lightBase.iconTheme,
           backgroundColor: Colors.transparent,
           elevation: 0,
           centerTitle: true,
-          titleTextStyle:
-              const TextStyle(fontWeight: FontWeight.bold, fontSize: 17, color: AppColors.textDark),
+          titleTextStyle: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 17,
+              color: AppColors.textDark),
           systemOverlayStyle: SystemUiOverlayStyle.dark),
       scaffoldBackgroundColor: _LightColors.background,
       elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(backgroundColor: AppColors.secondary)),
+          style:
+              ElevatedButton.styleFrom(backgroundColor: AppColors.secondary)),
       cardColor: _LightColors.card,
-      primaryTextTheme: const TextTheme(titleLarge: TextStyle(color: AppColors.textDark)),
+      primaryTextTheme:
+          const TextTheme(titleLarge: TextStyle(color: AppColors.textDark)),
       iconTheme: const IconThemeData(color: AppColors.iconDark),
       colorScheme: lightBase.colorScheme
           .copyWith(secondary: accentColor)
@@ -63,18 +68,22 @@ class AppTheme {
   static ThemeData get dark => ThemeData(
       brightness: Brightness.dark,
       visualDensity: visualDensity,
-      textTheme: GoogleFonts.interTextTheme().apply(bodyColor: AppColors.textLight),
+      textTheme:
+          GoogleFonts.interTextTheme().apply(bodyColor: AppColors.textLight),
       appBarTheme: darkBase.appBarTheme.copyWith(
           backgroundColor: Colors.transparent,
           elevation: 0,
           centerTitle: true,
-          titleTextStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+          titleTextStyle:
+              const TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
           systemOverlayStyle: SystemUiOverlayStyle.light),
       scaffoldBackgroundColor: _DarkColors.background,
       elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(backgroundColor: AppColors.secondary)),
+          style:
+              ElevatedButton.styleFrom(backgroundColor: AppColors.secondary)),
       cardColor: _DarkColors.card,
-      primaryTextTheme: const TextTheme(titleLarge: TextStyle(color: AppColors.textLight)),
+      primaryTextTheme:
+          const TextTheme(titleLarge: TextStyle(color: AppColors.textLight)),
       iconTheme: const IconThemeData(color: AppColors.iconLight),
       colorScheme: darkBase.colorScheme
           .copyWith(secondary: accentColor)

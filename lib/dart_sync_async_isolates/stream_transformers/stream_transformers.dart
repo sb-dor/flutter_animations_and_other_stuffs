@@ -2,7 +2,6 @@
 
 import 'dart:async';
 
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rxdart/rxdart.dart';
 
 final class StreamTransformers {
@@ -50,7 +49,6 @@ final class StreamTransformers {
     controller.add("Searching 7");
     await Future.delayed(const Duration(milliseconds: 900));
     controller.add("Searching 8");
-
 
     print("hello buddy");
   }
@@ -131,13 +129,15 @@ final class StreamTransformers {
   }
 
   void simpleStreamTransformer() {
-    final transformedStream = _streamSource.map<String>((element) => "each element: $element");
+    final transformedStream =
+        _streamSource.map<String>((element) => "each element: $element");
     // if you use "asyncMap" instead of "map" it means that you will be dealing with futures (asynchronously)
     // example;
 
     // any async code that you want to do do here inside "asyncMap"
     // do not use async code inside "listen" of stream
-    final asyncTransformedStream = _streamSource.asyncMap<String>((element) async {
+    final asyncTransformedStream =
+        _streamSource.asyncMap<String>((element) async {
       await Future.delayed(const Duration(seconds: 1));
       return "element: is: $element";
     });
@@ -194,8 +194,6 @@ class MyBaseTransformer extends StreamTransformerBase<int, String> {
     );
   }
 }
-
-
 
 // IMPLEMENTATION WAS TAKES FROM ANOTHER PROJECT
 // ---

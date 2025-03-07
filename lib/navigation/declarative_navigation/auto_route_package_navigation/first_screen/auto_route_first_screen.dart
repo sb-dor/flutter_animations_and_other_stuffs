@@ -12,7 +12,8 @@ class AutoRouteFirstScreen extends StatefulWidget {
 }
 
 class _AutoRouteFirstScreenState extends State<AutoRouteFirstScreen> {
-  final TextEditingController _textEditingController = TextEditingController(text: '');
+  final TextEditingController _textEditingController =
+      TextEditingController(text: '');
 
   @override
   Widget build(BuildContext context) {

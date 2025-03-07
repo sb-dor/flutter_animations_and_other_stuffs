@@ -10,8 +10,10 @@ class Singleton {
   static Singleton? get instance => _instance ??= Singleton._();
 
   //private constructor
-  Singleton._() { //instead of writing "_" for constructor you can write any name
-    debugPrint("hello singleton"); // optional, you can just not create method body
+  Singleton._() {
+    //instead of writing "_" for constructor you can write any name
+    debugPrint(
+        "hello singleton"); // optional, you can just not create method body
   }
 
   void add() {

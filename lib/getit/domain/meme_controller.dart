@@ -12,6 +12,7 @@ class MemeDomainController implements MemeRepository {
     var response = await Dio().get('https://some-random-api.ml/meme');
     Map<String, dynamic> singleMemeJson = jsonDecode(response.data);
     debugPrint("response is : ${response.data}");
-    return MemeModel.fromJson(singleMemeJson)..image = Randoms.randomPictureUrl();
+    return MemeModel.fromJson(singleMemeJson)
+      ..image = Randoms.randomPictureUrl();
   }
 }

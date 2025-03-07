@@ -7,7 +7,8 @@ class TextFieldValidationWidget extends StatefulWidget {
   const TextFieldValidationWidget({super.key});
 
   @override
-  State<TextFieldValidationWidget> createState() => _TextFieldValidationWidgetState();
+  State<TextFieldValidationWidget> createState() =>
+      _TextFieldValidationWidgetState();
 }
 
 class _TextFieldValidationWidgetState extends State<TextFieldValidationWidget> {
@@ -109,10 +110,12 @@ class TextFieldValidationBuilder extends StatefulWidget {
   final TextFieldValidationBuilderWidget builder;
 
   @override
-  State<TextFieldValidationBuilder> createState() => _TextFieldValidationBuilderState();
+  State<TextFieldValidationBuilder> createState() =>
+      _TextFieldValidationBuilderState();
 }
 
-class _TextFieldValidationBuilderState extends State<TextFieldValidationBuilder> {
+class _TextFieldValidationBuilderState
+    extends State<TextFieldValidationBuilder> {
   String? _validator;
 
   //

@@ -4,10 +4,12 @@ class BetterPerformanceAnimatedBuilder extends StatefulWidget {
   const BetterPerformanceAnimatedBuilder({super.key});
 
   @override
-  State<BetterPerformanceAnimatedBuilder> createState() => _BetterPerformanceAnimatedBuilderState();
+  State<BetterPerformanceAnimatedBuilder> createState() =>
+      _BetterPerformanceAnimatedBuilderState();
 }
 
-class _BetterPerformanceAnimatedBuilderState extends State<BetterPerformanceAnimatedBuilder>
+class _BetterPerformanceAnimatedBuilderState
+    extends State<BetterPerformanceAnimatedBuilder>
     with SingleTickerProviderStateMixin {
   late final AnimationController _animationController;
   late final Animation<Offset> _animation;

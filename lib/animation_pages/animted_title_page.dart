@@ -26,7 +26,8 @@ class _AnimatedTitleState extends State<AnimatedTitle> {
         duration: const Duration(milliseconds: 500),
         curve: Curves.bounceInOut,
         builder: (BuildContext context, val, Widget? child) {
-          return Padding(padding: EdgeInsets.only(left: val * 10), child: child!);
+          return Padding(
+              padding: EdgeInsets.only(left: val * 10), child: child!);
         },
         child: const Text("Hello world"));
   }

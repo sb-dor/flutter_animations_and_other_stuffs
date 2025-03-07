@@ -8,7 +8,8 @@ class FlutterAnimatedBuilderOwnTextMoving extends StatefulWidget {
       _FlutterAnimatedBuilderOwnTextMovingState();
 }
 
-class _FlutterAnimatedBuilderOwnTextMovingState extends State<FlutterAnimatedBuilderOwnTextMoving>
+class _FlutterAnimatedBuilderOwnTextMovingState
+    extends State<FlutterAnimatedBuilderOwnTextMoving>
     with SingleTickerProviderStateMixin {
   // SingleTickerProviderStateMixin can have only one animationController
   // TickerProviderStateMixin can have more than one animationControllers
@@ -22,9 +23,11 @@ class _FlutterAnimatedBuilderOwnTextMovingState extends State<FlutterAnimatedBui
     // TODO: implement initState
     super.initState();
 
-    _controller = AnimationController(vsync: this, duration: const Duration(seconds: 4));
+    _controller =
+        AnimationController(vsync: this, duration: const Duration(seconds: 4));
 
-    _animation = Tween(begin: const Offset(0, 0), end: const Offset(250, 0)).animate(_controller);
+    _animation = Tween(begin: const Offset(0, 0), end: const Offset(250, 0))
+        .animate(_controller);
 
     _controller.repeat(reverse: true);
 
@@ -56,7 +59,9 @@ class _FlutterAnimatedBuilderOwnTextMovingState extends State<FlutterAnimatedBui
                     offset: _animation.value,
                     child: const Text("A long text should be here",
                         style: TextStyle(
-                            color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold)));
+                            color: Colors.black,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold)));
               })),
     );
   }

@@ -4,10 +4,12 @@ class ImperativeNavigationSecondScreen extends StatefulWidget {
   const ImperativeNavigationSecondScreen({super.key});
 
   @override
-  State<ImperativeNavigationSecondScreen> createState() => _ImperativeNavigationSecondScreenState();
+  State<ImperativeNavigationSecondScreen> createState() =>
+      _ImperativeNavigationSecondScreenState();
 }
 
-class _ImperativeNavigationSecondScreenState extends State<ImperativeNavigationSecondScreen> {
+class _ImperativeNavigationSecondScreenState
+    extends State<ImperativeNavigationSecondScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +19,8 @@ class _ImperativeNavigationSecondScreenState extends State<ImperativeNavigationS
       body: SafeArea(
         child: Center(
           child: ElevatedButton(
-              onPressed: () => Navigator.pop(context), child: const Text("Pop to First Screen")),
+              onPressed: () => Navigator.pop(context),
+              child: const Text("Pop to First Screen")),
         ),
       ),
     );

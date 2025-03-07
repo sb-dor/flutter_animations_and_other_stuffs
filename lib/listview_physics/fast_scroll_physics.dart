@@ -10,8 +10,8 @@ class FastScrollPhysics extends ScrollPhysics {
 
   @override
   SpringDescription get spring => const SpringDescription(
-    mass: 80,
-    stiffness: 80,
-    damping: 0.5,
-  );
+        mass: 80,
+        stiffness: 80,
+        damping: 0.5,
+      );
 }

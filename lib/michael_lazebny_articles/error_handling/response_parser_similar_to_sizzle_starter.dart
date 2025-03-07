@@ -33,8 +33,10 @@ final class ResponseParserHelper {
   }) async {
     try {
       final decodedResponse = switch (data) {
-        StringResponseParser(body: final String data) => await _decodeString(data),
-        BytesResponseParser(body: final List<int> data) => await _decodeBytes(data),
+        StringResponseParser(body: final String data) =>
+          await _decodeString(data),
+        BytesResponseParser(body: final List<int> data) =>
+          await _decodeBytes(data),
         MapResponseParser(body: final Map<String, dynamic> data) => data,
         _ => <String, dynamic>{},
       };

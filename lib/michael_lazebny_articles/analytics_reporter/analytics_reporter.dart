@@ -6,7 +6,9 @@ import 'package:flutter_animations_2/michael_lazebny_articles/analytics_reporter
 abstract base class AnalyticsReporter {
   final List<AnalyticsInterceptor> _interceptors;
 
-  AnalyticsReporter({List<AnalyticsInterceptor> interceptors = const <AnalyticsInterceptor>[]})
+  AnalyticsReporter(
+      {List<AnalyticsInterceptor> interceptors =
+          const <AnalyticsInterceptor>[]})
       : _interceptors = interceptors;
 
   // write interceptors then.

@@ -70,8 +70,10 @@ class DefaultFirebaseOptions {
     messagingSenderId: '403332127037',
     projectId: 'sign-in-firebase-93418',
     storageBucket: 'sign-in-firebase-93418.appspot.com',
-    androidClientId: '403332127037-cfcmkuj8bu6a6pjk7q5a8q5q44bj6jfm.apps.googleusercontent.com',
-    iosClientId: '403332127037-obmo3e7j6u826o28122pdc91qeap7e7b.apps.googleusercontent.com',
+    androidClientId:
+        '403332127037-cfcmkuj8bu6a6pjk7q5a8q5q44bj6jfm.apps.googleusercontent.com',
+    iosClientId:
+        '403332127037-obmo3e7j6u826o28122pdc91qeap7e7b.apps.googleusercontent.com',
     iosBundleId: 'com.example.flutter-animations2',
   );
 }

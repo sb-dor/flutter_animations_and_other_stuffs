@@ -6,10 +6,12 @@ class YoutubeCoffeeAppAnimationPage extends StatefulWidget {
   const YoutubeCoffeeAppAnimationPage({super.key});
 
   @override
-  State<YoutubeCoffeeAppAnimationPage> createState() => _YoutubeCoffeeAppAnimationPageState();
+  State<YoutubeCoffeeAppAnimationPage> createState() =>
+      _YoutubeCoffeeAppAnimationPageState();
 }
 
-class _YoutubeCoffeeAppAnimationPageState extends State<YoutubeCoffeeAppAnimationPage> {
+class _YoutubeCoffeeAppAnimationPageState
+    extends State<YoutubeCoffeeAppAnimationPage> {
   late PageController _pageController;
   List<YtFlLocModel> list = [];
   final fake = faker.Faker();

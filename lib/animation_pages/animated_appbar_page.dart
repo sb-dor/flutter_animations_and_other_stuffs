@@ -56,7 +56,8 @@ class _AnimatedAppbarPageState extends State<AnimatedAppbarPage> {
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
               child: Container(
-                padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.04),
+                padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height * 0.04),
                 child: Stack(
                   children: [
                     Column(children: [
@@ -72,8 +73,9 @@ class _AnimatedAppbarPageState extends State<AnimatedAppbarPage> {
                             Expanded(
                               child: Align(
                                 alignment: Alignment.centerRight,
-                                child:
-                                    IconButton(onPressed: () => [], icon: const Icon(Icons.search)),
+                                child: IconButton(
+                                    onPressed: () => [],
+                                    icon: const Icon(Icons.search)),
                               ),
                             )
                           ],
@@ -82,7 +84,8 @@ class _AnimatedAppbarPageState extends State<AnimatedAppbarPage> {
                       SizedBox(height: value),
                       Expanded(
                           child: ListView.builder(
-                              padding: const EdgeInsets.only(left: 10, right: 10),
+                              padding:
+                                  const EdgeInsets.only(left: 10, right: 10),
                               controller: _scrollController,
                               itemCount: 100,
                               itemBuilder: (context, index) {

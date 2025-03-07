@@ -83,8 +83,10 @@ class NftHomeScreen extends StatelessWidget {
                           child: InkWell(
                             onTap: () => Navigation.push(context,
                                 customPageTransition: PageTransition(
-                                    child: const AnimatedListWithAnimationPage(),
-                                    type: PageTransitionType.scaleDownWithFadeIn)),
+                                    child:
+                                        const AnimatedListWithAnimationPage(),
+                                    type: PageTransitionType
+                                        .scaleDownWithFadeIn)),
                             child: Container(
                                 width: 140,
                                 height: 50,

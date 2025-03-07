@@ -25,16 +25,21 @@ class AwesomeNotificationsHelper {
   }
 
   static Future<void> showAwesomeNotification(
-      {required Map<String, dynamic> notification, required bool offline}) async {
-    if (notification.containsKey("image_url") && notification['image_url'] != null) {
-      await _showNotificationWithBigImageImage(notification: notification, offline: offline);
+      {required Map<String, dynamic> notification,
+      required bool offline}) async {
+    if (notification.containsKey("image_url") &&
+        notification['image_url'] != null) {
+      await _showNotificationWithBigImageImage(
+          notification: notification, offline: offline);
     } else {
-      await _showSimpleNotification(notification: notification, offline: offline);
+      await _showSimpleNotification(
+          notification: notification, offline: offline);
     }
   }
 
   static Future<void> _showNotificationWithBigImageImage(
-      {required Map<String, dynamic> notification, required bool offline}) async {
+      {required Map<String, dynamic> notification,
+      required bool offline}) async {
     // debugPrint("notification image: ${ApiSettings.MAIN_URL}$notification");
     //
     // //notify model is my own created model
@@ -77,7 +82,8 @@ class AwesomeNotificationsHelper {
   }
 
   static Future<void> _showSimpleNotification(
-      {required Map<String, dynamic> notification, required bool offline}) async {
+      {required Map<String, dynamic> notification,
+      required bool offline}) async {
     //notify model is my own created model
     //i wrote like this cause' AwesomeNotification has same model
     // notifyModel.NotificationModel notificationModel =

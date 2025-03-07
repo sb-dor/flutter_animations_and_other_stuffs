@@ -64,7 +64,7 @@ final class TestErrorHandlingOnceAgain {
       }
     } on RestApiException {
       rethrow;
-    } catch (error, stackTrace) {
+    } catch (error) {
       //
     }
   }

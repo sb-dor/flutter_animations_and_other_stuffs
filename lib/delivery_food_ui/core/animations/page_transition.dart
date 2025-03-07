@@ -54,14 +54,12 @@ class PageTransition extends PageRouteBuilder {
                 );
               case PageTransitionType.scaleUp:
                 return ScaleTransition(
-                  scale:
-                      Tween<double>(begin: 0, end: 1).animate(animatedCurve),
+                  scale: Tween<double>(begin: 0, end: 1).animate(animatedCurve),
                   child: child,
                 );
               case PageTransitionType.scaleDown:
                 return ScaleTransition(
-                  scale:
-                      Tween<double>(begin: 2, end: 1).animate(animatedCurve),
+                  scale: Tween<double>(begin: 2, end: 1).animate(animatedCurve),
                   child: child,
                 );
               case PageTransitionType.scaleUpWithFadeIn:

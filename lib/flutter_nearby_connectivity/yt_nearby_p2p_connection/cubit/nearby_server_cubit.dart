@@ -16,7 +16,8 @@ import 'package:network_discovery/network_discovery.dart';
 class NearbyServerCubit extends Cubit<NearbyServerStates> {
   late NearbyServerStateModel _currentState;
 
-  NearbyServerCubit() : super(InitialNearbyServerState(NearbyServerStateModel())) {
+  NearbyServerCubit()
+      : super(InitialNearbyServerState(NearbyServerStateModel())) {
     //
     _currentState = state.nearbyServerStateModel;
   }
@@ -68,7 +69,8 @@ class NearbyServerCubit extends Cubit<NearbyServerStates> {
       _currentState.tempTimerForFile?.cancel();
     }
 
-    _currentState.tempTimerForFile = Timer(const Duration(seconds: 3), () async {
+    _currentState.tempTimerForFile =
+        Timer(const Duration(seconds: 3), () async {
       final path = await getExternalStorageDirectory();
 
       var mime = lookupMimeType('', headerBytes: _currentState.filesData) ?? '';
@@ -77,7 +79,8 @@ class NearbyServerCubit extends Cubit<NearbyServerStates> {
 
       print("extension for meme: $extension");
 
-      final fileFromDat = File("${path?.path}/${DateTime.now().toString()}.$extension"); // every time new name
+      final fileFromDat = File(
+          "${path?.path}/${DateTime.now().toString()}.$extension"); // every time new name
 
       fileFromDat.writeAsBytesSync(_currentState.filesData);
 
@@ -95,8 +98,10 @@ class NearbyServerCubit extends Cubit<NearbyServerStates> {
 
   void sendMessage() {
     print('server message');
-    _currentState.server?.sendMessage(_currentState.messageController.text.trim());
-    _currentState.serverComingData.add(_currentState.messageController.text.trim());
+    _currentState.server
+        ?.sendMessage(_currentState.messageController.text.trim());
+    _currentState.serverComingData
+        .add(_currentState.messageController.text.trim());
     emit(InitialNearbyServerState(_currentState));
   }
 
@@ -115,7 +120,8 @@ class NearbyServerCubit extends Cubit<NearbyServerStates> {
 
     emit(InitialNearbyServerState(_currentState));
 
-    final String subnet = networkInfo.substring(0, networkInfo.lastIndexOf('.'));
+    final String subnet =
+        networkInfo.substring(0, networkInfo.lastIndexOf('.'));
 
     _currentState.stream = NetworkDiscovery.discover(
       subnet,
@@ -126,7 +132,9 @@ class NearbyServerCubit extends Cubit<NearbyServerStates> {
 
     await for (final networkAddress in _currentState.stream!) {
       print("networks: ${networkAddress.ip}");
-      if (_currentState.networkAddress.any((el) => el.ip == networkAddress.ip)) return;
+      if (_currentState.networkAddress.any((el) => el.ip == networkAddress.ip)) {
+        return;
+      }
       _currentState.networkAddress.add(networkAddress);
       emit(InitialNearbyServerState(_currentState));
     }
@@ -149,7 +157,10 @@ class NearbyServerCubit extends Cubit<NearbyServerStates> {
   }
 
   Future<void> sendFileToServer() async {
-    if (_currentState.client?.isConnected == false || _currentState.client == null) return;
+    if (_currentState.client?.isConnected == false ||
+        _currentState.client == null) {
+      return;
+    }
     var image = await ImagePicker().pickMedia();
     if (image == null) return;
     _currentState.client?.sendFile(File(image.path));

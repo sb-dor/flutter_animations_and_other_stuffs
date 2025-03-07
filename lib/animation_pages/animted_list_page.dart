@@ -77,8 +77,6 @@ class _AnimatedListPageState extends State<AnimatedListPage> {
                               child: Text(forAdd[index]))),
                     ),
                   )),
-
-
           const SizedBox(height: 50),
           const ScaleAnimation(
               child: Text("Hello word",
@@ -88,6 +86,4 @@ class _AnimatedListPageState extends State<AnimatedListPage> {
                       fontWeight: FontWeight.bold)))
         ]));
   }
-
-
 }

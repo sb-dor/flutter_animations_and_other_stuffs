@@ -43,7 +43,6 @@ class FadeAnimation extends StatelessWidget {
       this.intervalEnd,
       this.curve});
 
-
   @override
   Widget build(BuildContext context) {
     return TweenAnimationBuilder<double>(

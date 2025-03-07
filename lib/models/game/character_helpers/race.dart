@@ -17,5 +17,5 @@ abstract class Race implements Cloth {
 
   Vehicle vehicle;
 
-  Race({required this.vehicle,required this.weapon});
+  Race({required this.vehicle, required this.weapon});
 }

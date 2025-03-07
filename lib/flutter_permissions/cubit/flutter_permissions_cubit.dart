@@ -5,7 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class FlutterPermissionCubit extends Cubit<FlutterPermissionStates> {
-  FlutterPermissionCubit() : super(InitFlutterPermissionState(FlutterPermissionStateModel()));
+  FlutterPermissionCubit()
+      : super(InitFlutterPermissionState(FlutterPermissionStateModel()));
 
   // it is necessary when you come back from settings.
   // this function will work whenever app will be in resume mode

@@ -13,7 +13,8 @@ class SqfLiteDatabaseHelper {
   static final StreamController<List<DatabaseModel>> _databaseStreamController =
       StreamController<List<DatabaseModel>>.broadcast();
 
-  static Stream<List<DatabaseModel>> get databaseModelStream => _databaseStreamController.stream;
+  static Stream<List<DatabaseModel>> get databaseModelStream =>
+      _databaseStreamController.stream;
 
   //
   static Future<void> initSqfLiteDatabase() async {
@@ -24,7 +25,8 @@ class SqfLiteDatabaseHelper {
     //on update works whenever db exists and last version is not compared to the new version of db
     //whenever you will release your application on google play do not forget to change version of db
     //after changing all stuff in it
-    database = await openDatabase(path, version: 1, onCreate: (Database db, int version) async {
+    database = await openDatabase(path, version: 1,
+        onCreate: (Database db, int version) async {
       await _databaseTableQueries(db);
     }, onUpgrade: (db, oldVersion, newVersion) async {
       await _databaseTableQueries(db);
@@ -58,7 +60,8 @@ class SqfLiteDatabaseHelper {
     try {
       var data = await db.query('old_table');
       for (var each in data) {
-        await db.insert('new_table_name', {"name": each['name'], "age": each['age']});
+        await db.insert(
+            'new_table_name', {"name": each['name'], "age": each['age']});
       }
     } catch (_) {}
 
@@ -97,7 +100,8 @@ class SqfLiteDatabaseHelper {
       List<DatabaseModel> list = await getAllFromDatabase();
       DatabaseModel? lastDatabaseModel = list.isNotEmpty ? list.last : null;
 
-      await database?.delete('demo_table', where: "id = ?", whereArgs: [lastDatabaseModel?.id]);
+      await database?.delete('demo_table',
+          where: "id = ?", whereArgs: [lastDatabaseModel?.id]);
 
       _databaseStreamController.sink.add(await getAllFromDatabase());
     } catch (e) {

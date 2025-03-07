@@ -41,8 +41,9 @@ final class TodoDriftDatabaseHelper {
   }
 
   //
-  Future<void> delete(TodoDrift todo) =>
-      _database.managers.todoDriftDbTable.filter((element) => element.id(todo.id)).delete();
+  Future<void> delete(TodoDrift todo) => _database.managers.todoDriftDbTable
+      .filter((element) => element.id(todo.id))
+      .delete();
 
   Future<List<TodoDrift>> get todos async {
     final data = await _database.select(_database.todoDriftDbTable).get();

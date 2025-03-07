@@ -3,7 +3,6 @@ import 'package:flutter_animations_2/delivery_food_ui/core/theme/app_theme.dart'
 import 'package:flutter_animations_2/delivery_food_ui/core/utils/size_config.dart';
 import 'package:flutter_animations_2/delivery_food_ui/screens/splash_screen.dart';
 
-
 class MainFoodAppScreen extends StatelessWidget {
   const MainFoodAppScreen({super.key});
   @override

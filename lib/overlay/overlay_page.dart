@@ -25,7 +25,7 @@ class _OverlayPageState extends State<OverlayPage> {
                   children: [
                     GestureDetector(
                       onTap: () => _removeOverlay(),
-                      child:  Container(
+                      child: Container(
                         color: Colors.transparent,
                         width: 150,
                         height: 150,

@@ -1,10 +1,8 @@
 import 'package:add_to_cart_animation/add_to_cart_animation.dart';
 import 'package:flutter/material.dart';
 
-
 class AnimatedCartPage extends StatefulWidget {
   const AnimatedCartPage({super.key});
-
 
   @override
   AnimatedCartPageState createState() => AnimatedCartPageState();
@@ -62,7 +60,7 @@ class AnimatedCartPageState extends State<AnimatedCartPage> {
         body: ListView(
           children: List.generate(
             15,
-                (index) => AppListItem(
+            (index) => AppListItem(
               onClick: listClick,
               index: index,
             ),

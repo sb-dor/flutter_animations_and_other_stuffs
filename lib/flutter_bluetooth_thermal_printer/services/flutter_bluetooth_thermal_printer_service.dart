@@ -30,7 +30,7 @@ class BluetoothService {
         withServices: [],
         requireLocationServicesEnabled: false,
       ).asyncMap(
-            (device) {
+        (device) {
           final printerDevice = PrinterDevice(
             name: device.name, // Use the device name
             address: device.id, // Use the device address (or ID)
@@ -80,7 +80,8 @@ class BluetoothService {
       }
       return true;
     } else {
-      PermissionStatus permissionStatus = await _requestPermissions(missingPermissions);
+      PermissionStatus permissionStatus =
+          await _requestPermissions(missingPermissions);
       if (permissionStatus == PermissionStatus.granted) {
         return true;
       } else {
@@ -92,7 +93,8 @@ class BluetoothService {
   }
 
   // Helper function to request permissions.
-  Future<PermissionStatus> _requestPermissions(List<Permission> permissions) async {
+  Future<PermissionStatus> _requestPermissions(
+      List<Permission> permissions) async {
     Map<Permission, PermissionStatus> statuses = await permissions.request();
     return statuses.values.every((status) => status.isGranted)
         ? PermissionStatus.granted
@@ -134,10 +136,10 @@ class BluetoothService {
           ),
         );
 
-    // save address for auto connection
+      // save address for auto connection
 
       case PrinterType.usb:
-      // only windows and android
+        // only windows and android
         return await PrinterManager.instance.connect(
           type: type,
           model: UsbPrinterInput(
@@ -161,9 +163,11 @@ class BluetoothService {
     return await _printerManager.disconnect(type: type);
   }
 
-  Stream<BluetoothAdapterState> get bluetoothAvailableState => FlutterBluePlus.adapterState;
+  Stream<BluetoothAdapterState> get bluetoothAvailableState =>
+      FlutterBluePlus.adapterState;
 
-  BluetoothAdapterState get lastBluetoothAvailableState => FlutterBluePlus.adapterStateNow;
+  BluetoothAdapterState get lastBluetoothAvailableState =>
+      FlutterBluePlus.adapterStateNow;
 
   // printer with bytes
   Future<bool> printWithBytes({

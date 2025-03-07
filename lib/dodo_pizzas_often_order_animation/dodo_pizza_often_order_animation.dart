@@ -4,11 +4,13 @@ class DodoPizzaOftenOrderAnimation extends StatefulWidget {
   const DodoPizzaOftenOrderAnimation({super.key});
 
   @override
-  State<DodoPizzaOftenOrderAnimation> createState() => _DodoPizzaOftenOrderAnimationState();
+  State<DodoPizzaOftenOrderAnimation> createState() =>
+      _DodoPizzaOftenOrderAnimationState();
 }
 
 //run this page on web, it is more beautiful on web
-class _DodoPizzaOftenOrderAnimationState extends State<DodoPizzaOftenOrderAnimation> {
+class _DodoPizzaOftenOrderAnimationState
+    extends State<DodoPizzaOftenOrderAnimation> {
   bool animateRight = false;
   bool animateLeft = false;
   PageController pageViewController = PageController();
@@ -19,7 +21,8 @@ class _DodoPizzaOftenOrderAnimationState extends State<DodoPizzaOftenOrderAnimat
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       pageViewController = PageController(
-          viewportFraction: MediaQuery.of(context).size.width >= 600 ? 0.250 : 0.750);
+          viewportFraction:
+              MediaQuery.of(context).size.width >= 600 ? 0.250 : 0.750);
       setState(() {});
     });
   }
@@ -55,7 +58,8 @@ class _DodoPizzaOftenOrderAnimationState extends State<DodoPizzaOftenOrderAnimat
                         scrollDirection: Axis.horizontal,
                         padEnds: false,
                         // pageSnapping: false,
-                        itemBuilder: (context, index) => AnimatedDodoContainer(index: index))),
+                        itemBuilder: (context, index) =>
+                            AnimatedDodoContainer(index: index))),
                 Positioned(
                     right: 0,
                     bottom: 0,
@@ -77,7 +81,8 @@ class _DodoPizzaOftenOrderAnimationState extends State<DodoPizzaOftenOrderAnimat
                             onLongPressEnd: (v) => setState(() {
                                   animateRight = false;
                                   pageViewController.nextPage(
-                                      duration: const Duration(milliseconds: 350),
+                                      duration:
+                                          const Duration(milliseconds: 350),
                                       curve: Curves.fastOutSlowIn);
                                 }),
                             child: AnimatedOpacity(
@@ -87,10 +92,12 @@ class _DodoPizzaOftenOrderAnimationState extends State<DodoPizzaOftenOrderAnimat
                                 child: Container(
                                     width: 70,
                                     padding: const EdgeInsets.all(15),
-                                    decoration: const BoxDecoration(color: Colors.transparent),
+                                    decoration: const BoxDecoration(
+                                        color: Colors.transparent),
                                     child: animateRight
                                         ? const Center(
-                                            child: Icon(Icons.arrow_forward_ios_outlined))
+                                            child: Icon(Icons
+                                                .arrow_forward_ios_outlined))
                                         : const SizedBox()))))),
                 Positioned(
                     left: 0,
@@ -113,7 +120,8 @@ class _DodoPizzaOftenOrderAnimationState extends State<DodoPizzaOftenOrderAnimat
                             onLongPressEnd: (v) => setState(() {
                                   animateLeft = false;
                                   pageViewController.previousPage(
-                                      duration: const Duration(milliseconds: 350),
+                                      duration:
+                                          const Duration(milliseconds: 350),
                                       curve: Curves.fastOutSlowIn);
                                 }),
                             child: AnimatedOpacity(
@@ -122,9 +130,11 @@ class _DodoPizzaOftenOrderAnimationState extends State<DodoPizzaOftenOrderAnimat
                                 curve: Curves.fastOutSlowIn,
                                 child: Container(
                                     padding: const EdgeInsets.all(15),
-                                    decoration: const BoxDecoration(color: Colors.transparent),
+                                    decoration: const BoxDecoration(
+                                        color: Colors.transparent),
                                     child: animateLeft
-                                        ? const Center(child: Icon(Icons.arrow_back_ios))
+                                        ? const Center(
+                                            child: Icon(Icons.arrow_back_ios))
                                         : const SizedBox())))))
               ]))
         ]));
@@ -161,7 +171,9 @@ class _AnimatedDodoContainerState extends State<AnimatedDodoContainer> {
                     ? []
                     : [
                         BoxShadow(
-                            offset: const Offset(1, -1), blurRadius: 5, color: Colors.grey[200]!),
+                            offset: const Offset(1, -1),
+                            blurRadius: 5,
+                            color: Colors.grey[200]!),
                         BoxShadow(
                             offset: const Offset(-1, 1),
                             blurRadius: 5,
@@ -182,7 +194,11 @@ class _AnimatedDodoContainerState extends State<AnimatedDodoContainer> {
               const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [Text("First Text"), SizedBox(height: 10), Text("Second Text")])
+                  children: [
+                    Text("First Text"),
+                    SizedBox(height: 10),
+                    Text("Second Text")
+                  ])
             ]))));
   }
 }

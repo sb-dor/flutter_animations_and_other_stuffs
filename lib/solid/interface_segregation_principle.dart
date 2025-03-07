@@ -23,7 +23,6 @@ abstract class RectShape {
 }
 //even one class can implement one or more classes
 
-
 //
 class Line implements LineShape {
   @override

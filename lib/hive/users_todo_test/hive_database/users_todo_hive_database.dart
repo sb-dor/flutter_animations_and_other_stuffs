@@ -5,7 +5,8 @@ import 'package:hive_flutter/hive_flutter.dart';
 class UsersTodoHiveDatabase {
   static UsersTodoHiveDatabase? _internal;
 
-  static UsersTodoHiveDatabase get internal => _internal ??= UsersTodoHiveDatabase._();
+  static UsersTodoHiveDatabase get internal =>
+      _internal ??= UsersTodoHiveDatabase._();
 
   UsersTodoHiveDatabase._();
 

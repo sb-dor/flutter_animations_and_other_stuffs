@@ -9,7 +9,8 @@ class DrawVerticesPage extends StatefulWidget {
   State<DrawVerticesPage> createState() => _DrawVerticesPageState();
 }
 
-class _DrawVerticesPageState extends State<DrawVerticesPage> with SingleTickerProviderStateMixin {
+class _DrawVerticesPageState extends State<DrawVerticesPage>
+    with SingleTickerProviderStateMixin {
   late AnimationController _rotationController;
   late Animation<double> _animation;
 

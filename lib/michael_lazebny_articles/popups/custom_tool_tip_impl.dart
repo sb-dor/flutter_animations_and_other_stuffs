@@ -30,7 +30,8 @@ class _CustomToolTipImplState extends State<CustomToolTipImpl> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const CustomerTooltip(
-              content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit "
+              content:
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit "
                   "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
               child: Icon(Icons.info),
             ),
@@ -55,22 +56,26 @@ class CustomerTooltip extends StatefulWidget {
     super.key,
     required this.content,
     required this.child,
-     this.animationDuration,
+    this.animationDuration,
   });
 
   @override
   State<CustomerTooltip> createState() => _CustomerTooltipState();
 }
 
-class _CustomerTooltipState extends State<CustomerTooltip> with SingleTickerProviderStateMixin {
-  final overlayController = OverlayPortalController(debugLabel: 'CustomTooltip');
+class _CustomerTooltipState extends State<CustomerTooltip>
+    with SingleTickerProviderStateMixin {
+  final overlayController =
+      OverlayPortalController(debugLabel: 'CustomTooltip');
   late final AnimationController _animationController;
 
-  Duration get _animationDuration => widget.animationDuration ?? const Duration(milliseconds: 300);
+  Duration get _animationDuration =>
+      widget.animationDuration ?? const Duration(milliseconds: 300);
 
   @override
   void initState() {
-    _animationController = AnimationController(vsync: this, duration: _animationDuration);
+    _animationController =
+        AnimationController(vsync: this, duration: _animationDuration);
     super.initState();
   }
 
@@ -112,7 +117,8 @@ class _CustomerTooltipState extends State<CustomerTooltip> with SingleTickerProv
   }
 
   Widget _buildMobileTooltip(Widget child) => GestureDetector(
-        onTap: () => _togglePopup(_animationDuration + const Duration(milliseconds: 5000)),
+        onTap: () => _togglePopup(
+            _animationDuration + const Duration(milliseconds: 5000)),
         child: child,
       );
 

@@ -1,4 +1,3 @@
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -35,7 +34,8 @@ class MultiSelectorHelper {
     List<MultipartFile> multiPartImages = [];
 
     for (var each in images) {
-      multiPartImages.add(await MultipartFile.fromFile(each.path, filename: each.path));
+      multiPartImages
+          .add(await MultipartFile.fromFile(each.path, filename: each.path));
     }
 
     //sending images with dio package
@@ -50,8 +50,9 @@ class MultiSelectorHelper {
 
     // dio.options = BaseOptions(headers: {});
     dio.options = BaseOptions(headers: await headers());
-    final response =
-        await dio.post("http://192.168.100.113:8000/api/store/multi/image", data: formData);
+    final response = await dio.post(
+        "http://192.168.100.113:8000/api/store/multi/image",
+        data: formData);
 
     if (response.statusCode == 200) {
       debugPrint("${response.data}");

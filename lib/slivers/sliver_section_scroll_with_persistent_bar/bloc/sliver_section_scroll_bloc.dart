@@ -11,7 +11,8 @@ part 'sliver_section_scroll_bloc.freezed.dart';
 
 @freezed
 class SliverSectionScrollEvent with _$SliverSectionScrollEvent {
-  const factory SliverSectionScrollEvent.init() = _InitialEventOnSliverSectionScrollEvent;
+  const factory SliverSectionScrollEvent.init() =
+      _InitialEventOnSliverSectionScrollEvent;
 
   const factory SliverSectionScrollEvent.initPosition({
     required Future<void> Function() animateToLastPosition,
@@ -39,26 +40,32 @@ sealed class SliverSectionScrollState with _$SliverSectionScrollState {
   const SliverSectionScrollState._();
 
   //
-  bool get isInProgress => maybeMap(orElse: () => false, inProgress: (_) => true);
+  bool get isInProgress =>
+      maybeMap(orElse: () => false, inProgress: (_) => true);
 
   //
-  const factory SliverSectionScrollState.initial(SliverSectionScrollStateModel stateModel) =
+  const factory SliverSectionScrollState.initial(
+          SliverSectionScrollStateModel stateModel) =
       InitialStateOnSliverSectionScrollState;
 
-  const factory SliverSectionScrollState.inProgress(SliverSectionScrollStateModel stateModel) =
+  const factory SliverSectionScrollState.inProgress(
+          SliverSectionScrollStateModel stateModel) =
       InProgressStateOnSliverSectionScrollState;
 
   const factory SliverSectionScrollState.initializingPositionsState(
           SliverSectionScrollStateModel stateModel) =
       InitializingPositionsStateOnSliverSectionScrollState;
 
-  const factory SliverSectionScrollState.completedState(SliverSectionScrollStateModel stateModel) =
+  const factory SliverSectionScrollState.completedState(
+          SliverSectionScrollStateModel stateModel) =
       CompletedStateOnSliverSectionScrollState;
 }
 
-class SliverSectionScrollBloc extends Bloc<SliverSectionScrollEvent, SliverSectionScrollState> {
+class SliverSectionScrollBloc
+    extends Bloc<SliverSectionScrollEvent, SliverSectionScrollState> {
   SliverSectionScrollBloc()
-      : super(SliverSectionScrollState.initial(SliverSectionScrollStateModel.idle())) {
+      : super(SliverSectionScrollState.initial(
+            SliverSectionScrollStateModel.idle())) {
     //
     on<SliverSectionScrollEvent>(
       (event, emit) => event.map(
@@ -66,7 +73,8 @@ class SliverSectionScrollBloc extends Bloc<SliverSectionScrollEvent, SliverSecti
         initPosition: (event) => _initPositions(event, emit),
         scrollListener: (event) => _scrollListener(event, emit),
         animateTabBarOnScroll: (event) => _animateToTabBarOnScroll(event, emit),
-        animateToPositionOnClick: (event) => _animateToPositionOnClick(event, emit),
+        animateToPositionOnClick: (event) =>
+            _animateToPositionOnClick(event, emit),
       ),
     );
   }
@@ -75,7 +83,8 @@ class SliverSectionScrollBloc extends Bloc<SliverSectionScrollEvent, SliverSecti
     _InitialEventOnSliverSectionScrollEvent event,
     Emitter<SliverSectionScrollState> emit,
   ) async {
-    emit(SliverSectionScrollState.inProgress(SliverSectionScrollStateModel.idle()));
+    emit(SliverSectionScrollState.inProgress(
+        SliverSectionScrollStateModel.idle()));
 
     await Future.delayed(const Duration(seconds: 5));
 
@@ -103,8 +112,10 @@ class SliverSectionScrollBloc extends Bloc<SliverSectionScrollEvent, SliverSecti
     );
 
     for (final each in currentStateModel.categories) {
-      List<GlobalKey> globalKeys = List<GlobalKey>.from(currentStateModel.globalKeys);
-      List<String> sliverTitles = List<String>.from(currentStateModel.sliverTitles);
+      List<GlobalKey> globalKeys =
+          List<GlobalKey>.from(currentStateModel.globalKeys);
+      List<String> sliverTitles =
+          List<String>.from(currentStateModel.sliverTitles);
 
       globalKeys.add(GlobalKey());
       sliverTitles.add(each.name ?? '-');
@@ -114,7 +125,8 @@ class SliverSectionScrollBloc extends Bloc<SliverSectionScrollEvent, SliverSecti
       );
     }
 
-    emit(SliverSectionScrollState.initializingPositionsState(currentStateModel));
+    emit(
+        SliverSectionScrollState.initializingPositionsState(currentStateModel));
   }
 
   void _initPositions(
@@ -126,13 +138,16 @@ class SliverSectionScrollBloc extends Bloc<SliverSectionScrollEvent, SliverSecti
     var currentStateModel = state.stateModel.copyWith();
 
     for (final each in currentStateModel.globalKeys) {
-      final RenderBox renderBox = each.currentContext?.findRenderObject() as RenderBox;
+      final RenderBox renderBox =
+          each.currentContext?.findRenderObject() as RenderBox;
 
-      List<double> eachSectionPosition = List<double>.from(currentStateModel.eachSectionPosition);
+      List<double> eachSectionPosition =
+          List<double>.from(currentStateModel.eachSectionPosition);
 
       eachSectionPosition.add(renderBox.localToGlobal(Offset.zero).dy);
 
-      currentStateModel = currentStateModel.copyWith(eachSectionPosition: eachSectionPosition);
+      currentStateModel =
+          currentStateModel.copyWith(eachSectionPosition: eachSectionPosition);
     }
 
     await event.animateToLastPosition();
@@ -198,7 +213,8 @@ class SliverSectionScrollBloc extends Bloc<SliverSectionScrollEvent, SliverSecti
     _AnimateToPositionOnClick event,
     Emitter<SliverSectionScrollState> emit,
   ) async {
-    final offset = state.stateModel.eachSectionPosition.elementAtOrNull(event.indexPosition);
+    final offset = state.stateModel.eachSectionPosition
+        .elementAtOrNull(event.indexPosition);
 
     if (offset == null) return;
 

@@ -17,7 +17,9 @@ class GetLatLotByScreenDrawingScreen extends StatelessWidget {
             Expanded(
               child: Listener(
                 onPointerMove: (PointerMoveEvent move) {
-                  context.read<MainMapCubit>().getPointFromScreenPosition(move.position);
+                  context
+                      .read<MainMapCubit>()
+                      .getPointFromScreenPosition(move.position);
                 },
                 child: Container(
                   color: Colors.transparent,

@@ -5,7 +5,8 @@ class FlutterSecureStoragePage extends StatefulWidget {
   const FlutterSecureStoragePage({super.key});
 
   @override
-  State<FlutterSecureStoragePage> createState() => _FlutterSecureStoragePageState();
+  State<FlutterSecureStoragePage> createState() =>
+      _FlutterSecureStoragePageState();
 }
 
 class _FlutterSecureStoragePageState extends State<FlutterSecureStoragePage> {

@@ -25,7 +25,8 @@ class NeumorphicContainerState extends State<NeumorphicContainer> {
         appBar: AppBar(actions: [
           TextButton(
               onPressed: () async => await Connections.saveImageWithDio(),
-              child: const Text("Dio request",style: TextStyle(color: Colors.amber)))
+              child: const Text("Dio request",
+                  style: TextStyle(color: Colors.amber)))
         ]),
         body: SizedBox(
           width: double.maxFinite,

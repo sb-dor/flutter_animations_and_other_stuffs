@@ -9,7 +9,8 @@ class DragAndDropOwnAnimation extends StatefulWidget {
   const DragAndDropOwnAnimation({super.key});
 
   @override
-  State<DragAndDropOwnAnimation> createState() => _DragAndDropOwnAnimationState();
+  State<DragAndDropOwnAnimation> createState() =>
+      _DragAndDropOwnAnimationState();
 }
 
 class _DragAndDropOwnAnimationState extends State<DragAndDropOwnAnimation> {
@@ -47,7 +48,6 @@ class _DragAndDropOwnAnimationState extends State<DragAndDropOwnAnimation> {
                     key: ObjectKey(e),
                     data: e,
                     onDragEnd: (v) => onDragEnd(v, e),
-
                     feedback: _ReusableItemWidget(
                       key: ObjectKey(e),
                       item: e,
@@ -73,13 +73,11 @@ class _DragAndDropOwnAnimationState extends State<DragAndDropOwnAnimation> {
               ),
               child: Wrap(
                 children: [
-                  ...dadListProvider.dadList
-                      .map(
-                        (e) => _ItemWidget(
-                          item: e,
-                        ),
-                      )
-                      ,
+                  ...dadListProvider.dadList.map(
+                    (e) => _ItemWidget(
+                      item: e,
+                    ),
+                  ),
                   // if (candidateData.isNotEmpty)
                   //   _ReusableItemWidget(
                   //     item: candidateData.first!,
@@ -120,7 +118,8 @@ class _ItemWidgetState extends State<_ItemWidget> {
   }
 
   void startMorphAnimation() {
-    debugPrint("coming inside drag and drop entry ${imagePosition.currentWidget}");
+    debugPrint(
+        "coming inside drag and drop entry ${imagePosition.currentWidget}");
     entry = OverlayEntry(
       builder: (context) {
         return OverlayAnimation(

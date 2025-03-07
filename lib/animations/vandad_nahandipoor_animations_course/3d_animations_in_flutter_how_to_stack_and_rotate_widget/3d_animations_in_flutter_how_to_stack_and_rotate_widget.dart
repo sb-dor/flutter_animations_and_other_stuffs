@@ -5,7 +5,8 @@ import 'package:vector_math/vector_math_64.dart' as vector;
 
 const double widthAndHeight = 100;
 
-class ThirdDAnimationsInFlutterHowToStackAndRotateWidget extends StatefulWidget {
+class ThirdDAnimationsInFlutterHowToStackAndRotateWidget
+    extends StatefulWidget {
   const ThirdDAnimationsInFlutterHowToStackAndRotateWidget({super.key});
 
   @override
@@ -28,11 +29,14 @@ class _ThirdDAnimationsInFlutterHowToStackAndRotateWidgetState
     // TODO: implement initState
     super.initState();
 
-    _xController = AnimationController(vsync: this, duration: const Duration(seconds: 20));
+    _xController =
+        AnimationController(vsync: this, duration: const Duration(seconds: 20));
 
-    _yController = AnimationController(vsync: this, duration: const Duration(seconds: 20));
+    _yController =
+        AnimationController(vsync: this, duration: const Duration(seconds: 20));
 
-    _zController = AnimationController(vsync: this, duration: const Duration(seconds: 20));
+    _zController =
+        AnimationController(vsync: this, duration: const Duration(seconds: 20));
 
     _animation = Tween<double>(begin: 0, end: pi * 2);
   }
@@ -68,7 +72,8 @@ class _ThirdDAnimationsInFlutterHowToStackAndRotateWidgetState
             const SizedBox(height: widthAndHeight, width: double.infinity),
             AnimatedBuilder(
                 //to listen multiple animations in animationBuilder
-                animation: Listenable.merge([_xController, _yController, _zController]),
+                animation: Listenable.merge(
+                    [_xController, _yController, _zController]),
                 builder: (context, child) {
                   return Transform(
                     alignment: Alignment.center,

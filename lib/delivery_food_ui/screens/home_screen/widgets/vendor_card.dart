@@ -85,12 +85,14 @@ class VendorCard extends StatelessWidget {
                           color: const Color(0xff977f98),
                         ),
                         Text(' 15-20 min',
-                            style:
-                                Theme.of(context).textTheme.titleMedium!.copyWith(
-                                      fontSize: rf(12),
-                                      fontWeight: FontWeight.bold,
-                                      color: const Color(0xff977f98),
-                                    )),
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium!
+                                .copyWith(
+                                  fontSize: rf(12),
+                                  fontWeight: FontWeight.bold,
+                                  color: const Color(0xff977f98),
+                                )),
                       ],
                     ),
                   ),

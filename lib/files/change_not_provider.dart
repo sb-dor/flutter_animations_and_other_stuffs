@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
-class ChangeNotProvider<Model extends ChangeNotifier> extends InheritedNotifier {
+class ChangeNotProvider<Model extends ChangeNotifier>
+    extends InheritedNotifier {
   final Model model;
 
   const ChangeNotProvider({
@@ -10,23 +11,27 @@ class ChangeNotProvider<Model extends ChangeNotifier> extends InheritedNotifier 
   }) : super(notifier: model);
 
   static Model? watch<Model extends ChangeNotifier>(BuildContext context) {
-    final find = context.dependOnInheritedWidgetOfExactType<ChangeNotProvider<Model>>();
+    final find =
+        context.dependOnInheritedWidgetOfExactType<ChangeNotProvider<Model>>();
 
     if (find == null) {
       // Throw an exception if the provider is not found
-      throw Exception('No OwnChangeNotifierProvider found in context for type $Model.');
+      throw Exception(
+          'No OwnChangeNotifierProvider found in context for type $Model.');
     }
 
     return find.model;
   }
 
   static Model? read<Model extends ChangeNotifier>(BuildContext context) {
-    final find = context.getElementForInheritedWidgetOfExactType<ChangeNotProvider<Model>>();
+    final find = context
+        .getElementForInheritedWidgetOfExactType<ChangeNotProvider<Model>>();
 
     if (find?.widget is ChangeNotProvider<Model>) {
       return (find?.widget as ChangeNotProvider<Model>).model;
     }
 
-    throw Exception('No OwnChangeNotifierProvider found in context for type $Model.');
+    throw Exception(
+        'No OwnChangeNotifierProvider found in context for type $Model.');
   }
 }

@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class InternetConnCubit extends Cubit<bool> {
   InternetConnCubit() : super(false);
 
-
   //use this in main
   //check the main_food_app_screen.dart
   void listenInternetConn() {

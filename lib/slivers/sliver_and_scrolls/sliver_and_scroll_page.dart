@@ -50,9 +50,11 @@ class _SliverAndScrollPageState extends State<SliverAndScrollPage> {
                   color: Colors.red,
                   child: Center(
                     child: TextButton(
-                      style:
-                          const ButtonStyle(backgroundColor: WidgetStatePropertyAll(Colors.amber)),
-                      onPressed: () => Navigator.pushNamed(context, '/nft_home_screen'),
+                      style: const ButtonStyle(
+                          backgroundColor:
+                              WidgetStatePropertyAll(Colors.amber)),
+                      onPressed: () =>
+                          Navigator.pushNamed(context, '/nft_home_screen'),
                       child: const Text('Go'),
                     ),
                   ),
@@ -100,19 +102,25 @@ class _SliverAndScrollPageState extends State<SliverAndScrollPage> {
 
 class _SliverPersistentHeaderW extends SliverPersistentHeaderDelegate {
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return BlocBuilder<SliverCubit, SliverStates>(builder: (context, mainPageState) {
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return BlocBuilder<SliverCubit, SliverStates>(
+        builder: (context, mainPageState) {
       var currentState = mainPageState.sliverStateModel;
       return AnimatedContainer(
           duration: const Duration(milliseconds: 175),
           padding: const EdgeInsets.only(left: 5, top: 10, bottom: 10),
           decoration: BoxDecoration(
-              color: shrinkOffset > 0.0 ? Colors.white : Theme.of(context).scaffoldBackgroundColor,
+              color: shrinkOffset > 0.0
+                  ? Colors.white
+                  : Theme.of(context).scaffoldBackgroundColor,
               boxShadow: shrinkOffset <= 0.0
                   ? []
                   : [
                       BoxShadow(
-                          offset: const Offset(0, 1), color: Colors.grey.shade300, blurRadius: 1),
+                          offset: const Offset(0, 1),
+                          color: Colors.grey.shade300,
+                          blurRadius: 1),
                     ]),
           child: ListView.separated(
               controller: currentState.horizontalScrollController,
@@ -122,10 +130,12 @@ class _SliverPersistentHeaderW extends SliverPersistentHeaderDelegate {
               itemBuilder: (context, index) {
                 return InkWell(
                     onTap: () async =>
-                        BottomModalSheetDynamicSize.bottomDoubleModalSheet(context: context),
+                        BottomModalSheetDynamicSize.bottomDoubleModalSheet(
+                            context: context),
                     child: Container(
                         key: currentState.horizontalKeys[index],
-                        padding: const EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
+                        padding: const EdgeInsets.only(
+                            left: 20, right: 20, top: 5, bottom: 5),
                         decoration: BoxDecoration(
                             color: currentState.selectedIndex == index
                                 ? Colors.amber

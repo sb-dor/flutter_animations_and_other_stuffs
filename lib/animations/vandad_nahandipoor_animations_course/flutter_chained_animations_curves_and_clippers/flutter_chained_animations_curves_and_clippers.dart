@@ -24,7 +24,8 @@ extension ToPath on CircleSide {
         break;
     }
     path.arcToPoint(offset,
-        radius: Radius.elliptical(size.width / 2, size.height / 2), clockwise: clockWise);
+        radius: Radius.elliptical(size.width / 2, size.height / 2),
+        clockwise: clockWise);
 
     path.close();
 
@@ -33,7 +34,8 @@ extension ToPath on CircleSide {
 }
 
 extension on VoidCallback {
-  Future<void> delayed({required Duration duration}) => Future.delayed(duration, this);
+  Future<void> delayed({required Duration duration}) =>
+      Future.delayed(duration, this);
 }
 
 class HalfCircleClipper extends CustomClipper<Path> {
@@ -57,7 +59,8 @@ class FlutterChainedAnimationsCurvesAndClippers extends StatefulWidget {
 }
 
 class _FlutterChainedAnimationsCurvesAndClippersState
-    extends State<FlutterChainedAnimationsCurvesAndClippers> with TickerProviderStateMixin {
+    extends State<FlutterChainedAnimationsCurvesAndClippers>
+    with TickerProviderStateMixin {
   // SingleTickerProviderStateMixin can have only one animationController
   // TickerProviderStateMixin can have more than one animationControllers
 
@@ -74,7 +77,8 @@ class _FlutterChainedAnimationsCurvesAndClippersState
     // TODO: implement initState
     super.initState();
 
-    _controller = AnimationController(vsync: this, duration: const Duration(seconds: 1));
+    _controller =
+        AnimationController(vsync: this, duration: const Duration(seconds: 1));
 
     _animationDouble = Tween<double>(begin: 0, end: -(pi / 2)).animate(
       CurvedAnimation(parent: _controller, curve: Curves.bounceOut),
@@ -83,14 +87,16 @@ class _FlutterChainedAnimationsCurvesAndClippersState
     _flipAnimationController =
         AnimationController(vsync: this, duration: const Duration(seconds: 1));
 
-    _flipAnimation = Tween<double>(begin: 0, end: pi)
-        .animate(CurvedAnimation(parent: _flipAnimationController, curve: Curves.bounceOut));
+    _flipAnimation = Tween<double>(begin: 0, end: pi).animate(CurvedAnimation(
+        parent: _flipAnimationController, curve: Curves.bounceOut));
 
     //status listener
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        _flipAnimation = Tween<double>(begin: _flipAnimation.value, end: _flipAnimation.value + pi)
-            .animate(CurvedAnimation(parent: _flipAnimationController, curve: Curves.bounceOut));
+        _flipAnimation = Tween<double>(
+                begin: _flipAnimation.value, end: _flipAnimation.value + pi)
+            .animate(CurvedAnimation(
+                parent: _flipAnimationController, curve: Curves.bounceOut));
 
         //reset the flip controller and start the animation
         _flipAnimationController
@@ -101,9 +107,10 @@ class _FlutterChainedAnimationsCurvesAndClippersState
 
     _flipAnimationController.addStatusListener((status) {
       if (_flipAnimationController.status == AnimationStatus.completed) {
-        _animationDouble =
-            Tween<double>(begin: _animationDouble.value, end: -(pi / 2) - _animationDouble.value)
-                .animate(
+        _animationDouble = Tween<double>(
+                begin: _animationDouble.value,
+                end: -(pi / 2) - _animationDouble.value)
+            .animate(
           CurvedAnimation(parent: _controller, curve: Curves.bounceOut),
         );
         _controller
@@ -133,31 +140,37 @@ class _FlutterChainedAnimationsCurvesAndClippersState
             builder: (context, child) {
               return Transform(
                   alignment: Alignment.center,
-                  transform: Matrix4.identity()..rotateZ(_animationDouble.value),
+                  transform: Matrix4.identity()
+                    ..rotateZ(_animationDouble.value),
                   child: AnimatedBuilder(
                       animation: _flipAnimationController,
                       builder: (context, child) {
                         return Transform(
-                          transform: Matrix4.identity()..rotateY(_flipAnimation.value),
+                          transform: Matrix4.identity()
+                            ..rotateY(_flipAnimation.value),
                           alignment: Alignment.center,
-                          child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                            ClipPath(
-                              clipper: const HalfCircleClipper(side: CircleSide.left),
-                              child: Container(
-                                color: Colors.blue,
-                                width: 100,
-                                height: 100,
-                              ),
-                            ),
-                            ClipPath(
-                              clipper: const HalfCircleClipper(side: CircleSide.right),
-                              child: Container(
-                                color: Colors.yellow,
-                                width: 100,
-                                height: 100,
-                              ),
-                            )
-                          ]),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                ClipPath(
+                                  clipper: const HalfCircleClipper(
+                                      side: CircleSide.left),
+                                  child: Container(
+                                    color: Colors.blue,
+                                    width: 100,
+                                    height: 100,
+                                  ),
+                                ),
+                                ClipPath(
+                                  clipper: const HalfCircleClipper(
+                                      side: CircleSide.right),
+                                  child: Container(
+                                    color: Colors.yellow,
+                                    width: 100,
+                                    height: 100,
+                                  ),
+                                )
+                              ]),
                         );
                       }));
             }),

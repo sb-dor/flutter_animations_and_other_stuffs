@@ -8,7 +8,8 @@ class VideoPlayerPage extends StatefulWidget {
   State<VideoPlayerPage> createState() => _VideoPlayerPageState();
 }
 
-class _VideoPlayerPageState extends State<VideoPlayerPage> with SingleTickerProviderStateMixin {
+class _VideoPlayerPageState extends State<VideoPlayerPage>
+    with SingleTickerProviderStateMixin {
   late VideoPlayerController _controller;
 
   late AnimationController _animationController;
@@ -19,9 +20,10 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> with SingleTickerProv
     // TODO: implement initState
     super.initState();
 
-    _animationController =
-        AnimationController(vsync: this, duration: const Duration(milliseconds: 350));
-    pauseStopAnimation = Tween<double>(begin: 0, end: 1).animate(_animationController);
+    _animationController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 350));
+    pauseStopAnimation =
+        Tween<double>(begin: 0, end: 1).animate(_animationController);
 
     //not video from youtube
     _controller = VideoPlayerController.networkUrl(
@@ -70,7 +72,8 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> with SingleTickerProv
                       left: 0,
                       child: SizedBox(
                           height: 10,
-                          child: VideoProgressIndicator(_controller, allowScrubbing: true)),
+                          child: VideoProgressIndicator(_controller,
+                              allowScrubbing: true)),
                     ),
                     Positioned(
                         top: 0,
@@ -82,7 +85,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> with SingleTickerProv
                             icon: AnimatedIcons.pause_play,
                             progress: pauseStopAnimation,
                             color: Colors.white,
-                            size: 40 ,
+                            size: 40,
                           ),
                         ))
                   ],

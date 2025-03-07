@@ -20,7 +20,8 @@ class OverlayAnimation extends StatefulWidget {
   State<OverlayAnimation> createState() => _OverlayAnimationState();
 }
 
-class _OverlayAnimationState extends State<OverlayAnimation> with TickerProviderStateMixin {
+class _OverlayAnimationState extends State<OverlayAnimation>
+    with TickerProviderStateMixin {
   late final AnimationController animationSettings;
 
   late Animation<Offset> imageOffsetTween;

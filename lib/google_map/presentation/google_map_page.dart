@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_animations_2/google_map/cubit/google_map_states.dart';
 import 'package:flutter_animations_2/google_map/cubit/main_google_map_cubit.dart';
@@ -21,7 +20,8 @@ class _GoogleMapPageState extends State<GoogleMapPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MainGoogleMapCubit, GoogleMapStates>(builder: (context, state) {
+    return BlocBuilder<MainGoogleMapCubit, GoogleMapStates>(
+        builder: (context, state) {
       var currentState = state.googleMapStateModel;
       return Scaffold(
         floatingActionButton: Row(
@@ -30,14 +30,16 @@ class _GoogleMapPageState extends State<GoogleMapPage> {
           children: [
             if (!currentState.selectingUserDestination)
               FloatingActionButton(
-                onPressed: () async =>
-                    context.read<MainGoogleMapCubit>().startToSelectDestination(),
+                onPressed: () async => context
+                    .read<MainGoogleMapCubit>()
+                    .startToSelectDestination(),
                 child: const Icon(Icons.two_wheeler_sharp),
               ),
             const SizedBox(width: 10),
             FloatingActionButton(
-              onPressed: () async =>
-                  await context.read<MainGoogleMapCubit>().getApproximateTimeOfUserLocation(),
+              onPressed: () async => await context
+                  .read<MainGoogleMapCubit>()
+                  .getApproximateTimeOfUserLocation(),
               child: const Icon(Icons.location_on_outlined),
             )
           ],
@@ -54,15 +56,18 @@ class _GoogleMapPageState extends State<GoogleMapPage> {
           onCameraMoveStarted: () {
             debugPrint("ok");
           },
-          onMapCreated: (controller) =>
-              context.read<MainGoogleMapCubit>().initController(controller, context),
+          onMapCreated: (controller) => context
+              .read<MainGoogleMapCubit>()
+              .initController(controller, context),
           markers: Set<Marker>.of(currentState.markers.values),
           polylines: Set<Polyline>.of(currentState.polyLines.values),
           onTap: (LatLng latLng) =>
               // context.read<MainGoogleMapCubit>().addMarkerByClickOnMap(latLng),
               // context.read<MainGoogleMapCubit>().animateAndMoveCameraOnTap(latLng),
               currentState.selectingUserDestination
-                  ? context.read<MainGoogleMapCubit>().addTwoPolyLinesBetweenTwoDestinations(latLng)
+                  ? context
+                      .read<MainGoogleMapCubit>()
+                      .addTwoPolyLinesBetweenTwoDestinations(latLng)
                   : null,
         ),
       );

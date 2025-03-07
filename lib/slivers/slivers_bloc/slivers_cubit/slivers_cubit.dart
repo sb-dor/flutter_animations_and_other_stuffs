@@ -9,11 +9,14 @@ class SliverCubit extends Cubit<SliverStates> {
   //you should initial every container after render that is why we need this func
   void initPositionsAfterRender() {
     var currentState = state.sliverStateModel;
-    RenderBox blue = currentState.blueKey.currentContext?.findRenderObject() as RenderBox;
+    RenderBox blue =
+        currentState.blueKey.currentContext?.findRenderObject() as RenderBox;
     currentState.bluePos = blue.localToGlobal(Offset.zero).dy;
-    RenderBox yellow = currentState.yellowKey.currentContext?.findRenderObject() as RenderBox;
+    RenderBox yellow =
+        currentState.yellowKey.currentContext?.findRenderObject() as RenderBox;
     currentState.yellowPos = yellow.localToGlobal(Offset.zero).dy;
-    RenderBox pink = currentState.pinkKey.currentContext?.findRenderObject() as RenderBox;
+    RenderBox pink =
+        currentState.pinkKey.currentContext?.findRenderObject() as RenderBox;
     currentState.pinkPos = pink.localToGlobal(Offset.zero).dy;
     emit(InitialSliverState(currentState));
   }
@@ -24,8 +27,8 @@ class SliverCubit extends Cubit<SliverStates> {
     currentState.selectedIndex = index;
     emit(InitialSliverState(currentState));
     await Future.delayed(const Duration(milliseconds: 100));
-    RenderBox box =
-        currentState.horizontalKeys[index].currentContext?.findRenderObject() as RenderBox;
+    RenderBox box = currentState.horizontalKeys[index].currentContext
+        ?.findRenderObject() as RenderBox;
     Offset position = box.localToGlobal(Offset.zero); //this is global position
     await currentState.horizontalScrollController.animateTo(position.dx,
         duration: const Duration(seconds: 1), curve: Curves.linearToEaseOut);
@@ -45,9 +48,11 @@ class SliverCubit extends Cubit<SliverStates> {
       if (scrollPos < currentState.bluePos) {
         debugPrint("1");
         horizontalAnimation(index: 0);
-      } else if (scrollPos >= currentState.bluePos && scrollPos < currentState.yellowPos) {
+      } else if (scrollPos >= currentState.bluePos &&
+          scrollPos < currentState.yellowPos) {
         horizontalAnimation(index: 1);
-      } else if (scrollPos >= currentState.yellowPos && scrollPos < currentState.pinkPos) {
+      } else if (scrollPos >= currentState.yellowPos &&
+          scrollPos < currentState.pinkPos) {
         horizontalAnimation(index: 2);
       } else if (scrollPos >= currentState.pinkPos) {
         horizontalAnimation(index: 3);

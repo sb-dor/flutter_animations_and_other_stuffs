@@ -4,7 +4,8 @@ import 'package:flutter_animations_2/design_templates/todo_mvvm/models/todo_mvvm
 import 'state_models/todo_list_mvvm_state_model.dart';
 
 class TodoMvvmViewModel extends ChangeNotifier {
-  final TodoListMVVMStateModel todoListMVVMStateService = TodoListMVVMStateModel();
+  final TodoListMVVMStateModel todoListMVVMStateService =
+      TodoListMVVMStateModel();
 
   Future<void> initTodos() async {
     await todoListMVVMStateService.initTodos();

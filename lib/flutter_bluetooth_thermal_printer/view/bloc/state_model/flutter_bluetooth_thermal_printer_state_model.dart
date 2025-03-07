@@ -4,11 +4,13 @@ import 'package:flutter_animations_2/global_context/global_context.helper.dart';
 import 'package:flutter_pos_printer_platform_image_3/flutter_pos_printer_platform_image_3.dart';
 
 class FlutterBluetoothThermalPrinterStateModel {
-  final globalContext = GlobalContextHelper.instance.globalNavigatorContext.currentContext!;
+  final globalContext =
+      GlobalContextHelper.instance.globalNavigatorContext.currentContext!;
 
   final _devices = <PrinterDevice>[];
 
-  UnmodifiableListView<PrinterDevice> get devices => UnmodifiableListView(_devices);
+  UnmodifiableListView<PrinterDevice> get devices =>
+      UnmodifiableListView(_devices);
 
   Timer? _timerForScan;
 
@@ -24,7 +26,8 @@ class FlutterBluetoothThermalPrinterStateModel {
 
   StreamSubscription<PrinterDevice?>? _discoveringDevicesSubs;
 
-  StreamSubscription<PrinterDevice?>? get discoveringDevicesSubs => _discoveringDevicesSubs;
+  StreamSubscription<PrinterDevice?>? get discoveringDevicesSubs =>
+      _discoveringDevicesSubs;
 
   void setSubscription(StreamSubscription<PrinterDevice?>? subs) {
     _discoveringDevicesSubs = subs;
@@ -42,7 +45,9 @@ class FlutterBluetoothThermalPrinterStateModel {
 
   void addDevice(PrinterDevice device) {
     final isDeviceExists = _devices.any(
-          (element) => element.address == device.address && element.productId == device.productId,
+      (element) =>
+          element.address == device.address &&
+          element.productId == device.productId,
     );
 
     if (isDeviceExists) return;
@@ -63,6 +68,7 @@ class FlutterBluetoothThermalPrinterStateModel {
   }
 
   bool checkDeviceAddressWithSelectedDeviceAddress(PrinterDevice device) {
-    return device.address == selectedDevice?.address && device.productId == device.productId;
+    return device.address == selectedDevice?.address &&
+        device.productId == device.productId;
   }
 }

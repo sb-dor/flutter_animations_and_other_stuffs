@@ -16,7 +16,8 @@ class _BottomSheetWithSliversState extends State<BottomSheetWithSlivers> {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            BottomModalSheetDynamicSize.bottomDoubleModalSheet(context: context);
+            BottomModalSheetDynamicSize.bottomDoubleModalSheet(
+                context: context);
             // showModalBottomSheet(
             //   context: context,
             //   isScrollControlled: true,
@@ -62,7 +63,6 @@ class _MyModalSheet extends StatelessWidget {
               backgroundColor: Colors.transparent,
               collapsedHeight: 0,
               toolbarHeight: 0,
-
               flexibleSpace: ClipRRect(
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(25),
@@ -118,7 +118,8 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
   MySliverAppBar({required this.expandedHeight});
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
     return Stack(
       fit: StackFit.expand,
       children: [

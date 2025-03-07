@@ -10,7 +10,8 @@ class ServerSocketModel {
 
   Future<void> startServer() async {
     // final ip = InternetAddress.anyIPv4; // temp
-    final server = await ServerSocket.bind(ipAddress, 3000); // whatever port you want
+    final server =
+        await ServerSocket.bind(ipAddress, 3000); // whatever port you want
 
     server.listen(
       (socket) {
@@ -24,7 +25,8 @@ class ServerSocketModel {
   }
 
   void _handleConnection(Socket clientSocket) {
-    clientSocket.write("Success fully joined to the server"); // writing to client from server
+    clientSocket.write(
+        "Success fully joined to the server"); // writing to client from server
 
     clientSocket.listen(
       (Uint8List data) {
@@ -36,7 +38,8 @@ class ServerSocketModel {
           each.write("Someone wrote: $messageFromBytes");
         }
 
-        if (!connectedClientSocketsToServer.any((el) => el.address == clientSocket.address)) {
+        if (!connectedClientSocketsToServer
+            .any((el) => el.address == clientSocket.address)) {
           connectedClientSocketsToServer.add(clientSocket);
         }
 

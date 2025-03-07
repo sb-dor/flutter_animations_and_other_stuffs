@@ -17,10 +17,11 @@ class FlutterTestingWidgetWithBloc extends StatelessWidget {
 }
 
 class _FlutterTestingWithBlocUI extends StatefulWidget {
-  const _FlutterTestingWithBlocUI({super.key});
+  const _FlutterTestingWithBlocUI();
 
   @override
-  State<_FlutterTestingWithBlocUI> createState() => _FlutterTestingWithBlocUIState();
+  State<_FlutterTestingWithBlocUI> createState() =>
+      _FlutterTestingWithBlocUIState();
 }
 
 class _FlutterTestingWithBlocUIState extends State<_FlutterTestingWithBlocUI> {
@@ -57,7 +58,7 @@ class _FlutterTestingWithBlocUIState extends State<_FlutterTestingWithBlocUI> {
                   //
                   const Text("TESTMI"),
 
-                  _TestRandom(),
+                  const _TestRandom(),
                 ],
               );
             },
@@ -69,7 +70,6 @@ class _FlutterTestingWithBlocUIState extends State<_FlutterTestingWithBlocUI> {
           const _TestRandom(),
 
           const _TestRandomBlocTogether(),
-
         ],
       ),
     );
@@ -87,7 +87,7 @@ class _TestRandom extends StatelessWidget {
 }
 
 class _TestBloc extends StatelessWidget {
-  const _TestBloc({super.key});
+  const _TestBloc();
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +100,7 @@ class _TestBloc extends StatelessWidget {
 }
 
 class _TestRandomBlocTogether extends StatelessWidget {
-  const _TestRandomBlocTogether({super.key});
+  const _TestRandomBlocTogether();
 
   @override
   Widget build(BuildContext context) {
@@ -113,4 +113,3 @@ class _TestRandomBlocTogether extends StatelessWidget {
     );
   }
 }
-

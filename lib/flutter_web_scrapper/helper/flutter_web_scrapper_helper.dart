@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:html/dom.dart' as dom;
@@ -6,7 +5,8 @@ import 'package:html/dom.dart' as dom;
 class FlutterWebScrapperHelper {
   static FlutterWebScrapperHelper? _instance;
 
-  static FlutterWebScrapperHelper get instance => _instance ??= FlutterWebScrapperHelper._();
+  static FlutterWebScrapperHelper get instance =>
+      _instance ??= FlutterWebScrapperHelper._();
 
   FlutterWebScrapperHelper._();
 
@@ -20,8 +20,10 @@ class FlutterWebScrapperHelper {
 
     // log("html response : ${html.body?.}");
 
-    final links =
-        doc.querySelectorAll('#menu > div > div > div > div.product-catagory-wrap > div').first;
+    final links = doc
+        .querySelectorAll(
+            '#menu > div > div > div > div.product-catagory-wrap > div')
+        .first;
 
     for (int i = 0; i < links.children.length; i++) {
       debugPrint("each: ${links.children[i].children[1].innerHtml}");
@@ -32,7 +34,8 @@ class FlutterWebScrapperHelper {
   }
 
   Future<List<Map<String, dynamic>>> getSomonTj() async {
-    final path = Uri.parse('https://somon.tj/kompyuteryi-i-orgtehnika/programmyi-i-igryi/');
+    final path = Uri.parse(
+        'https://somon.tj/kompyuteryi-i-orgtehnika/programmyi-i-igryi/');
 
     final response = await http.get(path);
 
@@ -47,9 +50,11 @@ class FlutterWebScrapperHelper {
 
     for (var each in data.children) {
       final data = each.children[1].children
-          .firstWhere((element) => element.className.contains('advert__content'))
+          .firstWhere(
+              (element) => element.className.contains('advert__content'))
           .children
-          .firstWhere((element) => element.className.contains('advert__content-title'));
+          .firstWhere(
+              (element) => element.className.contains('advert__content-title'));
 
       final dataImage = each.children[0].children[0].children[0];
 

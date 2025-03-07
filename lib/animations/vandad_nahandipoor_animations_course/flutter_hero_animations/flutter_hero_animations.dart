@@ -36,7 +36,8 @@ class _FlutterHeroAnimationsState extends State<FlutterHeroAnimations> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => DetailsFlutterHeroAnimationPage(person: person)));
+                        builder: (context) =>
+                            DetailsFlutterHeroAnimationPage(person: person)));
               },
               trailing: const Icon(Icons.arrow_forward_ios),
               leading: Hero(
@@ -44,7 +45,8 @@ class _FlutterHeroAnimationsState extends State<FlutterHeroAnimations> {
                   child: Material(
                       color: Colors.transparent,
                       child: Text(person.emoji,
-                          style: const TextStyle(fontSize: 40, color: Colors.black)))),
+                          style: const TextStyle(
+                              fontSize: 40, color: Colors.black)))),
               title: Text(person.name),
               subtitle: Text("${person.age} years"),
             );
@@ -64,7 +66,8 @@ class DetailsFlutterHeroAnimationPage extends StatelessWidget {
       appBar: AppBar(
           centerTitle: true,
           title: Hero(
-              flightShuttleBuilder: (context, animation, flightDirection, fromContext, toContext) {
+              flightShuttleBuilder: (context, animation, flightDirection,
+                  fromContext, toContext) {
                 late Widget widget;
                 switch (flightDirection) {
                   case HeroFlightDirection.push:

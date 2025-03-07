@@ -137,7 +137,8 @@ class _HeaderSliver extends SliverPersistentHeaderDelegate {
   final SliverScrollController bloc;
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
     final percent = shrinkOffset / _maxHeaderExtent;
     if (percent > 0.1) {
       bloc.visibleHeader.value = true;
@@ -188,8 +189,9 @@ class _HeaderSliver extends SliverPersistentHeaderDelegate {
                 Expanded(
                   child: AnimatedSwitcher(
                     duration: const Duration(milliseconds: 400),
-                    child:
-                        percent > 0.1 ? ListItemHeaderSliver(bloc: bloc) : const SliverHeaderData(),
+                    child: percent > 0.1
+                        ? ListItemHeaderSliver(bloc: bloc)
+                        : const SliverHeaderData(),
                   ),
                 )
               ],
@@ -222,5 +224,6 @@ class _HeaderSliver extends SliverPersistentHeaderDelegate {
   double get minExtent => _maxHeaderExtent;
 
   @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) => false;
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>
+      false;
 }

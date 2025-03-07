@@ -53,7 +53,6 @@ Advantages:
 // every access to ServiceLocator.instance.diContainer will return the same diContainer instance.
 import 'package:flutter_animations_2/DI/example/calc_service.dart';
 
-import 'di_container.dart';
 
 class ServiceLocator {
   static ServiceLocator? _instance;

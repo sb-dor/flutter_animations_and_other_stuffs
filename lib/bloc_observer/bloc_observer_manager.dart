@@ -2,7 +2,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logger/logger.dart';
 
 extension on String {
-  String limit(int length) => length < this.length ? substring(0, length) : this;
+  String limit(int length) =>
+      length < this.length ? substring(0, length) : this;
 }
 
 class BlocObserverManager extends BlocObserver {
@@ -56,7 +57,8 @@ class BlocObserverManager extends BlocObserver {
 
   @override
   void onClose(BlocBase bloc) {
-    final logMessage = StringBuffer()..writeln('Closed Bloc: ${bloc.runtimeType}');
+    final logMessage = StringBuffer()
+      ..writeln('Closed Bloc: ${bloc.runtimeType}');
 
     logger.i(
       logMessage.toString(),
@@ -66,7 +68,8 @@ class BlocObserverManager extends BlocObserver {
 
   @override
   void onCreate(BlocBase bloc) {
-    final logMessage = StringBuffer()..writeln('Opened Bloc: ${bloc.runtimeType}');
+    final logMessage = StringBuffer()
+      ..writeln('Opened Bloc: ${bloc.runtimeType}');
 
     logger.i(
       logMessage.toString(),

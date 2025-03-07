@@ -1,5 +1,3 @@
-
-
 String enumToString(Object o) => o.toString().split('.').last;
 
 T enumFromString<T>(String key, Iterable<T> values) => values.firstWhere(

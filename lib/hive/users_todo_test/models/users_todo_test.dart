@@ -1,6 +1,5 @@
 import 'package:hive/hive.dart';
 
-
 part 'users_todo_test.g.dart';
 
 @HiveType(typeId: 4)

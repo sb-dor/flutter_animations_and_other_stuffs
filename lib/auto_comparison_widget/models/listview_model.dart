@@ -25,8 +25,7 @@ class ListViewModel {
 
   static final List<ListViewModel> comparisons = List.generate(
     10,
-    (index) =>
-        ListViewModel(
+    (index) => ListViewModel(
       imageUrl: "https://via.placeholder.com/150",
       title: "Car Model $index",
       price: "${(index + 1) * 10000} c.",

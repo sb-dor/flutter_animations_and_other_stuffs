@@ -50,7 +50,6 @@ part 'generated_hive_model.g.dart';
 // https://youtu.be/2caSU_2kGc4?list=PLrnbjo4fMQwYxZMrbyweTFaOTmMbZEx1z&t=1702
 // https://youtu.be/2caSU_2kGc4?list=PLrnbjo4fMQwYxZMrbyweTFaOTmMbZEx1z&t=4210
 
-
 // HiveObject will provide methods like:
 // save(), delete(),
 @HiveType(typeId: 1) // because we have already created that

@@ -23,7 +23,8 @@ class _UsersPageTestState extends State<UsersPageTest> {
 
   @override
   Widget build(BuildContext context) {
-    final usersTodoVm = UserTestChangeNotifierProvider.watch<UsersTodoVm>(context);
+    final usersTodoVm =
+        UserTestChangeNotifierProvider.watch<UsersTodoVm>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Users page test"),
@@ -107,7 +108,9 @@ class _AddUserScreenState extends State<_AddUserScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          if (_nameController.text.isEmpty || _ageController.text.isEmpty) return;
+          if (_nameController.text.isEmpty || _ageController.text.isEmpty) {
+            return;
+          }
           UserTestChangeNotifierProvider.read<UsersTodoVm>(context)?.addUser(
             name: _nameController.text.trim(),
             age: int.tryParse(_ageController.text.trim()) ?? 0,

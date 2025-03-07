@@ -1,4 +1,3 @@
-
 class YtFlLocModel {
   String? imageUrl;
   String? address;

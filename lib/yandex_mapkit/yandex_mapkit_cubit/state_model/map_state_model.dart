@@ -10,7 +10,8 @@ class MapStateModel {
   //create unique id for all placeMarks
   final MapObjectId firstPlaceMarkId = const MapObjectId('first_place_mark_id');
   final MapObjectId cameraMapObjectId = const MapObjectId('camera_placeMark');
-  final MapObjectId secondPlaceMarkId = const MapObjectId('second_place_mark_id');
+  final MapObjectId secondPlaceMarkId =
+      const MapObjectId('second_place_mark_id');
 
   DrivingSessionResult? drivingResultWithSession;
 
@@ -30,7 +31,8 @@ class MapStateModel {
   late YandexMapController controller;
 
   //search controller
-  TextEditingController searchByNameController = TextEditingController(text: '');
+  TextEditingController searchByNameController =
+      TextEditingController(text: '');
 
   //all placeMarks after initializing will be added here
   late final List<MapObject> mapObjects;
@@ -85,15 +87,17 @@ class MapStateModel {
 
     textPainter.layout(minWidth: 0, maxWidth: size.width);
 
-    final textOffset =
-        Offset((size.width - textPainter.width) / 2, (size.height - textPainter.height) / 2);
+    final textOffset = Offset((size.width - textPainter.width) / 2,
+        (size.height - textPainter.height) / 2);
     final circleOffset = Offset(size.height / 2, size.width / 2);
 
     canvas.drawCircle(circleOffset, radius, fillPaint);
     canvas.drawCircle(circleOffset, radius, strokePaint);
     textPainter.paint(canvas, textOffset);
 
-    final image = await recorder.endRecording().toImage(size.width.toInt(), size.height.toInt());
+    final image = await recorder
+        .endRecording()
+        .toImage(size.width.toInt(), size.height.toInt());
     final pngBytes = await image.toByteData(format: ImageByteFormat.png);
 
     return pngBytes!.buffer.asUint8List();

@@ -28,8 +28,9 @@ class _CleanArchitecturePageState extends State<CleanArchitecturePage> {
           title: const Text("Clean architecture screen"),
         ),
         body: RefreshIndicator(
-          onRefresh: () async =>
-              context.read<DayCubit>().getDataFromApi(repository: DayDataRepository()),
+          onRefresh: () async => context
+              .read<DayCubit>()
+              .getDataFromApi(repository: DayDataRepository()),
           child: ListView(
             children: [
               if (state is LoadingDayState)

@@ -41,7 +41,10 @@ class NftScreen extends StatelessWidget {
                 left: 10,
                 child: IconButton(
                   onPressed: () => Navigator.pop(context),
-                  icon: const Icon(Icons.arrow_back,color: Colors.white,),
+                  icon: const Icon(
+                    Icons.arrow_back,
+                    color: Colors.white,
+                  ),
                 ))
           ]),
           const SizedBox(height: 15),

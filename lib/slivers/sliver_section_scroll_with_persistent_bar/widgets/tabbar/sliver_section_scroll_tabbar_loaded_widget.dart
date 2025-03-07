@@ -46,7 +46,8 @@ class Delegate extends SliverPersistentHeaderDelegate {
   }) : super();
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
     return BlocBuilder<SliverSectionScrollBloc, SliverSectionScrollState>(
       builder: (context, state) {
         switch (state) {
@@ -77,7 +78,8 @@ class Delegate extends SliverPersistentHeaderDelegate {
                 separatorBuilder: (context, index) => const SizedBox(width: 10),
                 scrollDirection: Axis.horizontal,
                 itemCount: currentState.sliverTitles.length,
-                physics: const AlwaysScrollableScrollPhysics(parent: ClampingScrollPhysics()),
+                physics: const AlwaysScrollableScrollPhysics(
+                    parent: ClampingScrollPhysics()),
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
                   return InkWell(
@@ -90,10 +92,13 @@ class Delegate extends SliverPersistentHeaderDelegate {
                           );
                     },
                     child: Container(
-                      padding: const EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
+                      padding: const EdgeInsets.only(
+                          left: 20, right: 20, top: 5, bottom: 5),
                       decoration: BoxDecoration(
                           color: currentState.scrollIndexPositionAt == index
-                              ? Theme.of(context).primaryColor.withValues(alpha: 0.3)
+                              ? Theme.of(context)
+                                  .primaryColor
+                                  .withValues(alpha: 0.3)
                               : Theme.of(context).dividerColor,
                           borderRadius: BorderRadius.circular(30)),
                       child: Center(
@@ -102,7 +107,9 @@ class Delegate extends SliverPersistentHeaderDelegate {
                           style: TextStyle(
                             fontWeight: FontWeight.w600,
                             color: currentState.scrollIndexPositionAt == index
-                                ? Theme.of(context).primaryColor.withValues(alpha: 0.7)
+                                ? Theme.of(context)
+                                    .primaryColor
+                                    .withValues(alpha: 0.7)
                                 : Theme.of(context).textTheme.titleLarge?.color,
                           ),
                         ),
@@ -124,5 +131,6 @@ class Delegate extends SliverPersistentHeaderDelegate {
   double get minExtent => sliverTabBarHeight;
 
   @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) => false;
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>
+      false;
 }

@@ -32,15 +32,18 @@ class NearbyServerStateModel {
     String deviceInfo = '';
 
     if (Platform.isAndroid) {
-      deviceInfo = await deviceInfoPlugin.androidInfo.then((value) => value.device);
+      deviceInfo =
+          await deviceInfoPlugin.androidInfo.then((value) => value.device);
     } else if (Platform.isIOS) {
       deviceInfo = await deviceInfoPlugin.iosInfo.then((value) => value.name);
     } else if (Platform.isWindows) {
-      deviceInfo = await deviceInfoPlugin.windowsInfo.then((value) => value.productName);
+      deviceInfo =
+          await deviceInfoPlugin.windowsInfo.then((value) => value.productName);
     } else if (Platform.isLinux) {
       deviceInfo = await deviceInfoPlugin.linuxInfo.then((value) => value.name);
     } else if (Platform.isMacOS) {
-      deviceInfo = await deviceInfoPlugin.macOsInfo.then((value) => value.computerName);
+      deviceInfo =
+          await deviceInfoPlugin.macOsInfo.then((value) => value.computerName);
     }
 
     return deviceInfo;

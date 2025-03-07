@@ -8,10 +8,12 @@ class YoutubeFlutterAnimationPage extends StatefulWidget {
   const YoutubeFlutterAnimationPage({super.key});
 
   @override
-  State<YoutubeFlutterAnimationPage> createState() => _YoutubeFlutterAnimationPageState();
+  State<YoutubeFlutterAnimationPage> createState() =>
+      _YoutubeFlutterAnimationPageState();
 }
 
-class _YoutubeFlutterAnimationPageState extends State<YoutubeFlutterAnimationPage> {
+class _YoutubeFlutterAnimationPageState
+    extends State<YoutubeFlutterAnimationPage> {
   late PageController _pageController;
   List<YtFlLocModel> list = [];
   final fake = faker.Faker();
@@ -87,24 +89,33 @@ class _YoutubeFlutterAnimationPageState extends State<YoutubeFlutterAnimationPag
                                   bottom: list[index].isOpen ? -70 : 0,
                                   child: Center(
                                     child: AnimatedContainer(
-                                      duration: const Duration(milliseconds: 250),
+                                      duration:
+                                          const Duration(milliseconds: 250),
                                       height: 300,
                                       width: MediaQuery.of(context).size.width,
-                                      padding:
-                                          const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                                      padding: const EdgeInsets.only(
+                                          left: 10, right: 10, bottom: 10),
                                       decoration: BoxDecoration(
                                           color: Colors.white,
-                                          borderRadius: BorderRadius.circular(10),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
                                           boxShadow: list[index].isOpen
-                                              ? [const BoxShadow(color: Colors.grey, blurRadius: 5)]
+                                              ? [
+                                                  const BoxShadow(
+                                                      color: Colors.grey,
+                                                      blurRadius: 5)
+                                                ]
                                               : []),
                                       child: Hero(
-                                        tag: "${list[index].imageUrl ?? '-'}_about",
+                                        tag:
+                                            "${list[index].imageUrl ?? '-'}_about",
                                         child: Material(
                                           color: Colors.transparent,
                                           child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            mainAxisAlignment: MainAxisAlignment.end,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
                                             children: [
                                               Text("${list[index].address}"),
                                               Text("${list[index].location}"),

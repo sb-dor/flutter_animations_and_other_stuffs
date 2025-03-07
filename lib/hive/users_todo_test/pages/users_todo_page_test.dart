@@ -33,7 +33,8 @@ class _UsersTodoPageTestState extends State<UsersTodoPageTest> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           if (_todoController.text.isEmpty) return;
-          UserTestChangeNotifierProvider.read<UsersTodoVm>(context)?.addTodoToUser(
+          UserTestChangeNotifierProvider.read<UsersTodoVm>(context)
+              ?.addTodoToUser(
             user: widget.usersTest,
             todoText: _todoController.text.trim(),
           );
@@ -57,7 +58,8 @@ class _UsersTodoPageTestState extends State<UsersTodoPageTest> {
             ),
             Expanded(
               child: ListView.separated(
-                separatorBuilder: (context, index) => const SizedBox(height: 10),
+                separatorBuilder: (context, index) =>
+                    const SizedBox(height: 10),
                 itemCount: widget.usersTest.usersTestTodo?.length ?? 0,
                 itemBuilder: (context, index) {
                   final item = widget.usersTest.usersTestTodo?[index];

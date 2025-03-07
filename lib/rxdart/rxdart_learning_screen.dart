@@ -9,7 +9,8 @@ class RxDartLearningScreen extends StatefulWidget {
 }
 
 class _RxDartLearningScreenState extends State<RxDartLearningScreen> {
-  final Stream<String> _firstStream = Stream.periodic(const Duration(seconds: 2), (i) => "$i");
+  final Stream<String> _firstStream =
+      Stream.periodic(const Duration(seconds: 2), (i) => "$i");
 
   final Stream<String> _secondStream =
       Stream.periodic(const Duration(seconds: 5), (i) => "hello world $i");

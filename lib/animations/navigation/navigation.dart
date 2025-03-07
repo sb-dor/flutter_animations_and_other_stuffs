@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 class Navigation {
   //Push on next page material page route
   static Future<void> push(
-      BuildContext context, {
-        Widget? screen,
-        String? name,
-        Route? customPageTransition,
-      }) async {
+    BuildContext context, {
+    Widget? screen,
+    String? name,
+    Route? customPageTransition,
+  }) async {
     if (customPageTransition != null) {
       await Navigator.of(context).push(customPageTransition);
     }
@@ -24,11 +24,11 @@ class Navigation {
 
   //Replace current page
   static void pushReplacement(
-      BuildContext context, {
-        Widget? screen,
-        String? name,
-        Route? customPageTransition,
-      }) {
+    BuildContext context, {
+    Widget? screen,
+    String? name,
+    Route? customPageTransition,
+  }) {
     if (customPageTransition != null) {
       Navigator.of(context).push(customPageTransition);
     }
@@ -46,38 +46,38 @@ class Navigation {
   }
 
   static void popAllAndPush(
-      BuildContext context, {
-        Widget? screen,
-        String? name,
-        Route? customPageTransition,
-      }) {
+    BuildContext context, {
+    Widget? screen,
+    String? name,
+    Route? customPageTransition,
+  }) {
     if (customPageTransition != null) {
       Navigator.of(context).pushAndRemoveUntil(
         customPageTransition,
-            (Route<dynamic> route) => false,
+        (Route<dynamic> route) => false,
       );
     }
     if (screen != null) {
       Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(builder: (_) => screen),
-            (Route<dynamic> route) => false,
+        (Route<dynamic> route) => false,
       );
     } else if (name != null) {
       Navigator.of(context).pushNamedAndRemoveUntil(
         name,
-            (Route<dynamic> route) => false,
+        (Route<dynamic> route) => false,
       );
     }
   }
 
   /// POP until given name and push
   static void popTillNamedAndPush(
-      BuildContext context, {
-        required String popTill,
-        Widget? screen,
-        String? name,
-        Route? customPageTransition,
-      }) {
+    BuildContext context, {
+    required String popTill,
+    Widget? screen,
+    String? name,
+    Route? customPageTransition,
+  }) {
     if (customPageTransition != null) {
       Navigator.of(context).push(customPageTransition);
     }

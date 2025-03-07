@@ -7,7 +7,6 @@ part 'app_database.g.dart';
 
 @DriftDatabase(tables: [TodoDriftDbTable])
 class AppDatabase extends _$AppDatabase {
-
   AppDatabase(super.e);
   //
   AppDatabase.defaults()
@@ -52,7 +51,8 @@ class AppDatabase extends _$AppDatabase {
                   TableMigration(
                     todoDriftDbTable,
                     columnTransformer: {
-                      todoDriftDbTable.createdAt: todoDriftDbTable.createdAt.cast<String>(),
+                      todoDriftDbTable.createdAt:
+                          todoDriftDbTable.createdAt.cast<String>(),
                     },
                   ),
                 );

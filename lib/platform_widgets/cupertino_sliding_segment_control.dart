@@ -12,10 +12,12 @@ class CupertinoSlidingSegmentControl extends StatefulWidget {
   const CupertinoSlidingSegmentControl({super.key});
 
   @override
-  State<CupertinoSlidingSegmentControl> createState() => _CupertinoSlidingSegmentControlState();
+  State<CupertinoSlidingSegmentControl> createState() =>
+      _CupertinoSlidingSegmentControlState();
 }
 
-class _CupertinoSlidingSegmentControlState extends State<CupertinoSlidingSegmentControl> {
+class _CupertinoSlidingSegmentControlState
+    extends State<CupertinoSlidingSegmentControl> {
   Sky _selectedSegment = Sky.midnight;
 
   @override

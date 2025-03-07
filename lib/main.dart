@@ -4,8 +4,6 @@ import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animations_2/DI/example/di_page.dart';
-import 'package:flutter_animations_2/animation_pages/flutter_carousel_view_test.dart';
 import 'package:flutter_animations_2/bloc_learning/bloc_concurrency/main_bloc_concurrency.dart';
 import 'package:flutter_animations_2/bloc_learning/bloc_to_bloc_comm/first_bloc/first_bloc.dart';
 import 'package:flutter_animations_2/bloc_learning/bloc_to_bloc_comm/second_bloc/second_bloc.dart';
@@ -41,20 +39,11 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart' as provider;
 import 'package:url_strategy/url_strategy.dart';
 
-import 'animation_pages/better_perfomance_animated_builder.dart';
 import 'auto_comparison_widget/widgets/auto_comparison_widget.dart';
-import 'dodo_pizzas_often_order_animation/dodo_pizza_often_order_animation.dart';
-import 'excel/excel_page.dart';
 import 'flutter_bluetooth_thermal_printer/view/bloc/flutter_bluetooth_thermal_printer_bloc.dart';
-import 'flutter_testing_widget_lifecycle/flutter_testing_widget_lifecycle_with_setstate.dart';
-import 'flutter_testing_widget_lifecycle/with_bloc/flutter_testing_widget_with_bloc.dart';
 import 'generated/l10n.dart';
 import 'getit/locator.dart';
 import 'google_map/cubit/main_google_map_cubit.dart';
-import 'stateless_widget_with_state/stateless_widget_test_mark_needs_build.dart';
-import 'stateless_widget_with_state/statelesswidget_with_state.dart';
-import 'text_field_validation/text_field_validation_widget.dart';
-import 'text_field_validation/text_field_validation_with_change_notifier.dart';
 
 void main() async {
   // final streamTransformers = StreamTransformers();
@@ -169,7 +158,9 @@ void main() async {
         BlocProvider(create: (_) => FirstBloc()),
 
         //to init second bloc
-        BlocProvider(create: (_) => SecondBloc(firstBloc: BlocProvider.of<FirstBloc>(_))),
+        BlocProvider(
+            create: (_) =>
+                SecondBloc(firstBloc: BlocProvider.of<FirstBloc>(_))),
         BlocProvider(create: (_) => NearbyServerCubit()),
 
         //
@@ -189,7 +180,8 @@ void main() async {
           ),
         ],
         child: ProviderScope(
-          child: BlocBuilder<MaterialChangeCubit, bool>(builder: (context, materialUiState) {
+          child: BlocBuilder<MaterialChangeCubit, bool>(
+              builder: (context, materialUiState) {
             // return const MainAutoRoutePackageScreen();
             // return MainGoRouterDecNavigation();
             // return const MainDeclarativeNavigationScreen();
@@ -212,11 +204,13 @@ void main() async {
                 scrollBehavior: MyCustomScrollBehavior(),
                 //if you want to use flutter deep linking use package "go_router"
                 //get global context here
-                navigatorKey: GlobalContextHelper.instance.globalNavigatorContext,
+                navigatorKey:
+                    GlobalContextHelper.instance.globalNavigatorContext,
 
-                theme: FlexThemeData.light(scheme: FlexScheme.green, useMaterial3: materialUiState),
-                darkTheme:
-                    FlexThemeData.dark(scheme: FlexScheme.green, useMaterial3: materialUiState),
+                theme: FlexThemeData.light(
+                    scheme: FlexScheme.green, useMaterial3: materialUiState),
+                darkTheme: FlexThemeData.dark(
+                    scheme: FlexScheme.green, useMaterial3: materialUiState),
                 themeMode: ThemeMode.light,
                 debugShowCheckedModeBanner: false,
                 //for adding named routes use like this
@@ -255,7 +249,9 @@ class _MainAppState extends State<MainApp> {
     //initiate the listener of internet conn here
     context.read<InternetConnCubit>().listenInternetConn();
     context.read<MainMapCubit>().initMap();
-    context.read<MainMapCubit>().initCoordinatesFromListOfCoordinatedWithCluster();
+    context
+        .read<MainMapCubit>()
+        .initCoordinatesFromListOfCoordinatedWithCluster();
     // context.read<MainMapCubit>().initCoordinatedFromListOfCoordinates();
     // showNo();
     initDynamicLinks();
@@ -278,7 +274,8 @@ class _MainAppState extends State<MainApp> {
             }
           } else {
             Get.rawSnackbar(
-              messageText: const Text("No Internet", style: TextStyle(color: Colors.white)),
+              messageText: const Text("No Internet",
+                  style: TextStyle(color: Colors.white)),
               duration: const Duration(days: 1),
             );
           }

@@ -16,7 +16,8 @@ class SimpleSliverAndScrollPage extends StatefulWidget {
   const SimpleSliverAndScrollPage({super.key});
 
   @override
-  State<SimpleSliverAndScrollPage> createState() => _SimpleSliverAndScrollPageState();
+  State<SimpleSliverAndScrollPage> createState() =>
+      _SimpleSliverAndScrollPageState();
 }
 
 class _SimpleSliverAndScrollPageState extends State<SimpleSliverAndScrollPage> {
@@ -50,35 +51,43 @@ class _SimpleSliverAndScrollPageState extends State<SimpleSliverAndScrollPage> {
     sliverForHeaders = [
       _ProductsWithCategory(
         category: "Fruits",
-        products: ["Bananas", "Apples", "Watermelons", "Melons", "Grapes"]..shuffle(),
+        products: ["Bananas", "Apples", "Watermelons", "Melons", "Grapes"]
+          ..shuffle(),
       ),
       _ProductsWithCategory(
         category: "Meals",
-        products: ["Bananas", "Apples", "Watermelons", "Melons", "Grapes"]..shuffle(),
+        products: ["Bananas", "Apples", "Watermelons", "Melons", "Grapes"]
+          ..shuffle(),
       ),
       _ProductsWithCategory(
         category: "Vegetables",
-        products: ["Bananas", "Apples", "Watermelons", "Melons", "Grapes"]..shuffle(),
+        products: ["Bananas", "Apples", "Watermelons", "Melons", "Grapes"]
+          ..shuffle(),
       ),
       _ProductsWithCategory(
         category: "Pizzas",
-        products: ["Bananas", "Apples", "Watermelons", "Melons", "Grapes"]..shuffle(),
+        products: ["Bananas", "Apples", "Watermelons", "Melons", "Grapes"]
+          ..shuffle(),
       ),
       _ProductsWithCategory(
         category: "Fruits",
-        products: ["Bananas", "Apples", "Watermelons", "Melons", "Grapes"]..shuffle(),
+        products: ["Bananas", "Apples", "Watermelons", "Melons", "Grapes"]
+          ..shuffle(),
       ),
       _ProductsWithCategory(
         category: "Meals",
-        products: ["Bananas", "Apples", "Watermelons", "Melons", "Grapes"]..shuffle(),
+        products: ["Bananas", "Apples", "Watermelons", "Melons", "Grapes"]
+          ..shuffle(),
       ),
       _ProductsWithCategory(
         category: "Vegetables",
-        products: ["Bananas", "Apples", "Watermelons", "Melons", "Grapes"]..shuffle(),
+        products: ["Bananas", "Apples", "Watermelons", "Melons", "Grapes"]
+          ..shuffle(),
       ),
       _ProductsWithCategory(
         category: "Pizzas",
-        products: ["Bananas", "Apples", "Watermelons", "Melons", "Grapes"]..shuffle(),
+        products: ["Bananas", "Apples", "Watermelons", "Melons", "Grapes"]
+          ..shuffle(),
       ),
     ];
 
@@ -92,8 +101,9 @@ class _SimpleSliverAndScrollPageState extends State<SimpleSliverAndScrollPage> {
     if (value) {
       currentSliverHeaderPosition = index;
     } else {
-      currentSliverHeaderPosition =
-          currentSliverHeaderPosition == index ? currentSliverHeaderPosition - 1 : index;
+      currentSliverHeaderPosition = currentSliverHeaderPosition == index
+          ? currentSliverHeaderPosition - 1
+          : index;
     }
     if (currentSliverHeaderPosition <= 0 ||
         currentSliverHeaderPosition >= sliverForHeaders.length) {
@@ -103,7 +113,8 @@ class _SimpleSliverAndScrollPageState extends State<SimpleSliverAndScrollPage> {
   }
 
   void addOffset(double offset) {
-    final double position = (offset - kToolbarHeight) > 0 ? (offset - kToolbarHeight) : offset;
+    final double position =
+        (offset - kToolbarHeight) > 0 ? (offset - kToolbarHeight) : offset;
     listOfOffset.add(position);
     debugPrint("adding offset: $position");
     setState(() {});
@@ -141,10 +152,7 @@ class _SimpleSliverAndScrollPageState extends State<SimpleSliverAndScrollPage> {
                 height: 10,
               ),
             ),
-            ...sliverForHeaders
-                .asMap()
-                .entries
-                .map(
+            ...sliverForHeaders.asMap().entries.map(
                   (e) => SliverMainAxisGroup(
                     slivers: [
                       SliverPadding(
@@ -181,7 +189,8 @@ class _SimpleSliverAndScrollPageState extends State<SimpleSliverAndScrollPage> {
                           physics: const NeverScrollableScrollPhysics(),
                           itemCount: sliverForHeaders[e.key].products.length,
                           itemBuilder: (context, index) {
-                            final item = sliverForHeaders[index].products[index];
+                            final item =
+                                sliverForHeaders[index].products[index];
                             return ListTile(
                               title: Text(item),
                             );
@@ -193,8 +202,7 @@ class _SimpleSliverAndScrollPageState extends State<SimpleSliverAndScrollPage> {
                       ),
                     ],
                   ),
-                )
-                ,
+                ),
             // for (int i = 0; i < sliverForHeaders.length; i++) ...[
             //   SliverPadding(
             //     padding: const EdgeInsets.only(left: 10, right: 10),
@@ -262,7 +270,8 @@ class SliverForHeaderDelegate extends SliverPersistentHeaderDelegate {
   });
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
     if (shrinkOffset > 0) {
       onScroll(true);
     } else {
@@ -312,7 +321,8 @@ class SliverHeaderDelegate extends SliverPersistentHeaderDelegate {
   );
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
     return Container(
       height: 50,
       color: Colors.white,
@@ -333,7 +343,8 @@ class SliverHeaderDelegate extends SliverPersistentHeaderDelegate {
             child: Container(
               padding: const EdgeInsets.only(left: 15, right: 15),
               decoration: BoxDecoration(
-                color: currentIndex == index ? Colors.amber : Colors.transparent,
+                color:
+                    currentIndex == index ? Colors.amber : Colors.transparent,
                 border: Border.all(
                   color: Colors.grey,
                 ),

@@ -54,8 +54,10 @@ class _DiPageState extends State<DiPage> {
   @override
   void initState() {
     super.initState();
-    debugPrint("hashcode of calcService: ${ServiceLocator.instance.calcService.hashCode}");
-    debugPrint("hashcode of calcService: ${ServiceLocator.instance.calcService.hashCode}");
+    debugPrint(
+        "hashcode of calcService: ${ServiceLocator.instance.calcService.hashCode}");
+    debugPrint(
+        "hashcode of calcService: ${ServiceLocator.instance.calcService.hashCode}");
   }
 
   @override
@@ -67,9 +69,7 @@ class _DiPageState extends State<DiPage> {
       body: Column(
         children: [
           ElevatedButton(
-            onPressed: () {
-
-            },
+            onPressed: () {},
             child: const Text("Click"),
           ),
           ElevatedButton(

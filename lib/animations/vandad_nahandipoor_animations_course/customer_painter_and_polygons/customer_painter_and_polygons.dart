@@ -60,7 +60,8 @@ class CustomerPainterAndPolygons extends StatefulWidget {
   const CustomerPainterAndPolygons({super.key});
 
   @override
-  State<CustomerPainterAndPolygons> createState() => _CustomerPainterAndPolygonsState();
+  State<CustomerPainterAndPolygons> createState() =>
+      _CustomerPainterAndPolygonsState();
 }
 
 class _CustomerPainterAndPolygonsState extends State<CustomerPainterAndPolygons>
@@ -82,16 +83,17 @@ class _CustomerPainterAndPolygonsState extends State<CustomerPainterAndPolygons>
     _animationSizeController =
         AnimationController(vsync: this, duration: const Duration(seconds: 5));
 
-    _animation = IntTween(begin: 10, end: 3)
-        .animate(CurvedAnimation(parent: _animationSizeController, curve: Curves.bounceOut));
+    _animation = IntTween(begin: 10, end: 3).animate(CurvedAnimation(
+        parent: _animationSizeController, curve: Curves.bounceOut));
 
     _moveAnimationController =
         AnimationController(vsync: this, duration: const Duration(seconds: 5));
 
-    _moveAnimation = Tween<double>(begin: 0, end: -pi)
-        .animate(CurvedAnimation(parent: _moveAnimationController, curve: Curves.bounceOut));
+    _moveAnimation = Tween<double>(begin: 0, end: -pi).animate(CurvedAnimation(
+        parent: _moveAnimationController, curve: Curves.bounceOut));
 
-    _radiusController = AnimationController(vsync: this, duration: const Duration(seconds: 5));
+    _radiusController =
+        AnimationController(vsync: this, duration: const Duration(seconds: 5));
 
     _radiusAnimation = Tween<double>(begin: 400, end: 30)
         .chain(CurveTween(curve: Curves.easeInOut))

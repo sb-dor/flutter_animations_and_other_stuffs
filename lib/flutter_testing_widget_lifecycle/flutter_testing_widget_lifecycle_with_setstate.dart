@@ -26,8 +26,8 @@ class _FlutterTestingWidgetLifecycleWithSetStateState
             },
             child: const Text("Refresh"),
           ),
-           // it will change
-           _TestRandom(),
+          // it will change
+          const _TestRandom(),
           // it will not change
           const _TestRandom(),
         ],

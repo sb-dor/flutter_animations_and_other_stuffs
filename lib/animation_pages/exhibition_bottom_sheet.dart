@@ -43,7 +43,8 @@ class _ExhibitionBottomSheetState extends State<ExhibitionBottomSheet>
 
   double get maxHeight => MediaQuery.of(context).size.height;
 
-  double get headerTopMargin => lerp(20, 20 + MediaQuery.of(context).padding.top);
+  double get headerTopMargin =>
+      lerp(20, 20 + MediaQuery.of(context).padding.top);
 
   double get headerFontSize => lerp(14, 24);
 
@@ -56,12 +57,15 @@ class _ExhibitionBottomSheetState extends State<ExhibitionBottomSheet>
   double get iconSize => lerp(iconStartSize, iconEndSize);
 
   double iconTopMargin(int index) =>
-      lerp(iconStartMarginTop, iconEndMarginTop + index * (iconsVerticalSpacing + iconEndSize)) +
+      lerp(iconStartMarginTop,
+          iconEndMarginTop + index * (iconsVerticalSpacing + iconEndSize)) +
       headerTopMargin;
 
-  double iconLeftMargin(int index) => lerp(index * (iconsHorizontalSpacing + iconStartSize), 0);
+  double iconLeftMargin(int index) =>
+      lerp(index * (iconsHorizontalSpacing + iconStartSize), 0);
 
-  double lerp(double min, double max) => lerpDouble(min, max, _controller.value)!;
+  double lerp(double min, double max) =>
+      lerpDouble(min, max, _controller.value)!;
 
   @override
   void initState() {
@@ -163,9 +167,13 @@ class _ExhibitionBottomSheetState extends State<ExhibitionBottomSheet>
 
   //function will work after when you will stop to drag
   void _handleDragEnd(DragEndDetails details) {
-    if (_controller.isAnimating || _controller.status == AnimationStatus.completed) return;
+    if (_controller.isAnimating ||
+        _controller.status == AnimationStatus.completed) {
+      return;
+    }
 
-    final double flingVelocity = details.velocity.pixelsPerSecond.dy / maxHeight;
+    final double flingVelocity =
+        details.velocity.pixelsPerSecond.dy / maxHeight;
     if (flingVelocity < 0.0) {
       _controller.fling(velocity: math.max(2.0, -flingVelocity));
     } else if (flingVelocity > 0.0) {
@@ -280,7 +288,8 @@ class SheetHeader extends StatelessWidget {
   final double fontSize;
   final double topMargin;
 
-  const SheetHeader({super.key, required this.fontSize, required this.topMargin});
+  const SheetHeader(
+      {super.key, required this.fontSize, required this.topMargin});
 
   @override
   Widget build(BuildContext context) {

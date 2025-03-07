@@ -28,14 +28,16 @@ class _SqfliteDatabasePageState extends State<SqfliteDatabasePage> {
             builder: (context, stream) => Expanded(
                 child: ListView.separated(
                     padding: const EdgeInsets.only(left: 10, right: 10),
-                    separatorBuilder: (context, index) => const SizedBox(height: 10),
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(height: 10),
                     itemCount: stream.data?.length ?? 0,
                     itemBuilder: (context, index) {
                       return Text('${stream.data?[index].name}');
                     }))),
         Row(children: [
           ElevatedButton(
-              onPressed: () => SqfLiteDatabaseHelper.addDatabaseModel(), child: const Text("Add")),
+              onPressed: () => SqfLiteDatabaseHelper.addDatabaseModel(),
+              child: const Text("Add")),
           const SizedBox(width: 50),
           ElevatedButton(
               onPressed: () => SqfLiteDatabaseHelper.deleteLast(),

@@ -60,8 +60,9 @@ class ImageLoaderWidget extends StatelessWidget {
                   padding: paddingShimmerContainer,
                   width: width,
                   height: height,
-                  decoration:
-                      BoxDecoration(color: Colors.grey.shade200, borderRadius: borderRadius)));
+                  decoration: BoxDecoration(
+                      color: Colors.grey.shade200,
+                      borderRadius: borderRadius)));
         },
         errorWidget: (context, url, error) => Image.asset(errorImageUrl,
             height: height, width: width, fit: boxFit ?? BoxFit.scaleDown));

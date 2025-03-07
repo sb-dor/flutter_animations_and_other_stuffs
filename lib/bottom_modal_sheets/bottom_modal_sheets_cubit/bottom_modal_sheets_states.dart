@@ -7,6 +7,7 @@ abstract class BottomModalSheetStates {
 }
 
 class InitialModalBottomSheetStates extends BottomModalSheetStates {
-  InitialModalBottomSheetStates(BottomModalSheetStateModel bottomModalSheetStateModel)
+  InitialModalBottomSheetStates(
+      BottomModalSheetStateModel bottomModalSheetStateModel)
       : super(bottomModalSheetStateModel: bottomModalSheetStateModel);
 }

@@ -9,7 +9,6 @@ class PopupWidgets extends StatefulWidget {
 }
 
 class _PopupWidgetsState extends State<PopupWidgets> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

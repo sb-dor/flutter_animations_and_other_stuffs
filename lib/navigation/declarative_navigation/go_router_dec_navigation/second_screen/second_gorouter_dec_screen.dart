@@ -10,7 +10,8 @@ class SecondGoRouterDecScreen extends StatefulWidget {
   });
 
   @override
-  State<SecondGoRouterDecScreen> createState() => _SecondGoRouterDecScreenState();
+  State<SecondGoRouterDecScreen> createState() =>
+      _SecondGoRouterDecScreenState();
 }
 
 class _SecondGoRouterDecScreenState extends State<SecondGoRouterDecScreen> {
@@ -33,10 +34,11 @@ class _SecondGoRouterDecScreenState extends State<SecondGoRouterDecScreen> {
                 'nameforthirdscreen',
                 pathParameters: <String, String>{
                   "comingId": widget.comingNumber.toString(),
-                  "comingIdd" : "15",
+                  "comingIdd": "15",
                 },
               ),
-              child: Text("push to third dec screen with value -> ${widget.comingNumber}"),
+              child: Text(
+                  "push to third dec screen with value -> ${widget.comingNumber}"),
             ),
           ],
         ),

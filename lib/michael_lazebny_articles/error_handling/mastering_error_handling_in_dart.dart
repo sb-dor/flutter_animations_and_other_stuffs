@@ -67,7 +67,8 @@ class MasteringErrorHandlingInDart {
   final Logger _logger;
   final http.Client _client;
 
-  MasteringErrorHandlingInDart({required Logger logger, required http.Client client})
+  MasteringErrorHandlingInDart(
+      {required Logger logger, required http.Client client})
       : _logger = logger,
         _client = client;
 
@@ -81,11 +82,14 @@ class MasteringErrorHandlingInDart {
     try {
       await _response();
     } on ServerErrorException catch (error, stackTrace) {
-      debugPrint("getting server error from server: ${error.message} | stack: $stackTrace");
+      debugPrint(
+          "getting server error from server: ${error.message} | stack: $stackTrace");
     } on ClientErrorException catch (error, stackTrace) {
-      debugPrint("getting client error from server: ${error.message} | stack: $stackTrace");
+      debugPrint(
+          "getting client error from server: ${error.message} | stack: $stackTrace");
     } on StructuredBackendException catch (error, stackTrace) {
-      debugPrint("getting structured error from server: ${error.message} | stack: $stackTrace");
+      debugPrint(
+          "getting structured error from server: ${error.message} | stack: $stackTrace");
     } catch (error, stackTrace) {
       /// use [Error.throwWithStackTrace] for throwing errors.
       /// Unlike the standard 'throw', this method retains the original stack trace.
@@ -152,7 +156,8 @@ class MasteringErrorHandlingInDart {
       Error.throwWithStackTrace(
         /// use just error instead of [ExceptionHandler] if you want
         /// but whether [ExceptionHandler] has cause it would be better to use it
-        ExceptionHandler("Catching errors from response function", cause: error),
+        ExceptionHandler("Catching errors from response function",
+            cause: error),
         stackTrace,
       );
     }
@@ -165,8 +170,8 @@ class MasteringErrorHandlingInDart {
     runZonedGuarded(
       () {
         // try {
-          final testFunction = TestErrorHandlingOnceAgain();
-          testFunction.tempChecker();
+        final testFunction = TestErrorHandlingOnceAgain();
+        testFunction.tempChecker();
         // } catch (error, stackTrace) {}
         // here you can handle errors that may happen in widget side
         // or send to the server
@@ -191,7 +196,8 @@ class MasteringErrorHandlingInDart {
           // Activates on platform exceptions, like MethodChannel failures.
           // Handy method to log [PlatformDispatcher] error
           // or send to the server
-          WidgetsBinding.instance.platformDispatcher.onError = (error, stackTrace) {
+          WidgetsBinding.instance.platformDispatcher.onError =
+              (error, stackTrace) {
             _logger.log(
               Level.error,
               "Platform side errors",
@@ -204,7 +210,8 @@ class MasteringErrorHandlingInDart {
               FlutterErrorDetails(
                 exception: error,
                 stack: stackTrace,
-                library: 'platform', // Indicating this is a platform-level error
+                library:
+                    'platform', // Indicating this is a platform-level error
               ),
             );
 

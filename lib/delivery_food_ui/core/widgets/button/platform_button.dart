@@ -9,7 +9,8 @@ import 'package:flutter/material.dart';
 ///
 ///and returns appropriate widget
 class PlatformButton extends StatelessWidget {
-  const PlatformButton({super.key, 
+  const PlatformButton({
+    super.key,
     required this.child,
     required this.onPressed,
     this.borderRadius = BorderRadius.zero,

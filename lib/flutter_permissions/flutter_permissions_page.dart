@@ -39,7 +39,8 @@ class _FlutterPermissionsPageState extends State<FlutterPermissionsPage>
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<FlutterPermissionCubit, FlutterPermissionStates>(builder: (context, state) {
+    return BlocBuilder<FlutterPermissionCubit, FlutterPermissionStates>(
+        builder: (context, state) {
       var currentState = state.flutterPermissionStateModel;
       return Scaffold(
           appBar: AppBar(
@@ -49,7 +50,8 @@ class _FlutterPermissionsPageState extends State<FlutterPermissionsPage>
             Row(children: [
               Switch(
                   value: currentState.notificationPermission,
-                  onChanged: (v) => context.read<FlutterPermissionCubit>().settingOpener()),
+                  onChanged: (v) =>
+                      context.read<FlutterPermissionCubit>().settingOpener()),
               const SizedBox(width: 10),
               const Expanded(child: Text("Notification Permission"))
             ]),
@@ -57,8 +59,9 @@ class _FlutterPermissionsPageState extends State<FlutterPermissionsPage>
             Row(children: [
               Switch(
                   value: currentState.cameraPermission,
-                  onChanged: (v) =>
-                      context.read<FlutterPermissionCubit>().requestCameraPermission()),
+                  onChanged: (v) => context
+                      .read<FlutterPermissionCubit>()
+                      .requestCameraPermission()),
               const SizedBox(width: 10),
               const Expanded(child: Text("Camera Permission"))
             ]),
@@ -66,8 +69,9 @@ class _FlutterPermissionsPageState extends State<FlutterPermissionsPage>
             Row(children: [
               Switch(
                   value: currentState.microphonePermission,
-                  onChanged: (v) =>
-                      context.read<FlutterPermissionCubit>().requestMicrophonePermission()),
+                  onChanged: (v) => context
+                      .read<FlutterPermissionCubit>()
+                      .requestMicrophonePermission()),
               const SizedBox(width: 10),
               const Expanded(child: Text("Microphone Permission"))
             ]),
@@ -75,8 +79,9 @@ class _FlutterPermissionsPageState extends State<FlutterPermissionsPage>
             Row(children: [
               Switch(
                   value: currentState.locationPermission,
-                  onChanged: (v) =>
-                      context.read<FlutterPermissionCubit>().requestLocationPermission()),
+                  onChanged: (v) => context
+                      .read<FlutterPermissionCubit>()
+                      .requestLocationPermission()),
               const SizedBox(width: 10),
               const Expanded(child: Text("Location Permission"))
             ]),
@@ -84,16 +89,18 @@ class _FlutterPermissionsPageState extends State<FlutterPermissionsPage>
             Row(children: [
               Switch(
                   value: currentState.storagePermission,
-                  onChanged: (v) =>
-                      context.read<FlutterPermissionCubit>().requestStoragePermission()),
+                  onChanged: (v) => context
+                      .read<FlutterPermissionCubit>()
+                      .requestStoragePermission()),
               const SizedBox(width: 10),
               const Expanded(child: Text("Storage Permission"))
             ]),
             const SizedBox(height: 10),
             Row(children: [
               TextButton(
-                  onPressed: () =>
-                      context.read<FlutterPermissionCubit>().multiplePermissionHandler(),
+                  onPressed: () => context
+                      .read<FlutterPermissionCubit>()
+                      .multiplePermissionHandler(),
                   child: const Text("Multiple permission handler")),
               const SizedBox(width: 10),
               const Expanded(child: Text("Multiple Permission"))

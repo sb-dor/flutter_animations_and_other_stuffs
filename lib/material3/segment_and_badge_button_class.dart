@@ -24,7 +24,8 @@ class _SegmentButtonClassState extends State<SegmentButtonClass> {
   void initState() {
     // TODO: implement initState
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      dataFromRoute = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
+      dataFromRoute =
+          ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
       setState(() {});
       debugPrint("data from past page : $dataFromRoute");
     });
@@ -36,13 +37,16 @@ class _SegmentButtonClassState extends State<SegmentButtonClass> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green,
-        title: const Text("Segmented Button", style: TextStyle(color: Colors.white)),
+        title: const Text("Segmented Button",
+            style: TextStyle(color: Colors.white)),
         actions: [
           IconButton(
-              onPressed: () => context.read<MaterialChangeCubit>().changeToMaterial2(),
+              onPressed: () =>
+                  context.read<MaterialChangeCubit>().changeToMaterial2(),
               icon: const Icon(Icons.two_k)),
           IconButton(
-              onPressed: () => context.read<MaterialChangeCubit>().changeToMaterial3(),
+              onPressed: () =>
+                  context.read<MaterialChangeCubit>().changeToMaterial3(),
               icon: const Icon(Icons.three_k))
         ],
       ),
@@ -52,7 +56,8 @@ class _SegmentButtonClassState extends State<SegmentButtonClass> {
           segments: const [
             ButtonSegment<Calendar>(value: Calendar.day, label: Text("Day")),
             ButtonSegment<Calendar>(value: Calendar.week, label: Text("Week")),
-            ButtonSegment<Calendar>(value: Calendar.month, label: Text("Month")),
+            ButtonSegment<Calendar>(
+                value: Calendar.month, label: Text("Month")),
             ButtonSegment<Calendar>(value: Calendar.year, label: Text("Year")),
           ],
 
@@ -77,8 +82,9 @@ class _SegmentButtonClassState extends State<SegmentButtonClass> {
             child: Badge(
                 label: const Text("2"),
                 isLabelVisible: true,
-                child:
-                    TextButton(onPressed: () => [], child: const Text("Text Button with Badge"))))
+                child: TextButton(
+                    onPressed: () => [],
+                    child: const Text("Text Button with Badge"))))
       ]),
     );
   }

@@ -9,13 +9,7 @@ part 'auto_route_helper.gr.dart';
 class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
-        AutoRoute(
-          page: AutoRouteFirstRoute.page,
-          path: "/"
-        ),
-        AutoRoute(
-          page: AutoRouteSecondRoute.page,
-          path: "/secondscreen/:id"
-        )
+        AutoRoute(page: AutoRouteFirstRoute.page, path: "/"),
+        AutoRoute(page: AutoRouteSecondRoute.page, path: "/secondscreen/:id")
       ];
 }

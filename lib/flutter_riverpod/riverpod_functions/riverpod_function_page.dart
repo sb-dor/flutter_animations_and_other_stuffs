@@ -31,7 +31,8 @@ class RiverpodFunctionPage extends ConsumerWidget {
                   const SizedBox(height: 20),
                 ],
               ),
-              error: (error, stacktrace) => const Text("Error occreed, please try again later"),
+              error: (error, stacktrace) =>
+                  const Text("Error occreed, please try again later"),
               loading: () => const CircularProgressIndicator(),
             ),
             ElevatedButton(

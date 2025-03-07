@@ -5,10 +5,12 @@ class AnimatedCartWithBottomNavbar extends StatefulWidget {
   const AnimatedCartWithBottomNavbar({super.key});
 
   @override
-  State<AnimatedCartWithBottomNavbar> createState() => _AnimatedCartWithBottomNavbarState();
+  State<AnimatedCartWithBottomNavbar> createState() =>
+      _AnimatedCartWithBottomNavbarState();
 }
 
-class _AnimatedCartWithBottomNavbarState extends State<AnimatedCartWithBottomNavbar> {
+class _AnimatedCartWithBottomNavbarState
+    extends State<AnimatedCartWithBottomNavbar> {
   // We can detect the location of the cart by this  GlobalKey<CartIconKey>
   GlobalKey<CartIconKey> cartKey = GlobalKey<CartIconKey>();
   late Function(GlobalKey) runAddToCartAnimation;
@@ -29,14 +31,17 @@ class _AnimatedCartWithBottomNavbarState extends State<AnimatedCartWithBottomNav
         },
         child: Scaffold(
             bottomNavigationBar: BottomNavigationBar(items: [
-              const BottomNavigationBarItem(icon: Icon(Icons.add), label: 'add'),
+              const BottomNavigationBarItem(
+                  icon: Icon(Icons.add), label: 'add'),
               BottomNavigationBarItem(
                   icon: AddToCartIcon(
                       key: cartKey,
                       icon: const Icon(Icons.shopping_cart),
-                      badgeOptions: const BadgeOptions(active: true, backgroundColor: Colors.red)),
+                      badgeOptions: const BadgeOptions(
+                          active: true, backgroundColor: Colors.red)),
                   label: 'cart'),
-              const BottomNavigationBarItem(icon: Icon(Icons.home), label: 'home')
+              const BottomNavigationBarItem(
+                  icon: Icon(Icons.home), label: 'home')
             ]),
             body: ListView(
                 children: List.generate(15, (index) {
@@ -47,17 +52,19 @@ class _AnimatedCartWithBottomNavbarState extends State<AnimatedCartWithBottomNav
                       width: 60,
                       height: 60,
                       color: Colors.transparent,
-                      child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                        Container(
-                            key: widgetKey,
-                            child: Image.network(
-                                "https://cdn.jsdelivr.net/gh/omerbyrk/"
-                                "add_to_cart_animation/example/assets/apple.png",
-                                width: 60,
-                                height: 60)),
-                        const SizedBox(width: 10),
-                        Text("Widget number ${index + 1}")
-                      ])));
+                      child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                                key: widgetKey,
+                                child: Image.network(
+                                    "https://cdn.jsdelivr.net/gh/omerbyrk/"
+                                    "add_to_cart_animation/example/assets/apple.png",
+                                    width: 60,
+                                    height: 60)),
+                            const SizedBox(width: 10),
+                            Text("Widget number ${index + 1}")
+                          ])));
             }))));
   }
 
