@@ -6,8 +6,7 @@ class MaiNBlocConcurrencyPage extends StatefulWidget {
   const MaiNBlocConcurrencyPage({super.key});
 
   @override
-  State<MaiNBlocConcurrencyPage> createState() =>
-      _MaiNBlocConcurrencyPageState();
+  State<MaiNBlocConcurrencyPage> createState() => _MaiNBlocConcurrencyPageState();
 }
 
 class _MaiNBlocConcurrencyPageState extends State<MaiNBlocConcurrencyPage> {
@@ -18,8 +17,7 @@ class _MaiNBlocConcurrencyPageState extends State<MaiNBlocConcurrencyPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MainBlocConcurrency, MainConcurrencyState>(
-        builder: (context, state) {
+    return BlocBuilder<MainBlocConcurrency, MainConcurrencyState>(builder: (context, state) {
       var currentState = state.coutner;
       return Scaffold(
         appBar: AppBar(title: const Text("Main Bloc Concurrency Page")),
@@ -30,15 +28,11 @@ class _MaiNBlocConcurrencyPageState extends State<MaiNBlocConcurrencyPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TextButton(
-                    onPressed: () => context
-                        .read<MainBlocConcurrency>()
-                        .add(CounterIncrement()),
+                    onPressed: () => context.read<MainBlocConcurrency>().add(CounterIncrement()),
                     child: const Text("Increment")),
                 Text("$currentState"),
                 TextButton(
-                    onPressed: () => context
-                        .read<MainBlocConcurrency>()
-                        .add(CounterDecrement()),
+                    onPressed: () => context.read<MainBlocConcurrency>().add(CounterDecrement()),
                     child: const Text("Decrement")),
               ]),
         ),

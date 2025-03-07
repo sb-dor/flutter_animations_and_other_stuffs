@@ -8,8 +8,7 @@ class YoutubePlayerPage extends StatefulWidget {
   State<YoutubePlayerPage> createState() => _YoutubePlayerPageState();
 }
 
-class _YoutubePlayerPageState extends State<YoutubePlayerPage>
-    with WidgetsBindingObserver {
+class _YoutubePlayerPageState extends State<YoutubePlayerPage> with WidgetsBindingObserver {
   late YoutubePlayerController _controller;
 
   @override

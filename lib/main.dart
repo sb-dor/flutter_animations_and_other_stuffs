@@ -158,9 +158,7 @@ void main() async {
         BlocProvider(create: (_) => FirstBloc()),
 
         //to init second bloc
-        BlocProvider(
-            create: (_) =>
-                SecondBloc(firstBloc: BlocProvider.of<FirstBloc>(_))),
+        BlocProvider(create: (_) => SecondBloc(firstBloc: BlocProvider.of<FirstBloc>(_))),
         BlocProvider(create: (_) => NearbyServerCubit()),
 
         //
@@ -180,8 +178,7 @@ void main() async {
           ),
         ],
         child: ProviderScope(
-          child: BlocBuilder<MaterialChangeCubit, bool>(
-              builder: (context, materialUiState) {
+          child: BlocBuilder<MaterialChangeCubit, bool>(builder: (context, materialUiState) {
             // return const MainAutoRoutePackageScreen();
             // return MainGoRouterDecNavigation();
             // return const MainDeclarativeNavigationScreen();
@@ -204,13 +201,11 @@ void main() async {
                 scrollBehavior: MyCustomScrollBehavior(),
                 //if you want to use flutter deep linking use package "go_router"
                 //get global context here
-                navigatorKey:
-                    GlobalContextHelper.instance.globalNavigatorContext,
+                navigatorKey: GlobalContextHelper.instance.globalNavigatorContext,
 
-                theme: FlexThemeData.light(
-                    scheme: FlexScheme.green, useMaterial3: materialUiState),
-                darkTheme: FlexThemeData.dark(
-                    scheme: FlexScheme.green, useMaterial3: materialUiState),
+                theme: FlexThemeData.light(scheme: FlexScheme.green, useMaterial3: materialUiState),
+                darkTheme:
+                    FlexThemeData.dark(scheme: FlexScheme.green, useMaterial3: materialUiState),
                 themeMode: ThemeMode.light,
                 debugShowCheckedModeBanner: false,
                 //for adding named routes use like this
@@ -249,9 +244,7 @@ class _MainAppState extends State<MainApp> {
     //initiate the listener of internet conn here
     context.read<InternetConnCubit>().listenInternetConn();
     context.read<MainMapCubit>().initMap();
-    context
-        .read<MainMapCubit>()
-        .initCoordinatesFromListOfCoordinatedWithCluster();
+    context.read<MainMapCubit>().initCoordinatesFromListOfCoordinatedWithCluster();
     // context.read<MainMapCubit>().initCoordinatedFromListOfCoordinates();
     // showNo();
     initDynamicLinks();
@@ -274,8 +267,7 @@ class _MainAppState extends State<MainApp> {
             }
           } else {
             Get.rawSnackbar(
-              messageText: const Text("No Internet",
-                  style: TextStyle(color: Colors.white)),
+              messageText: const Text("No Internet", style: TextStyle(color: Colors.white)),
               duration: const Duration(days: 1),
             );
           }

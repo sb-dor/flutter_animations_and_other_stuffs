@@ -4,8 +4,7 @@ class SliverAppBarTitleAnimation extends StatefulWidget {
   const SliverAppBarTitleAnimation({super.key});
 
   @override
-  State<SliverAppBarTitleAnimation> createState() =>
-      _SliverAppBarTitleAnimationState();
+  State<SliverAppBarTitleAnimation> createState() => _SliverAppBarTitleAnimationState();
 }
 
 class _SliverAppBarTitleAnimationState extends State<SliverAppBarTitleAnimation>
@@ -22,8 +21,8 @@ class _SliverAppBarTitleAnimationState extends State<SliverAppBarTitleAnimation>
   void initState() {
     // TODO: implement initState
     super.initState();
-    _titlePaddingController = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 300));
+    _titlePaddingController =
+        AnimationController(vsync: this, duration: const Duration(milliseconds: 300));
     _titleAnimation = Tween<double>(begin: 0, end: kToolbarHeight).animate(
       CurvedAnimation(
         parent: _titlePaddingController,
@@ -72,8 +71,7 @@ class _SliverAppBarTitleAnimationState extends State<SliverAppBarTitleAnimation>
                   ),
                 ),
                 flexibleSpace: FlexibleSpaceBar(
-                  titlePadding:
-                      EdgeInsets.only(left: _titleAnimation.value, bottom: 10),
+                  titlePadding: EdgeInsets.only(left: _titleAnimation.value, bottom: 10),
                   title: const Text(
                     "Sliver Appbar Title Animation",
                     style: TextStyle(color: Colors.black),

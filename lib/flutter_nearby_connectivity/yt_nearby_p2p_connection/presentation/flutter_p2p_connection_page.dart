@@ -8,8 +8,7 @@ class FlutterP2pConnectionPage extends StatefulWidget {
   const FlutterP2pConnectionPage({super.key});
 
   @override
-  State<FlutterP2pConnectionPage> createState() =>
-      _FlutterP2pConnectionPageState();
+  State<FlutterP2pConnectionPage> createState() => _FlutterP2pConnectionPageState();
 }
 
 class _FlutterP2pConnectionPageState extends State<FlutterP2pConnectionPage> {
@@ -19,8 +18,7 @@ class _FlutterP2pConnectionPageState extends State<FlutterP2pConnectionPage> {
       appBar: AppBar(
         title: const Text("Flutter p2p connection"),
       ),
-      body: BlocBuilder<NearbyServerCubit, NearbyServerStates>(
-          builder: (context, state) {
+      body: BlocBuilder<NearbyServerCubit, NearbyServerStates>(builder: (context, state) {
         var currentState = state.nearbyServerStateModel;
         return ListView(
           padding: const EdgeInsets.only(left: 10, right: 10),
@@ -35,16 +33,11 @@ class _FlutterP2pConnectionPageState extends State<FlutterP2pConnectionPage> {
                 ),
                 const SizedBox(width: 10),
                 Expanded(
-                    child: TextWidget(
-                        text: (currentState.server?.running ?? false)
-                            ? "ON"
-                            : "Off")),
+                    child:
+                        TextWidget(text: (currentState.server?.running ?? false) ? "ON" : "Off")),
                 ElevatedButton(
-                  onPressed: () =>
-                      context.read<NearbyServerCubit>().initServer(),
-                  child: Text((currentState.server?.running ?? false)
-                      ? "Switch off"
-                      : "Switch on"),
+                  onPressed: () => context.read<NearbyServerCubit>().initServer(),
+                  child: Text((currentState.server?.running ?? false) ? "Switch off" : "Switch on"),
                 )
               ],
             ),
@@ -117,8 +110,7 @@ class _FlutterP2pConnectionPageState extends State<FlutterP2pConnectionPage> {
             ),
             if ((currentState.client?.isConnected ?? false))
               ElevatedButton(
-                onPressed: () =>
-                    context.read<NearbyServerCubit>().sendFileToServer(),
+                onPressed: () => context.read<NearbyServerCubit>().sendFileToServer(),
                 child: const Text("Pick file and send"),
               ),
             ListView.separated(
@@ -151,20 +143,19 @@ class _FlutterP2pConnectionPageState extends State<FlutterP2pConnectionPage> {
         builder: (context) {
           return SizedBox(
             height: 300,
-            child: BlocBuilder<NearbyServerCubit, NearbyServerStates>(
-                builder: (context, state) {
+            child: BlocBuilder<NearbyServerCubit, NearbyServerStates>(builder: (context, state) {
               var currentState = state.nearbyServerStateModel;
               return ListView.separated(
-                separatorBuilder: (context, index) =>
-                    const SizedBox(height: 10),
+                separatorBuilder: (context, index) => const SizedBox(height: 10),
                 itemCount: currentState.networkAddress.length,
                 itemBuilder: (context, index) {
                   var message = currentState.networkAddress[index];
                   return TextButton(
                       onPressed: () {
                         Navigator.pop(context);
-                        context.read<NearbyServerCubit>().connectToServer(
-                            currentState.networkAddress[index]);
+                        context
+                            .read<NearbyServerCubit>()
+                            .connectToServer(currentState.networkAddress[index]);
                       },
                       child: Text(message.ip));
                 },

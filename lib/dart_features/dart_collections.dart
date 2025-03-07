@@ -19,8 +19,7 @@ class DartCollections {
     _generateRoute(context: context, page: route);
   }
 
-  static _generateRoute(
-          {required BuildContext context, required Widget page}) =>
+  static _generateRoute({required BuildContext context, required Widget page}) =>
       Navigator.push(context, MaterialPageRoute(builder: (context) => page));
 
   static void hashMap() {

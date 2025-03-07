@@ -3,11 +3,7 @@ import 'package:flutter_animations_2/delivery_food_ui/core/utils/ui_helper.dart'
 import 'package:flutter_animations_2/delivery_food_ui/core/widgets/icon/custom_icons.dart';
 
 class VendorCard extends StatelessWidget {
-  const VendorCard(
-      {super.key,
-      required this.imagePath,
-      required this.name,
-      required this.rating});
+  const VendorCard({super.key, required this.imagePath, required this.name, required this.rating});
 
   final String imagePath;
   final String name;
@@ -35,10 +31,7 @@ class VendorCard extends StatelessWidget {
             children: <Widget>[
               Text(
                 name,
-                style: Theme.of(context)
-                    .textTheme
-                    .titleMedium!
-                    .copyWith(fontSize: rf(16)),
+                style: Theme.of(context).textTheme.titleMedium!.copyWith(fontSize: rf(16)),
               ),
               SizedBox(height: rh(5)),
               Row(
@@ -53,10 +46,7 @@ class VendorCard extends StatelessWidget {
                   SizedBox(width: rw(5)),
                   Text(
                     rating,
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleMedium!
-                        .copyWith(fontSize: rf(14)),
+                    style: Theme.of(context).textTheme.titleMedium!.copyWith(fontSize: rf(14)),
                   ),
                   Text(
                     '  * Fast food * \$2.5',
@@ -85,10 +75,7 @@ class VendorCard extends StatelessWidget {
                           color: const Color(0xff977f98),
                         ),
                         Text(' 15-20 min',
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleMedium!
-                                .copyWith(
+                            style: Theme.of(context).textTheme.titleMedium!.copyWith(
                                   fontSize: rf(12),
                                   fontWeight: FontWeight.bold,
                                   color: const Color(0xff977f98),

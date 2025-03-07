@@ -112,9 +112,8 @@ Route _createRoute() {
         parent: animation,
         curve: const Interval(.8, 1),
       );
-      final radius = Tween<double>(begin: 40, end: 0)
-          .chain(CurveTween(curve: curve))
-          .evaluate(radiusAnim);
+      final radius =
+          Tween<double>(begin: 40, end: 0).chain(CurveTween(curve: curve)).evaluate(radiusAnim);
 
       return SlideTransition(
         position: offsetAnimation,
@@ -139,8 +138,7 @@ class OkScreen extends StatefulWidget {
   State<OkScreen> createState() => _OkScreenState();
 }
 
-class _OkScreenState extends State<OkScreen>
-    with SingleTickerProviderStateMixin {
+class _OkScreenState extends State<OkScreen> with SingleTickerProviderStateMixin {
   late final animation = AnimationController(
     vsync: this,
     duration: const Duration(milliseconds: 300),

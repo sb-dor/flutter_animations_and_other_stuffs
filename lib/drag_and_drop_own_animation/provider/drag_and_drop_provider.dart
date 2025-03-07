@@ -9,10 +9,8 @@ class DragAndDropProvider with ChangeNotifier {
   ];
   final List<DADAnimationModel> _dadList = [];
 
-  UnmodifiableListView<DADAnimationModel> get dadList =>
-      UnmodifiableListView(_dadList);
-  UnmodifiableListView<DADAnimationModel> get items =>
-      UnmodifiableListView(_items);
+  UnmodifiableListView<DADAnimationModel> get dadList => UnmodifiableListView(_dadList);
+  UnmodifiableListView<DADAnimationModel> get items => UnmodifiableListView(_items);
 
   void addToList(DADAnimationModel model) {
     _items.remove(model);

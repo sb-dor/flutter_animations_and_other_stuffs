@@ -14,21 +14,20 @@ part 'flutter_bluetooth_thermal_printer_event.dart';
 
 part 'flutter_bluetooth_thermal_printer_state.dart';
 
-class FlutterBluetoothThermalPrinterBloc extends Bloc<
-    FlutterBluetoothThermalPrinterEvent, FlutterBluetoothThermalPrinterState> {
+class FlutterBluetoothThermalPrinterBloc
+    extends Bloc<FlutterBluetoothThermalPrinterEvent, FlutterBluetoothThermalPrinterState> {
   late final FlutterBluetoothThermalPrinterStateModel _currentState;
 
   final _bluetoothService = locator<service.BluetoothService>();
 
   FlutterBluetoothThermalPrinterBloc()
-      : super(FlutterBluetoothThermalPrinterInitial(
-            FlutterBluetoothThermalPrinterStateModel())) {
+      : super(FlutterBluetoothThermalPrinterInitial(FlutterBluetoothThermalPrinterStateModel())) {
     //
     _currentState = state.escPosPrinterStateModel;
 
     //
-    on<EscPosEmitterEvent>((event, emit) =>
-        emit(FlutterBluetoothThermalPrinterInitial(_currentState)));
+    on<EscPosEmitterEvent>(
+        (event, emit) => emit(FlutterBluetoothThermalPrinterInitial(_currentState)));
     //
     on<EscPosPrinterScannerEvent>(_escPosPrinterScannerEvent);
 
@@ -42,8 +41,7 @@ class FlutterBluetoothThermalPrinterBloc extends Bloc<
 
     on<EscPosPrinterScannerHelperEvent>(_escPosPrinterScannerEventHelper);
 
-    on<EscPosPrinterScannerSubscriptionDisposeEvent>(
-        _escPosPrinterScannerSubscriptionDisposeEvent);
+    on<EscPosPrinterScannerSubscriptionDisposeEvent>(_escPosPrinterScannerSubscriptionDisposeEvent);
   }
 
   void _escPosPrinterScannerEvent(
@@ -51,8 +49,7 @@ class FlutterBluetoothThermalPrinterBloc extends Bloc<
     Emitter<FlutterBluetoothThermalPrinterState> emit,
   ) async {
     // Start scanning for Bluetooth printer devices.
-    final Stream<PrinterDevice?> printDevicesStream =
-        _bluetoothService.scan(PrinterType.bluetooth);
+    final Stream<PrinterDevice?> printDevicesStream = _bluetoothService.scan(PrinterType.bluetooth);
 
     // Set the current state subscription to listen for scanned devices.
     _currentState.setSubscription(
@@ -105,9 +102,7 @@ class FlutterBluetoothThermalPrinterBloc extends Bloc<
           // Set a timer to disconnect after a specified duration if not connected.
           _currentState.setTimer(
             Timer(
-              const Duration(
-                  seconds:
-                      EscLocalKeys.durationForCancelingPrinterConnectionTries),
+              const Duration(seconds: EscLocalKeys.durationForCancelingPrinterConnectionTries),
               () async {
                 // Disconnect from the printer if the timer fires.
 
@@ -138,8 +133,7 @@ class FlutterBluetoothThermalPrinterBloc extends Bloc<
   ) async {
     // Check if there is a currently selected device and if it matches the device to connect.
     if (_currentState.selectedDevice != null &&
-        _currentState
-            .checkDeviceAddressWithSelectedDeviceAddress(event.device)) {
+        _currentState.checkDeviceAddressWithSelectedDeviceAddress(event.device)) {
       // If the same device is selected, disconnect from it.
       await _disconnect();
       // Clear the saved device data from local storage.
@@ -149,8 +143,7 @@ class FlutterBluetoothThermalPrinterBloc extends Bloc<
 
     // If a different device is selected, disconnect from the current device.
     if (_currentState.selectedDevice != null) {
-      final disconnected =
-          await _bluetoothService.disconnectDevice(PrinterType.bluetooth);
+      final disconnected = await _bluetoothService.disconnectDevice(PrinterType.bluetooth);
       // If disconnected successfully, clear the selected device.
       if (disconnected) _currentState.selectedDevice = null;
       // Emit the initial state after disconnection.
@@ -207,8 +200,7 @@ class FlutterBluetoothThermalPrinterBloc extends Bloc<
     // Set a timer to automatically disconnect if the connection attempt exceeds a specified duration.
     _currentState.setTimer(
       Timer(
-        const Duration(
-            seconds: EscLocalKeys.durationForCancelingPrinterConnectionTries),
+        const Duration(seconds: EscLocalKeys.durationForCancelingPrinterConnectionTries),
         () async {
           // If auto connection is not active, disconnect from the printer.
           if (!_currentState.autoConnectionState) {
@@ -230,13 +222,10 @@ class FlutterBluetoothThermalPrinterBloc extends Bloc<
       );
       // If the connection was successful, update the current state.
       if (connected) {
-        _currentState.selectedDevice =
-            localSavedDevice; // Set the selected device.
-        _currentState
-            .setAutoConnectionState(true); // Mark auto connection as active.
+        _currentState.selectedDevice = localSavedDevice; // Set the selected device.
+        _currentState.setAutoConnectionState(true); // Mark auto connection as active.
         _currentState.setStateCheckerConnection(true);
-        _currentState
-            .setTimer(null); // Clear the timer since connected successfully.
+        _currentState.setTimer(null); // Clear the timer since connected successfully.
         // Show a success message indicating the device is connected.
         _showConnectedMessage(localSavedDevice);
       } else {
@@ -276,8 +265,7 @@ class FlutterBluetoothThermalPrinterBloc extends Bloc<
     Emitter<FlutterBluetoothThermalPrinterState> emit,
   ) async {
     // Check if the Bluetooth adapter is turned off; if so, exit the function.
-    if (_bluetoothService.lastBluetoothAvailableState ==
-        BluetoothAdapterState.off) {
+    if (_bluetoothService.lastBluetoothAvailableState == BluetoothAdapterState.off) {
       return;
     }
 

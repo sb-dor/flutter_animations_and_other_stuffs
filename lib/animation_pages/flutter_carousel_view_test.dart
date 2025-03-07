@@ -4,8 +4,7 @@ class FlutterCarouselViewTest extends StatefulWidget {
   const FlutterCarouselViewTest({super.key});
 
   @override
-  State<FlutterCarouselViewTest> createState() =>
-      _FlutterCarouselViewTestState();
+  State<FlutterCarouselViewTest> createState() => _FlutterCarouselViewTestState();
 }
 
 class _FlutterCarouselViewTestState extends State<FlutterCarouselViewTest> {

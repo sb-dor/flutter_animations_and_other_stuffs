@@ -4,6 +4,5 @@ class CounterStateModel {
 
   CounterStateModel({this.counter = 0, this.changeColor = false});
 
-  CounterStateModel clone() =>
-      CounterStateModel(counter: counter, changeColor: changeColor);
+  CounterStateModel clone() => CounterStateModel(counter: counter, changeColor: changeColor);
 }

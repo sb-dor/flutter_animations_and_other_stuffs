@@ -47,16 +47,14 @@ class _FilesPageHelperState extends State<_FilesPageHelper> {
             ),
             ElevatedButton(
               onPressed: () {
-                ChangeNotProvider.read<FilePageProvider>(context)
-                    ?.downloadImageIntoDownloads();
+                ChangeNotProvider.read<FilePageProvider>(context)?.downloadImageIntoDownloads();
               },
               child: const Text("Download файл"),
             ),
             Expanded(
               child: RefreshIndicator(
                 onRefresh: () async =>
-                    ChangeNotProvider.read<FilePageProvider>(context)
-                        ?.getFiles(),
+                    ChangeNotProvider.read<FilePageProvider>(context)?.getFiles(),
                 child: ListView.builder(
                   itemCount: changeNot!.files.length,
                   itemBuilder: (context, index) {

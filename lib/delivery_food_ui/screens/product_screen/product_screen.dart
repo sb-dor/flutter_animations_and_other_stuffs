@@ -154,12 +154,11 @@ class _ProductScreenState extends State<ProductScreen> {
                         SizedBox(height: rh(space1x)),
                         Text(
                           '\$12.95',
-                          style:
-                              Theme.of(context).textTheme.titleMedium!.copyWith(
-                                    color: Theme.of(context).primaryColorDark,
-                                    fontSize: rf(18),
-                                    fontWeight: FontWeight.normal,
-                                  ),
+                          style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                                color: Theme.of(context).primaryColorDark,
+                                fontSize: rf(18),
+                                fontWeight: FontWeight.normal,
+                              ),
                         ),
                         SizedBox(height: rh(space2x)),
                         Text(

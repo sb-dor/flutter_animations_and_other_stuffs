@@ -22,8 +22,7 @@ class FlutterBackgroundServiceHelper {
 
               // you have to enable background fetch capability on xcode project
               onBackground: onIosBackground),
-          androidConfiguration:
-              AndroidConfiguration(onStart: onStart, isForegroundMode: true));
+          androidConfiguration: AndroidConfiguration(onStart: onStart, isForegroundMode: true));
 
       await service.startService();
     } catch (e) {

@@ -10,10 +10,7 @@ class ImageListView extends StatefulWidget {
   final Duration duration;
 
   const ImageListView(
-      {super.key,
-      required this.startIndex,
-      required this.startFromRight,
-      required this.duration});
+      {super.key, required this.startIndex, required this.startFromRight, required this.duration});
 
   @override
   State<ImageListView> createState() => _ImageListViewState();
@@ -53,10 +50,8 @@ class _ImageListViewState extends State<ImageListView> {
     final scrollEnd = scrollController.position.maxScrollExtent;
 
     scheduleMicrotask(() {
-      scrollController.animateTo(
-          currentScrollPosition == scrollEnd ? 0 : scrollEnd,
-          duration: widget.duration,
-          curve: Curves.linear);
+      scrollController.animateTo(currentScrollPosition == scrollEnd ? 0 : scrollEnd,
+          duration: widget.duration, curve: Curves.linear);
     });
   }
 
@@ -71,8 +66,8 @@ class _ImageListViewState extends State<ImageListView> {
               controller: scrollController,
               itemCount: 10,
               scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) => _ImageTile(
-                  image: "assets/nfts/${widget.startIndex + index}.png"))),
+              itemBuilder: (context, index) =>
+                  _ImageTile(image: "assets/nfts/${widget.startIndex + index}.png"))),
     );
   }
 }
@@ -86,9 +81,7 @@ class _ImageTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => NftScreen(imageAsset: image))),
+          context, MaterialPageRoute(builder: (context) => NftScreen(imageAsset: image))),
       child: Hero(
           tag: image,
           child: Image.asset(

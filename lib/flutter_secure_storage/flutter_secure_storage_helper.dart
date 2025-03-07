@@ -3,8 +3,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 class SecureStorageHelper {
   static SecureStorageHelper? _internal;
 
-  static SecureStorageHelper get internal =>
-      _internal ??= SecureStorageHelper._();
+  static SecureStorageHelper get internal => _internal ??= SecureStorageHelper._();
 
   SecureStorageHelper._();
 
@@ -14,12 +13,10 @@ class SecureStorageHelper {
   Future<void> init() async {
     const androidOptions = AndroidOptions(
       encryptedSharedPreferences: true,
-      keyCipherAlgorithm:
-          KeyCipherAlgorithm.RSA_ECB_OAEPwithSHA_256andMGF1Padding,
+      keyCipherAlgorithm: KeyCipherAlgorithm.RSA_ECB_OAEPwithSHA_256andMGF1Padding,
     );
     const iosOptions = IOSOptions(
-      accessibility:
-          KeychainAccessibility.first_unlock, // When the data is accessible
+      accessibility: KeychainAccessibility.first_unlock, // When the data is accessible
       synchronizable: true, // Sync data with iCloud
     );
 
@@ -48,8 +45,7 @@ class SecureStorageHelper {
     );
 
     const macosOptions = MacOsOptions(
-      accessibility:
-          KeychainAccessibility.first_unlock, // Matches iOS accessibility
+      accessibility: KeychainAccessibility.first_unlock, // Matches iOS accessibility
       synchronizable: true, // Sync with iCloud if needed
     );
 
@@ -69,8 +65,7 @@ class SecureStorageHelper {
     );
   }
 
-  Future<void> setValueByKey(
-      {required String key, required dynamic value}) async {
+  Future<void> setValueByKey({required String key, required dynamic value}) async {
     if (value == null) return;
     await _storage.write(key: key, value: value.toString());
   }

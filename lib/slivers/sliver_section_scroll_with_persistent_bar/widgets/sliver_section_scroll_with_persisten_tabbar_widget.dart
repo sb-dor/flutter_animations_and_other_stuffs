@@ -35,9 +35,7 @@ class _SliverSectionScrollWithPersistentTabBarWidgetState
   @override
   void initState() {
     super.initState();
-    context
-        .read<SliverSectionScrollBloc>()
-        .add(const SliverSectionScrollEvent.init());
+    context.read<SliverSectionScrollBloc>().add(const SliverSectionScrollEvent.init());
   }
 
   @override
@@ -48,11 +46,9 @@ class _SliverSectionScrollWithPersistentTabBarWidgetState
   }
 
   void _initPositions() async {
-    final sliverSectionScrollBlocState =
-        context.read<SliverSectionScrollBloc>().state;
+    final sliverSectionScrollBlocState = context.read<SliverSectionScrollBloc>().state;
 
-    if (sliverSectionScrollBlocState
-        is! InitializingPositionsStateOnSliverSectionScrollState) {
+    if (sliverSectionScrollBlocState is! InitializingPositionsStateOnSliverSectionScrollState) {
       return;
     }
 
@@ -91,17 +87,15 @@ class _SliverSectionScrollWithPersistentTabBarWidgetState
         listeners: [
           BlocListener<SliverSectionScrollBloc, SliverSectionScrollState>(
             listener: (context, state) {
-              if (state
-                  is InitializingPositionsStateOnSliverSectionScrollState) {
+              if (state is InitializingPositionsStateOnSliverSectionScrollState) {
                 _initPositions();
               }
             },
           ),
         ],
         child: RefreshIndicator(
-          onRefresh: () async => context
-              .read<SliverSectionScrollBloc>()
-              .add(const SliverSectionScrollEvent.init()),
+          onRefresh: () async =>
+              context.read<SliverSectionScrollBloc>().add(const SliverSectionScrollEvent.init()),
           child: CustomScrollView(
             controller: _listScrollController,
             slivers: [
@@ -122,8 +116,7 @@ class _SliverSectionScrollWithPersistentTabBarWidgetState
                       return const SliverToBoxAdapter();
                     case InProgressStateOnSliverSectionScrollState():
                       return SliverList.separated(
-                        separatorBuilder: (context, index) =>
-                            const SizedBox(height: 10),
+                        separatorBuilder: (context, index) => const SizedBox(height: 10),
                         itemCount: 10,
                         itemBuilder: (context, index) {
                           return ShimmerContainer(
@@ -142,8 +135,7 @@ class _SliverSectionScrollWithPersistentTabBarWidgetState
                             primary: false,
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
-                            separatorBuilder: (context, index) =>
-                                const SizedBox(height: 30),
+                            separatorBuilder: (context, index) => const SizedBox(height: 30),
                             itemCount: currentStateModel.categories.length,
                             itemBuilder: (context, index) {
                               return Container(
@@ -156,9 +148,7 @@ class _SliverSectionScrollWithPersistentTabBarWidgetState
                                       children: [
                                         Expanded(
                                           child: Text(
-                                            currentStateModel
-                                                    .categories[index].name ??
-                                                '',
+                                            currentStateModel.categories[index].name ?? '',
                                             style: const TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 color: Colors.black,
@@ -174,47 +164,32 @@ class _SliverSectionScrollWithPersistentTabBarWidgetState
                                     GridView.builder(
                                       padding: const EdgeInsets.all(8.0),
                                       primary: false,
-                                      gridDelegate:
-                                          const SliverGridDelegateWithFixedCrossAxisCount(
+                                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                                         crossAxisCount: 2, // Number of columns
-                                        crossAxisSpacing:
-                                            8.0, // Space between columns
-                                        mainAxisSpacing:
-                                            8.0, // Space between rows
-                                        childAspectRatio: 3 /
-                                            2, // Aspect ratio of each grid item
+                                        crossAxisSpacing: 8.0, // Space between columns
+                                        mainAxisSpacing: 8.0, // Space between rows
+                                        childAspectRatio: 3 / 2, // Aspect ratio of each grid item
                                       ),
                                       shrinkWrap: true,
-                                      physics:
-                                          const NeverScrollableScrollPhysics(),
-                                      itemCount: currentStateModel
-                                              .categories[index]
-                                              .products
-                                              ?.length ??
-                                          0,
+                                      physics: const NeverScrollableScrollPhysics(),
+                                      itemCount:
+                                          currentStateModel.categories[index].products?.length ?? 0,
                                       itemBuilder: (context, index) {
-                                        final product = currentStateModel
-                                            .categories[index].products?[index];
+                                        final product =
+                                            currentStateModel.categories[index].products?[index];
                                         return Card(
                                           elevation: 3,
                                           child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
+                                            mainAxisAlignment: MainAxisAlignment.center,
                                             children: [
-                                              const Icon(
-                                                  Icons
-                                                      .production_quantity_limits,
-                                                  size: 48,
-                                                  color: Colors.blue),
+                                              const Icon(Icons.production_quantity_limits,
+                                                  size: 48, color: Colors.blue),
                                               const SizedBox(height: 8),
                                               Text(
-                                                product?.name ??
-                                                    "Unnamed Product",
+                                                product?.name ?? "Unnamed Product",
                                                 textAlign: TextAlign.center,
                                                 style: const TextStyle(
-                                                    fontSize: 16,
-                                                    fontWeight:
-                                                        FontWeight.w500),
+                                                    fontSize: 16, fontWeight: FontWeight.w500),
                                               ),
                                             ],
                                           ),

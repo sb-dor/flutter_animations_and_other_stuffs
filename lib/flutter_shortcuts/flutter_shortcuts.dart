@@ -68,8 +68,7 @@ class _FlutterShortcutsState extends State<FlutterShortcuts> {
           ): const LeftShiftAndKeyS(),
 
           // single key activator
-          const SingleActivator(LogicalKeyboardKey.arrowUp):
-              const ArrowUpButton(),
+          const SingleActivator(LogicalKeyboardKey.arrowUp): const ArrowUpButton(),
         },
         child: Actions(
           // this actions parameter will handle the shortcuts
@@ -168,8 +167,7 @@ class _SameShortcutsWidgetState extends State<_SameShortcutsWidget> {
           ): const LeftShiftAndKeyS(),
 
           // single key activator
-          const SingleActivator(LogicalKeyboardKey.arrowUp):
-              const ArrowUpButton(),
+          const SingleActivator(LogicalKeyboardKey.arrowUp): const ArrowUpButton(),
         },
         child: Actions(
           // this actions parameter will handle the shortcuts

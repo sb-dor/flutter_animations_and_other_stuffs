@@ -5,8 +5,7 @@ class SimpleBlocPageWithStream extends StatefulWidget {
   const SimpleBlocPageWithStream({super.key});
 
   @override
-  State<SimpleBlocPageWithStream> createState() =>
-      _SimpleBlocPageWithStreamState();
+  State<SimpleBlocPageWithStream> createState() => _SimpleBlocPageWithStreamState();
 }
 
 class _SimpleBlocPageWithStreamState extends State<SimpleBlocPageWithStream> {

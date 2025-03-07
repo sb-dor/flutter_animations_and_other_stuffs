@@ -23,8 +23,7 @@ class _UsersPageTestState extends State<UsersPageTest> {
 
   @override
   Widget build(BuildContext context) {
-    final usersTodoVm =
-        UserTestChangeNotifierProvider.watch<UsersTodoVm>(context);
+    final usersTodoVm = UserTestChangeNotifierProvider.watch<UsersTodoVm>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Users page test"),

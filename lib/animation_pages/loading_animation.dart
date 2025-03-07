@@ -70,8 +70,7 @@ class SinePainter extends CustomPainter {
         ..style = PaintingStyle.stroke;
       Path path = Path();
       path.arcTo(
-        Rect.fromCircle(
-            center: Offset(size.width / 2, size.height / 2), radius: 20),
+        Rect.fromCircle(center: Offset(size.width / 2, size.height / 2), radius: 20),
         -pi / 2,
         (animation.value * (pi * 2)) / 100,
         false,
@@ -84,8 +83,7 @@ class SinePainter extends CustomPainter {
         ..style = PaintingStyle.stroke;
       Path path2 = Path();
       path2.arcTo(
-        Rect.fromCircle(
-            center: Offset(size.width / 2, size.height / 2), radius: 20),
+        Rect.fromCircle(center: Offset(size.width / 2, size.height / 2), radius: 20),
         0,
         pi * 1.99,
         false,
@@ -102,8 +100,7 @@ class SinePainter extends CustomPainter {
         ..style = PaintingStyle.stroke;
       Path path = Path();
       path.arcTo(
-        Rect.fromCircle(
-            center: Offset(size.width / 2, size.height / 2), radius: 20),
+        Rect.fromCircle(center: Offset(size.width / 2, size.height / 2), radius: 20),
         -pi / 2,
         (animation.value * (pi * 2)) / 100,
         false,

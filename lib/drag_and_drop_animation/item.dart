@@ -349,8 +349,7 @@ class MorphAnimation extends StatefulWidget {
   State<MorphAnimation> createState() => _MorphAnimationState();
 }
 
-class _MorphAnimationState extends State<MorphAnimation>
-    with SingleTickerProviderStateMixin {
+class _MorphAnimationState extends State<MorphAnimation> with SingleTickerProviderStateMixin {
   late final animation = AnimationController(
     vsync: this,
   );
@@ -479,13 +478,11 @@ class _MorphAnimationState extends State<MorphAnimation>
       avatarKey,
     );
 
-    avatarXTween =
-        Tween(begin: avatarOffsets.$1.dx, end: avatarOffsets.$2.dx).chain(
+    avatarXTween = Tween(begin: avatarOffsets.$1.dx, end: avatarOffsets.$2.dx).chain(
       CurveTween(curve: xCurve),
     );
 
-    avatarYTween =
-        Tween(begin: avatarOffsets.$1.dy, end: avatarOffsets.$2.dy).chain(
+    avatarYTween = Tween(begin: avatarOffsets.$1.dy, end: avatarOffsets.$2.dy).chain(
       CurveTween(curve: yCurve),
     );
 
@@ -494,12 +491,10 @@ class _MorphAnimationState extends State<MorphAnimation>
       firstNameKey,
     );
 
-    firstNameXTween =
-        Tween(begin: firstNameOffsets.$1.dx, end: firstNameOffsets.$2.dx)
-            .chain(CurveTween(curve: xCurve));
+    firstNameXTween = Tween(begin: firstNameOffsets.$1.dx, end: firstNameOffsets.$2.dx)
+        .chain(CurveTween(curve: xCurve));
 
-    firstNameYTween =
-        Tween(begin: firstNameOffsets.$1.dy, end: firstNameOffsets.$2.dy).chain(
+    firstNameYTween = Tween(begin: firstNameOffsets.$1.dy, end: firstNameOffsets.$2.dy).chain(
       CurveTween(curve: yCurve),
     );
 
@@ -508,18 +503,14 @@ class _MorphAnimationState extends State<MorphAnimation>
       lastNameKey,
     );
 
-    lastNameXTween =
-        Tween(begin: lastNameOffsets.$1.dx, end: lastNameOffsets.$2.dx)
-            .chain(CurveTween(curve: xCurve));
+    lastNameXTween = Tween(begin: lastNameOffsets.$1.dx, end: lastNameOffsets.$2.dx)
+        .chain(CurveTween(curve: xCurve));
 
-    lastNameYTween =
-        Tween(begin: lastNameOffsets.$1.dy, end: lastNameOffsets.$2.dy)
-            .chain(CurveTween(curve: yCurve));
+    lastNameYTween = Tween(begin: lastNameOffsets.$1.dy, end: lastNameOffsets.$2.dy)
+        .chain(CurveTween(curve: yCurve));
 
     final targetCardBox = findBoxOrNull(cardKey);
-    cardSizeTween =
-        Tween(begin: item.cardSize, end: targetCardBox?.size ?? item.cardSize!)
-            .chain(
+    cardSizeTween = Tween(begin: item.cardSize, end: targetCardBox?.size ?? item.cardSize!).chain(
       CurveTween(
         curve: Curves.easeOut,
       ),
@@ -556,10 +547,8 @@ class _MorphAnimationState extends State<MorphAnimation>
             lastNameYTween.evaluate(nameAnimation),
           );
 
-          final trailing1Opacity =
-              trailingOpacityTween.evaluate(dollarAnimation);
-          final trailing2Opcaity =
-              trailingOpacityTween.evaluate(numberAnimation);
+          final trailing1Opacity = trailingOpacityTween.evaluate(dollarAnimation);
+          final trailing2Opcaity = trailingOpacityTween.evaluate(numberAnimation);
           return Stack(
             key: stackKey,
             children: [
@@ -598,9 +587,8 @@ class _MorphAnimationState extends State<MorphAnimation>
                       ),
                       const Space.w(Dimensions.xlarge),
                       AnimatedSize(
-                        duration: Duration(
-                            milliseconds:
-                                (morphDuration.inMilliseconds / 2).round()),
+                        duration:
+                            Duration(milliseconds: (morphDuration.inMilliseconds / 2).round()),
                         curve: Curves.easeOut,
                         alignment: Alignment.centerLeft,
                         child: Offstage(

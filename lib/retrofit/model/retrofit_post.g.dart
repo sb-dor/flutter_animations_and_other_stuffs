@@ -13,8 +13,7 @@ RetrofitPost _$RetrofitPostFromJson(Map<String, dynamic> json) => RetrofitPost(
       body: json['body'] as String?,
     );
 
-Map<String, dynamic> _$RetrofitPostToJson(RetrofitPost instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$RetrofitPostToJson(RetrofitPost instance) => <String, dynamic>{
       'userId': instance.userId,
       'id': instance.id,
       'title': instance.title,

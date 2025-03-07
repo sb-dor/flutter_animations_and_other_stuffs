@@ -7,8 +7,7 @@ part 'flutter_testing_widgets_bloc.freezed.dart';
 
 @freezed
 class FlutterTestingWidgetsEvent with _$FlutterTestingWidgetsEvent {
-  const factory FlutterTestingWidgetsEvent.changeState() =
-      _ChangeStateOnFlutterTestingWidgetsEvent;
+  const factory FlutterTestingWidgetsEvent.changeState() = _ChangeStateOnFlutterTestingWidgetsEvent;
 }
 
 @freezed
@@ -19,8 +18,7 @@ class FlutterTestingWidgetsState with _$FlutterTestingWidgetsState {
 
 class FlutterTestingWidgetsBloc
     extends Bloc<FlutterTestingWidgetsEvent, FlutterTestingWidgetsState> {
-  FlutterTestingWidgetsBloc()
-      : super(const FlutterTestingWidgetsState.completed(10)) {
+  FlutterTestingWidgetsBloc() : super(const FlutterTestingWidgetsState.completed(10)) {
     on<FlutterTestingWidgetsEvent>(
       (event, emit) => event.map(
         changeState: (event) => _changeState(event, emit),

@@ -46,8 +46,7 @@ class _FlutterTutorialDeListaAnimadaState
   void _scrollListener() {
     if (_scrollController.offset >= startAnimationOffset) {
       eachIndexPosition = (_scrollController.offset - startAnimationOffset) /
-          (eachItemSize *
-              0.650); // alignment's heightFactor (take a loog the code below)
+          (eachItemSize * 0.650); // alignment's heightFactor (take a loog the code below)
     }
 
     isTopListClosed = _scrollController.offset > 50;
@@ -66,8 +65,7 @@ class _FlutterTutorialDeListaAnimadaState
         title: const Text("List animation"),
       ),
       body: ListView(
-        physics: const AlwaysScrollableScrollPhysics(
-            parent: BouncingScrollPhysics()),
+        physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
         controller: _scrollController,
         shrinkWrap: true,
         children: [
@@ -131,8 +129,8 @@ class _FlutterTutorialDeListaAnimadaState
                           child: Container(
                             height: eachItemSize,
                             width: MediaQuery.of(context).size.width,
-                            padding: const EdgeInsets.only(
-                                left: 10, right: 10, bottom: 15, top: 15),
+                            padding:
+                                const EdgeInsets.only(left: 10, right: 10, bottom: 15, top: 15),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(20),
                               child: Image.network(

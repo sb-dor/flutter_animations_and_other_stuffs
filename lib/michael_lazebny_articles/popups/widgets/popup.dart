@@ -102,12 +102,10 @@ class Popup extends StatefulWidget {
   ///
   /// A [DisplayFeature] obstructs the screen when the area it occupies is
   /// not 0 or the `state` is [DisplayFeatureState.postureHalfOpened].
-  static Iterable<Rect> findDisplayFeatureBounds(
-      List<DisplayFeature> features) {
+  static Iterable<Rect> findDisplayFeatureBounds(List<DisplayFeature> features) {
     return features
         .where((DisplayFeature d) =>
-            d.bounds.shortestSide > 0 ||
-            d.state == DisplayFeatureState.postureHalfOpened)
+            d.bounds.shortestSide > 0 || d.state == DisplayFeatureState.postureHalfOpened)
         .map((DisplayFeature d) => d.bounds);
   }
 
@@ -124,16 +122,14 @@ class _PopupState extends State<Popup> {
 
   @override
   void initState() {
-    portalController =
-        widget.controller ?? OverlayPortalController(debugLabel: 'Popup');
+    portalController = widget.controller ?? OverlayPortalController(debugLabel: 'Popup');
     super.initState();
   }
 
   @override
   void didUpdateWidget(covariant Popup oldWidget) {
     if (!identical(widget.controller, oldWidget.controller)) {
-      portalController =
-          widget.controller ?? OverlayPortalController(debugLabel: 'Popup');
+      portalController = widget.controller ?? OverlayPortalController(debugLabel: 'Popup');
     }
     super.didUpdateWidget(oldWidget);
   }
@@ -152,8 +148,7 @@ class _PopupState extends State<Popup> {
         overlayChildBuilder: (BuildContext context) => Center(
           child: EnhancedCompositedTransformFollower(
             link: _layerLink, // link the follower widget to the target widget.
-            showWhenUnlinked:
-                false, // don't show the follower widget when unlinked.
+            showWhenUnlinked: false, // don't show the follower widget when unlinked.
             followerAnchor: widget.followerAnchor,
             targetAnchor: widget.targetAnchor,
             edgePadding: widget.edgeInsets,
@@ -162,9 +157,7 @@ class _PopupState extends State<Popup> {
             enforceLeaderWidth: widget.enforceLeaderWidth,
             enforceLeaderHeight: widget.enforceLeaderHeight,
             displayFeatureBounds: displayFeatureBounds,
-            child: Builder(
-                builder: (context) =>
-                    widget.follower(context, portalController)),
+            child: Builder(builder: (context) => widget.follower(context, portalController)),
           ),
         ),
       ),
@@ -173,8 +166,7 @@ class _PopupState extends State<Popup> {
 }
 
 /// Follower builder that wraps the child widget.
-typedef PopupFollowerBuilder = Widget Function(
-    BuildContext context, Widget? child);
+typedef PopupFollowerBuilder = Widget Function(BuildContext context, Widget? child);
 
 /// Handles for follower widgets.
 abstract interface class PopupFollowerController {
@@ -264,8 +256,7 @@ class PopupFollowerState extends State<PopupFollower>
   @override
   void didChangeDependencies() {
     _scrollPosition?.removeListener(_scrollableListener);
-    _scrollPosition = Scrollable.maybeOf(context)?.position
-      ?..addListener(_scrollableListener);
+    _scrollPosition = Scrollable.maybeOf(context)?.position?..addListener(_scrollableListener);
     _parent = FollowerScope.maybeOf(context, listen: true);
     super.didChangeDependencies();
   }
@@ -356,14 +347,12 @@ class FollowerScope extends InheritedWidget {
   static FollowerScope? maybeOf(BuildContext context, {bool listen = false}) {
     return listen
         ? context.dependOnInheritedWidgetOfExactType<FollowerScope>()
-        : context
-            .getElementForInheritedWidgetOfExactType<FollowerScope>()
-            ?.widget as FollowerScope?;
+        : context.getElementForInheritedWidgetOfExactType<FollowerScope>()?.widget
+            as FollowerScope?;
   }
 
   /// Returns the root [FollowerScope] instance.
-  static FollowerScope? findRootOf(BuildContext context,
-      {bool listen = false}) {
+  static FollowerScope? findRootOf(BuildContext context, {bool listen = false}) {
     var scope = maybeOf(context, listen: listen);
     while (scope?.parent != null) {
       scope = scope?.parent;

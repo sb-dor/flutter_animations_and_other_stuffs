@@ -13,13 +13,11 @@ import 'package:rxdart/rxdart.dart';
 class HandlingErrorsModule {
   static HandlingErrorsModule? _internal;
 
-  static HandlingErrorsModule get internal =>
-      _internal ??= HandlingErrorsModule._();
+  static HandlingErrorsModule get internal => _internal ??= HandlingErrorsModule._();
 
   HandlingErrorsModule._();
 
-  final StreamController<LogModel> _logSteamController =
-      StreamController<LogModel>.broadcast();
+  final StreamController<LogModel> _logSteamController = StreamController<LogModel>.broadcast();
 
   void setUpLogging() {
     _logSteamController.stream

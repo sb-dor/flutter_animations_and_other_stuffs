@@ -79,8 +79,8 @@ class _$UsingFreezedEventsCopyWithImpl<$Res, $Val extends UsingFreezedEvents>
 
 /// @nodoc
 abstract class _$$DecrementEventImplCopyWith<$Res> {
-  factory _$$DecrementEventImplCopyWith(_$DecrementEventImpl value,
-          $Res Function(_$DecrementEventImpl) then) =
+  factory _$$DecrementEventImplCopyWith(
+          _$DecrementEventImpl value, $Res Function(_$DecrementEventImpl) then) =
       __$$DecrementEventImplCopyWithImpl<$Res>;
 }
 
@@ -184,8 +184,8 @@ abstract class DecrementEvent implements UsingFreezedEvents {
 
 /// @nodoc
 abstract class _$$IncrementEventImplCopyWith<$Res> {
-  factory _$$IncrementEventImplCopyWith(_$IncrementEventImpl value,
-          $Res Function(_$IncrementEventImpl) then) =
+  factory _$$IncrementEventImplCopyWith(
+          _$IncrementEventImpl value, $Res Function(_$IncrementEventImpl) then) =
       __$$IncrementEventImplCopyWithImpl<$Res>;
 }
 
@@ -294,8 +294,7 @@ mixin _$UsingFreezedState {
   /// Create a copy of UsingFreezedState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $UsingFreezedStateCopyWith<UsingFreezedState> get copyWith =>
-      throw _privateConstructorUsedError;
+  $UsingFreezedStateCopyWith<UsingFreezedState> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -334,10 +333,9 @@ class _$UsingFreezedStateCopyWithImpl<$Res, $Val extends UsingFreezedState>
 }
 
 /// @nodoc
-abstract class _$$UsingFreezedStateImplCopyWith<$Res>
-    implements $UsingFreezedStateCopyWith<$Res> {
-  factory _$$UsingFreezedStateImplCopyWith(_$UsingFreezedStateImpl value,
-          $Res Function(_$UsingFreezedStateImpl) then) =
+abstract class _$$UsingFreezedStateImplCopyWith<$Res> implements $UsingFreezedStateCopyWith<$Res> {
+  factory _$$UsingFreezedStateImplCopyWith(
+          _$UsingFreezedStateImpl value, $Res Function(_$UsingFreezedStateImpl) then) =
       __$$UsingFreezedStateImplCopyWithImpl<$Res>;
   @override
   @useResult
@@ -348,8 +346,8 @@ abstract class _$$UsingFreezedStateImplCopyWith<$Res>
 class __$$UsingFreezedStateImplCopyWithImpl<$Res>
     extends _$UsingFreezedStateCopyWithImpl<$Res, _$UsingFreezedStateImpl>
     implements _$$UsingFreezedStateImplCopyWith<$Res> {
-  __$$UsingFreezedStateImplCopyWithImpl(_$UsingFreezedStateImpl _value,
-      $Res Function(_$UsingFreezedStateImpl) _then)
+  __$$UsingFreezedStateImplCopyWithImpl(
+      _$UsingFreezedStateImpl _value, $Res Function(_$UsingFreezedStateImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of UsingFreezedState
@@ -386,8 +384,7 @@ class _$UsingFreezedStateImpl implements _UsingFreezedState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UsingFreezedStateImpl &&
-            (identical(other.stateModel, stateModel) ||
-                other.stateModel == stateModel));
+            (identical(other.stateModel, stateModel) || other.stateModel == stateModel));
   }
 
   @override
@@ -399,8 +396,7 @@ class _$UsingFreezedStateImpl implements _UsingFreezedState {
   @override
   @pragma('vm:prefer-inline')
   _$$UsingFreezedStateImplCopyWith<_$UsingFreezedStateImpl> get copyWith =>
-      __$$UsingFreezedStateImplCopyWithImpl<_$UsingFreezedStateImpl>(
-          this, _$identity);
+      __$$UsingFreezedStateImplCopyWithImpl<_$UsingFreezedStateImpl>(this, _$identity);
 }
 
 abstract class _UsingFreezedState implements UsingFreezedState {

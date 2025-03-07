@@ -24,8 +24,7 @@ class AnimatedComparisonTopBar extends StatefulWidget {
   final double screenWidth;
 
   @override
-  State<AnimatedComparisonTopBar> createState() =>
-      _AnimatedComparisonTopBarState();
+  State<AnimatedComparisonTopBar> createState() => _AnimatedComparisonTopBarState();
 }
 
 class _AnimatedComparisonTopBarState extends State<AnimatedComparisonTopBar> {
@@ -39,12 +38,9 @@ class _AnimatedComparisonTopBarState extends State<AnimatedComparisonTopBar> {
       builder: (context, child) {
         final widgetWidth = widget.screenWidth * 0.5;
         double pos = (5 + widgetWidth * widget.index);
-        pos = pos -
-            (widgetWidth * widget.autoComparisonTopBarController.pageOffset);
+        pos = pos - (widgetWidth * widget.autoComparisonTopBarController.pageOffset);
         return AnimatedPositioned(
-          top: widget.autoComparisonController.showAnimatedTopBar
-              ? 0
-              : -animatedTopBarHeight,
+          top: widget.autoComparisonController.showAnimatedTopBar ? 0 : -animatedTopBarHeight,
           left: pos,
           duration: widget.autoComparisonController.startedToScrollPageView
               ? Duration.zero

@@ -34,8 +34,7 @@ class AwesomeNotificationsHelper {
       required String? image}) async {
     switch (imageType) {
       case "promo_type":
-        await showNotificationWithBigImageImage(
-            title: title, body: body, image: image);
+        await showNotificationWithBigImageImage(title: title, body: body, image: image);
         break;
       case "welcome_type":
         await showSimpleNotification(title: title, body: body);
@@ -44,9 +43,7 @@ class AwesomeNotificationsHelper {
   }
 
   static Future<void> showNotificationWithBigImageImage(
-      {required String title,
-      required String body,
-      required String? image}) async {
+      {required String title, required String body, required String? image}) async {
     // debugPrint("notification image: ${ApiSettings.MAIN_URL}/get-promo-banner-img/$image");
     //if you want to show notification every time create and save "id" in shared_preferences and get that
     AwesomeNotifications().createNotification(
@@ -56,20 +53,15 @@ class AwesomeNotificationsHelper {
             title: title,
             body: body,
             bigPicture: "server-url/get-promo-banner-img/$image",
-            notificationLayout: image == null
-                ? NotificationLayout.Messaging
-                : NotificationLayout.BigPicture));
+            notificationLayout:
+                image == null ? NotificationLayout.Messaging : NotificationLayout.BigPicture));
   }
 
-  static Future<void> showSimpleNotification(
-      {required String title, required String body}) async {
+  static Future<void> showSimpleNotification({required String title, required String body}) async {
     //if you want to show notification every time create and save "id" in shared_preferences and get that
     AwesomeNotifications().createNotification(
         content: NotificationContent(
-            id: 2,
-            channelKey: "alshema_local_notify_id",
-            title: title,
-            body: body));
+            id: 2, channelKey: "alshema_local_notify_id", title: title, body: body));
   }
 
 // function for getting and saving last notification id:

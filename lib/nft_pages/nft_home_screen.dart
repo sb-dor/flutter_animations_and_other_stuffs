@@ -36,21 +36,13 @@ class NftHomeScreen extends StatelessWidget {
                         child: Column(children: [
                       SizedBox(height: 30),
                       ImageListView(
-                          startIndex: 1,
-                          startFromRight: false,
-                          duration: Duration(seconds: 25)),
+                          startIndex: 1, startFromRight: false, duration: Duration(seconds: 25)),
                       ImageListView(
-                          startIndex: 11,
-                          startFromRight: true,
-                          duration: Duration(seconds: 35)),
+                          startIndex: 11, startFromRight: true, duration: Duration(seconds: 35)),
                       ImageListView(
-                          startIndex: 21,
-                          startFromRight: false,
-                          duration: Duration(seconds: 45)),
+                          startIndex: 21, startFromRight: false, duration: Duration(seconds: 45)),
                       ImageListView(
-                          startIndex: 31,
-                          startFromRight: true,
-                          duration: Duration(seconds: 25))
+                          startIndex: 31, startFromRight: true, duration: Duration(seconds: 25))
                     ]))))),
         Positioned(
             bottom: 60,
@@ -58,48 +50,38 @@ class NftHomeScreen extends StatelessWidget {
             right: 24,
             child: SizedBox(
                 height: 170,
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const FadeAnimation(
-                          intervalStart: 0.2,
-                          child: Text("Art with NFTs",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
-                                  color: Colors.white))),
-                      const SizedBox(height: 20),
-                      const FadeAnimation(
-                          intervalStart: 0.3,
-                          child: Text(
-                              "Check out everything from this app and know moew about NFTs",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15,
-                                  color: Colors.white54))),
-                      const Spacer(),
-                      FadeAnimation(
-                          intervalStart: 0.4,
-                          child: InkWell(
-                            onTap: () => Navigation.push(context,
-                                customPageTransition: PageTransition(
-                                    child:
-                                        const AnimatedListWithAnimationPage(),
-                                    type: PageTransitionType
-                                        .scaleDownWithFadeIn)),
-                            child: Container(
-                                width: 140,
-                                height: 50,
-                                alignment: Alignment.center,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    color: const Color(0xff3000ff)),
-                                child: const Text("Discover",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold))),
-                          ))
-                    ])))
+                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  const FadeAnimation(
+                      intervalStart: 0.2,
+                      child: Text("Art with NFTs",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 18, color: Colors.white))),
+                  const SizedBox(height: 20),
+                  const FadeAnimation(
+                      intervalStart: 0.3,
+                      child: Text("Check out everything from this app and know moew about NFTs",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 15, color: Colors.white54))),
+                  const Spacer(),
+                  FadeAnimation(
+                      intervalStart: 0.4,
+                      child: InkWell(
+                        onTap: () => Navigation.push(context,
+                            customPageTransition: PageTransition(
+                                child: const AnimatedListWithAnimationPage(),
+                                type: PageTransitionType.scaleDownWithFadeIn)),
+                        child: Container(
+                            width: 140,
+                            height: 50,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                color: const Color(0xff3000ff)),
+                            child: const Text("Discover",
+                                style:
+                                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold))),
+                      ))
+                ])))
       ]),
     );
   }

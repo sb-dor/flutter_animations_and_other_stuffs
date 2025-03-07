@@ -23,8 +23,7 @@ class ListItemHeaderSliver extends StatelessWidget {
         child: SingleChildScrollView(
           padding: EdgeInsets.only(
             right: size.width -
-                (itemsOffset[itemsOffset.length - 1] -
-                    itemsOffset[itemsOffset.length - 2]),
+                (itemsOffset[itemsOffset.length - 1] - itemsOffset[itemsOffset.length - 2]),
           ),
           physics: const NeverScrollableScrollPhysics(),
           controller: bloc.scrollControllerItemHeader,
@@ -56,9 +55,7 @@ class ListItemHeaderSliver extends StatelessWidget {
                           bloc.listCategory[index].category,
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
-                            color: index == snapshot.index
-                                ? Colors.black
-                                : Colors.white,
+                            color: index == snapshot.index ? Colors.black : Colors.white,
                           ),
                         ),
                       ),

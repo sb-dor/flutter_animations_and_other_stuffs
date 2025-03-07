@@ -28,8 +28,7 @@ class _PageViewWithControllerState extends State<PageViewWithController> {
     // TODO: implement initState
     super.initState();
 
-    controller =
-        PageController(initialPage: 0, viewportFraction: 0.5, keepPage: true);
+    controller = PageController(initialPage: 0, viewportFraction: 0.5, keepPage: true);
 
     Product newP = Product(id: 1, price: 15, name: "Apple", pack_qty: 15);
 
@@ -95,9 +94,8 @@ class _PageViewWithControllerState extends State<PageViewWithController> {
                   onPageChanged: (v) => setState(() {
                         initialPage = v;
                       }),
-                  itemBuilder: (context, index) => Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: rotateImage(index)))),
+                  itemBuilder: (context, index) =>
+                      Padding(padding: const EdgeInsets.all(8.0), child: rotateImage(index)))),
         ),
       )
     ]);
@@ -130,8 +128,7 @@ class _PageViewWithControllerState extends State<PageViewWithController> {
                   child: AnimatedOpacity(
                       duration: const Duration(milliseconds: 275),
                       opacity: initialPage == index ? 1 : 0.4,
-                      child:
-                          Image.asset(pictureAssets[index], fit: BoxFit.cover)),
+                      child: Image.asset(pictureAssets[index], fit: BoxFit.cover)),
                   builder: (BuildContext context, value, Widget? child) {
                     return Transform.scale(scale: value, child: child);
                   }));

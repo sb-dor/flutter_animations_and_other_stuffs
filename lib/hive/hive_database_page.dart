@@ -38,8 +38,7 @@ class _HiveDatabasePageState extends State<HiveDatabasePage> {
           updatingValue: {"counter_value": _counter});
     } else {
       _counter = minus ? _counter - 1 : _counter++;
-      await hiveDatabaseHelper
-          .insert(boxName: 'table1', value: {'counter_value': _counter});
+      await hiveDatabaseHelper.insert(boxName: 'table1', value: {'counter_value': _counter});
     }
     setState(() {});
   }
@@ -55,10 +54,8 @@ class _HiveDatabasePageState extends State<HiveDatabasePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text("Counter _$_counter"),
-              ElevatedButton(
-                  onPressed: () => addValue(false), child: const Text("Plus")),
-              ElevatedButton(
-                  onPressed: () => addValue(true), child: const Text("Minus")),
+              ElevatedButton(onPressed: () => addValue(false), child: const Text("Plus")),
+              ElevatedButton(onPressed: () => addValue(true), child: const Text("Minus")),
             ]),
       ),
     );

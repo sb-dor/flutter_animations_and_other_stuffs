@@ -12,8 +12,7 @@ class MyHeaderTitle extends SliverPersistentHeaderDelegate {
   final String title;
 
   @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
     if (shrinkOffset > 0) {
       onHeaderChange(true);
     } else {
@@ -41,6 +40,5 @@ class MyHeaderTitle extends SliverPersistentHeaderDelegate {
   double get minExtent => headerTitle;
 
   @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>
-      false;
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) => false;
 }

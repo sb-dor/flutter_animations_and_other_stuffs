@@ -82,17 +82,13 @@ class _WheelRangePickerState extends State<WheelRangePicker> {
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       setState(() {
-        _firstScrollIndex =
-            (_firstWheelController.initialPage + 1) % slideList.length;
+        _firstScrollIndex = (_firstWheelController.initialPage + 1) % slideList.length;
 
-        _secondScrollIndex =
-            (_secondWheelController.initialPage + 1) % slideList.length;
+        _secondScrollIndex = (_secondWheelController.initialPage + 1) % slideList.length;
 
-        _firstWheelController
-            .jumpToPage(_firstWheelController.initialPage - _firstScrollIndex);
+        _firstWheelController.jumpToPage(_firstWheelController.initialPage - _firstScrollIndex);
 
-        _secondWheelController.jumpToPage(
-            _secondWheelController.initialPage - _secondScrollIndex);
+        _secondWheelController.jumpToPage(_secondWheelController.initialPage - _secondScrollIndex);
       });
     });
   }
@@ -130,12 +126,8 @@ class _WheelRangePickerState extends State<WheelRangePicker> {
                                 fontSize: 15,
                                 fontWeight: FontWeight.w500,
                                 letterSpacing: 0.9,
-                                color: index % slideList.length ==
-                                        _firstScrollIndex
-                                    ? Theme.of(context)
-                                        .textTheme
-                                        .bodySmall
-                                        ?.color
+                                color: index % slideList.length == _firstScrollIndex
+                                    ? Theme.of(context).textTheme.bodySmall?.color
                                     : Theme.of(context)
                                         .textTheme
                                         .bodySmall
@@ -154,12 +146,8 @@ class _WheelRangePickerState extends State<WheelRangePicker> {
                                 fontSize: 15,
                                 fontWeight: FontWeight.w500,
                                 letterSpacing: 0.9,
-                                color: index % slideList.length ==
-                                        _firstScrollIndex
-                                    ? Theme.of(context)
-                                        .textTheme
-                                        .bodySmall
-                                        ?.color
+                                color: index % slideList.length == _firstScrollIndex
+                                    ? Theme.of(context).textTheme.bodySmall?.color
                                     : Theme.of(context)
                                         .textTheme
                                         .bodySmall
@@ -177,13 +165,11 @@ class _WheelRangePickerState extends State<WheelRangePicker> {
                   },
                 ),
                 const Positioned.fill(
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Divider(height: 0),
-                        SizedBox(height: 40),
-                        Divider(height: 0),
-                      ]),
+                  child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+                    Divider(height: 0),
+                    SizedBox(height: 40),
+                    Divider(height: 0),
+                  ]),
                 ),
               ],
             ),
@@ -195,8 +181,8 @@ class _WheelRangePickerState extends State<WheelRangePicker> {
               PageView.builder(
                 onPageChanged: (index) {
                   try {
-                    widget.onSecondSliderChange(
-                        slideList[(index % slideList.length) + 1].toString());
+                    widget
+                        .onSecondSliderChange(slideList[(index % slideList.length) + 1].toString());
                     _secondScrollIndex = (index % slideList.length) + 1;
                   } catch (e) {
                     _secondScrollIndex = 0;
@@ -219,14 +205,9 @@ class _WheelRangePickerState extends State<WheelRangePicker> {
                               fontSize: 15,
                               fontWeight: FontWeight.w500,
                               letterSpacing: 0.9,
-                              color: index % slideList.length ==
-                                      _secondScrollIndex
+                              color: index % slideList.length == _secondScrollIndex
                                   ? Theme.of(context).textTheme.bodySmall?.color
-                                  : Theme.of(context)
-                                      .textTheme
-                                      .bodySmall
-                                      ?.color
-                                      ?.withOpacity(0.3)),
+                                  : Theme.of(context).textTheme.bodySmall?.color?.withOpacity(0.3)),
                       duration: const Duration(milliseconds: 500),
                       child: Text(
                         _WidgetFunctions.separateNumbers(number: number),
@@ -240,14 +221,9 @@ class _WheelRangePickerState extends State<WheelRangePicker> {
                             fontSize: 15,
                             fontWeight: FontWeight.w500,
                             letterSpacing: 0.9,
-                            color: index % slideList.length ==
-                                    _secondScrollIndex
+                            color: index % slideList.length == _secondScrollIndex
                                 ? Theme.of(context).textTheme.bodySmall?.color
-                                : Theme.of(context)
-                                    .textTheme
-                                    .bodySmall
-                                    ?.color
-                                    ?.withOpacity(0.3),
+                                : Theme.of(context).textTheme.bodySmall?.color?.withOpacity(0.3),
                           ),
                       duration: const Duration(milliseconds: 500),
                       child: Text(

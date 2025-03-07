@@ -21,8 +21,7 @@ class _RiveAnimationPageState extends State<RiveAnimationPage> {
                 bottom: 10,
                 left: 5,
                 child: Column(children: [
-                  Text("Welcome to Animations",
-                      style: TextStyle(color: Colors.white, fontSize: 20))
+                  Text("Welcome to Animations", style: TextStyle(color: Colors.white, fontSize: 20))
                 ]))
           ],
         ));

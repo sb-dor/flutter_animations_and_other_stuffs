@@ -6,12 +6,11 @@ class FlutterThreeDimensionDrawer extends StatefulWidget {
   const FlutterThreeDimensionDrawer({super.key});
 
   @override
-  State<FlutterThreeDimensionDrawer> createState() =>
-      _FlutterThreeDimensionDrawerState();
+  State<FlutterThreeDimensionDrawer> createState() => _FlutterThreeDimensionDrawerState();
 }
 
-class _FlutterThreeDimensionDrawerState
-    extends State<FlutterThreeDimensionDrawer> with TickerProviderStateMixin {
+class _FlutterThreeDimensionDrawerState extends State<FlutterThreeDimensionDrawer>
+    with TickerProviderStateMixin {
   late AnimationController drawerController;
   late AnimationController childController;
   late Animation<double> drawerAnimation;
@@ -21,16 +20,13 @@ class _FlutterThreeDimensionDrawerState
   void initState() {
     // TODO: implement initState
     super.initState();
-    drawerController = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 500));
-    childController = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 500));
+    drawerController =
+        AnimationController(vsync: this, duration: const Duration(milliseconds: 500));
+    childController = AnimationController(vsync: this, duration: const Duration(milliseconds: 500));
 
-    drawerAnimation =
-        Tween<double>(begin: 0, end: -pi / 2).animate(drawerController);
+    drawerAnimation = Tween<double>(begin: 0, end: -pi / 2).animate(drawerController);
 
-    childAnimation =
-        Tween<double>(begin: 0, end: -pi / 2).animate(childController);
+    childAnimation = Tween<double>(begin: 0, end: -pi / 2).animate(childController);
   }
 
   @override

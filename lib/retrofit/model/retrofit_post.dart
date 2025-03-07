@@ -16,8 +16,7 @@ class RetrofitPost {
     this.body,
   });
 
-  factory RetrofitPost.fromJson(Map<String, dynamic> json) =>
-      _$RetrofitPostFromJson(json);
+  factory RetrofitPost.fromJson(Map<String, dynamic> json) => _$RetrofitPostFromJson(json);
 
   Map<String, dynamic> toJson() => _$RetrofitPostToJson(this);
 }

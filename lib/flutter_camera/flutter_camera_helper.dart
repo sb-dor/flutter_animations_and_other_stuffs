@@ -3,8 +3,7 @@ import 'package:camera/camera.dart';
 class FlutterCameraHelper {
   static FlutterCameraHelper? _instance;
 
-  static FlutterCameraHelper get instance =>
-      _instance ??= FlutterCameraHelper._();
+  static FlutterCameraHelper get instance => _instance ??= FlutterCameraHelper._();
 
   FlutterCameraHelper._();
 

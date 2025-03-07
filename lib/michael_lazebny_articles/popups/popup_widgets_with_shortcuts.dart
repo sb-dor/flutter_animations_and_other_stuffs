@@ -6,8 +6,7 @@ class PopupWidgetsWithShortcuts extends StatefulWidget {
   const PopupWidgetsWithShortcuts({super.key});
 
   @override
-  State<PopupWidgetsWithShortcuts> createState() =>
-      _PopupWidgetsWithShortcutsState();
+  State<PopupWidgetsWithShortcuts> createState() => _PopupWidgetsWithShortcutsState();
 }
 
 class _PopupWidgetsWithShortcutsState extends State<PopupWidgetsWithShortcuts> {
@@ -28,8 +27,7 @@ class _PopupWidgetsWithShortcutsState extends State<PopupWidgetsWithShortcuts> {
             Popup(
               follower: (context, controller) => Shortcuts(
                 shortcuts: {
-                  LogicalKeySet(LogicalKeyboardKey.escape):
-                      const DismissIntent(),
+                  LogicalKeySet(LogicalKeyboardKey.escape): const DismissIntent(),
                 },
                 child: Actions(
                   actions: {

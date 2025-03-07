@@ -25,11 +25,9 @@ class _NestedScrollViewPageState extends State<NestedScrollViewPage> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       _nestedScrollController.addListener(() {
-        if (_nestedScrollController.offset >= kToolbarHeight &&
-            sliverAppBarEnd == false) {
+        if (_nestedScrollController.offset >= kToolbarHeight && sliverAppBarEnd == false) {
           sliverAppBarEnd = true;
-          offsetToMinus =
-              (_nestedScrollController.offset - kToolbarHeight) + 10;
+          offsetToMinus = (_nestedScrollController.offset - kToolbarHeight) + 10;
         } else {
           sliverAppBarEnd = false;
           offsetToMinus = 0.0;
@@ -71,8 +69,7 @@ class _NestedScrollViewPageState extends State<NestedScrollViewPage> {
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
                             padding: const EdgeInsets.only(left: 10, right: 10),
-                            separatorBuilder: (context, index) =>
-                                const SizedBox(height: 10),
+                            separatorBuilder: (context, index) => const SizedBox(height: 10),
                             itemCount: 30,
                             itemBuilder: (context, index) {
                               return Text("${index + 1}");
@@ -92,8 +89,7 @@ class _NestedScrollViewPageState extends State<NestedScrollViewPage> {
 
 class _HelloWorldDelegate extends SliverPersistentHeaderDelegate {
   @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
     return Container(
       height: 30,
       color: Colors.red,
@@ -115,6 +111,5 @@ class _HelloWorldDelegate extends SliverPersistentHeaderDelegate {
   double get minExtent => 30;
 
   @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>
-      true;
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) => true;
 }

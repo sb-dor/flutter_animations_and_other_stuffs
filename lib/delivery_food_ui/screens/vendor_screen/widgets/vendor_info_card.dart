@@ -5,10 +5,7 @@ import '../../../core/widgets/icon/custom_icons.dart';
 
 class VendorInfoCard extends StatelessWidget {
   const VendorInfoCard(
-      {super.key,
-      required this.title,
-      required this.rating,
-      required this.sideImagePath});
+      {super.key, required this.title, required this.rating, required this.sideImagePath});
 
   final String title;
   final double rating;
@@ -52,10 +49,7 @@ class VendorInfoCard extends StatelessWidget {
                   ),
                   Text(
                     "$rating",
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleMedium!
-                        .copyWith(fontSize: rf(12)),
+                    style: Theme.of(context).textTheme.titleMedium!.copyWith(fontSize: rf(12)),
                   ),
                   Text(
                     " • fast food • \$\$ • 15-20 min",
@@ -82,10 +76,7 @@ class VendorInfoCard extends StatelessWidget {
                     ),
                     child: Text(
                       "Free delivery",
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleMedium!
-                          .copyWith(fontSize: rf(12)),
+                      style: Theme.of(context).textTheme.titleMedium!.copyWith(fontSize: rf(12)),
                     ),
                   ),
                   SizedBox(

@@ -7,8 +7,7 @@ class StatelessWidgetWithState extends StatelessWidget {
   StatelessElement createElement() => MyStatelessElement(this);
 
   @override
-  Widget build(BuildContext context) =>
-      throw UnsupportedError('NO NEEDED WIDGET');
+  Widget build(BuildContext context) => throw UnsupportedError('NO NEEDED WIDGET');
 }
 
 class MyStatelessElement extends StatelessElement {

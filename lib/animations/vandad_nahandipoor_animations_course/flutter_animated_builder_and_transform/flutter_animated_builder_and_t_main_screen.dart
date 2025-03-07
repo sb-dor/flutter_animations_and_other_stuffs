@@ -9,8 +9,7 @@ class FlutterAnimatedBuilderAndTMainScreen extends StatefulWidget {
       _FlutterAnimatedBuilderAndTMainScreenState();
 }
 
-class _FlutterAnimatedBuilderAndTMainScreenState
-    extends State<FlutterAnimatedBuilderAndTMainScreen>
+class _FlutterAnimatedBuilderAndTMainScreenState extends State<FlutterAnimatedBuilderAndTMainScreen>
     with SingleTickerProviderStateMixin {
   // SingleTickerProviderStateMixin can have only one animationController
   // TickerProviderStateMixin can have more than one animationControllers
@@ -23,8 +22,7 @@ class _FlutterAnimatedBuilderAndTMainScreenState
     // TODO: implement initState
     super.initState();
 
-    _controller =
-        AnimationController(vsync: this, duration: const Duration(seconds: 2));
+    _controller = AnimationController(vsync: this, duration: const Duration(seconds: 2));
 
     //2π радиан = 360°
     // π радиан = 180°

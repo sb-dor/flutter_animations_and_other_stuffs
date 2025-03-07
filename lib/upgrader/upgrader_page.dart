@@ -40,12 +40,9 @@ class _UpGraderPageState extends State<UpGraderPage> {
               title: const Text("Обновить?"),
               content: Text(message ?? ''),
               actions: [
+                TextButton(onPressed: () => Navigator.pop(context), child: const Text("ПОЗЖЕ")),
                 TextButton(
-                    onPressed: () => Navigator.pop(context),
-                    child: const Text("ПОЗЖЕ")),
-                TextButton(
-                    onPressed: () =>
-                        Upgrader.sharedInstance.sendUserToAppStore(),
+                    onPressed: () => Upgrader.sharedInstance.sendUserToAppStore(),
                     child: const Text("ОБНОВИТЬ")),
               ],
             ),

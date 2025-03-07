@@ -18,8 +18,8 @@ class MockHandlingErrors {
 
         numberForMocks++;
         if (numberForMocks < 100) {
-          Future.delayed(Duration.zero,
-              throwMockError); // Avoid stack overflow by scheduling the next call
+          Future.delayed(
+              Duration.zero, throwMockError); // Avoid stack overflow by scheduling the next call
         }
       }
     }

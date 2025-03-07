@@ -9,8 +9,7 @@ class ClientSocketModel {
   ClientSocketModel(this.ipAddress);
 
   Future<void> connectToTheServer() async {
-    final serverListener =
-        await Socket.connect(ipAddress, 3000); // write same port of server
+    final serverListener = await Socket.connect(ipAddress, 3000); // write same port of server
 
     // listen all messages that coming from server
     serverListener.listen(

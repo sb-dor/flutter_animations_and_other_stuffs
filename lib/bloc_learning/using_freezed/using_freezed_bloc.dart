@@ -50,6 +50,5 @@ class UsingFreezedEvents with _$UsingFreezedEvents {
 
 @Freezed()
 class UsingFreezedState with _$UsingFreezedState {
-  const factory UsingFreezedState(UsingFreezedStateModel stateModel) =
-      _UsingFreezedState;
+  const factory UsingFreezedState(UsingFreezedStateModel stateModel) = _UsingFreezedState;
 }

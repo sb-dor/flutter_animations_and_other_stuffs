@@ -7,8 +7,7 @@ class UsingFreezedPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<UsingFreezedBloc, UsingFreezedState>(
-        builder: (context, state) {
+    return BlocBuilder<UsingFreezedBloc, UsingFreezedState>(builder: (context, state) {
       return Scaffold(
         appBar: AppBar(
           title: const Text("Bloc using freezed"),
@@ -17,15 +16,11 @@ class UsingFreezedPage extends StatelessWidget {
           child: Column(
             children: [
               IconButton(
-                  onPressed: () => context
-                      .read<UsingFreezedBloc>()
-                      .add(const DecrementEvent()),
+                  onPressed: () => context.read<UsingFreezedBloc>().add(const DecrementEvent()),
                   icon: const Icon(Icons.add)),
               Text("${state.stateModel.number}"),
               IconButton(
-                  onPressed: () => context
-                      .read<UsingFreezedBloc>()
-                      .add(const IncrementEvent()),
+                  onPressed: () => context.read<UsingFreezedBloc>().add(const IncrementEvent()),
                   icon: const Icon(Icons.add)),
             ],
           ),

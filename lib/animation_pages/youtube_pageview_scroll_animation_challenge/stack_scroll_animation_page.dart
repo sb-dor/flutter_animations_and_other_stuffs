@@ -6,8 +6,7 @@ class StackScrollAnimationPage extends StatefulWidget {
   const StackScrollAnimationPage({super.key});
 
   @override
-  State<StackScrollAnimationPage> createState() =>
-      _StackScrollAnimationPageState();
+  State<StackScrollAnimationPage> createState() => _StackScrollAnimationPageState();
 }
 
 class _StackScrollAnimationPageState extends State<StackScrollAnimationPage> {
@@ -83,8 +82,7 @@ class _StackScrollAnimationPageState extends State<StackScrollAnimationPage> {
     return SafeArea(
       child: Scaffold(
         appBar: PreferredSize(
-          preferredSize:
-              Size(MediaQuery.of(context).size.width, kToolbarHeight),
+          preferredSize: Size(MediaQuery.of(context).size.width, kToolbarHeight),
           child: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -145,15 +143,13 @@ class _StackScrollAnimationPageState extends State<StackScrollAnimationPage> {
                                         bottom: 0,
                                         top: 0,
                                         child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
+                                          mainAxisAlignment: MainAxisAlignment.center,
                                           children: [
                                             SizedBox(
                                               width: 200,
                                               height: e.value.height,
                                               child: ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
+                                                borderRadius: BorderRadius.circular(10),
                                                 child: Image.asset(
                                                   "assets/parallax_effect_images/${e.value.image}",
                                                   fit: BoxFit.cover,
@@ -177,42 +173,33 @@ class _StackScrollAnimationPageState extends State<StackScrollAnimationPage> {
                               controller: _pageController,
                               itemCount: demoCardData.length,
                               itemBuilder: (context, index) {
-                                debugPrint(
-                                    "index: $index | page: ${_pageController.page}");
+                                debugPrint("index: $index | page: ${_pageController.page}");
 
                                 // animation should work only on specific card item in stack
                                 // while we scroll item that time animation will work
-                                if (_pageController
-                                        .position.hasContentDimensions &&
+                                if (_pageController.position.hasContentDimensions &&
                                     (_pageController.page ?? 0) > index &&
                                     (_pageController.page ?? 0) < index + 1) {
                                   // position from left side of the screen
-                                  double positionFromLeftSide =
-                                      -(index + 1) * leftSidePercentage;
+                                  double positionFromLeftSide = -(index + 1) * leftSidePercentage;
 
                                   //
                                   demoCardData[index].position =
-                                      ((index - (_pageController.page ?? 0))
-                                                  .abs() *
-                                              400) +
+                                      ((index - (_pageController.page ?? 0)).abs() * 400) +
                                           positionFromLeftSide;
 
                                   //
-                                } else if ((_pageController.page ?? 0) <
-                                        index &&
-                                    _pageController
-                                        .position.hasContentDimensions) {
+                                } else if ((_pageController.page ?? 0) < index &&
+                                    _pageController.position.hasContentDimensions) {
                                   demoCardData[index].position = -(index + 1) *
                                       leftSidePercentage; // after ending animation set their default position
 
                                   //
                                 }
 
-                                if (_pageController
-                                    .position.hasContentDimensions) {
+                                if (_pageController.position.hasContentDimensions) {
                                   if (index > _pageController.page!) {
-                                    demoCardData[index].height =
-                                        _findPosByIndex(index);
+                                    demoCardData[index].height = _findPosByIndex(index);
                                   } else {}
                                 }
 
@@ -253,8 +240,7 @@ class _StackScrollAnimationPageState extends State<StackScrollAnimationPage> {
                 padding: const EdgeInsets.only(left: 20, right: 20),
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                separatorBuilder: (context, index) =>
-                    const SizedBox(height: 10),
+                separatorBuilder: (context, index) => const SizedBox(height: 10),
                 itemCount: demoCardData.length,
                 itemBuilder: (context, index) {
                   return SizedBox(

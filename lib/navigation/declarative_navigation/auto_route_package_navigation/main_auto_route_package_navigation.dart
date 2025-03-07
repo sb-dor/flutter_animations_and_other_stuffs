@@ -5,12 +5,10 @@ class MainAutoRoutePackageScreen extends StatefulWidget {
   const MainAutoRoutePackageScreen({super.key});
 
   @override
-  State<MainAutoRoutePackageScreen> createState() =>
-      _MainAutoRoutePackageScreenState();
+  State<MainAutoRoutePackageScreen> createState() => _MainAutoRoutePackageScreenState();
 }
 
-class _MainAutoRoutePackageScreenState
-    extends State<MainAutoRoutePackageScreen> {
+class _MainAutoRoutePackageScreenState extends State<MainAutoRoutePackageScreen> {
   final _appRouter = AppRouter();
 
   @override

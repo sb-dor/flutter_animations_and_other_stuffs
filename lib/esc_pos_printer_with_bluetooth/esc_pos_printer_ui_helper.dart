@@ -13,10 +13,8 @@ class EscPosPrinterUIHelper {
   static late Font boldFont;
 
   static init() async {
-    font =
-        Font.ttf((await rootBundle.load("assets/fonts/OpenSans-Regular.ttf")));
-    boldFont =
-        Font.ttf((await rootBundle.load("assets/fonts/OpenSans-Bold.ttf")));
+    font = Font.ttf((await rootBundle.load("assets/fonts/OpenSans-Regular.ttf")));
+    boldFont = Font.ttf((await rootBundle.load("assets/fonts/OpenSans-Bold.ttf")));
   }
 
   static List<Map<String, dynamic>> data = [
@@ -50,8 +48,8 @@ class EscPosPrinterUIHelper {
 
     matW.debugPrint("page width: ${page.width}");
     matW.debugPrint("page height: ${page.height}");
-    final ren.PdfPageImage? pageImg = await page.render(
-        width: 400, height: page.height + 200, backgroundColor: "#ffffff");
+    final ren.PdfPageImage? pageImg =
+        await page.render(width: 400, height: page.height + 200, backgroundColor: "#ffffff");
 
     if (pageImg != null) {
       String path = (await getApplicationDocumentsDirectory()).path;
@@ -72,12 +70,10 @@ class EscPosPrinterUIHelper {
         pageFormat: const PdfPageFormat(5.8 * PdfPageFormat.cm, double.infinity,
             marginAll: 0.1 * PdfPageFormat.cm),
         theme: ThemeData.withFont(base: font, bold: boldFont),
-        build: (context) =>
-            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        build: (context) => Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Center(
-                  child: Text("Avera",
-                      style: TextStyle(
-                          fontSize: 15, fontWeight: FontWeight.bold))),
+                  child:
+                      Text("Avera", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold))),
               SizedBox(height: 2),
               Row(mainAxisAlignment: MainAxisAlignment.start, children: [
                 Text("Дата: ${DateTime.now().toString().substring(0, 19)}",
@@ -85,39 +81,31 @@ class EscPosPrinterUIHelper {
               ]),
               SizedBox(height: 5),
               Row(children: [
-                Text("N",
-                    textAlign: TextAlign.left,
-                    style: const TextStyle(fontSize: 8)),
+                Text("N", textAlign: TextAlign.left, style: const TextStyle(fontSize: 8)),
                 SizedBox(width: 8),
                 Expanded(
                     child: Text("Наим-ие",
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(fontSize: 8))),
+                        textAlign: TextAlign.center, style: const TextStyle(fontSize: 8))),
                 Expanded(
                     child: Text("Кол-во",
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(fontSize: 8))),
+                        textAlign: TextAlign.center, style: const TextStyle(fontSize: 8))),
                 Expanded(
                     child: Text("Цена",
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(fontSize: 8))),
+                        textAlign: TextAlign.center, style: const TextStyle(fontSize: 8))),
                 Expanded(
                     child: Text("Сумма",
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(fontSize: 8))),
+                        textAlign: TextAlign.center, style: const TextStyle(fontSize: 8))),
               ]),
               Divider(),
               for (int i = 0; i < data.length; i++)
                 Column(children: [
                   Row(children: [
                     Text("${i + 1}",
-                        textAlign: TextAlign.left,
-                        style: const TextStyle(fontSize: 10)),
+                        textAlign: TextAlign.left, style: const TextStyle(fontSize: 10)),
                     SizedBox(width: 10),
                     Expanded(
                         child: Text("${data[i]['title']}",
-                            textAlign: TextAlign.left,
-                            style: const TextStyle(fontSize: 10))),
+                            textAlign: TextAlign.left, style: const TextStyle(fontSize: 10))),
                   ]),
                   SizedBox(height: 3),
                   Row(children: [
@@ -125,16 +113,13 @@ class EscPosPrinterUIHelper {
                     Expanded(child: Container()),
                     Expanded(
                         child: Text("${data[i]['qty']}",
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(fontSize: 10))),
+                            textAlign: TextAlign.center, style: const TextStyle(fontSize: 10))),
                     Expanded(
                         child: Text("${data[i]['price']}",
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(fontSize: 10))),
+                            textAlign: TextAlign.center, style: const TextStyle(fontSize: 10))),
                     Expanded(
                         child: Text("${data[i]['qty'] * data[i]['price']}",
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(fontSize: 10))),
+                            textAlign: TextAlign.center, style: const TextStyle(fontSize: 10))),
                   ]),
                   Divider(color: PdfColors.black, thickness: 2)
                 ]),
@@ -143,26 +128,22 @@ class EscPosPrinterUIHelper {
                   Expanded(
                       child: Text("Всего",
                           textAlign: TextAlign.right,
-                          style: TextStyle(
-                              fontSize: 12, fontWeight: FontWeight.bold))),
+                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold))),
                   Expanded(
                       child: Text("10",
                           textAlign: TextAlign.right,
-                          style: TextStyle(
-                              fontSize: 12, fontWeight: FontWeight.bold))),
+                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold))),
                   SizedBox(width: 10)
                 ]),
                 Row(children: [
                   Expanded(
                       child: Text("Сумма Скидки -%",
                           textAlign: TextAlign.right,
-                          style: TextStyle(
-                              fontSize: 12, fontWeight: FontWeight.bold))),
+                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold))),
                   Expanded(
                       child: Text("0",
                           textAlign: TextAlign.right,
-                          style: TextStyle(
-                              fontSize: 12, fontWeight: FontWeight.bold))),
+                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold))),
                   SizedBox(width: 10)
                 ]),
                 Divider(color: PdfColors.black, thickness: 2)
@@ -172,39 +153,33 @@ class EscPosPrinterUIHelper {
                   Expanded(
                       child: Text("Итого к оплате",
                           textAlign: TextAlign.right,
-                          style: TextStyle(
-                              fontSize: 12, fontWeight: FontWeight.bold))),
+                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold))),
                   Expanded(
                       child: Text("10",
                           textAlign: TextAlign.right,
-                          style: TextStyle(
-                              fontSize: 12, fontWeight: FontWeight.bold))),
+                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold))),
                   SizedBox(width: 10)
                 ]),
                 Row(children: [
                   Expanded(
                       child: Text("Наличными",
                           textAlign: TextAlign.right,
-                          style: TextStyle(
-                              fontSize: 12, fontWeight: FontWeight.bold))),
+                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold))),
                   Expanded(
                       child: Text("0",
                           textAlign: TextAlign.right,
-                          style: TextStyle(
-                              fontSize: 12, fontWeight: FontWeight.bold))),
+                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold))),
                   SizedBox(width: 10)
                 ]),
                 Row(children: [
                   Expanded(
                       child: Text("Сдача",
                           textAlign: TextAlign.right,
-                          style: TextStyle(
-                              fontSize: 12, fontWeight: FontWeight.bold))),
+                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold))),
                   Expanded(
                       child: Text("0",
                           textAlign: TextAlign.right,
-                          style: TextStyle(
-                              fontSize: 12, fontWeight: FontWeight.bold))),
+                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold))),
                   SizedBox(width: 10)
                 ]),
                 Divider(color: PdfColors.black, thickness: 2)

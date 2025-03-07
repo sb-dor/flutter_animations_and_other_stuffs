@@ -39,7 +39,6 @@ class ShimmerContainer extends StatelessWidget {
                 width: width,
                 height: height,
                 decoration: BoxDecoration(
-                    color: backgroundColor ?? Colors.white,
-                    borderRadius: borderRadius)));
+                    color: backgroundColor ?? Colors.white, borderRadius: borderRadius)));
   }
 }

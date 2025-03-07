@@ -4,12 +4,10 @@ class FlutterDrawSomethingWithFinger extends StatefulWidget {
   const FlutterDrawSomethingWithFinger({super.key});
 
   @override
-  State<FlutterDrawSomethingWithFinger> createState() =>
-      _FlutterDrawSomethingWithFingerState();
+  State<FlutterDrawSomethingWithFinger> createState() => _FlutterDrawSomethingWithFingerState();
 }
 
-class _FlutterDrawSomethingWithFingerState
-    extends State<FlutterDrawSomethingWithFinger> {
+class _FlutterDrawSomethingWithFingerState extends State<FlutterDrawSomethingWithFinger> {
   Color? selectedColor;
   double xPos = 0.0;
   double yPos = 0.0;
@@ -51,8 +49,7 @@ class _FlutterDrawSomethingWithFingerState
             ),
           ),
           Container(
-            padding:
-                const EdgeInsets.only(left: 10, right: 10, bottom: 10, top: 50),
+            padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10, top: 50),
             child: Row(
               children: [
                 GestureDetector(
@@ -63,9 +60,7 @@ class _FlutterDrawSomethingWithFingerState
                     width: 50,
                     height: 50,
                     color: Colors.red,
-                    child: selectedColor == Colors.red
-                        ? const Icon(Icons.check)
-                        : const SizedBox(),
+                    child: selectedColor == Colors.red ? const Icon(Icons.check) : const SizedBox(),
                   ),
                 ),
                 const SizedBox(width: 30),
@@ -77,9 +72,8 @@ class _FlutterDrawSomethingWithFingerState
                     width: 50,
                     height: 50,
                     color: Colors.green,
-                    child: selectedColor == Colors.green
-                        ? const Icon(Icons.check)
-                        : const SizedBox(),
+                    child:
+                        selectedColor == Colors.green ? const Icon(Icons.check) : const SizedBox(),
                   ),
                 ),
                 TextButton(

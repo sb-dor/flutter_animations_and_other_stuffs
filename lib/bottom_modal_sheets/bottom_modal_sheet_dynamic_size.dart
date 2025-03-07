@@ -15,67 +15,49 @@ class BottomModalSheetDynamicSize {
           return Wrap(children: [
             SizedBox(
                 width: double.maxFinite,
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const SizedBox(height: 10),
-                      Container(
-                          width: 50,
-                          height: 7,
-                          decoration: BoxDecoration(
-                              color: Colors.grey.shade500,
-                              borderRadius: BorderRadius.circular(8))),
-                      const SizedBox(height: 10),
-                      SizedBox(
-                          width: double.maxFinite,
-                          child: SingleChildScrollView(
-                              child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10, right: 10, bottom: 10),
-                                  child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        const SizedBox(height: 15),
-                                        RichText(
-                                            text: TextSpan(children: [
-                                          TextSpan(
-                                              text: "≪",
-                                              style: TextStyle(
-                                                  fontSize: 16,
-                                                  color: Theme.of(context)
-                                                      .textTheme
-                                                      .displayLarge
-                                                      ?.color,
-                                                  fontWeight: FontWeight.bold)),
-                                          TextSpan(
-                                              text:
-                                                  " ${fake.lorem.sentence()} ",
-                                              style: TextStyle(
-                                                  fontSize: 20,
-                                                  color: Theme.of(context)
-                                                      .textTheme
-                                                      .displayLarge
-                                                      ?.color,
-                                                  fontWeight: FontWeight.bold)),
-                                          TextSpan(
-                                              text: "≫",
-                                              style: TextStyle(
-                                                  fontSize: 16,
-                                                  color: Theme.of(context)
-                                                      .textTheme
-                                                      .displayLarge
-                                                      ?.color,
-                                                  fontWeight: FontWeight.bold))
-                                        ])),
-                                        const SizedBox(height: 10),
-                                        Text(fake.lorem.sentence(),
-                                            style:
-                                                const TextStyle(fontSize: 16),
-                                            maxLines: 11),
-                                        const SizedBox(height: 15)
-                                      ]))))
-                    ]))
+                child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+                  const SizedBox(height: 10),
+                  Container(
+                      width: 50,
+                      height: 7,
+                      decoration: BoxDecoration(
+                          color: Colors.grey.shade500, borderRadius: BorderRadius.circular(8))),
+                  const SizedBox(height: 10),
+                  SizedBox(
+                      width: double.maxFinite,
+                      child: SingleChildScrollView(
+                          child: Padding(
+                              padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                              child:
+                                  Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                                const SizedBox(height: 15),
+                                RichText(
+                                    text: TextSpan(children: [
+                                  TextSpan(
+                                      text: "≪",
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          color: Theme.of(context).textTheme.displayLarge?.color,
+                                          fontWeight: FontWeight.bold)),
+                                  TextSpan(
+                                      text: " ${fake.lorem.sentence()} ",
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          color: Theme.of(context).textTheme.displayLarge?.color,
+                                          fontWeight: FontWeight.bold)),
+                                  TextSpan(
+                                      text: "≫",
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          color: Theme.of(context).textTheme.displayLarge?.color,
+                                          fontWeight: FontWeight.bold))
+                                ])),
+                                const SizedBox(height: 10),
+                                Text(fake.lorem.sentence(),
+                                    style: const TextStyle(fontSize: 16), maxLines: 11),
+                                const SizedBox(height: 15)
+                              ]))))
+                ]))
           ]);
         });
   }
@@ -89,37 +71,30 @@ class BottomModalSheetDynamicSize {
         context: context,
         backgroundColor: Colors.transparent,
         builder: (context) {
-          DraggableScrollableController controller =
-              DraggableScrollableController();
+          DraggableScrollableController controller = DraggableScrollableController();
           return DraggableScrollableSheet(
               controller: controller,
               initialChildSize: 0.7,
-              builder: (BuildContext context,
-                      ScrollController scrollController) =>
-                  Container(
-                      color: Colors.white,
-                      child: ListView(
-                          controller: scrollController,
-                          children: List.generate(
-                              100, (index) => Text("${index + 1}")).toList())));
+              builder: (BuildContext context, ScrollController scrollController) => Container(
+                  color: Colors.white,
+                  child: ListView(
+                      controller: scrollController,
+                      children: List.generate(100, (index) => Text("${index + 1}")).toList())));
         });
   }
 
   //
   static bottomDoubleModalSheet({required BuildContext context}) async {
-    context
-        .read<BottomModalSheetCubits>()
-        .initChangeableHeight(context: context);
+    context.read<BottomModalSheetCubits>().initChangeableHeight(context: context);
     showModalBottomSheet(
         backgroundColor: Colors.white,
         context: context,
         isScrollControlled: true,
         shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(30), topRight: Radius.circular(30))),
+            borderRadius:
+                BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30))),
         builder: (context) =>
-            BlocBuilder<BottomModalSheetCubits, BottomModalSheetStates>(
-                builder: (context, state) {
+            BlocBuilder<BottomModalSheetCubits, BottomModalSheetStates>(builder: (context, state) {
               var currentState = state.bottomModalSheetStateModel;
               return SizedBox(
                   height: currentState.changeableHeight,
@@ -142,12 +117,9 @@ class BottomModalSheetDynamicSize {
         isScrollControlled: true,
         backgroundColor: Colors.transparent,
         builder: (context) {
-          DraggableScrollableController scrollableController =
-              DraggableScrollableController();
+          DraggableScrollableController scrollableController = DraggableScrollableController();
           scrollableController.addListener(() {
-            context
-                .read<BottomModalSheetCubits>()
-                .changeHeight(context: context);
+            context.read<BottomModalSheetCubits>().changeHeight(context: context);
           });
           return BlocBuilder<BottomModalSheetCubits, BottomModalSheetStates>(
               builder: (context, state) {
@@ -177,16 +149,14 @@ class BottomModalSheetDynamicSize {
                                     debugPrint("Dragging to the left");
                                   }
                                 },
-                                child: Container(
-                                    height: 200, color: Colors.transparent)),
+                                child: Container(height: 200, color: Colors.transparent)),
                             BlurContainer(
                               child: Column(
                                   children: List.generate(
                                       100,
                                       (index) => Text(
                                             "Number: ${index + 1}",
-                                            style: const TextStyle(
-                                                fontWeight: FontWeight.bold),
+                                            style: const TextStyle(fontWeight: FontWeight.bold),
                                           )).toList()),
                             )
                           ]));

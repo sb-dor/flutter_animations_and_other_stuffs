@@ -24,12 +24,10 @@ final class AutoComparisonController with ChangeNotifier {
       scrollingTextOffset = _scrollControllerGroup.offset;
       notifyListeners();
     }
-    if (!showAnimatedTopBar &&
-        _scrollControllerGroup.offset >= animatedTopBarHeight) {
+    if (!showAnimatedTopBar && _scrollControllerGroup.offset >= animatedTopBarHeight) {
       showAnimatedTopBar = true;
       notifyListeners();
-    } else if (showAnimatedTopBar &&
-        _scrollControllerGroup.offset < animatedTopBarHeight) {
+    } else if (showAnimatedTopBar && _scrollControllerGroup.offset < animatedTopBarHeight) {
       showAnimatedTopBar = false;
       notifyListeners();
     }

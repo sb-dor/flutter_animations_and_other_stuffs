@@ -29,12 +29,9 @@ final class Schema2 extends i0.VersionedSchema {
 
 class Shape0 extends i0.VersionedTable {
   Shape0({required super.source, required super.alias}) : super.aliased();
-  i1.GeneratedColumn<int> get id =>
-      columnsByName['id']! as i1.GeneratedColumn<int>;
-  i1.GeneratedColumn<String> get name =>
-      columnsByName['name']! as i1.GeneratedColumn<String>;
-  i1.GeneratedColumn<String> get content =>
-      columnsByName['content']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<int> get id => columnsByName['id']! as i1.GeneratedColumn<int>;
+  i1.GeneratedColumn<String> get name => columnsByName['name']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get content => columnsByName['content']! as i1.GeneratedColumn<String>;
   i1.GeneratedColumn<DateTime> get createdAt =>
       columnsByName['created_at']! as i1.GeneratedColumn<DateTime>;
 }
@@ -43,17 +40,13 @@ i1.GeneratedColumn<int> _column_0(String aliasedName) =>
     i1.GeneratedColumn<int>('id', aliasedName, false,
         hasAutoIncrement: true,
         type: i1.DriftSqlType.int,
-        defaultConstraints:
-            i1.GeneratedColumn.constraintIsAlways('PRIMARY KEY AUTOINCREMENT'));
+        defaultConstraints: i1.GeneratedColumn.constraintIsAlways('PRIMARY KEY AUTOINCREMENT'));
 i1.GeneratedColumn<String> _column_1(String aliasedName) =>
-    i1.GeneratedColumn<String>('name', aliasedName, false,
-        type: i1.DriftSqlType.string);
+    i1.GeneratedColumn<String>('name', aliasedName, false, type: i1.DriftSqlType.string);
 i1.GeneratedColumn<String> _column_2(String aliasedName) =>
-    i1.GeneratedColumn<String>('content', aliasedName, false,
-        type: i1.DriftSqlType.string);
+    i1.GeneratedColumn<String>('content', aliasedName, false, type: i1.DriftSqlType.string);
 i1.GeneratedColumn<DateTime> _column_3(String aliasedName) =>
-    i1.GeneratedColumn<DateTime>('created_at', aliasedName, true,
-        type: i1.DriftSqlType.dateTime);
+    i1.GeneratedColumn<DateTime>('created_at', aliasedName, true, type: i1.DriftSqlType.dateTime);
 
 final class Schema3 extends i0.VersionedSchema {
   Schema3({required super.database}) : super(version: 3);
@@ -79,8 +72,7 @@ final class Schema3 extends i0.VersionedSchema {
 }
 
 i1.GeneratedColumn<String> _column_4(String aliasedName) =>
-    i1.GeneratedColumn<String>('content', aliasedName, true,
-        type: i1.DriftSqlType.string);
+    i1.GeneratedColumn<String>('content', aliasedName, true, type: i1.DriftSqlType.string);
 
 final class Schema4 extends i0.VersionedSchema {
   Schema4({required super.database}) : super(version: 4);
@@ -108,21 +100,16 @@ final class Schema4 extends i0.VersionedSchema {
 
 class Shape1 extends i0.VersionedTable {
   Shape1({required super.source, required super.alias}) : super.aliased();
-  i1.GeneratedColumn<int> get id =>
-      columnsByName['id']! as i1.GeneratedColumn<int>;
-  i1.GeneratedColumn<String> get name =>
-      columnsByName['name']! as i1.GeneratedColumn<String>;
-  i1.GeneratedColumn<String> get content =>
-      columnsByName['content']! as i1.GeneratedColumn<String>;
-  i1.GeneratedColumn<String> get author =>
-      columnsByName['author']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<int> get id => columnsByName['id']! as i1.GeneratedColumn<int>;
+  i1.GeneratedColumn<String> get name => columnsByName['name']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get content => columnsByName['content']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get author => columnsByName['author']! as i1.GeneratedColumn<String>;
   i1.GeneratedColumn<DateTime> get createdAt =>
       columnsByName['created_at']! as i1.GeneratedColumn<DateTime>;
 }
 
 i1.GeneratedColumn<String> _column_5(String aliasedName) =>
-    i1.GeneratedColumn<String>('author', aliasedName, true,
-        type: i1.DriftSqlType.string);
+    i1.GeneratedColumn<String>('author', aliasedName, true, type: i1.DriftSqlType.string);
 
 final class Schema5 extends i0.VersionedSchema {
   Schema5({required super.database}) : super(version: 5);
@@ -150,24 +137,18 @@ final class Schema5 extends i0.VersionedSchema {
 
 class Shape2 extends i0.VersionedTable {
   Shape2({required super.source, required super.alias}) : super.aliased();
-  i1.GeneratedColumn<int> get id =>
-      columnsByName['id']! as i1.GeneratedColumn<int>;
-  i1.GeneratedColumn<String> get name =>
-      columnsByName['name']! as i1.GeneratedColumn<String>;
-  i1.GeneratedColumn<String> get content =>
-      columnsByName['content']! as i1.GeneratedColumn<String>;
-  i1.GeneratedColumn<String> get author =>
-      columnsByName['author']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<int> get id => columnsByName['id']! as i1.GeneratedColumn<int>;
+  i1.GeneratedColumn<String> get name => columnsByName['name']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get content => columnsByName['content']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get author => columnsByName['author']! as i1.GeneratedColumn<String>;
   i1.GeneratedColumn<String> get createdAt =>
       columnsByName['created_at']! as i1.GeneratedColumn<String>;
 }
 
 i1.GeneratedColumn<String> _column_6(String aliasedName) =>
-    i1.GeneratedColumn<String>('name', aliasedName, true,
-        type: i1.DriftSqlType.string);
+    i1.GeneratedColumn<String>('name', aliasedName, true, type: i1.DriftSqlType.string);
 i1.GeneratedColumn<String> _column_7(String aliasedName) =>
-    i1.GeneratedColumn<String>('created_at', aliasedName, true,
-        type: i1.DriftSqlType.string);
+    i1.GeneratedColumn<String>('created_at', aliasedName, true, type: i1.DriftSqlType.string);
 i0.MigrationStepWithVersion migrationSteps({
   required Future<void> Function(i1.Migrator m, Schema2 schema) from1To2,
   required Future<void> Function(i1.Migrator m, Schema3 schema) from2To3,

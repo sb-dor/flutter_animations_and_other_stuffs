@@ -25,8 +25,7 @@ class NeumorphicContainerState extends State<NeumorphicContainer> {
         appBar: AppBar(actions: [
           TextButton(
               onPressed: () async => await Connections.saveImageWithDio(),
-              child: const Text("Dio request",
-                  style: TextStyle(color: Colors.amber)))
+              child: const Text("Dio request", style: TextStyle(color: Colors.amber)))
         ]),
         body: SizedBox(
           width: double.maxFinite,
@@ -91,8 +90,7 @@ class NeumorphicContainerState extends State<NeumorphicContainer> {
                             color: Colors.green,
                             width: 200,
                             height: 100,
-                            child:
-                                const Center(child: Text("AnimatedCrossFade"))),
+                            child: const Center(child: Text("AnimatedCrossFade"))),
                       ),
                       secondChild: GestureDetector(
                         onTap: () {
@@ -105,12 +103,10 @@ class NeumorphicContainerState extends State<NeumorphicContainer> {
                             color: Colors.red,
                             width: 200,
                             height: 150,
-                            child:
-                                const Center(child: Text("AnimatedCrossFade"))),
+                            child: const Center(child: Text("AnimatedCrossFade"))),
                       ),
-                      crossFadeState: switchWidget
-                          ? CrossFadeState.showFirst
-                          : CrossFadeState.showSecond,
+                      crossFadeState:
+                          switchWidget ? CrossFadeState.showFirst : CrossFadeState.showSecond,
                       duration: const Duration(seconds: 1)),
                   const SizedBox(height: 30),
                   AnimatedPhysicalModel(
@@ -130,8 +126,7 @@ class NeumorphicContainerState extends State<NeumorphicContainer> {
                           color: Colors.white,
                           width: 200,
                           height: 100,
-                          child: const Center(
-                              child: Text("Animated Physical Model"))),
+                          child: const Center(child: Text("Animated Physical Model"))),
                     ),
                   ),
                   const SizedBox(height: 30),

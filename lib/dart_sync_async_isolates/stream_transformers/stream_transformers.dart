@@ -129,15 +129,13 @@ final class StreamTransformers {
   }
 
   void simpleStreamTransformer() {
-    final transformedStream =
-        _streamSource.map<String>((element) => "each element: $element");
+    final transformedStream = _streamSource.map<String>((element) => "each element: $element");
     // if you use "asyncMap" instead of "map" it means that you will be dealing with futures (asynchronously)
     // example;
 
     // any async code that you want to do do here inside "asyncMap"
     // do not use async code inside "listen" of stream
-    final asyncTransformedStream =
-        _streamSource.asyncMap<String>((element) async {
+    final asyncTransformedStream = _streamSource.asyncMap<String>((element) async {
       await Future.delayed(const Duration(seconds: 1));
       return "element: is: $element";
     });

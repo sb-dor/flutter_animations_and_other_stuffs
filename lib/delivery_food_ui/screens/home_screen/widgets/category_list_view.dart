@@ -30,9 +30,7 @@ class _CategoryListViewState extends State<CategoryListView> {
             },
             child: CategoryItem(
               name: name[index],
-              backgroundColor: _selectedIndex == index
-                  ? Colors.white
-                  : const Color(0xfff2e3db),
+              backgroundColor: _selectedIndex == index ? Colors.white : const Color(0xfff2e3db),
               icon: Image.asset(
                 categoryIconList[index],
                 width: rw(35),
@@ -48,10 +46,7 @@ class _CategoryListViewState extends State<CategoryListView> {
 
 class CategoryItem extends StatelessWidget {
   const CategoryItem(
-      {super.key,
-      required this.icon,
-      required this.name,
-      required this.backgroundColor});
+      {super.key, required this.icon, required this.name, required this.backgroundColor});
 
   final Widget icon;
   final String name;

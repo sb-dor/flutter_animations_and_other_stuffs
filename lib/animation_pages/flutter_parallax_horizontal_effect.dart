@@ -37,12 +37,10 @@ class FlutterParallaxHorizontalEffect extends StatefulWidget {
   const FlutterParallaxHorizontalEffect({super.key});
 
   @override
-  State<FlutterParallaxHorizontalEffect> createState() =>
-      _FlutterParallaxEffectState();
+  State<FlutterParallaxHorizontalEffect> createState() => _FlutterParallaxEffectState();
 }
 
-class _FlutterParallaxEffectState
-    extends State<FlutterParallaxHorizontalEffect> {
+class _FlutterParallaxEffectState extends State<FlutterParallaxHorizontalEffect> {
   late PageController _pageController;
 
   @override
@@ -88,16 +86,14 @@ class _FlutterParallaxEffectState
                   }
 
                   //for more animation use:
-                  double gauss =
-                      math.exp(-(math.pow((pageOffset.abs() - 0.5), 2) / 0.08));
+                  double gauss = math.exp(-(math.pow((pageOffset.abs() - 0.5), 2) / 0.08));
 
                   //also you can remove transform.translate if you want
                   return Transform.translate(
                     offset: Offset(-32 * gauss * pageOffset.sign, 0),
                     child: Container(
                       clipBehavior: Clip.none,
-                      margin:
-                          const EdgeInsets.only(left: 8, right: 8, bottom: 24),
+                      margin: const EdgeInsets.only(left: 8, right: 8, bottom: 24),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(32),
@@ -111,13 +107,10 @@ class _FlutterParallaxEffectState
                       ),
                       child: Column(
                         children: <Widget>[
-                          Align(
-                              alignment: Alignment(pageOffset, 0),
-                              child: const Text("Avaz")),
+                          Align(alignment: Alignment(pageOffset, 0), child: const Text("Avaz")),
                           // Image
                           ClipRRect(
-                            borderRadius: const BorderRadius.vertical(
-                                top: Radius.circular(32)),
+                            borderRadius: const BorderRadius.vertical(top: Radius.circular(32)),
                             //remember that for a good animation your picture should not be as phone size
                             //rather laptop size
                             //we just want to animate image

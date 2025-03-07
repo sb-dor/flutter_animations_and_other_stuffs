@@ -49,10 +49,8 @@ class ScaleAnimation extends StatelessWidget {
     return TweenAnimationBuilder(
         tween: Tween<double>(begin: begin ?? 2, end: end ?? 1),
         duration: duration ?? const Duration(milliseconds: 750),
-        curve: Interval(intervalStart ?? 0, intervalEnd ?? 1,
-            curve: curve ?? Curves.fastOutSlowIn),
-        builder: (context, value, child) =>
-            Transform.scale(scale: value, child: child),
+        curve: Interval(intervalStart ?? 0, intervalEnd ?? 1, curve: curve ?? Curves.fastOutSlowIn),
+        builder: (context, value, child) => Transform.scale(scale: value, child: child),
         child: child);
   }
 }

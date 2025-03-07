@@ -25,18 +25,14 @@ class ExcelConversionState with _$ExcelConversionState {
 
   bool get saving => maybeMap(orElse: () => false, saving: (_) => true);
 
-  const factory ExcelConversionState.initial() =
-      InitialStateOnProductExcelConversionState;
+  const factory ExcelConversionState.initial() = InitialStateOnProductExcelConversionState;
 
-  const factory ExcelConversionState.saving() =
-      SavingStateOnProductExcelConversionState;
+  const factory ExcelConversionState.saving() = SavingStateOnProductExcelConversionState;
 
-  const factory ExcelConversionState.successful() =
-      SuccessfulStateOnProductExcelConversionState;
+  const factory ExcelConversionState.successful() = SuccessfulStateOnProductExcelConversionState;
 }
 
-class ExcelConversionBloc
-    extends Bloc<ExcelConversionEvent, ExcelConversionState> {
+class ExcelConversionBloc extends Bloc<ExcelConversionEvent, ExcelConversionState> {
   // final IProductExcelConversionRepo _iProductExcelConversionRepo;
 
   ExcelConversionBloc() : super(const ExcelConversionState.initial()) {
@@ -80,22 +76,18 @@ class ExcelConversionBloc
           final csvString = await each.readAsString();
           final csvData = const CsvToListConverter().convert(csvString);
 
-          final List<Map<String, dynamic>> jsonData =
-              await excelConverter.convertCSV(csvData);
+          final List<Map<String, dynamic>> jsonData = await excelConverter.convertCSV(csvData);
 
-          products.addAll(jsonData
-              .map((element) => ExcelConverterProduct.fromJsonExcel(element)));
+          products.addAll(jsonData.map((element) => ExcelConverterProduct.fromJsonExcel(element)));
         } else if (extension == "xls") {
           // TODO: write code for xls
           // : Package that Im using does not support XLS
         } else {
           final excelFile = Excel.decodeBytes(await each.readAsBytes());
 
-          final List<Map<String, dynamic>> jsonData =
-              await excelConverter.convert(excelFile);
+          final List<Map<String, dynamic>> jsonData = await excelConverter.convert(excelFile);
 
-          products.addAll(jsonData
-              .map((element) => ExcelConverterProduct.fromJsonExcel(element)));
+          products.addAll(jsonData.map((element) => ExcelConverterProduct.fromJsonExcel(element)));
         }
       }
 

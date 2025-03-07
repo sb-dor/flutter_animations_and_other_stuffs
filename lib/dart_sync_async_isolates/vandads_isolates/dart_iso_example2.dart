@@ -37,11 +37,7 @@ abstract class DartIsoExample2 {
     }
 
     // is using for returning something
-    return broadcastRp
-        .takeWhile((element) => element is String)
-        .cast<String>()
-        .take(1)
-        .first;
+    return broadcastRp.takeWhile((element) => element is String).cast<String>().take(1).first;
   }
 
   // remember that you should create top level function or static method if you want to isolate work
@@ -50,8 +46,7 @@ abstract class DartIsoExample2 {
     final rp = ReceivePort();
     sp.send(rp.sendPort);
 
-    final messages =
-        rp.takeWhile((element) => element is String).cast<String>();
+    final messages = rp.takeWhile((element) => element is String).cast<String>();
 
     await for (var each in messages) {
       for (var eachMessage in messagesForResponse.entries) {

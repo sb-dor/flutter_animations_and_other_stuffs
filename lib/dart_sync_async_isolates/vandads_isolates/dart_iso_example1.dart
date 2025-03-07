@@ -20,8 +20,8 @@ abstract class DartIsoExample1 {
   }
 
   static void _getMessages(SendPort sp) async {
-    await for (var now in Stream.periodic(
-        const Duration(seconds: 1), (_) => DateTime.now().toIso8601String())) {
+    await for (var now
+        in Stream.periodic(const Duration(seconds: 1), (_) => DateTime.now().toIso8601String())) {
       sp.send(now);
     }
   }

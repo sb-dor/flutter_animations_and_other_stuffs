@@ -46,10 +46,8 @@ class _DriftPageState extends State<DriftPage> {
   late final TodoDriftDatabaseHelper _todoDriftDatabaseHelper;
 
   final TextEditingController _textEditingController = TextEditingController();
-  final TextEditingController _contextEditingController =
-      TextEditingController();
-  final TextEditingController _authorEditingController =
-      TextEditingController();
+  final TextEditingController _contextEditingController = TextEditingController();
+  final TextEditingController _authorEditingController = TextEditingController();
 
   final List<TodoDrift> _todos = [];
 

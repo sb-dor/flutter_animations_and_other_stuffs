@@ -55,11 +55,7 @@ class FilePageProvider extends ChangeNotifier {
 
     // recursive : true | means that if this directory has another directory (folder) it will return files or folders of that folder too
     // https://youtu.be/21o4tS7a2-U?list=PLrnbjo4fMQwYxZMrbyweTFaOTmMbZEx1z&t=2533
-    files = downloadsPath
-            ?.listSync(recursive: true)
-            .map((e) => File(e.path))
-            .toList() ??
-        [];
+    files = downloadsPath?.listSync(recursive: true).map((e) => File(e.path)).toList() ?? [];
 
     notifyListeners();
   }

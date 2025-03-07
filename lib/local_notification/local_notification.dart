@@ -16,10 +16,7 @@ class LocalNotification {
 
   //call this fun for showing local notification
   static Future<void> showNotification(
-      {int id = 0,
-      required String title,
-      required String body,
-      var playLoad}) async {
+      {int id = 0, required String title, required String body, var playLoad}) async {
     // AndroidNotificationDetails androidNotificationDetails = AndroidNotificationDetails(
     //     "any_id", "channel_name",
     //     playSound: true, importance: Importance.max, priority: Priority.high);

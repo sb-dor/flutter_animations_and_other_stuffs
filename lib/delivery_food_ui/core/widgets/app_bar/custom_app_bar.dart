@@ -71,13 +71,9 @@ class CustomAppBar extends StatelessWidget {
                           ),
                           Text(
                             'Back',
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleLarge!
-                                .copyWith(
+                            style: Theme.of(context).textTheme.titleLarge!.copyWith(
                                   fontSize: rf(14),
-                                  color:
-                                      showOptions ? Colors.black : Colors.white,
+                                  color: showOptions ? Colors.black : Colors.white,
                                 ),
                           ),
                         ],

@@ -9,8 +9,7 @@ class SineWavePage extends StatefulWidget {
   State<SineWavePage> createState() => _SineWavePageState();
 }
 
-class _SineWavePageState extends State<SineWavePage>
-    with SingleTickerProviderStateMixin {
+class _SineWavePageState extends State<SineWavePage> with SingleTickerProviderStateMixin {
   late AnimationController _sineAnimationController;
   late Animation<double> _sineAnimation;
 
@@ -68,8 +67,7 @@ class SinePainter extends CustomPainter {
     Path path = Path()..moveTo(0, size.height / 2);
 
     for (int i = 0; i <= 30; i++) {
-      path.lineTo(i * size.width / 30,
-          size.height / 2 + sin(animation.value + i * pi / 15) * 20);
+      path.lineTo(i * size.width / 30, size.height / 2 + sin(animation.value + i * pi / 15) * 20);
     }
 
     path.lineTo(size.width, size.height / 2);

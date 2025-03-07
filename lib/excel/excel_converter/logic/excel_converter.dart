@@ -31,8 +31,7 @@ class ExcelConverter {
         final row = rows[i];
 
         if (i == 0) {
-          columnHeaders =
-              row.map((cell) => convertCellValueToString(cell?.value)).toList();
+          columnHeaders = row.map((cell) => convertCellValueToString(cell?.value)).toList();
           continue;
         }
 
@@ -55,10 +54,8 @@ class ExcelConverter {
     return dataRows;
   }
 
-  Future<List<Map<String, dynamic>>> convertCSV(
-      List<List<dynamic>> csvData) async {
-    List<String> columnHeaders =
-        csvData.first.map((header) => header.toString()).toList();
+  Future<List<Map<String, dynamic>>> convertCSV(List<List<dynamic>> csvData) async {
+    List<String> columnHeaders = csvData.first.map((header) => header.toString()).toList();
 
     columnHeaders = columnHeaders.first.split(";");
 

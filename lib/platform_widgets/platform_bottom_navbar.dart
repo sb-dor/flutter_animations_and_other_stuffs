@@ -47,8 +47,7 @@ class _PlatformBottomNavbarState extends State<PlatformBottomNavbar> {
     super.initState();
     _items = _screens(context)
         .map(
-          (e) => const BottomNavigationBarItem(
-              icon: Icon(Icons.home), label: "Home"),
+          (e) => const BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
         )
         .toList();
   }

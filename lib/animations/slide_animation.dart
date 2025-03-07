@@ -47,12 +47,9 @@ class SlideAnimation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TweenAnimationBuilder<Offset>(
-        tween: Tween<Offset>(
-            begin: begin ?? const Offset(250, 0),
-            end: end ?? const Offset(0, 0)),
+        tween: Tween<Offset>(begin: begin ?? const Offset(250, 0), end: end ?? const Offset(0, 0)),
         duration: duration ?? const Duration(milliseconds: 750),
-        curve: Interval(intervalStart ?? 0, intervalEnd ?? 1,
-            curve: curve ?? Curves.fastOutSlowIn),
+        curve: Interval(intervalStart ?? 0, intervalEnd ?? 1, curve: curve ?? Curves.fastOutSlowIn),
         child: child,
         builder: (BuildContext context, Offset? value, Widget? child) =>
             Transform.translate(offset: value!, child: child));

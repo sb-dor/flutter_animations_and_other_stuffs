@@ -113,15 +113,11 @@ class _CustomDropdown<T> extends StatelessWidget {
             onTap: onChanged == null
                 ? null
                 : () {
-                    controller.isShowing
-                        ? controller.hide()
-                        : controller.show();
+                    controller.isShowing ? controller.hide() : controller.show();
                   },
             child: Padding(
               padding: const EdgeInsets.all(8),
-              child: activeItem == null
-                  ? const Text('Select an item')
-                  : Text(activeItem!.label),
+              child: activeItem == null ? const Text('Select an item') : Text(activeItem!.label),
             ),
           ),
         ),

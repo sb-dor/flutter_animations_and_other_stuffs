@@ -20,8 +20,7 @@ class ExcelPage extends StatefulWidget {
 }
 
 class _ExcelPageState extends State<ExcelPage> {
-  TextEditingController fieldForSearchController =
-      TextEditingController(text: '');
+  TextEditingController fieldForSearchController = TextEditingController(text: '');
   String nameOfColumn = '';
   _TypeOfSolve _typeOfSolve = _TypeOfSolve(type: 'average');
   _TypeOfSolve? tempOfSolve;
@@ -38,8 +37,7 @@ class _ExcelPageState extends State<ExcelPage> {
         File file = File(pickingFile!.files.single.path!);
         debugPrint("excel file path: ${file.path}");
 
-        if (path.extension(file.path) == '.xlsx' ||
-            path.extension(file.path) == '.xls') {
+        if (path.extension(file.path) == '.xlsx' || path.extension(file.path) == '.xls') {
           var bytes = await File(file.path).readAsBytes();
           var excel = Excel.decodeBytes(bytes);
           excelFileFunc(excel: excel);
@@ -60,8 +58,7 @@ class _ExcelPageState extends State<ExcelPage> {
       debugPrint("maxRows: ${excel.tables[table]?.maxRows}");
 
       int indexOfTitle = excel.tables[table]?.rows[0].indexWhere((element) =>
-              element?.value.toString().toLowerCase() ==
-              nameOfColumn.trim().toLowerCase()) ??
+              element?.value.toString().toLowerCase() == nameOfColumn.trim().toLowerCase()) ??
           -1;
       if (indexOfTitle == -1) {
         showMessage(message: "Field was not found");
@@ -97,8 +94,8 @@ class _ExcelPageState extends State<ExcelPage> {
 
   void showMessage({String? message}) {
     if (context.mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(message ?? "Error to open file")));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(message ?? "Error to open file")));
     }
   }
 
@@ -122,69 +119,63 @@ class _ExcelPageState extends State<ExcelPage> {
           ),
         ],
       ),
-      body: ListView(
-          padding: const EdgeInsets.only(left: 10, right: 10),
+      body: ListView(padding: const EdgeInsets.only(left: 10, right: 10), children: [
+        Row(children: [
+          Expanded(
+              child: TextField(
+            controller: fieldForSearchController,
+            decoration: const InputDecoration(hintText: "Field for doing something"),
+          )),
+          ElevatedButton(
+              style: ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(
+                      tempOfSolve?.type == "average" ? Colors.orange : null)),
+              onPressed: () => setState(() {
+                    tempOfSolve = _TypeOfSolve(type: "average");
+                    saved = false;
+                  }),
+              child: const Text("AV")),
+          ElevatedButton(
+              style: ButtonStyle(
+                  backgroundColor:
+                      WidgetStatePropertyAll(tempOfSolve?.type == "sum" ? Colors.orange : null)),
+              onPressed: () => setState(() {
+                    tempOfSolve = _TypeOfSolve(type: "sum");
+                    saved = false;
+                  }),
+              child: const Text("SUM")),
+        ]),
+        const SizedBox(height: 10),
+        Row(
           children: [
-            Row(children: [
-              Expanded(
-                  child: TextField(
-                controller: fieldForSearchController,
-                decoration: const InputDecoration(
-                    hintText: "Field for doing something"),
-              )),
-              ElevatedButton(
-                  style: ButtonStyle(
-                      backgroundColor: WidgetStatePropertyAll(
-                          tempOfSolve?.type == "average"
-                              ? Colors.orange
-                              : null)),
-                  onPressed: () => setState(() {
-                        tempOfSolve = _TypeOfSolve(type: "average");
-                        saved = false;
-                      }),
-                  child: const Text("AV")),
-              ElevatedButton(
-                  style: ButtonStyle(
-                      backgroundColor: WidgetStatePropertyAll(
-                          tempOfSolve?.type == "sum" ? Colors.orange : null)),
-                  onPressed: () => setState(() {
-                        tempOfSolve = _TypeOfSolve(type: "sum");
-                        saved = false;
-                      }),
-                  child: const Text("SUM")),
-            ]),
-            const SizedBox(height: 10),
-            Row(
-              children: [
-                ElevatedButton(
-                  onPressed: () async => pickFile(),
-                  child: const Text("Pick excel file"),
-                ),
-                ElevatedButton(
-                  onPressed: () async {
-                    setState(() {
-                      nameOfColumn = fieldForSearchController.text.trim();
-                      if (tempOfSolve != null && nameOfColumn.isNotEmpty) {
-                        saved = true;
-                        _typeOfSolve = tempOfSolve!;
-                      } else {
-                        showMessage(
-                            message: "Choose type and check field name");
-                      }
-                    });
-                  },
-                  child: const Text("Save"),
-                ),
-              ],
+            ElevatedButton(
+              onPressed: () async => pickFile(),
+              child: const Text("Pick excel file"),
             ),
-            Column(
-                children: res.entries
-                    .map((e) => Row(children: [
-                          Text("Table: ${e.key} | "),
-                          Expanded(child: Text("Value: ${e.value}"))
-                        ]))
-                    .toList())
-          ]),
+            ElevatedButton(
+              onPressed: () async {
+                setState(() {
+                  nameOfColumn = fieldForSearchController.text.trim();
+                  if (tempOfSolve != null && nameOfColumn.isNotEmpty) {
+                    saved = true;
+                    _typeOfSolve = tempOfSolve!;
+                  } else {
+                    showMessage(message: "Choose type and check field name");
+                  }
+                });
+              },
+              child: const Text("Save"),
+            ),
+          ],
+        ),
+        Column(
+            children: res.entries
+                .map((e) => Row(children: [
+                      Text("Table: ${e.key} | "),
+                      Expanded(child: Text("Value: ${e.value}"))
+                    ]))
+                .toList())
+      ]),
     );
   }
 }

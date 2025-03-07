@@ -13,8 +13,7 @@ class YandexMapScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mapHeight = MediaQuery.of(context).size.height;
-    return BlocBuilder<MainMapCubit, MainMapStates>(
-        builder: (context, mapState) {
+    return BlocBuilder<MainMapCubit, MainMapStates>(builder: (context, mapState) {
       var currentState = mapState.mapStateModel;
       return Scaffold(
         floatingActionButton: Padding(
@@ -25,48 +24,36 @@ class YandexMapScreen extends StatelessWidget {
             children: [
               Row(children: [
                 Expanded(
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        ElevatedButton.icon(
-                            onPressed: () => context
-                                .read<MainMapCubit>()
-                                .addPolygonPlacesInMap(),
-                            icon: const Icon(Icons.policy),
-                            label: const Text("polygon")),
-                        ElevatedButton.icon(
-                            onPressed: () => context
-                                .read<MainMapCubit>()
-                                .suggestPositionsInRequest(null),
-                            icon: const Icon(Icons.settings_suggest),
-                            label: const Text("suggest address")),
-                      ]),
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    ElevatedButton.icon(
+                        onPressed: () => context.read<MainMapCubit>().addPolygonPlacesInMap(),
+                        icon: const Icon(Icons.policy),
+                        label: const Text("polygon")),
+                    ElevatedButton.icon(
+                        onPressed: () =>
+                            context.read<MainMapCubit>().suggestPositionsInRequest(null),
+                        icon: const Icon(Icons.settings_suggest),
+                        label: const Text("suggest address")),
+                  ]),
                 ),
                 Expanded(
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        if (!currentState.selectingUserDestination)
-                          ElevatedButton.icon(
-                              onPressed: () => context
-                                  .read<MainMapCubit>()
-                                  .startToSelectDestination(),
-                              icon: const Icon(Icons.policy),
-                              label: const Text("Polyline Two")),
-                        ElevatedButton.icon(
-                            onPressed: () async => await showDialog(
-                                        barrierColor: Colors.transparent,
-                                        context: context,
-                                        builder: (context) =>
-                                            const GetLatLotByScreenDrawingScreen())
-                                    .then((value) {
-                                  context
-                                      .read<MainMapCubit>()
-                                      .clearSavedPoints();
-                                }),
-                            icon: const Icon(Icons.policy),
-                            label: const Text("Get Position by screen")),
-                      ]),
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    if (!currentState.selectingUserDestination)
+                      ElevatedButton.icon(
+                          onPressed: () => context.read<MainMapCubit>().startToSelectDestination(),
+                          icon: const Icon(Icons.policy),
+                          label: const Text("Polyline Two")),
+                    ElevatedButton.icon(
+                        onPressed: () async => await showDialog(
+                                    barrierColor: Colors.transparent,
+                                    context: context,
+                                    builder: (context) => const GetLatLotByScreenDrawingScreen())
+                                .then((value) {
+                              context.read<MainMapCubit>().clearSavedPoints();
+                            }),
+                        icon: const Icon(Icons.policy),
+                        label: const Text("Get Position by screen")),
+                  ]),
                 )
               ]),
               Row(children: [
@@ -90,10 +77,7 @@ class YandexMapScreen extends StatelessWidget {
                                 color: Colors.blueAccent.shade100,
                                 borderRadius: BorderRadius.circular(20)),
                             padding: const EdgeInsets.all(10),
-                            child: const Row(children: [
-                              Icon(Icons.map),
-                              Text("Change Map Type")
-                            ]),
+                            child: const Row(children: [Icon(Icons.map), Text("Change Map Type")]),
                           ),
                           itemBuilder: (context) => [
                                 PopupMenuItem(
@@ -114,8 +98,7 @@ class YandexMapScreen extends StatelessWidget {
                                 PopupMenuItem(
                                     onTap: () => context
                                         .read<MainMapCubit>()
-                                        .changeMapType(
-                                            mapType: MapType.satellite),
+                                        .changeMapType(mapType: MapType.satellite),
                                     child: const Text("satellite")),
                                 PopupMenuItem(
                                     onTap: () => context
@@ -124,8 +107,7 @@ class YandexMapScreen extends StatelessWidget {
                                     child: const Text("vector"))
                               ]),
                       ElevatedButton.icon(
-                          onPressed: () =>
-                              context.read<MainMapCubit>().addCircleMapObject(),
+                          onPressed: () => context.read<MainMapCubit>().addCircleMapObject(),
                           icon: const Icon(Icons.circle),
                           label: const Text("Add circle map object"))
                     ])
@@ -137,8 +119,7 @@ class YandexMapScreen extends StatelessWidget {
                         color: Colors.white,
                         width: 150,
                         height: 40,
-                        child:
-                            Center(child: Text("${currentState.searchRes}")))),
+                        child: Center(child: Text("${currentState.searchRes}")))),
               Row(mainAxisAlignment: MainAxisAlignment.end, children: [
                 Expanded(
                     child: Container(
@@ -146,26 +127,22 @@ class YandexMapScreen extends StatelessWidget {
                   color: Colors.grey.withOpacity(0.4),
                   child: TextField(
                     controller: currentState.searchByNameController,
-                    onEditingComplete: () => context
-                        .read<MainMapCubit>()
-                        .searchByText(context: context),
+                    onEditingComplete: () =>
+                        context.read<MainMapCubit>().searchByText(context: context),
                   ),
                 )),
                 FloatingActionButton(
-                    onPressed: () async =>
-                        context.read<MainMapCubit>().makeRoutes(),
+                    onPressed: () async => context.read<MainMapCubit>().makeRoutes(),
                     child: const Icon(Icons.route, color: Colors.white)),
                 const SizedBox(width: 10),
                 FloatingActionButton(
-                    onPressed: () async => BottomModalSheetDynamicSize
-                        .bottomSheetWithSizeOfContent(context: context),
-                    child:
-                        const Icon(Icons.location_city, color: Colors.white)),
+                    onPressed: () async =>
+                        BottomModalSheetDynamicSize.bottomSheetWithSizeOfContent(context: context),
+                    child: const Icon(Icons.location_city, color: Colors.white)),
                 const SizedBox(width: 10),
                 FloatingActionButton(
-                    onPressed: () async => context
-                        .read<MainMapCubit>()
-                        .searchByPoint(context: context),
+                    onPressed: () async =>
+                        context.read<MainMapCubit>().searchByPoint(context: context),
                     child: const Icon(Icons.search, color: Colors.white))
               ]),
             ],
@@ -184,13 +161,10 @@ class YandexMapScreen extends StatelessWidget {
             // mapMode: MapMode.normal,
             mapType: currentState.mapType,
             logoAlignment: const MapAlignment(
-                vertical: VerticalAlignment.top,
-                horizontal: HorizontalAlignment.left),
-            onCameraPositionChanged: (CameraPosition cameraPosition,
-                CameraUpdateReason _, bool __) async {
-              context
-                  .read<MainMapCubit>()
-                  .onCameraPositionChanged(cameraPosition: cameraPosition);
+                vertical: VerticalAlignment.top, horizontal: HorizontalAlignment.left),
+            onCameraPositionChanged:
+                (CameraPosition cameraPosition, CameraUpdateReason _, bool __) async {
+              context.read<MainMapCubit>().onCameraPositionChanged(cameraPosition: cameraPosition);
             },
             // onMapTap: (Point point) => context.read<MainMapCubit>().getPoint(point: point),
             onObjectTap: (object) {
@@ -198,29 +172,21 @@ class YandexMapScreen extends StatelessWidget {
             },
             // if you want to search your location use this one
             onMapTap: (Point point) => currentState.selectingUserDestination
-                ? context
-                    .read<MainMapCubit>()
-                    .addTwoPolyLinesBetweenTwoDestinations(point)
-                : context
-                    .read<MainMapCubit>()
-                    .onMapTap(point: point, context: context),
+                ? context.read<MainMapCubit>().addTwoPolyLinesBetweenTwoDestinations(point)
+                : context.read<MainMapCubit>().onMapTap(point: point, context: context),
             onTrafficChanged: (TrafficLevel? trafficLevel) => [],
             onMapCreated: (YandexMapController yandexMapController) async =>
-                context
-                    .read<MainMapCubit>()
-                    .onMapCreated(yandexMapController: yandexMapController),
+                context.read<MainMapCubit>().onMapCreated(yandexMapController: yandexMapController),
             onUserLocationAdded: (UserLocationView view) async {
               return view.copyWith(
                   pin: view.pin.copyWith(
                       icon: PlacemarkIcon.single(PlacemarkIconStyle(
-                          image: BitmapDescriptor.fromAssetImage(
-                              'assets/icons/map_icon.png')))),
+                          image: BitmapDescriptor.fromAssetImage('assets/icons/map_icon.png')))),
                   arrow: view.arrow.copyWith(
                       icon: PlacemarkIcon.single(PlacemarkIconStyle(
-                          image: BitmapDescriptor.fromAssetImage(
-                              'assets/icons/map_icon.png')))),
-                  accuracyCircle: view.accuracyCircle
-                      .copyWith(fillColor: Theme.of(context).cardColor));
+                          image: BitmapDescriptor.fromAssetImage('assets/icons/map_icon.png')))),
+                  accuracyCircle:
+                      view.accuracyCircle.copyWith(fillColor: Theme.of(context).cardColor));
             },
           ),
         ),

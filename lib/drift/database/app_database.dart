@@ -51,8 +51,7 @@ class AppDatabase extends _$AppDatabase {
                   TableMigration(
                     todoDriftDbTable,
                     columnTransformer: {
-                      todoDriftDbTable.createdAt:
-                          todoDriftDbTable.createdAt.cast<String>(),
+                      todoDriftDbTable.createdAt: todoDriftDbTable.createdAt.cast<String>(),
                     },
                   ),
                 );

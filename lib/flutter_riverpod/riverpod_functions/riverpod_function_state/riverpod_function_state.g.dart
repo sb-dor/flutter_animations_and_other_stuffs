@@ -10,12 +10,10 @@ String _$triviaHash() => r'2f14875115a02ab94f39a0425dfaaffc2b5173a1';
 
 /// See also [trivia].
 @ProviderFor(trivia)
-final triviaProvider =
-    AutoDisposeFutureProvider<RiverpodNumberTriviaModel>.internal(
+final triviaProvider = AutoDisposeFutureProvider<RiverpodNumberTriviaModel>.internal(
   trivia,
   name: r'triviaProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$triviaHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$triviaHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

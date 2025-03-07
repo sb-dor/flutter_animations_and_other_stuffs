@@ -51,8 +51,7 @@ class _YoutubeExplodePageState extends State<YoutubeExplodePage> {
     try {
       var video = await _youtubeExplode.videos.get(videoId);
 
-      var manifest =
-          await _youtubeExplode.videos.streamsClient.getManifest(videoId);
+      var manifest = await _youtubeExplode.videos.streamsClient.getManifest(videoId);
 
       // all videos without audio
       for (var each in manifest.videoOnly) {
@@ -73,41 +72,33 @@ class _YoutubeExplodePageState extends State<YoutubeExplodePage> {
       }
 
       // to get first video which mb is more than 1mb and less than 2mb
-      var videoMoreThatOneMb = manifest.videoOnly.firstWhereOrNull((element) =>
-          element.size.totalMegaBytes >= 1.0 &&
-          element.size.totalMegaBytes <= 2);
+      var videoMoreThatOneMb = manifest.videoOnly.firstWhereOrNull(
+          (element) => element.size.totalMegaBytes >= 1.0 && element.size.totalMegaBytes <= 2);
 
       // check if this kind of video exist or not
       var checkForExists = videoMoreThatOneMb ?? manifest.videoOnly.first;
 
       // at least send that video which is more that 1MB and first audio of an array
-      await _createFilesFromAudioAndVideo(checkForExists.url.toString(),
-          manifest.audioOnly.first.url.toString());
+      await _createFilesFromAudioAndVideo(
+          checkForExists.url.toString(), manifest.audioOnly.first.url.toString());
 
       //
       // high quality of video and audio
       var videoOnlyUrl = manifest.videoOnly.withHighestBitrate().toString(); //
-      var audioOnlyUrl = manifest.audioOnly
-          .withHighestBitrate()
-          .url
-          .toString(); // just a audio
+      var audioOnlyUrl = manifest.audioOnly.withHighestBitrate().url.toString(); // just a audio
 
-      var videoUrl =
-          manifest.video.withHighestBitrate().url.toString(); // just a video
-      var videoWithAudioUrl = manifest.audio
-          .withHighestBitrate()
-          .url
-          .toString(); //video with audio url
+      var videoUrl = manifest.video.withHighestBitrate().url.toString(); // just a video
+      var videoWithAudioUrl =
+          manifest.audio.withHighestBitrate().url.toString(); //video with audio url
       //
       //
 
       // for downloading
-      var videoFromUrl = await Dio()
-          .get<List<int>>(audioOfVideo ? audioOnlyUrl : videoWithAudioUrl,
-              options: Options(responseType: ResponseType.bytes, headers: {
-                'Content-Type': 'application/json; charset=UTF-8',
-                'Accept': 'application/json',
-              }), onReceiveProgress: (int receive, int total) {
+      var videoFromUrl = await Dio().get<List<int>>(audioOfVideo ? audioOnlyUrl : videoWithAudioUrl,
+          options: Options(responseType: ResponseType.bytes, headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Accept': 'application/json',
+          }), onReceiveProgress: (int receive, int total) {
         // here is a formula for solving progress of downloading
         var solvePercentage = receive / total * 100;
         percentage = solvePercentage / 100;
@@ -155,8 +146,7 @@ class _YoutubeExplodePageState extends State<YoutubeExplodePage> {
 
   // this func created temp files in storage from video and audio
   // than calling function "_concatenateAudioAndVideo()" combines video and audio
-  Future<void> _createFilesFromAudioAndVideo(
-      String videoPath, String audioPath) async {
+  Future<void> _createFilesFromAudioAndVideo(String videoPath, String audioPath) async {
     dev.log("paths are: $videoPath | $audioPath");
     var videoFromUrl = await Dio().get<List<int>>(videoPath,
         options: Options(responseType: ResponseType.bytes, headers: {
@@ -181,8 +171,7 @@ class _YoutubeExplodePageState extends State<YoutubeExplodePage> {
     newVideoFile.writeAsBytesSync(videoFromUrl.data ?? []);
     newAudioFile.writeAsBytesSync(audioFromUrl.data ?? []);
 
-    await _concatenateAudioAndVideo(
-        videoPath: newVideoFile.path, audioPath: newAudioFile.path);
+    await _concatenateAudioAndVideo(videoPath: newVideoFile.path, audioPath: newAudioFile.path);
   }
 
   Future<void> _concatenateAudioAndVideo(
@@ -194,8 +183,7 @@ class _YoutubeExplodePageState extends State<YoutubeExplodePage> {
         '${getExStorage?.path}/${Random().nextInt(pow(2, 10).toInt())}.mp4'; // remember to rename file all the time, other way file will be replaced with another file
 
     // package
-    await FFmpegKit.execute('-i $videoPath -i $audioPath -c copy $outputPath')
-        .then((value) async {
+    await FFmpegKit.execute('-i $videoPath -i $audioPath -c copy $outputPath').then((value) async {
       final returnCode = await value.getReturnCode();
       debugPrint("result of audio and video");
 
@@ -236,8 +224,7 @@ class _YoutubeExplodePageState extends State<YoutubeExplodePage> {
           ElevatedButton(
               onPressed: () async {
                 // if (downloadingFile) return;
-                await _getVideoInformationWithYTExplode(
-                    videoId: videoId, audioOfVideo: true);
+                await _getVideoInformationWithYTExplode(videoId: videoId, audioOfVideo: true);
               },
               child: downloadingFile
                   ? SizedBox(

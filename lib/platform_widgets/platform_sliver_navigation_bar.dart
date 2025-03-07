@@ -26,8 +26,7 @@ class _CustomScrollViewHelper extends StatefulWidget {
   const _CustomScrollViewHelper();
 
   @override
-  State<_CustomScrollViewHelper> createState() =>
-      _CustomScrollViewHelperState();
+  State<_CustomScrollViewHelper> createState() => _CustomScrollViewHelperState();
 }
 
 class _CustomScrollViewHelperState extends State<_CustomScrollViewHelper> {
@@ -35,8 +34,7 @@ class _CustomScrollViewHelperState extends State<_CustomScrollViewHelper> {
   static const _kBasePadding = 5.0;
   static const kExpandedHeight = 110.0;
 
-  final ValueNotifier<double> _titlePaddingNotifier =
-      ValueNotifier(_kBasePadding);
+  final ValueNotifier<double> _titlePaddingNotifier = ValueNotifier(_kBasePadding);
 
   double get _horizontalTitlePadding {
     const kCollapsedPadding = 60.0;
@@ -45,8 +43,7 @@ class _CustomScrollViewHelperState extends State<_CustomScrollViewHelper> {
       var result = min(
         _kBasePadding + kCollapsedPadding,
         _kBasePadding +
-            (kCollapsedPadding * _scrollController.offset) /
-                (kExpandedHeight - kToolbarHeight),
+            (kCollapsedPadding * _scrollController.offset) / (kExpandedHeight - kToolbarHeight),
       );
 
       if (result < 0.0) return 5.0;
@@ -97,8 +94,7 @@ class _CustomScrollViewHelperState extends State<_CustomScrollViewHelper> {
             flexibleSpace: FlexibleSpaceBar(
               collapseMode: CollapseMode.pin,
               centerTitle: false,
-              titlePadding:
-                  const EdgeInsets.symmetric(vertical: 16, horizontal: 0),
+              titlePadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 0),
               title: ValueListenableBuilder(
                 valueListenable: _titlePaddingNotifier,
                 builder: (context, value, child) {

@@ -4,13 +4,11 @@ class PrinterManager {
   static final _platform = MethodChannel(PrinterStrings.channel);
 
   static connect(String mac) async {
-    _platform.invokeMethod(
-        PrinterStrings.connectCommand, {PrinterStrings.macArg: mac});
+    _platform.invokeMethod(PrinterStrings.connectCommand, {PrinterStrings.macArg: mac});
   }
 
   static printImg(String imgPath) async {
-    _platform.invokeMethod(
-        PrinterStrings.printCommand, {PrinterStrings.imgPathArg: imgPath});
+    _platform.invokeMethod(PrinterStrings.printCommand, {PrinterStrings.imgPathArg: imgPath});
   }
 }
 

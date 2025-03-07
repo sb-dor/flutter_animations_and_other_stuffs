@@ -20,8 +20,7 @@ class _FlutterTestingWithBlocUI extends StatefulWidget {
   const _FlutterTestingWithBlocUI();
 
   @override
-  State<_FlutterTestingWithBlocUI> createState() =>
-      _FlutterTestingWithBlocUIState();
+  State<_FlutterTestingWithBlocUI> createState() => _FlutterTestingWithBlocUIState();
 }
 
 class _FlutterTestingWithBlocUIState extends State<_FlutterTestingWithBlocUI> {

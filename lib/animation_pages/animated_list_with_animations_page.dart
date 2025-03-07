@@ -14,9 +14,7 @@ class AnimatedListWithAnimationPage extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const NeumorphicContainer())),
+                  context, MaterialPageRoute(builder: (context) => const NeumorphicContainer())),
               icon: const Icon(Icons.add))
         ],
       ),
@@ -51,43 +49,32 @@ class AnimatedListWithAnimationPage extends StatelessWidget {
                       ),
                       const SizedBox(width: 10),
                       Expanded(
-                          child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                            FadeAnimation(
-                              intervalStart: getIntervalStartByIndex(index),
-                              child: const Text("Gladias Baker",
+                          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                        FadeAnimation(
+                          intervalStart: getIntervalStartByIndex(index),
+                          child: const Text("Gladias Baker",
+                              style: TextStyle(
+                                  color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16)),
+                        ),
+                        const SizedBox(height: 10),
+                        SlideAnimation(
+                          intervalStart: getIntervalStartByIndex(index),
+                          child: const Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                            Icon(Icons.star, color: Colors.amber, size: 20),
+                            Flexible(
+                              child: Text("4.3 ",
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 16)),
                             ),
-                            const SizedBox(height: 10),
-                            SlideAnimation(
-                              intervalStart: getIntervalStartByIndex(index),
-                              child: const Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Icon(Icons.star,
-                                        color: Colors.amber, size: 20),
-                                    Flexible(
-                                      child: Text("4.3 ",
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 16)),
-                                    ),
-                                    Text("Digital Art ",
-                                        style:
-                                            TextStyle(color: Colors.black45)),
-                                    Flexible(
-                                      child: Text("\$2.2",
-                                          style:
-                                              TextStyle(color: Colors.black45)),
-                                    ),
-                                  ]),
-                            )
-                          ]))
+                            Text("Digital Art ", style: TextStyle(color: Colors.black45)),
+                            Flexible(
+                              child: Text("\$2.2", style: TextStyle(color: Colors.black45)),
+                            ),
+                          ]),
+                        )
+                      ]))
                     ])),
               )),
     );

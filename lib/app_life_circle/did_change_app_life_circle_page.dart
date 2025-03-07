@@ -4,8 +4,7 @@ class DidChangeAppLifeCirclePage extends StatefulWidget {
   const DidChangeAppLifeCirclePage({super.key});
 
   @override
-  State<DidChangeAppLifeCirclePage> createState() =>
-      _DidChangeAppLifeCirclePageState();
+  State<DidChangeAppLifeCirclePage> createState() => _DidChangeAppLifeCirclePageState();
 }
 
 class _DidChangeAppLifeCirclePageState extends State<DidChangeAppLifeCirclePage>

@@ -38,7 +38,5 @@ class UsersTestTodoAdapter extends TypeAdapter<UsersTestTodo> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is UsersTestTodoAdapter &&
-          runtimeType == other.runtimeType &&
-          typeId == other.typeId;
+      other is UsersTestTodoAdapter && runtimeType == other.runtimeType && typeId == other.typeId;
 }

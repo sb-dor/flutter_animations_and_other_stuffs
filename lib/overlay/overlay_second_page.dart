@@ -103,8 +103,7 @@ class _OverlaySecondPageState extends State<OverlaySecondPage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
-                    "Use Overlay to highlight a NavigationBar destination"),
+                const Text("Use Overlay to highlight a NavigationBar destination"),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

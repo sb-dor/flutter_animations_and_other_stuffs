@@ -17,20 +17,15 @@ class PopUpWidget extends StatelessWidget {
                     margin: const EdgeInsets.only(left: 10, right: 10),
                     color: Colors.transparent,
                     child: Padding(
-                        padding:
-                            const EdgeInsets.only(left: 10, right: 10, top: 5),
-                        child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              GestureDetector(
-                                  onTap: () => [],
-                                  child: Container(
-                                      padding: const EdgeInsets.all(10),
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      child: child))
-                            ]))))));
+                        padding: const EdgeInsets.only(left: 10, right: 10, top: 5),
+                        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+                          GestureDetector(
+                              onTap: () => [],
+                              child: Container(
+                                  padding: const EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                      color: Colors.white, borderRadius: BorderRadius.circular(5)),
+                                  child: child))
+                        ]))))));
   }
 }

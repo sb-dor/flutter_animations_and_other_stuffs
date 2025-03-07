@@ -10,7 +10,6 @@ class FirebaseCrashlyticsPage extends StatelessWidget {
         body: Center(
             child: TextButton(
                 onPressed: () => throw Exception(),
-                child:
-                    const Text("Check Your Firebase Crashlytics dashboard"))));
+                child: const Text("Check Your Firebase Crashlytics dashboard"))));
   }
 }

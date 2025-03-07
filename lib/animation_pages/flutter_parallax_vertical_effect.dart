@@ -5,12 +5,10 @@ class FlutterParallaxVerticalEffect extends StatefulWidget {
   const FlutterParallaxVerticalEffect({super.key});
 
   @override
-  State<FlutterParallaxVerticalEffect> createState() =>
-      _FlutterParallaxVerticalEffectState();
+  State<FlutterParallaxVerticalEffect> createState() => _FlutterParallaxVerticalEffectState();
 }
 
-class _FlutterParallaxVerticalEffectState
-    extends State<FlutterParallaxVerticalEffect> {
+class _FlutterParallaxVerticalEffectState extends State<FlutterParallaxVerticalEffect> {
   List<CardModel> demoCardData = [
     CardModel(
       name: "Shenzhen GLOBAL DESIGN AWARD 2018",
@@ -53,8 +51,7 @@ class _FlutterParallaxVerticalEffectState
       child: PageView.builder(
           scrollDirection: Axis.vertical,
           controller: _pageController,
-          itemCount: demoCardData
-              .length, // getting from flutter_parallax_horizontal_page
+          itemCount: demoCardData.length, // getting from flutter_parallax_horizontal_page
           itemBuilder: (context, index) {
             return AnimatedBuilder(
               animation: _pageController,

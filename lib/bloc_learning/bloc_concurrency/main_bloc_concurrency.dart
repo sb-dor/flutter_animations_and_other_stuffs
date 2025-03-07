@@ -19,8 +19,7 @@ class InitialMainConState extends MainConcurrencyState {
   InitialMainConState({required int counter}) : super(coutner: counter);
 }
 
-class MainBlocConcurrency
-    extends Bloc<MainConcurrencyEvent, MainConcurrencyState> {
+class MainBlocConcurrency extends Bloc<MainConcurrencyEvent, MainConcurrencyState> {
   MainBlocConcurrency() : super(InitialMainConState(counter: 0)) {
 //
 // the main concept of bloc_concurrency is that whenever you put the value to transform parameter of "on"

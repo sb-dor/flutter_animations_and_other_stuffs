@@ -24,8 +24,7 @@ class _SliverAppbarWithTabBar extends State<SliverAppbarWithTabBar>
   void initState() {
     // TODO: implement initState
     super.initState();
-    tabController =
-        TabController(length: tabs.length, vsync: this, initialIndex: 1);
+    tabController = TabController(length: tabs.length, vsync: this, initialIndex: 1);
   }
 
   bool end = false;

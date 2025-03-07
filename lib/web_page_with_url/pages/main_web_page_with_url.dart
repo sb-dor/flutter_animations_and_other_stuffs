@@ -32,10 +32,8 @@ class _MainWebPageWithUrlState extends State<MainWebPageWithUrl> {
                   context.namedLocation(
                     'detailsName',
                     pathParameters: {
-                      "anyName":
-                          name.text.trim().isEmpty ? '-' : name.text.trim(),
-                      "anySurname":
-                          sName.text.trim().isEmpty ? '-' : sName.text.trim(),
+                      "anyName": name.text.trim().isEmpty ? '-' : name.text.trim(),
+                      "anySurname": sName.text.trim().isEmpty ? '-' : sName.text.trim(),
                     },
                   ),
                 );

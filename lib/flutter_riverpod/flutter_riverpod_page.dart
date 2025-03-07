@@ -20,8 +20,7 @@ class FlutterRiverPodPage extends ConsumerWidget {
             children: [
               Text("${counterProviderWatch.counter}"),
               TextButton(
-                  onPressed: () =>
-                      ref.read(counterRiverPod.notifier).increment(),
+                  onPressed: () => ref.read(counterRiverPod.notifier).increment(),
                   child: const Text("Increment")),
               GestureDetector(
                 onTap: () => ref.read(counterRiverPod.notifier).changeColor(),
@@ -29,9 +28,7 @@ class FlutterRiverPodPage extends ConsumerWidget {
                     duration: const Duration(seconds: 1),
                     width: 100,
                     height: 50,
-                    color: counterProviderWatch.changeColor
-                        ? Colors.orange
-                        : Colors.green,
+                    color: counterProviderWatch.changeColor ? Colors.orange : Colors.green,
                     child: const Center(child: Text("Hello"))),
               )
             ]),

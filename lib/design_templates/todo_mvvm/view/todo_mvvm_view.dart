@@ -60,12 +60,9 @@ class _TodoMvvmViewHelperState extends State<_TodoMvvmViewHelper> {
                   return TextButton(
                     onPressed: () {
                       if (_todoTextController.text.trim().isEmpty) return;
-                      context
-                          .read<TodoMvvmViewModel>()
-                          .addTodo(_todoTextController.text.trim());
+                      context.read<TodoMvvmViewModel>().addTodo(_todoTextController.text.trim());
                     },
-                    child: Text(
-                        "${intValue.todoListMVVMStateService.todoMVVM.length}"),
+                    child: Text("${intValue.todoListMVVMStateService.todoMVVM.length}"),
                   );
                 },
               ),
@@ -95,11 +92,9 @@ class _TodoMvvmViewHelperState extends State<_TodoMvvmViewHelper> {
             ),
           ),
           SliverList.separated(
-            itemCount:
-                todoMVVMViewModel.todoListMVVMStateService.todoMVVM.length,
+            itemCount: todoMVVMViewModel.todoListMVVMStateService.todoMVVM.length,
             itemBuilder: (context, index) {
-              final item =
-                  todoMVVMViewModel.todoListMVVMStateService.todoMVVM[index];
+              final item = todoMVVMViewModel.todoListMVVMStateService.todoMVVM[index];
               return CupertinoListTile(
                 title: Text(item.todo),
                 trailing: IconButton(

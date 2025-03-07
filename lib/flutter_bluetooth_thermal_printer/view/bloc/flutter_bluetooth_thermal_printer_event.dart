@@ -9,13 +9,11 @@ final class EscPosEmitterEvent extends FlutterBluetoothThermalPrinterEvent {
   const EscPosEmitterEvent();
 }
 
-final class EscPosPrinterScannerEvent
-    extends FlutterBluetoothThermalPrinterEvent {
+final class EscPosPrinterScannerEvent extends FlutterBluetoothThermalPrinterEvent {
   const EscPosPrinterScannerEvent();
 }
 
-final class EscPosPrinterScannerHelperEvent
-    extends FlutterBluetoothThermalPrinterEvent {
+final class EscPosPrinterScannerHelperEvent extends FlutterBluetoothThermalPrinterEvent {
   final PrinterDevice? device;
 
   const EscPosPrinterScannerHelperEvent(this.device);
@@ -26,13 +24,11 @@ final class EscPosPrinterScannerSubscriptionDisposeEvent
   const EscPosPrinterScannerSubscriptionDisposeEvent();
 }
 
-final class EscPosPrinterBluetoothStatusEvent
-    extends FlutterBluetoothThermalPrinterEvent {
+final class EscPosPrinterBluetoothStatusEvent extends FlutterBluetoothThermalPrinterEvent {
   const EscPosPrinterBluetoothStatusEvent();
 }
 
-final class EscPosConnectToDeviceEvent
-    extends FlutterBluetoothThermalPrinterEvent {
+final class EscPosConnectToDeviceEvent extends FlutterBluetoothThermalPrinterEvent {
   final PrinterDevice device;
 
   const EscPosConnectToDeviceEvent(this.device);
@@ -44,7 +40,6 @@ final class EscPosPrintEvent extends FlutterBluetoothThermalPrinterEvent {
   // const EscPosPrintEvent(this.customerInvoice);
 }
 
-final class EscPosBluetoothAutoConnectEvent
-    extends FlutterBluetoothThermalPrinterEvent {
+final class EscPosBluetoothAutoConnectEvent extends FlutterBluetoothThermalPrinterEvent {
   const EscPosBluetoothAutoConnectEvent();
 }

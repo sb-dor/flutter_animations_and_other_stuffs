@@ -65,8 +65,7 @@ class SliverScrollController {
 
   void init() {
     loadDataRandom();
-    listOffSetItemHeader =
-        List.generate(listCategory.length, (index) => index.toDouble());
+    listOffSetItemHeader = List.generate(listCategory.length, (index) => index.toDouble());
 
     scrollControllerGlobally = ScrollController();
     scrollControllerItemHeader = ScrollController();
@@ -97,8 +96,7 @@ class SliverScrollController {
 
   void _listenToScrollChange() {
     globalOffsetValue.value = scrollControllerGlobally.offset;
-    if (scrollControllerGlobally.position.userScrollDirection ==
-        ScrollDirection.reverse) {
+    if (scrollControllerGlobally.position.userScrollDirection == ScrollDirection.reverse) {
       goingDown.value = true;
     } else {
       goingDown.value = false;

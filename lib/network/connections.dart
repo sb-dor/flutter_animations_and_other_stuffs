@@ -38,8 +38,7 @@ class Connections {
           'https://dcblog.b-cdn.net/wp-content/uploads/2021/02/Full-form-of-URL-1-1024x824.jpg';
       //getting image from url address in bytes List<int>
       var dioRes = await Dio().get<List<int>>(imageUrl,
-          options: Options(
-              responseType: ResponseType.bytes, headers: await headers()));
+          options: Options(responseType: ResponseType.bytes, headers: await headers()));
 
       //it is download directory (in android)
       var downloadDirectory = Directory('/storage/emulated/0/Download');
@@ -77,8 +76,7 @@ class Connections {
       await Directory(createPathInDirectory).create(recursive: true);
 
       //create this image with any name in this path
-      var createImageNameInPath =
-          '${ourDirectory.path}/images/any_image_name.jpg';
+      var createImageNameInPath = '${ourDirectory.path}/images/any_image_name.jpg';
 
       File file = File(createImageNameInPath);
 
@@ -118,8 +116,7 @@ class Connections {
   static Future<void> checkHttp() async {
     try {
       var res = await http.post(Uri.parse("$url/validation"),
-          body: jsonEncode({"email": "avaz@gmail.com", 'name': "avaz"}),
-          headers: await headers());
+          body: jsonEncode({"email": "avaz@gmail.com", 'name': "avaz"}), headers: await headers());
 
       debugPrint("message: ${res.body}");
       if (res.statusCode == 200) {}

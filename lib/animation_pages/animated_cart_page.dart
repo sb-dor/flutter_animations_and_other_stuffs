@@ -72,8 +72,7 @@ class AnimatedCartPageState extends State<AnimatedCartPage> {
 
   void listClick(GlobalKey widgetKey) async {
     await runAddToCartAnimation(widgetKey);
-    await cartKey.currentState!
-        .runCartAnimation((++_cartQuantityItems).toString());
+    await cartKey.currentState!.runCartAnimation((++_cartQuantityItems).toString());
   }
 }
 

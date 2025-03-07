@@ -7,12 +7,10 @@ class MainDeclarativeNavigationScreen extends StatefulWidget {
   const MainDeclarativeNavigationScreen({super.key});
 
   @override
-  State<MainDeclarativeNavigationScreen> createState() =>
-      _MainDeclarativeNavigationScreenState();
+  State<MainDeclarativeNavigationScreen> createState() => _MainDeclarativeNavigationScreenState();
 }
 
-class _MainDeclarativeNavigationScreenState
-    extends State<MainDeclarativeNavigationScreen> {
+class _MainDeclarativeNavigationScreenState extends State<MainDeclarativeNavigationScreen> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

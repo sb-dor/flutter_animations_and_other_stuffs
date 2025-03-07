@@ -8,8 +8,7 @@ class RiverpodProductServiceModel {
 }
 
 class ProductService {
-  Future<List<RiverpodProductServiceModel>> getProducts(
-      ProductFilterModel? filter) async {
+  Future<List<RiverpodProductServiceModel>> getProducts(ProductFilterModel? filter) async {
     // Simulate a network call and filter the products
     await Future.delayed(const Duration(seconds: 2));
 
@@ -24,10 +23,7 @@ class ProductService {
 
     return allProducts
         .where((product) =>
-            product.name
-                .trim()
-                .toUpperCase()
-                .contains((filter.query ?? '').trim().toUpperCase()) ||
+            product.name.trim().toUpperCase().contains((filter.query ?? '').trim().toUpperCase()) ||
             (product.price >= (filter.minPrice ?? 0.0) &&
                 product.price <= (filter.maxPrice ?? 0.0)))
         .toList();

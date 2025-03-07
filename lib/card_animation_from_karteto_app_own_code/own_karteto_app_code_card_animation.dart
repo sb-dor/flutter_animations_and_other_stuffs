@@ -12,12 +12,10 @@ class OwnKartetoAppCodeCardAnimation extends StatefulWidget {
   const OwnKartetoAppCodeCardAnimation({super.key});
 
   @override
-  State<OwnKartetoAppCodeCardAnimation> createState() =>
-      _OwnKartetoAppCodeCardAnimationState();
+  State<OwnKartetoAppCodeCardAnimation> createState() => _OwnKartetoAppCodeCardAnimationState();
 }
 
-class _OwnKartetoAppCodeCardAnimationState
-    extends State<OwnKartetoAppCodeCardAnimation> {
+class _OwnKartetoAppCodeCardAnimationState extends State<OwnKartetoAppCodeCardAnimation> {
   final rnd = Random();
 
   final List<Color> _colorsForBackGround = [
@@ -118,8 +116,7 @@ class _OwnKartetoAppCodeCardAnimationState
                       refreshList();
                     },
                     icon: const Icon(Icons.refresh)),
-                IconButton(
-                    onPressed: () {}, icon: const Icon(Icons.volume_down)),
+                IconButton(onPressed: () {}, icon: const Icon(Icons.volume_down)),
                 IconButton(onPressed: () {}, icon: const Icon(Icons.edit))
               ],
             ),

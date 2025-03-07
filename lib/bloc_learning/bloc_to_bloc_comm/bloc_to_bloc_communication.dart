@@ -7,8 +7,7 @@ class BlocToBlocCommunication extends StatefulWidget {
   const BlocToBlocCommunication({super.key});
 
   @override
-  State<BlocToBlocCommunication> createState() =>
-      _BlocToBlocCommunicationState();
+  State<BlocToBlocCommunication> createState() => _BlocToBlocCommunicationState();
 }
 
 class _BlocToBlocCommunicationState extends State<BlocToBlocCommunication> {

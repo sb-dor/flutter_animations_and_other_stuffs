@@ -4,8 +4,7 @@ import 'package:flutter_animations_2/hive/users_todo_test/models/users_todo_test
 import 'package:uuid/uuid.dart';
 
 class UsersPageStateModel {
-  final UsersTodoHiveDatabase _usersTodoHiveDatabase =
-      UsersTodoHiveDatabase.internal;
+  final UsersTodoHiveDatabase _usersTodoHiveDatabase = UsersTodoHiveDatabase.internal;
 
   final List<UsersTest> usersTest = [];
 
@@ -13,8 +12,7 @@ class UsersPageStateModel {
 
   void addAll(List<UsersTest> list) => usersTest.addAll(usersTest);
 
-  Future<void> init() async =>
-      usersTest.addAll(_usersTodoHiveDatabase.usersList());
+  Future<void> init() async => usersTest.addAll(_usersTodoHiveDatabase.usersList());
 
   Future<void> addUser({required String name, required int age}) async {
     final user = UsersTest(

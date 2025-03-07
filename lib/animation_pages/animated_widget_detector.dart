@@ -61,8 +61,7 @@ class _VisibilityAnimatedWidget extends StatefulWidget {
   const _VisibilityAnimatedWidget();
 
   @override
-  State<_VisibilityAnimatedWidget> createState() =>
-      _VisibilityAnimatedWidgetState();
+  State<_VisibilityAnimatedWidget> createState() => _VisibilityAnimatedWidgetState();
 }
 
 class _VisibilityAnimatedWidgetState extends State<_VisibilityAnimatedWidget> {
@@ -70,27 +69,23 @@ class _VisibilityAnimatedWidgetState extends State<_VisibilityAnimatedWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final findAncestor =
-        context.findRootAncestorStateOfType<_AnimatedWidgetDetectorState>();
+    final findAncestor = context.findRootAncestorStateOfType<_AnimatedWidgetDetectorState>();
     return VisibilityDetector(
       key: ValueKey(_widgetId),
       onVisibilityChanged: (visibilityInfo) {
         var visiblePercentage = visibilityInfo.visibleFraction * 100;
         if (visiblePercentage > 20) {
-          debugPrint(
-              'Widget ${visibilityInfo.key} is $visiblePercentage% visible $_widgetId');
+          debugPrint('Widget ${visibilityInfo.key} is $visiblePercentage% visible $_widgetId');
         }
 
         //// gets first found type of <_AnimatedWidgetDetectorState>
-        final a =
-            context.findAncestorStateOfType<_AnimatedWidgetDetectorState>();
+        final a = context.findAncestorStateOfType<_AnimatedWidgetDetectorState>();
 
         // from above created widget
         a?.createdWidgets;
 
         // gets last found type of <get first type of <_AnimatedWidgetDetectorState>>
-        final b =
-            context.findRootAncestorStateOfType<_AnimatedWidgetDetectorState>();
+        final b = context.findRootAncestorStateOfType<_AnimatedWidgetDetectorState>();
 
         // from above createdWidget
         b?.createdWidgets;

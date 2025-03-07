@@ -7,8 +7,7 @@ import 'state_model/users_todo_page_state_model.dart';
 class UsersTodoVm extends ChangeNotifier {
   //
   final UsersPageStateModel usersPageStateModel = UsersPageStateModel();
-  final UsersTodoPageStateModel usersTodoPageStateModel =
-      UsersTodoPageStateModel();
+  final UsersTodoPageStateModel usersTodoPageStateModel = UsersTodoPageStateModel();
 
 //
 

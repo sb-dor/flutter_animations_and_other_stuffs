@@ -104,10 +104,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: <TextSpan>[
                         TextSpan(
                           text: 'Jack',
-                          style:
-                              Theme.of(context).textTheme.titleMedium!.copyWith(
-                                    fontSize: rf(24),
-                                  ),
+                          style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                                fontSize: rf(24),
+                              ),
                         ),
                       ],
                     ),

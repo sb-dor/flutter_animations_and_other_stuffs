@@ -4,12 +4,10 @@ class FlutterGesturesMoveByPositionPage extends StatefulWidget {
   const FlutterGesturesMoveByPositionPage({super.key});
 
   @override
-  State<FlutterGesturesMoveByPositionPage> createState() =>
-      _FlutterGesturesMoveByPositionState();
+  State<FlutterGesturesMoveByPositionPage> createState() => _FlutterGesturesMoveByPositionState();
 }
 
-class _FlutterGesturesMoveByPositionState
-    extends State<FlutterGesturesMoveByPositionPage> {
+class _FlutterGesturesMoveByPositionState extends State<FlutterGesturesMoveByPositionPage> {
   double xPosition = 0.0;
 
   double yPosition = 0.0;
@@ -50,8 +48,7 @@ class _FlutterGesturesMoveByPositionState
                               MediaQuery.of(context).size.width) {
                         return;
                       }
-                      if ((move.position.dy - containerHeight) < 0 ||
-                          move.position.dy > 300) {
+                      if ((move.position.dy - containerHeight) < 0 || move.position.dy > 300) {
                         return;
                       }
                       debugPrint("${move.position.dx}");

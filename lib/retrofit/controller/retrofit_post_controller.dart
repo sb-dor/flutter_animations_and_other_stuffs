@@ -7,8 +7,7 @@ import 'package:flutter_animations_2/retrofit/service/retrofit_post_api_service.
 class RetrofitPostController extends ChangeNotifier {
   final List<RetrofitPost> _retrofitPost = [];
 
-  UnmodifiableListView<RetrofitPost> get retrofitPost =>
-      UnmodifiableListView(_retrofitPost);
+  UnmodifiableListView<RetrofitPost> get retrofitPost => UnmodifiableListView(_retrofitPost);
 
   late RetrofitPostApiService _retrofitPostApiService;
 

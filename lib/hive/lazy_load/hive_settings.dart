@@ -98,11 +98,9 @@ class HiveSettings {
     // in order to put object of your own class you have to
     // register them as adapter
 
-    final box =
-        await Hive.openBox<GeneratedHiveModel>('generated_hive_model_box');
+    final box = await Hive.openBox<GeneratedHiveModel>('generated_hive_model_box');
 
-    final generatedModel =
-        GeneratedHiveModel(id: const Uuid().v4(), age: 20, changeName: 'Avaz');
+    final generatedModel = GeneratedHiveModel(id: const Uuid().v4(), age: 20, changeName: 'Avaz');
 
     final index = await box.add(generatedModel);
 

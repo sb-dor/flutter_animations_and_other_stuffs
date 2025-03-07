@@ -38,9 +38,7 @@ enum AccountStatus {
   // - admin
   // - guest
   // - user
-  const AccountStatus(
-      {required this.value,
-      required this.desc}); // you can't create constructor
+  const AccountStatus({required this.value, required this.desc}); // you can't create constructor
 
   // but you can create "factory"
   factory AccountStatus.fromString(String value) {

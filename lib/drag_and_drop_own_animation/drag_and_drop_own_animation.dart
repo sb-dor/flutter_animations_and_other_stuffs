@@ -9,8 +9,7 @@ class DragAndDropOwnAnimation extends StatefulWidget {
   const DragAndDropOwnAnimation({super.key});
 
   @override
-  State<DragAndDropOwnAnimation> createState() =>
-      _DragAndDropOwnAnimationState();
+  State<DragAndDropOwnAnimation> createState() => _DragAndDropOwnAnimationState();
 }
 
 class _DragAndDropOwnAnimationState extends State<DragAndDropOwnAnimation> {
@@ -118,8 +117,7 @@ class _ItemWidgetState extends State<_ItemWidget> {
   }
 
   void startMorphAnimation() {
-    debugPrint(
-        "coming inside drag and drop entry ${imagePosition.currentWidget}");
+    debugPrint("coming inside drag and drop entry ${imagePosition.currentWidget}");
     entry = OverlayEntry(
       builder: (context) {
         return OverlayAnimation(

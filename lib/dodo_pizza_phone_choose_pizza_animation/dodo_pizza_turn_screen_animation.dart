@@ -7,12 +7,10 @@ class DodoPizzaTurnPizzaAnimation extends StatefulWidget {
   const DodoPizzaTurnPizzaAnimation({super.key});
 
   @override
-  State<DodoPizzaTurnPizzaAnimation> createState() =>
-      _DodoPizzaTurnPizzaAnimationState();
+  State<DodoPizzaTurnPizzaAnimation> createState() => _DodoPizzaTurnPizzaAnimationState();
 }
 
-class _DodoPizzaTurnPizzaAnimationState
-    extends State<DodoPizzaTurnPizzaAnimation> {
+class _DodoPizzaTurnPizzaAnimationState extends State<DodoPizzaTurnPizzaAnimation> {
   late final PageController _pageController;
 
   @override
@@ -56,8 +54,7 @@ class MainTurnAnimation extends StatefulWidget {
   State<MainTurnAnimation> createState() => _MainTurnAnimationState();
 }
 
-class _MainTurnAnimationState extends State<MainTurnAnimation>
-    with TickerProviderStateMixin {
+class _MainTurnAnimationState extends State<MainTurnAnimation> with TickerProviderStateMixin {
   late AnimationController _firstWidgetTurnAnimationController;
   late AnimationController _secondWidgetTurnAnimationController;
   late Animation<double> _firstWidgetTurnAnimation;
@@ -67,14 +64,14 @@ class _MainTurnAnimationState extends State<MainTurnAnimation>
   void initState() {
     // TODO: implement initState
     super.initState();
-    _firstWidgetTurnAnimationController = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 500));
-    _secondWidgetTurnAnimationController = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 500));
-    _firstWidgetTurnAnimation = Tween<double>(begin: 0, end: pi)
-        .animate(_firstWidgetTurnAnimationController);
-    _secondWidgetTurnAnimation = Tween<double>(begin: -pi, end: 0)
-        .animate(_secondWidgetTurnAnimationController);
+    _firstWidgetTurnAnimationController =
+        AnimationController(vsync: this, duration: const Duration(milliseconds: 500));
+    _secondWidgetTurnAnimationController =
+        AnimationController(vsync: this, duration: const Duration(milliseconds: 500));
+    _firstWidgetTurnAnimation =
+        Tween<double>(begin: 0, end: pi).animate(_firstWidgetTurnAnimationController);
+    _secondWidgetTurnAnimation =
+        Tween<double>(begin: -pi, end: 0).animate(_secondWidgetTurnAnimationController);
   }
 
   @override
@@ -104,8 +101,7 @@ class _MainTurnAnimationState extends State<MainTurnAnimation>
                             ..setEntry(3, 2, 0.001)
                             ..rotateY(_firstWidgetTurnAnimation.value),
                           child: Container(
-                            margin: const EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 10),
+                            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                             decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(30),
@@ -119,27 +115,19 @@ class _MainTurnAnimationState extends State<MainTurnAnimation>
                                 ]),
                             child: Column(
                               children: [
-                                Image.asset(
-                                    'assets/dodo_pizza_often_order_pictures/dodo_0.jpeg'),
+                                Image.asset('assets/dodo_pizza_often_order_pictures/dodo_0.jpeg'),
                                 ElevatedButton(
                                     onPressed: () {
-                                      if (_firstWidgetTurnAnimationController
-                                              .isCompleted &&
-                                          _secondWidgetTurnAnimationController
-                                              .isCompleted) {
-                                        _firstWidgetTurnAnimationController
-                                            .reverse();
-                                        _secondWidgetTurnAnimationController
-                                            .reverse();
+                                      if (_firstWidgetTurnAnimationController.isCompleted &&
+                                          _secondWidgetTurnAnimationController.isCompleted) {
+                                        _firstWidgetTurnAnimationController.reverse();
+                                        _secondWidgetTurnAnimationController.reverse();
                                         return;
                                       }
-                                      _firstWidgetTurnAnimationController
-                                          .forward();
-                                      _secondWidgetTurnAnimationController
-                                          .forward();
+                                      _firstWidgetTurnAnimationController.forward();
+                                      _secondWidgetTurnAnimationController.forward();
                                     },
-                                    child: const TextWidget(
-                                        text: "Change compatibles"))
+                                    child: const TextWidget(text: "Change compatibles"))
                               ],
                             ),
                           ),
@@ -158,10 +146,8 @@ class _MainTurnAnimationState extends State<MainTurnAnimation>
                             ..rotateY(_secondWidgetTurnAnimation.value),
                           child: GestureDetector(
                             onTap: () {
-                              if (_firstWidgetTurnAnimationController
-                                      .isCompleted &&
-                                  _secondWidgetTurnAnimationController
-                                      .isCompleted) {
+                              if (_firstWidgetTurnAnimationController.isCompleted &&
+                                  _secondWidgetTurnAnimationController.isCompleted) {
                                 _firstWidgetTurnAnimationController.reverse();
                                 _secondWidgetTurnAnimationController.reverse();
                                 return;
@@ -170,8 +156,7 @@ class _MainTurnAnimationState extends State<MainTurnAnimation>
                               _secondWidgetTurnAnimationController.forward();
                             },
                             child: Container(
-                              margin: const EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 10),
+                              margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                               decoration: BoxDecoration(
                                   color: Colors.orange.shade200,
                                   borderRadius: BorderRadius.circular(30),
@@ -187,20 +172,14 @@ class _MainTurnAnimationState extends State<MainTurnAnimation>
                                 children: [
                                   ElevatedButton(
                                       onPressed: () {
-                                        if (_firstWidgetTurnAnimationController
-                                                .isCompleted &&
-                                            _secondWidgetTurnAnimationController
-                                                .isCompleted) {
-                                          _firstWidgetTurnAnimationController
-                                              .reverse();
-                                          _secondWidgetTurnAnimationController
-                                              .reverse();
+                                        if (_firstWidgetTurnAnimationController.isCompleted &&
+                                            _secondWidgetTurnAnimationController.isCompleted) {
+                                          _firstWidgetTurnAnimationController.reverse();
+                                          _secondWidgetTurnAnimationController.reverse();
                                           return;
                                         }
-                                        _firstWidgetTurnAnimationController
-                                            .forward();
-                                        _secondWidgetTurnAnimationController
-                                            .forward();
+                                        _firstWidgetTurnAnimationController.forward();
+                                        _secondWidgetTurnAnimationController.forward();
                                       },
                                       child: const TextWidget(text: "Отмена"))
                                 ],

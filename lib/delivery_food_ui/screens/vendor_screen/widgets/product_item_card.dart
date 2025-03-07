@@ -5,10 +5,7 @@ import '../../../core/widgets/button/buttons.dart';
 
 class ProductItem extends StatelessWidget {
   const ProductItem(
-      {super.key,
-      required this.title,
-      required this.detail,
-      required this.imagePath});
+      {super.key, required this.title, required this.detail, required this.imagePath});
 
   final String imagePath;
   final String title;
@@ -43,10 +40,7 @@ class ProductItem extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: Theme.of(context)
-                    .textTheme
-                    .titleMedium!
-                    .copyWith(fontSize: rf(14)),
+                style: Theme.of(context).textTheme.titleMedium!.copyWith(fontSize: rf(14)),
               ),
               SizedBox(
                 height: rh(5),
@@ -71,10 +65,7 @@ class ProductItem extends StatelessWidget {
             children: [
               Text(
                 "\$9.75",
-                style: Theme.of(context)
-                    .textTheme
-                    .titleMedium!
-                    .copyWith(fontSize: rf(12)),
+                style: Theme.of(context).textTheme.titleMedium!.copyWith(fontSize: rf(12)),
               ),
               SizedBox(height: rh(space2x)),
               Buttons.text(

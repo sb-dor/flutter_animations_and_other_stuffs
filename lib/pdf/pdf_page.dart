@@ -103,8 +103,7 @@ class _PdfPageState extends State<PdfPage> {
                     //       return pdf.save();
                     //     });
                   },
-                  child: const Text("Generate pdf invoice",
-                      style: TextStyle(color: Colors.amber))),
+                  child: const Text("Generate pdf invoice", style: TextStyle(color: Colors.amber))),
               // if (selectedDevice != null) Text("Selected Device: ${selectedDevice?.name}"),
               // Expanded(
               //     child: RefreshIndicator(

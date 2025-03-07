@@ -36,8 +36,7 @@ class LineWidget {
   List<Offset> points;
   Color? color;
 
-  LineWidget(
-      {required this.id, required this.points, this.color = Colors.black});
+  LineWidget({required this.id, required this.points, this.color = Colors.black});
 
   LineWidget clone() => LineWidget(id: id, points: points, color: color);
 }
@@ -78,12 +77,10 @@ class _FlutterDrawSomethingWithFingerFromNewOne
                 setState(() {});
               },
               onPointerMove: (PointerMoveEvent move) async {
-                var findLine =
-                    widgets.firstWhereOrNull((el) => el.id == lastId)?.clone();
+                var findLine = widgets.firstWhereOrNull((el) => el.id == lastId)?.clone();
                 if (findLine != null) {
                   findLine.points.add(move.position);
-                  widgets[widgets.indexWhere((el) => el.id == lastId)] =
-                      findLine;
+                  widgets[widgets.indexWhere((el) => el.id == lastId)] = findLine;
                 }
                 setState(() {});
               },
@@ -105,8 +102,7 @@ class _FlutterDrawSomethingWithFingerFromNewOne
             ),
           ),
           Container(
-            padding:
-                const EdgeInsets.only(left: 10, right: 10, bottom: 10, top: 50),
+            padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10, top: 50),
             child: Row(
               children: [
                 GestureDetector(
@@ -117,9 +113,7 @@ class _FlutterDrawSomethingWithFingerFromNewOne
                     width: 50,
                     height: 50,
                     color: Colors.red,
-                    child: selectedColor == Colors.red
-                        ? const Icon(Icons.check)
-                        : const SizedBox(),
+                    child: selectedColor == Colors.red ? const Icon(Icons.check) : const SizedBox(),
                   ),
                 ),
                 const SizedBox(width: 30),
@@ -131,9 +125,8 @@ class _FlutterDrawSomethingWithFingerFromNewOne
                     width: 50,
                     height: 50,
                     color: Colors.green,
-                    child: selectedColor == Colors.green
-                        ? const Icon(Icons.check)
-                        : const SizedBox(),
+                    child:
+                        selectedColor == Colors.green ? const Icon(Icons.check) : const SizedBox(),
                   ),
                 ),
                 TextButton(

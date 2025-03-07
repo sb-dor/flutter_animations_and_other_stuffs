@@ -53,8 +53,7 @@ class _PingPongPageState extends State<PingPongPage> {
                 child: Container(
                     width: MediaQuery.of(context).size.width / 3,
                     decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10))),
+                        color: Colors.white, borderRadius: BorderRadius.circular(10))),
               ),
               Container(
                 alignment: const Alignment(0, 1),
@@ -62,8 +61,7 @@ class _PingPongPageState extends State<PingPongPage> {
                 child: Container(
                     width: MediaQuery.of(context).size.width / 3,
                     decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10))),
+                        color: Colors.white, borderRadius: BorderRadius.circular(10))),
               ),
             ]),
           ),

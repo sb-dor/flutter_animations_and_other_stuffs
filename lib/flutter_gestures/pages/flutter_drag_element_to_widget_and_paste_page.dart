@@ -8,8 +8,7 @@ class FlutterDragElementToWidgetAndPaster extends StatefulWidget {
       _FlutterDragElementToWidgetAndPasterState();
 }
 
-class _FlutterDragElementToWidgetAndPasterState
-    extends State<FlutterDragElementToWidgetAndPaster> {
+class _FlutterDragElementToWidgetAndPasterState extends State<FlutterDragElementToWidgetAndPaster> {
   int sum = 0;
 
   @override
@@ -63,8 +62,8 @@ class _FlutterDragElementToWidgetAndPasterState
                 sum += data.data;
                 setState(() {});
               },
-              builder: (BuildContext context, List<Object?> candidateData,
-                  List<dynamic> rejectedData) {
+              builder:
+                  (BuildContext context, List<Object?> candidateData, List<dynamic> rejectedData) {
                 return Container(
                   width: 100,
                   height: 100,

@@ -12,8 +12,7 @@ class RiverpodGeneratedCodePage extends ConsumerStatefulWidget {
   ConsumerState createState() => _RiverpodGeneratedCodePageState();
 }
 
-class _RiverpodGeneratedCodePageState
-    extends ConsumerState<RiverpodGeneratedCodePage> {
+class _RiverpodGeneratedCodePageState extends ConsumerState<RiverpodGeneratedCodePage> {
   @override
   void initState() {
     super.initState();

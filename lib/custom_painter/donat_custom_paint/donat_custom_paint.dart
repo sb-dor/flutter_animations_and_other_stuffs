@@ -15,10 +15,10 @@ class DataItem {
     required this.color,
     required TickerProvider provider,
   }) {
-    _animationController = AnimationController(
-        vsync: provider, duration: const Duration(seconds: 2));
-    animation = Tween<double>(begin: 0, end: value).animate(CurvedAnimation(
-        parent: _animationController, curve: Curves.fastOutSlowIn));
+    _animationController =
+        AnimationController(vsync: provider, duration: const Duration(seconds: 2));
+    animation = Tween<double>(begin: 0, end: value)
+        .animate(CurvedAnimation(parent: _animationController, curve: Curves.fastOutSlowIn));
     _animationController.forward();
   }
 }
@@ -30,8 +30,7 @@ class DonalCustomPaint extends StatefulWidget {
   State<DonalCustomPaint> createState() => _DonalCustomPaintState();
 }
 
-class _DonalCustomPaintState extends State<DonalCustomPaint>
-    with TickerProviderStateMixin {
+class _DonalCustomPaintState extends State<DonalCustomPaint> with TickerProviderStateMixin {
   List<AnimationController> animationControllers = [];
 
   List<DataItem> dataItems = [];
@@ -43,14 +42,10 @@ class _DonalCustomPaintState extends State<DonalCustomPaint>
 
     dataItems = [
       DataItem(value: 0.2, label: "Comedy", color: Colors.red, provider: this),
-      DataItem(
-          value: 0.25, label: "Action", color: Colors.amber, provider: this),
-      DataItem(
-          value: 0.3, label: "Romance", color: Colors.blue, provider: this),
-      DataItem(
-          value: 0.05, label: "Drama", color: Colors.green, provider: this),
-      DataItem(
-          value: 0.2, label: "SciFi", color: Colors.orange, provider: this),
+      DataItem(value: 0.25, label: "Action", color: Colors.amber, provider: this),
+      DataItem(value: 0.3, label: "Romance", color: Colors.blue, provider: this),
+      DataItem(value: 0.05, label: "Drama", color: Colors.green, provider: this),
+      DataItem(value: 0.2, label: "SciFi", color: Colors.orange, provider: this),
     ];
   }
 
@@ -145,17 +140,15 @@ class DonatChartPainter extends CustomPainter {
         const TextStyle(color: Colors.black, fontSize: 15), radius * 0.6);
   }
 
-  TextPainter measureText(
-      String s, TextStyle textStyle, double maxWidth, TextAlign textAlign) {
+  TextPainter measureText(String s, TextStyle textStyle, double maxWidth, TextAlign textAlign) {
     final span = TextSpan(text: s, style: textStyle);
-    final tp = TextPainter(
-        text: span, textAlign: textAlign, textDirection: TextDirection.ltr);
+    final tp = TextPainter(text: span, textAlign: textAlign, textDirection: TextDirection.ltr);
     tp.layout(minWidth: 0, maxWidth: maxWidth);
     return tp;
   }
 
-  Size drawTextCentered(Canvas canvas, Offset position, String text,
-      TextStyle textStyle, double maxWidth) {
+  Size drawTextCentered(
+      Canvas canvas, Offset position, String text, TextStyle textStyle, double maxWidth) {
     final tp = measureText(text, textStyle, maxWidth, TextAlign.center);
     final pos = position + Offset(-tp.width / 2, -tp.height / 2);
     tp.paint(canvas, pos);

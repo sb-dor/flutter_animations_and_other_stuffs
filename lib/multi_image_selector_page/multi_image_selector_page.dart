@@ -20,9 +20,7 @@ class _MultiImageSelectorPageState extends State<MultiImageSelectorPage> {
         appBar: AppBar(
           title: const Text("Multi Image Picker"),
           actions: [
-            IconButton(
-                onPressed: () => throw Exception(),
-                icon: const Icon(Icons.bug_report)),
+            IconButton(onPressed: () => throw Exception(), icon: const Icon(Icons.bug_report)),
             IconButton(
                 onPressed: () => MultiSelectorHelper.pickMultipleMediaFunc(),
                 icon: const Icon(Icons.send))
@@ -37,15 +35,13 @@ class _MultiImageSelectorPageState extends State<MultiImageSelectorPage> {
                 showDialog(
                     context: context,
                     builder: (context) => AlertDialog(
-                            title: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                              const CircularProgressIndicator(),
-                              const SizedBox(width: 5),
-                              Container(
-                                  margin: const EdgeInsets.only(left: 7),
-                                  child: const Text("Loading...")),
-                            ])));
+                            title: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                          const CircularProgressIndicator(),
+                          const SizedBox(width: 5),
+                          Container(
+                              margin: const EdgeInsets.only(left: 7),
+                              child: const Text("Loading...")),
+                        ])));
                 await MultiSelectorHelper.sendImages(images);
                 Navigator.pop(context);
                 setState(() {});
@@ -55,8 +51,7 @@ class _MultiImageSelectorPageState extends State<MultiImageSelectorPage> {
           Expanded(
               child: ListView(children: [
             ListView.separated(
-                separatorBuilder: (context, index) =>
-                    const SizedBox(height: 10),
+                separatorBuilder: (context, index) => const SizedBox(height: 10),
                 itemCount: images.length,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
@@ -64,8 +59,7 @@ class _MultiImageSelectorPageState extends State<MultiImageSelectorPage> {
                     width: 300,
                     height: 200,
                     alignment: Alignment.center,
-                    child: Image.file(File(images[index].path),
-                        fit: BoxFit.cover)))
+                    child: Image.file(File(images[index].path), fit: BoxFit.cover)))
           ])),
           const SizedBox(height: 10)
         ]));

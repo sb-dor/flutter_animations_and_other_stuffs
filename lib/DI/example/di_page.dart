@@ -54,10 +54,8 @@ class _DiPageState extends State<DiPage> {
   @override
   void initState() {
     super.initState();
-    debugPrint(
-        "hashcode of calcService: ${ServiceLocator.instance.calcService.hashCode}");
-    debugPrint(
-        "hashcode of calcService: ${ServiceLocator.instance.calcService.hashCode}");
+    debugPrint("hashcode of calcService: ${ServiceLocator.instance.calcService.hashCode}");
+    debugPrint("hashcode of calcService: ${ServiceLocator.instance.calcService.hashCode}");
   }
 
   @override
