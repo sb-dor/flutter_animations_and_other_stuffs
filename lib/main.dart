@@ -142,7 +142,8 @@ void main() async {
   // DartIsoExample1.runIsolate();
   // DartIsoExample2.theMainFunc();
 
-  runApp(MultiBlocProvider(
+  runApp(
+    MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => FlutterPermissionCubit()),
         BlocProvider(create: (_) => BottomModalSheetCubits()),
@@ -158,7 +159,9 @@ void main() async {
         BlocProvider(create: (_) => FirstBloc()),
 
         //to init second bloc
-        BlocProvider(create: (_) => SecondBloc(firstBloc: BlocProvider.of<FirstBloc>(_))),
+        BlocProvider(
+          create: (context) => SecondBloc(firstBloc: BlocProvider.of<FirstBloc>(context)),
+        ),
         BlocProvider(create: (_) => NearbyServerCubit()),
 
         //
@@ -170,58 +173,63 @@ void main() async {
       ],
       child: provider.MultiProvider(
         providers: [
-          provider.ChangeNotifierProvider(
-            create: (_) => ViewModelMVVM(),
-          ),
-          provider.ChangeNotifierProvider(
-            create: (_) => DragAndDropProvider(),
-          ),
+          provider.ChangeNotifierProvider(create: (_) => ViewModelMVVM()),
+          provider.ChangeNotifierProvider(create: (_) => DragAndDropProvider()),
         ],
         child: ProviderScope(
-          child: BlocBuilder<MaterialChangeCubit, bool>(builder: (context, materialUiState) {
-            // return const MainAutoRoutePackageScreen();
-            // return MainGoRouterDecNavigation();
-            // return const MainDeclarativeNavigationScreen();
-            // return FlutterDeepLinkPage();
-            return UserTestChangeNotifierProvider(
-              provider: UsersTodoVm(),
-              child: GetMaterialApp(
-                localizationsDelegates: const [
-                  S.delegate,
-                  GlobalMaterialLocalizations.delegate,
-                  GlobalWidgetsLocalizations.delegate,
-                  GlobalCupertinoLocalizations.delegate,
-                ],
-                // to use only en otherwise app will understand the language by your phone language
-                // - optional remove if you want
-                locale: const Locale("ru"),
-                // supported locales that will be used in app
-                supportedLocales: S.delegate.supportedLocales,
-                // routerConfig: webRouter,
-                scrollBehavior: MyCustomScrollBehavior(),
-                //if you want to use flutter deep linking use package "go_router"
-                //get global context here
-                navigatorKey: GlobalContextHelper.instance.globalNavigatorContext,
+          child: BlocBuilder<MaterialChangeCubit, bool>(
+            builder: (context, materialUiState) {
+              // return const MainAutoRoutePackageScreen();
+              // return MainGoRouterDecNavigation();
+              // return const MainDeclarativeNavigationScreen();
+              // return FlutterDeepLinkPage();
+              return UserTestChangeNotifierProvider(
+                provider: UsersTodoVm(),
+                child: GetMaterialApp(
+                  localizationsDelegates: const [
+                    S.delegate,
+                    GlobalMaterialLocalizations.delegate,
+                    GlobalWidgetsLocalizations.delegate,
+                    GlobalCupertinoLocalizations.delegate,
+                  ],
+                  // to use only en otherwise app will understand the language by your phone language
+                  // - optional remove if you want
+                  locale: const Locale("ru"),
+                  // supported locales that will be used in app
+                  supportedLocales: S.delegate.supportedLocales,
+                  // routerConfig: webRouter,
+                  scrollBehavior: MyCustomScrollBehavior(),
+                  //if you want to use flutter deep linking use package "go_router"
+                  //get global context here
+                  navigatorKey: GlobalContextHelper.instance.globalNavigatorContext,
 
-                theme: FlexThemeData.light(scheme: FlexScheme.green, useMaterial3: materialUiState),
-                darkTheme:
-                    FlexThemeData.dark(scheme: FlexScheme.green, useMaterial3: materialUiState),
-                themeMode: ThemeMode.light,
-                debugShowCheckedModeBanner: false,
-                //for adding named routes use like this
-                //do not forget to write main route in your routes like this:
-                //
-                //->          "/" : (context) => YourHomeWidget()
-                //
-                //and do not forget to remove "home" parameter from MaterialApp widget, otherwise it will not work
-                initialRoute: '/',
-                routes: RoutingWithName.routes(),
-                // initialRoute: "/"
-              ),
-            );
-          }),
+                  theme: FlexThemeData.light(
+                    scheme: FlexScheme.green,
+                    useMaterial3: materialUiState,
+                  ),
+                  darkTheme: FlexThemeData.dark(
+                    scheme: FlexScheme.green,
+                    useMaterial3: materialUiState,
+                  ),
+                  themeMode: ThemeMode.light,
+                  debugShowCheckedModeBanner: false,
+                  //for adding named routes use like this
+                  //do not forget to write main route in your routes like this:
+                  //
+                  //->          "/" : (context) => YourHomeWidget()
+                  //
+                  //and do not forget to remove "home" parameter from MaterialApp widget, otherwise it will not work
+                  initialRoute: '/',
+                  routes: RoutingWithName.routes(),
+                  // initialRoute: "/"
+                ),
+              );
+            },
+          ),
         ),
-      )));
+      ),
+    ),
+  );
 }
 
 class MainApp extends StatefulWidget {
@@ -252,26 +260,29 @@ class _MainAppState extends State<MainApp> {
 
   void showNo() async {
     await AwesomeNotificationsHelper.showSimpleNotification(
-        title: 'Hello', body: "IT IS AWESOME NOTIFICATION");
+      title: 'Hello',
+      body: "IT IS AWESOME NOTIFICATION",
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<InternetConnCubit, bool>(
-        builder: (context, state) => const ComparisonsDetails(),
-        listener: (context, state) {
-          //listen internet conn here
-          if (state) {
-            if (Get.isSnackbarOpen) {
-              Get.closeCurrentSnackbar();
-            }
-          } else {
-            Get.rawSnackbar(
-              messageText: const Text("No Internet", style: TextStyle(color: Colors.white)),
-              duration: const Duration(days: 1),
-            );
+      builder: (context, state) => const ComparisonsDetails(),
+      listener: (context, state) {
+        //listen internet conn here
+        if (state) {
+          if (Get.isSnackbarOpen) {
+            Get.closeCurrentSnackbar();
           }
-        });
+        } else {
+          Get.rawSnackbar(
+            messageText: const Text("No Internet", style: TextStyle(color: Colors.white)),
+            duration: const Duration(days: 1),
+          );
+        }
+      },
+    );
   }
 }
 
@@ -279,8 +290,5 @@ class _MainAppState extends State<MainApp> {
 class MyCustomScrollBehavior extends MaterialScrollBehavior {
   // Override behavior methods and getters like dragDevices
   @override
-  Set<PointerDeviceKind> get dragDevices => {
-        PointerDeviceKind.touch,
-        PointerDeviceKind.mouse,
-      };
+  Set<PointerDeviceKind> get dragDevices => {PointerDeviceKind.touch, PointerDeviceKind.mouse};
 }
