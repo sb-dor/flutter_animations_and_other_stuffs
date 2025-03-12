@@ -38,7 +38,9 @@ class _SurfCatalogScreenState extends State<SurfCatalogScreen> {
         bottom: false,
         child: CustomScrollView(
           controller: _surfSyncScrollController.verticalScrollController,
+          physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
           slivers: [
+            const CupertinoSliverNavigationBar(largeTitle: Text('Scroll down')),
             SliverPadding(
               padding: const EdgeInsets.only(bottom: 16),
               sliver: CupertinoSliverRefreshControl(onRefresh: _surfSyncScrollController.onRefresh),

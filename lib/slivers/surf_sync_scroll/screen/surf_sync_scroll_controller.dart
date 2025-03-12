@@ -1,6 +1,5 @@
 part of 'surf_catalog_screen.dart';
 
-
 final class _SurfSyncScrollController with ChangeNotifier {
   // Indent offset for vertical list
   static const double _scrollStickyOffset = 112;
@@ -78,6 +77,9 @@ final class _SurfSyncScrollController with ChangeNotifier {
 
   // Calculate the visibility of a specific category when scrolling a vertical list
   void _calculateCategoryVisible() {
+    // When you click on a category in the horizontal scroll (which shows all of the available categories),
+    // it should scroll to a specific offset. That’s why, during this scrolling,
+    // the current offset calculation is temporarily disabled until the scroll finishes.
     if (_isIgnoreCatalogScroll) {
       return;
     }
