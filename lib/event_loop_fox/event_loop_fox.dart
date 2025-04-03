@@ -1,5 +1,8 @@
 import 'dart:async';
 
+// REMEMBER!!! SYNCHRONOUS OPERATIONS WILL NOT BE SET INSIDE ANY OF: "Event Queue" and "MicroTask Queue"
+// IT WILL BE HANDLED AT THAT EXACT TIME, IMMEDIATELY
+
 // The event loop is an invisible engine that powers the asynchronous execution of code in Dart.
 // It’s responsible for scheduling tasks, managing their execution, and ensuring that all operations in your Flutter app happen in the correct sequence. Dart’s event loop works by continuously checking two queues:
 //
@@ -17,8 +20,8 @@ import 'dart:async';
 // operations—it just waits until the synchronous execution is complete before continuing with the
 // next event.
 
-// REMEMBER!!! SYNCHRONOUS OPERATIONS WILL NOT BE SET INSIDE ANY OF: "Event Queue" and "MicroTask Queue"
-// IT WILL BE HANDLED AT THAT EXACT TIME, IMMEDIATELY
+// 'Future' has some methods, like: whenComplete or then,
+// the main difference between whenComplete and then is that, whenComplete returns void | then returns something that "Future" returns
 
 class EventLoopTest {
   EventLoopTest(this.eventQueue, this.microTaskQueue);
@@ -43,7 +46,7 @@ class EventLoopTest {
   }
 }
 
-void main() {
+void main() async {
   // 1) All events that we do in our app like: Functions, Future Functions, Gestures
   // All those jobs automatically go to the "Event Queue"
   // 2) In order to add microTask inside "MicroTask Queue" you have to use "Future.microtask((){})"
@@ -53,4 +56,33 @@ void main() {
 
   print("Sync operation");
   Future.sync(() {}); // shortcut for "Sync operations"
+
+  Future<int?>(() => throw UnimplementedError()).then(
+    (value) {
+      //
+    },
+    onError: (error) {
+      //
+      print("error giving is: $error");
+    },
+  );
+
+  Future<int?>(() => 2).whenComplete(() {
+    // just a function when Future ends
+  });
+
+  // simple code that fixes freezes on screen
+  final totalTimer = Stopwatch()..start();
+  final timer = Stopwatch()..start();
+  for (int i = 0; i < 1000000000; i++) {
+    // 16 is 60fps
+    // 8 is 120fps
+    if (timer.elapsedMilliseconds > 8) {
+      await Future.delayed(Duration.zero);
+      timer.reset();
+    }
+  }
+  print("Stomwatch: ${timer.elapsedMilliseconds} ms");
+  totalTimer.stop();
+  timer.start();
 }
