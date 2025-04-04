@@ -71,6 +71,13 @@ void main() async {
     // just a function when Future ends
   });
 
+  // --
+  simpleFixOfFreezedOnScreen();
+}
+
+// but this function is not good for handling big computation
+// better use Isolates
+void simpleFixOfFreezedOnScreen() async {
   // simple code that fixes freezes on screen
   final totalTimer = Stopwatch()..start();
   final timer = Stopwatch()..start();
@@ -82,7 +89,7 @@ void main() async {
       timer.reset();
     }
   }
-  print("Stomwatch: ${timer.elapsedMilliseconds} ms");
+  print("Stomwatch: ${totalTimer.elapsedMilliseconds} ms");
   totalTimer.stop();
   timer.start();
 }
