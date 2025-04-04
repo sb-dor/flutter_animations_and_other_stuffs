@@ -1,4 +1,7 @@
 import 'dart:async';
+import 'dart:io';
+import 'dart:isolate';
+import 'dart:math';
 
 // REMEMBER!!! SYNCHRONOUS OPERATIONS WILL NOT BE SET INSIDE ANY OF: "Event Queue" and "MicroTask Queue"
 // IT WILL BE HANDLED AT THAT EXACT TIME, IMMEDIATELY
@@ -73,6 +76,15 @@ void main() async {
 
   // --
   simpleFixOfFreezedOnScreen();
+
+  // --
+  await someLongFunction().timeout(const Duration(milliseconds: 350)).onError((error, stackTrace) {
+    print("error is si: $error | stack $stackTrace");
+
+    // you can kill isolate in these ways:
+    // exit(0);
+    Isolate.current.kill();
+  });
 }
 
 // but this function is not good for handling big computation
@@ -92,4 +104,10 @@ void simpleFixOfFreezedOnScreen() async {
   print("Stomwatch: ${totalTimer.elapsedMilliseconds} ms");
   totalTimer.stop();
   timer.start();
+}
+
+Future<void> someLongFunction() async {
+  final periodic = Stream<int>.periodic(const Duration(milliseconds: 250), (i) => i);
+
+  await periodic.take(3).forEach(log);
 }
