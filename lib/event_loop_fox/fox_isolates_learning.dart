@@ -1,3 +1,11 @@
+// more info about isolates you can find here:
+
+// 1. https://dart.dev/language/isolates
+// 2. https://www.youtube.com/watch?v=kLoYHnh9XS0
+// 3. https://youtu.be/kLoYHnh9XS0?t=9041
+// 4. https://plugfox.dev/mastering-isolates/
+// 5. https://github.com/sb-dor/FTube/blob/master/lib/features/youtube_video_player_screen/presentation/bloc/logic/download_video/download_video.dart
+
 // every isolate has it's own memory, event loop (event queue and microTask queue)
 // that's why whenever you run your "main" function -> it starts the whole code in main Isolate
 // and all your Flutter code is running in that main Isolate.
