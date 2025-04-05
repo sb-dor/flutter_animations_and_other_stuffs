@@ -3,6 +3,8 @@ import 'dart:io';
 import 'dart:isolate';
 import 'dart:math';
 
+import 'package:shared_preferences/shared_preferences.dart';
+
 // REMEMBER!!! SYNCHRONOUS OPERATIONS WILL NOT BE SET INSIDE ANY OF: "Event Queue" and "MicroTask Queue"
 // IT WILL BE HANDLED AT THAT EXACT TIME, IMMEDIATELY
 
