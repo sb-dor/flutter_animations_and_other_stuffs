@@ -23,7 +23,7 @@ abstract class IsolateCommunicator<Send extends Object?, Receive extends Object?
   spawn<Send extends Object?, Receive extends Object?, Arg extends Object?>(
     void Function(IsolateCommunicator<Receive, Send> communicator, Arg arguments) entryPoint,
     Arg arguments,
-  ) => communicator.spawn<Send, Receive, Arg>(entryPoint, arguments);
+  ) => entryPoint();
 
   // check whether Isolate is closed
   bool get isClosed;
@@ -37,7 +37,7 @@ abstract class IsolateCommunicator<Send extends Object?, Receive extends Object?
 
 void main() => runZonedGuarded(
   () async {
-    final communicator = await IsolateCommunicator.spawn(helloWorld, '2');
+    final communicator = await IsolateCommunicator.spawn<String, int, String>(helloWorld, '2');
     communicator.listen((dataFromCreatedIsolate) {
       print("data is: $dataFromCreatedIsolate");
     });
