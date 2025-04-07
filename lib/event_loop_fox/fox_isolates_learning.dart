@@ -15,11 +15,9 @@
 import 'dart:async';
 import 'dart:isolate';
 
-abstract class _StringConstants {
-  static const String killIsolate = "kill isolate";
-  static const String createdIsolateIsClosing = "createdIsolate is closing";
-  static const String throwAnyError = "throw_an_error";
-}
+import 'contants/isoate_string_constants.dart';
+
+
 
 void main() async {
   StackTrace.fromString("Data from stacktrace that were converted to string");
@@ -31,7 +29,7 @@ void main() async {
       await Future.delayed(const Duration(seconds: 5));
       // newIsolateSendPort.send(_StringConstants.throwAnyError);
       // await Future.delayed(const Duration(seconds: 5));
-      newIsolateSendPort.send(_StringConstants.killIsolate);
+      newIsolateSendPort.send(StringConstants.killIsolate);
       // after killing isolate no message will be sent and no computations will be invoked
       newIsolateSendPort.send("it's already dead and you will not get message");
     },
@@ -60,7 +58,7 @@ Future<SendPort> initIsolate() async {
   subs = mainIsolateReceivePort.listen((Object? object) {
     if (!completer.isCompleted && object is SendPort) {
       completer.complete(object);
-    } else if (object is String && object == _StringConstants.createdIsolateIsClosing) {
+    } else if (object is String && object == StringConstants.createdIsolateIsClosing) {
       subs.cancel();
       mainIsolateReceivePort.close();
     } else if (object is String && object.contains("<~|~>")) {
@@ -94,15 +92,15 @@ void createdIsolate(SendPort mainIsolateSendPort) async {
     try {
       print("data is coming from mainIsolate to [createdIsolate]: $object | ${object.runtimeType}");
 
-      if (object is String && object == _StringConstants.throwAnyError) {
+      if (object is String && object == StringConstants.throwAnyError) {
         throw UnimplementedError();
       }
 
-      if (object is String && object == _StringConstants.killIsolate) {
+      if (object is String && object == StringConstants.killIsolate) {
         /// when you want to somehow close isolate after some computation,
         /// better send message to [mainIsolate] that you are closing [createdIsolate],
         /// so the listener that is listing from [mainIsolate] closes itself
-        mainIsolateSendPort.send(_StringConstants.createdIsolateIsClosing);
+        mainIsolateSendPort.send(StringConstants.createdIsolateIsClosing);
         Isolate.current.kill();
       }
     } catch (error, stackTrace) {
