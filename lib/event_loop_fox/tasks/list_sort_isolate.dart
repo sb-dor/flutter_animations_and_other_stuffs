@@ -74,6 +74,8 @@ class ListSortIsolate {
         }
         print("object: $test");
         mainIsolatePort.send(data);
+        mainIsolatePort.send(StringConstants.createdIsolateIsClosing);
+        Isolate.current.kill();
       }
     });
   }
