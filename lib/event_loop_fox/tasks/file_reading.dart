@@ -29,10 +29,10 @@ class FileReader {
 
     final completedCreatedIsolatePort = await createdIsolatePort.future;
 
-    final createFileHelper = CreateFileHelper();
+    final createFileHelper = CreateFileHelper("Namemi");
 
-    print("mail isolate create file helper hascode: ${createFileHelper.hashCode}");
-    print("mail isolate create file helper hascode: ${createFileHelper.hashCode}");
+    print("mail isolate create file helper hascode: ${createFileHelper.hashCode} | name: ${createFileHelper.name.hashCode}");
+    print("mail isolate create file helper hascode: ${createFileHelper.hashCode} | name: ${createFileHelper.name.hashCode}");
     completedCreatedIsolatePort.send(createFileHelper);
     // ;
   }
@@ -43,7 +43,7 @@ class FileReader {
 
     createdIsolatePort.listen((data) async {
       if (data is CreateFileHelper) {
-        mainIsolatePort.send("create file helper hashcode: ${data.hashCode}");
+        mainIsolatePort.send("create file helper hashcode: ${data.hashCode} | name: ${data.name.hashCode}");
         mainIsolatePort.send("file is creating");
         final file = await data.createFile();
         mainIsolatePort.send("file length is: ${await file.length() / (1024 * 1024)} mb"); // to mb
@@ -56,6 +56,10 @@ class FileReader {
 }
 
 class CreateFileHelper {
+  CreateFileHelper(this.name);
+
+  final String name;
+
   Future<File> createFile() async {
     final tempPath = Directory.current;
     final file = File("${tempPath.path}/lib/event_loop_fox/tasks/large_file.txt");
