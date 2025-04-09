@@ -63,7 +63,7 @@ void main() async {
   Future.sync(() {}); // shortcut for "Sync operations"
 
   Future<int?>(() => throw UnimplementedError()).then(
-    (value) {
+        (value) {
       //
     },
     onError: (error) {
@@ -93,8 +93,10 @@ void main() async {
 // better use Isolates
 void simpleFixOfFreezedOnScreen() async {
   // simple code that fixes freezes on screen
-  final totalTimer = Stopwatch()..start();
-  final timer = Stopwatch()..start();
+  final totalTimer = Stopwatch()
+    ..start();
+  final timer = Stopwatch()
+    ..start();
   for (int i = 0; i < 1000000000; i++) {
     // 16 is 60fps
     // 8 is 120fps
