@@ -31,11 +31,12 @@ class FileReader {
     final completedCreatedIsolatePort = await createdIsolatePort.future;
 
     completedCreatedIsolatePort.send(await file());
+    // ;
   }
 
   Future<File> file() async {
     final tempPath =  Directory.current;
-    final file = File('$tempPath/large_file.txt');
+    final file = File("${tempPath.path}/lib/event_loop_fox/tasks/large_file.txt");
     final sink = file.openWrite();
     for (int i = 1; i <= 1000000; i++) {
       sink.writeln('This is line number $i');
@@ -53,7 +54,7 @@ class FileReader {
 
     createdIsolatePort.listen((data) async {
       if (data is File) {
-        mainIsolatePort.send("file length is: ${await data.length()}");
+        mainIsolatePort.send("file length is: ${await data.length() / (1024 * 1024)}"); // to mb
         await data.delete();
         mainIsolatePort.send(StringConstants.createdIsolateIsClosing);
         Isolate.current.kill();
