@@ -1,14 +1,14 @@
 import 'dart:io';
 import 'dart:math';
 import 'dart:developer' as dev;
-import 'package:ffmpeg_kit_flutter/return_code.dart';
+// import 'package:ffmpeg_kit_flutter/return_code.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:youtube_explode_dart/youtube_explode_dart.dart';
 import 'package:dio/dio.dart';
-import 'package:ffmpeg_kit_flutter/ffmpeg_kit.dart';
+// import 'package:ffmpeg_kit_flutter/ffmpeg_kit.dart';
 
 class YoutubeExplodePage extends StatefulWidget {
   const YoutubeExplodePage({super.key});
@@ -171,31 +171,31 @@ class _YoutubeExplodePageState extends State<YoutubeExplodePage> {
     newVideoFile.writeAsBytesSync(videoFromUrl.data ?? []);
     newAudioFile.writeAsBytesSync(audioFromUrl.data ?? []);
 
-    await _concatenateAudioAndVideo(videoPath: newVideoFile.path, audioPath: newAudioFile.path);
+    // await _concatenateAudioAndVideo(videoPath: newVideoFile.path, audioPath: newAudioFile.path);
   }
 
-  Future<void> _concatenateAudioAndVideo(
-      {required String videoPath, required String audioPath}) async {
-    var getExStorage = await getExternalStorageDirectory();
-
-    // create output path where file will be saved
-    String outputPath =
-        '${getExStorage?.path}/${Random().nextInt(pow(2, 10).toInt())}.mp4'; // remember to rename file all the time, other way file will be replaced with another file
-
-    // package
-    await FFmpegKit.execute('-i $videoPath -i $audioPath -c copy $outputPath').then((value) async {
-      final returnCode = await value.getReturnCode();
-      debugPrint("result of audio and video");
-
-      if (ReturnCode.isSuccess(returnCode)) {
-        debugPrint("SUCCESS");
-      } else if (ReturnCode.isCancel(returnCode)) {
-        debugPrint("CANCEL");
-      } else {
-        debugPrint("ERROR");
-      }
-    });
-  }
+  // Future<void> _concatenateAudioAndVideo(
+  //     {required String videoPath, required String audioPath}) async {
+  //   var getExStorage = await getExternalStorageDirectory();
+  //
+  //   // create output path where file will be saved
+  //   String outputPath =
+  //       '${getExStorage?.path}/${Random().nextInt(pow(2, 10).toInt())}.mp4'; // remember to rename file all the time, other way file will be replaced with another file
+  //
+  //   // package
+  //   await FFmpegKit.execute('-i $videoPath -i $audioPath -c copy $outputPath').then((value) async {
+  //     final returnCode = await value.getReturnCode();
+  //     debugPrint("result of audio and video");
+  //
+  //     if (ReturnCode.isSuccess(returnCode)) {
+  //       debugPrint("SUCCESS");
+  //     } else if (ReturnCode.isCancel(returnCode)) {
+  //       debugPrint("CANCEL");
+  //     } else {
+  //       debugPrint("ERROR");
+  //     }
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {

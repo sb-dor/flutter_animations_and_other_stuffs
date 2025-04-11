@@ -3,14 +3,19 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:isolate';
 import 'dart:math';
-
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_animations_2/event_loop_fox/contants/isoate_string_constants.dart';
+import 'package:path_provider/path_provider.dart';
 
 class BigJsonFileCreator {
   Future<File> jsonFile() async {
-    final file = File(
-      '${Directory.current.path}/lib/event_loop_fox/tasks/json_parsing/large_users.json',
-    );
+    // for using dart only
+    // final file = File(
+    //   '${Directory.current.path}/lib/event_loop_fox/tasks/json_parsing/large_users.json',
+    // );
+    // for using flutter only
+    final file = File('${(await getTemporaryDirectory()).path}/large_users.json');
     final sink = file.openWrite();
     final random = Random();
 
@@ -85,7 +90,11 @@ class JsonParser {
 }
 
 void main() async {
+  // for flutter usage
+  WidgetsFlutterBinding.ensureInitialized();
   final bigJsonFile = await BigJsonFileCreator().jsonFile();
-  final jsonParser = JsonParser();
-  jsonParser.invoke(bigJsonFile);
+  // final jsonParser = JsonParser();
+  // jsonParser.invoke(bigJsonFile);
+  final parseJson = await compute(jsonDecode, bigJsonFile.readAsStringSync());
+  print("parsed json is: ${(parseJson as Map<String, dynamic>)['users'][0]}");
 }
