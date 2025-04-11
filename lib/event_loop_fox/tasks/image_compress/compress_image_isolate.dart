@@ -26,7 +26,9 @@ class CompressImageIsolate {
 
     final createdIsolateSendPort = await createdIsolatePortCompleter.future;
 
-    final image = File("${Directory.current.path}/lib/event_loop_fox/tasks/img_2.jpeg");
+    final image = File(
+      "${Directory.current.path}/lib/event_loop_fox/tasks/image_compress/img_2.jpeg",
+    );
 
     createdIsolateSendPort.send(await image.readAsBytes());
   }
@@ -47,7 +49,9 @@ class CompressImageIsolate {
         // encodes any type of image: jpg, jpeg, png
         final compressed = img.encodeJpg(original, quality: 30);
 
-        final fileForNewSave = File("${Directory.current.path}/lib/event_loop_fox/tasks/img_3.jpeg");
+        final fileForNewSave = File(
+          "${Directory.current.path}/lib/event_loop_fox/tasks/image_compress/img_3.jpeg",
+        );
 
         fileForNewSave.openWrite();
         fileForNewSave.writeAsBytesSync(compressed);
