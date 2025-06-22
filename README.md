@@ -1,16 +1,5 @@
-# flutter_animations_2
+About this repository
+This project is part of my learning journey. As I continue to grow as a developer, I’ve come to understand what makes a package, structure, or codebase good and what doesn’t.
+Some parts of this repository may not be ideal and that’s okay. They reflect my exploration, experiments, and the process of learning by doing. If you come across something that’s not quite right, it likely taught me a valuable lesson. And if you find something that looks solid I’m really glad to hear that.
+Thanks for taking the time to look!
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
